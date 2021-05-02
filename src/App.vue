@@ -1,25 +1,65 @@
 <template>
   <div id="app">
-    Fractory Dummy App
+    <b-container class="mb-5">
+      <b-row class="header-row">
+        <b-col>
+          <h1>F R A C T O R Y</h1>
+          <p>Playground</p>
+        </b-col>
+      </b-row>
+
+      <Connector/>
+      
+      <hr>
+
+      <AssetList/>
+    </b-container>
   </div>
 </template>
 
 <script>
+import Connector from "./components/Connector";
+import AssetList from "./components/AssetList";
+
 export default {
   name: 'App',
   components: {
-    
+    Connector,
+    AssetList
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500');
+* {
+  font-family: 'Poppins', sans-serif;
+}
+.logo {
+  width: 400px;
+  height: auto;
+}
+button {
+  width: 100%;
+}
+.header-row {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin: 30px 0;
+}
+.action-container h4 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.action-container p {
+  text-align: center;
+  margin-top: 10px;
+}
+.middle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.middle-container img {
+  height: 100px;
 }
 </style>
