@@ -3,7 +3,7 @@
     <b-container class="mb-5">
       <b-row class="header-row">
         <b-col>
-          <h1>F R A C T O R Y</h1>
+          <h1>F R A B R I C</h1>
           <p>Playground</p>
         </b-col>
       </b-row>

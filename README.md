@@ -1,4 +1,4 @@
-# Fractory Web Interface
+# Frabric Web Interface
 
 ## Project setup
 ```
