@@ -1,65 +1,34 @@
 <template>
-  <div id="app">
-    <b-container class="mb-5">
-      <b-row class="header-row">
-        <b-col>
-          <h1>F R A B R I C</h1>
-          <p>Playground</p>
-        </b-col>
-      </b-row>
-
-      <Connector/>
-      
-      <hr>
-
-      <AssetList/>
-    </b-container>
+  <div id="app" class="app-main">
+    <img class="logo" src="./assets/logo/compact/frabric_logo_compact-white.png" alt="Frabric">
+    <AppWrapper/>
   </div>
 </template>
 
 <script>
-import Connector from "./components/Connector";
-import AssetList from "./components/AssetList";
+import AppWrapper from "./components/AppWrapper";
 
 export default {
   name: 'App',
   components: {
-    Connector,
-    AssetList
+    AppWrapper,
   }
 }
 </script>
 
-<style>
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500');
-* {
-  font-family: 'Poppins', sans-serif;
+<style scoped>
+.app-main {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
 }
 .logo {
-  width: 400px;
+  margin-top: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50px;
   height: auto;
-}
-button {
-  width: 100%;
-}
-.header-row {
-  text-align: center;
-  margin: 30px 0;
-}
-.action-container h4 {
-  text-align: center;
-  margin-bottom: 30px;
-}
-.action-container p {
-  text-align: center;
-  margin-top: 10px;
-}
-.middle-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.middle-container img {
-  height: 100px;
+  z-index: 999;
 }
 </style>
