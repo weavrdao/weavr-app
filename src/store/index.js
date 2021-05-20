@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
-import state from "./state";
+import state from "./state"
 
 Vue.use(Vuex)
 
