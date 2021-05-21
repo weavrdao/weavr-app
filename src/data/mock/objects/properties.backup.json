@@ -1,0 +1,18 @@
+[
+  {
+    "id": 159123164363,
+    "type": 0,
+    "address1": "1506 10 Ave SW",
+    "address2": "",
+    "city": "Calgary",
+    "zip": "T2R 0B2",
+    "country": "Canada",
+    "picture_url": "https://www.calgaryapartmentreviews.com/wp-content/uploads/2019/02/Sodo-2-bed-F-3-of-5-848x477.jpg",
+    "total_asset_value": 345678.15,
+    "rental_income": 1480.00,
+    "is_owned": false,
+    "stake_in_percent": 0.0,
+    "book_value": 0.0,
+    "market_value": 345678.15
+  }
+]
