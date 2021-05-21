@@ -1,3 +1,14 @@
+export const UI = {
+  Surface: {
+    Border: {
+      width: "1px",
+      color: "#00A4FF",
+    },
+
+    backgroundColor: "#130248",
+  },
+}
+
 export const Colors = {
   white: "#FFFFFF",
   black: "#000000",
@@ -12,4 +23,8 @@ export const Colors = {
 
 export const FontFamily = {
   main: "Work Sans",
+}
+
+export const Sizes = {
+  gu: 8
 }
