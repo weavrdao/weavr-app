@@ -4,23 +4,37 @@
       <b-row align="center" class="header-row">
         <b-col>
           <h1>Component Demo</h1>
-          <p>No, I would never steal any CSS from Uniswap!</p>
+          <p>Universal Dynamic Grids + Demo Data Provision</p>
+
+          <MarketPropertyLayout :properties="properties"/>
         </b-col>
       </b-row>
-
-      <Connector/>
     </b-container>
   </div>
 </template>
 
 <script>
+import * as ObjectDB from "../data/mock/objects.js"
 import { Colors } from "../theme/index"
-import Connector from "./Connector"
+
+import MarketPropertyLayout from "./MarketProperty/MarketPropertyLayout"
+//import Connector from "./Connector"
 
 export default {
   name: 'AppBody',
   components: {
-    Connector
+    MarketPropertyLayout,
+  },
+  data() {
+    return {
+      properties: [],
+    }
+  },
+  mounted() {
+    ObjectDB.getAll(ObjectDB.Types.Property)
+      .then((properties) => {
+        this.properties = properties
+      })
   },
   computed: {
     style() {
@@ -44,7 +58,7 @@ export default {
   position: relative;
   padding: 16px;
   margin-top: 16px;
-  max-width: 480px;
+  max-width: 960px;
   width: 100%;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.08), 0px 16px 32px rgba(0, 0, 0, 0.32), 0px 64px 96px rgba(0, 0, 0, 0.32),
     0px 92px 128px rgba(0, 0, 0, 0.08);
