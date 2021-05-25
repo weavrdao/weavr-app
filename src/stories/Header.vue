@@ -31,7 +31,7 @@
 
 <script>
 import './header.css';
-import MyButton from '../components/Button.vue';
+import MyButton from '../components/common/Button.vue';
 
 export default {
   name: 'my-header',

@@ -14,7 +14,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Button from './Button'
+import Button from '../../common/Button'
 
 export default {
   name: 'Connector',

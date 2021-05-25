@@ -31,6 +31,7 @@ export default {
   flex-direction: column;
   width: 100%;
   padding-top: 120px;
+  padding-bottom: 120px;
   align-items: center;
   flex: 1;
   z-index: 1;

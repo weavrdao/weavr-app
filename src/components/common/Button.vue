@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { Colors } from '../theme/index'
+import { Colors } from '../../theme/index'
 
 export default {
   name: 'Button',

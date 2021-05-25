@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import Card from '../common/Card'
-import Button from '../Button'
+import Card from '../../common/Card'
+import Button from '../../common/Button'
 
 export default {
   name: 'MarketPropertyCard',

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import { Sizes } from "../../theme/index"
-import CardLayout from '../common/CardLayout'
+import { Sizes } from "../../../theme/index"
+import CardLayout from '../../common/CardLayout'
 import MarketPropertyCard from './MarketPropertyCard'
 
 export default {
