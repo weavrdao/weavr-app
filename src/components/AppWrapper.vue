@@ -37,5 +37,6 @@ export default {
   z-index: 1;
   padding: 16px;
   padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 </style>
