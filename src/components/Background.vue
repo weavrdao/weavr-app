@@ -1,6 +1,5 @@
 <template>
   <div class="app-background" :style="style">
-    <div class="fixed-graphic"/>
   </div>
 </template>
 
@@ -35,17 +34,5 @@ export default {
   transform: translateY(-100vh);
   will-change: background;
   transition: background 450ms ease;
-}
-.fixed-graphic {
-  background: url('../assets/temp-bg.png');
-  min-width:100vw;
-  min-height:600px;
-  width: auto;
-  height: auto;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999;
 }
 </style>
