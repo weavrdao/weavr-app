@@ -1,5 +1,5 @@
 <template>
-  <div :style="style">
+  <div class="body-wrapper" :style="style">
     <Section>
       <h1>Header Section</h1>
     </Section>
@@ -50,15 +50,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 
   position: relative;
-  padding: 16px;
-  margin-top: 16px;
-  max-width: 960px;
-  width: 100%;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  margin-left: 300px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.08), 0px 16px 32px rgba(0, 0, 0, 0.32), 0px 64px 96px rgba(0, 0, 0, 0.32),
     0px 92px 128px rgba(0, 0, 0, 0.08);
   border-radius: 16px;
-  margin-top: 1rem;
-
+  
   font-feature-settings: 'ss01' on, 'ss02' on, 'cv01' on, 'cv03' on;
   line-height: 1.55;
   /* max-width: 1440px; */

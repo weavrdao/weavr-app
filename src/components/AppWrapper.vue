@@ -1,18 +1,21 @@
 <template>
   <div id="app" class="app-wrapper" :style="style">
     <Background/>
+    <SideNavigation/>
     <AppBody/>
   </div>
 </template>
 
 <script>
 import Background from "./Background"
+import SideNavigation from "./layout/SideNavigation"
 import AppBody from "./AppBody"
 
 export default {
   name: 'AppWrapper',
   components: {
     Background,
+    SideNavigation,
     AppBody
   },
   computed: {
@@ -27,16 +30,10 @@ export default {
 
 <style scoped>
 .app-wrapper {
-  display: flex;
-  flex-direction: column;
+  display: block;
   width: 100%;
-  padding-top: 120px;
-  padding-bottom: 120px;
-  align-items: center;
+  align-items: left;
   flex: 1;
   z-index: 1;
-  padding: 16px;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
 }
 </style>
