@@ -1,7 +1,8 @@
 import { db } from './db'
 
 export const Types = {
-  Property: "properties"
+  Property: "properties",
+  UserBenefits: "user_benefits"
 }
 
 export async function getOne(type, id) {
