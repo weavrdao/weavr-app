@@ -4,11 +4,11 @@
           <img class="p-6" src="../../assets/logo/full/frabric_logo_full-white.png" alt="Frabric">
           <nav class="mt-6">
             <div>
-              <div class="nav-link" @click="clicked(item.id)">Header</div>
-              <div class="nav-link">Explainer</div>
-              <div class="nav-link">Community</div>
-              <div class="nav-link">Roadmap</div>
-              <div class="nav-link">Footer</div>
+              <div class="relative px-6 py-2 w-full" @click="clicked(item.id)">Header</div>
+              <div class="relative px-6 py-2 w-full"> Explainer</div>
+              <div class="relative px-6 py-2 w-full">Community</div>
+              <div class="relative px-6 py-2 w-full">Roadmap</div>
+              <div class="relative px-6 py-2 w-full">Footer</div>
             </div>
           </nav>
         </div>
@@ -38,13 +38,6 @@ export default {
       //style['background-color'] = Colors.primary1
       style['color'] = Colors.white
       
-      return style
-    },
-    navLinkStyle() {
-      var style = {}
-
-      style['--nav-link-text-shadow--hover'] = `2px 2px ${Colors.secondary1}`
-    
       return style
     }
   }
