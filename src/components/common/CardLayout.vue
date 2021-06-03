@@ -1,51 +1,26 @@
 <template>
-  <div class="card-layout" :style="style">
-    <div v-for="child in children" :key="child">
-        <slot v-bind="child"></slot>
+  <div class="flex justify-center">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 my-4 auto-rows-fr">
+        <div 
+        class="
+        my-4 bg-gray-700 bg-opacity-50 shadow-b-purple-3-glow w-full 
+        max-w-xl py-6 md:pb-9 px-3 md:pt-4 md:px-8 rounded
+        "
+        v-for="child in children" :key="child"
+        >
+          <slot v-bind="child"></slot>
+        </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Sizes } from "../../theme/index"
-
 export default {
   name: 'CardLayout',
   props: {
     children: {
       type: Array,
-    },
-    fullWidth: {
-      type: Boolean,
-    },
-    columnWidthMin: {
-      type: Number,
-      required: true,
-    },
-    rowHeight: {
-      type: Number
-    },
-  },
-  computed: {
-    style() {
-      var style = {}
-      
-      style['grid-gap'] = `${2 * Sizes.gu}px`
-      style['grid-template-columns'] = `repeat(${this.fullWidth ? 'auto-fit' : 'auto-fill'}, minmax(${this.columnWidthMin}px, 1fr))`
-      style['padding'] = `0 ${this.fullWidth ? 2 * Sizes.gu : 0}px ${3 * Sizes.gu}px`
-
-      return style
     }
   }
 }
 </script>
-
-<style scoped>
-.card-layout {
-  display: grid;
-  grid-auto-flow: row;
-  align-items: start;
-  margin: 0 auto;
-  grid-auto-rows: 1fr;
-}
-</style>

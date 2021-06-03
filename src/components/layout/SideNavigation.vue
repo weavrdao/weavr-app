@@ -1,6 +1,6 @@
 <template>
-  <div class="h-screen hidden lg:block shadow-lg relative w-80" :style="style">
-    <div class="h-full dark:bg-gray-700">
+  <div class="h-screen hidden lg:block shadow-r-purple-3-glow relative w-80" :style="style">
+    <div class="h-full dark:bg-gray-700 dark:bg-opacity-50">
       <img class="p-6" src="../../assets/logo/full/frabric_logo_full-white.png" alt="Frabric">
       <nav class="mt-6">
         <div>

@@ -9,7 +9,7 @@
     border-solid 
     border-2
     rounded-xl 
-    text-gray-100 
+    text-gray-400 
     text-lg
     px-6
     py-2
