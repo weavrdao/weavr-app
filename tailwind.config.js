@@ -1,5 +1,4 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
@@ -142,8 +141,9 @@ module.exports = {
       },
       boxShadow: {
         ...defaultTheme.boxShadow,
-        'f-purple-3-glow': '0px 57px 90px -47px RGBA(44, 48, 149, 0.15)',
-        'f-purple-3-glow-hovered': '0px 57px 90px -47px RGBA(44, 48, 149, 0.15)',
+        'r-purple-3-glow': '45px 0px 90px 0px RGBA(44, 48, 149, 0.30)',
+        'b-purple-3-glow': '0px 90px 90px 0px RGBA(44, 48, 149, 0.30)',
+        'b-purple-3-glow-hovered': '0px 57px 90px -47px RGBA(44, 48, 149, 0.15)',
       },
       ringWidth: {
         ...defaultTheme.ringWidth,
