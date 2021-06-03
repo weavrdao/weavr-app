@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app-main">
+  <div id="app" class="dark">
     <!-- <img class="logo" src="./assets/logo/compact/frabric_logo_compact-white.png" alt="Frabric"> -->
     <AppWrapper/>
   </div>
@@ -15,20 +15,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.app-main {
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-}
-.logo {
-  margin-top: 100px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50px;
-  height: auto;
-  z-index: 999;
-}
-</style>

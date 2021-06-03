@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app-wrapper" :style="style">
+  <div id="app" class="bg-gray-100 dark:bg-gray-800 h-screen overflow-hidden relative flex items-start justify-between" :style="style">
     <Background/>
     <SideNavigation/>
     <AppBody/>
@@ -27,13 +27,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.app-wrapper {
-  display: block;
-  width: 100%;
-  align-items: left;
-  flex: 1;
-  z-index: 1;
-}
-</style>
