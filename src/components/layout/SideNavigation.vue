@@ -11,20 +11,17 @@
           <div class="relative px-6 py-2 w-full">Footer</div>
         </div>
       </nav>
-
-      <Button label="Test" class="relative px-6 py-2 w-full"/>
     </div>
   </div>
 </template>
 
 <script>
 import { Colors } from '../../theme'
-import Button from '../common/Button'
 
 export default {
   name: 'SideNavigation',
   components: {
-    Button
+    
   },
   data() {
     return {

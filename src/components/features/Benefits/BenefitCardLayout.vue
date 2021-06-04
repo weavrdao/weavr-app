@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-screen-lg mx-auto">
+  <div>
     <CardLayout :children="this.benefits">
       <template slot-scope="benefit">
         <BenefitCard :benefit="benefit"/>

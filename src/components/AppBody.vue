@@ -1,7 +1,8 @@
 <template>
   <div class="
   flex flex-col items-start overflow-x-hidden h-screen w-full
-  " :style="style">
+  text-white
+  ">
     <div class="w-full">
       <HeaderSection/>
     </div>
@@ -33,7 +34,6 @@
 </template>
 
 <script>
-import { Colors } from "../theme/index"
 import Section from "./common/Section"
 import HeaderSection from "./layout/HeaderSection"
 import CommunitySection from "./layout/CommunitySection"

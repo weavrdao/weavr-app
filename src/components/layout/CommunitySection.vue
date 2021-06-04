@@ -1,5 +1,7 @@
 <template>
-  <BenefitCardLayout :benefits="benefits"/>
+  <div class="w-full max-w-screen-lg mx-auto px-8 lg:px-4">
+    <BenefitCardLayout :benefits="benefits"/>
+  </div>
 </template>
 
 <script>
