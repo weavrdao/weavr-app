@@ -1,23 +1,11 @@
 <template>
-  
+  <div class="relative w-full h-80">
+    Test
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'FooterSection',
-  components: {
-    
-  },
-  computed: {
-    style() {
-      var style = {}
-
-      return style
-    }
-  }
+  name: 'FooterSection'
 }
 </script>
-
-<style scoped>
-
-</style>

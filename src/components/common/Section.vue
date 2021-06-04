@@ -2,7 +2,7 @@
   <div class="
   relative
   w-full max-w-screen-lg mx-auto
-  h-48
+  h-screen
   m-12 
   dark:border-gradient-br-blue-white-dark
   text-center

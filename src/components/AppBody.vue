@@ -34,6 +34,7 @@ import Section from "./common/Section"
 import HeaderSection from "./layout/HeaderSection"
 import ExplainerSection from "./layout/ExplainerSection"
 import CommunitySection from "./layout/CommunitySection"
+// import FooterSection from "./layout/FooterSection"
 
 export default {
   name: 'AppBody',
@@ -42,6 +43,7 @@ export default {
     HeaderSection,
     ExplainerSection,
     CommunitySection,
+    // FooterSection,
   }
 }
 </script>
