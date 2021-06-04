@@ -1,15 +1,13 @@
 <template>
   <div class="flex flex-col w-full md:space-y-4" :style="style">
-    <div class="overflow-auto h-screen pb-24 px-4 md:px-6">
+    <div class="max-w-screen-lg mx-auto overflow-auto h-screen py-16 px-4 md:px-6">
       <Section>
         <h1>Header Section</h1>
       </Section>
       <Section>
         <h1>Explainer Section</h1>
       </Section>
-      <Section>
-        <h1>Community Section</h1>
-      </Section>
+      <CommunitySection/>
       <Section>
         <h1>Roadmap Section</h1>
       </Section>
@@ -23,11 +21,13 @@
 <script>
 import { Colors } from "../theme/index"
 import Section from "./common/Section"
+import CommunitySection from "./layout/CommunitySection"
 
 export default {
   name: 'AppBody',
   components: {
     Section,
+    CommunitySection,
   },
   computed: {
     style() {
