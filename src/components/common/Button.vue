@@ -3,20 +3,7 @@
     <button 
     type="button" 
     @click="onClick" 
-    class="
-    relative
-    outline-none
-    focus:outline-none
-    dark:border-gradient-br-blue-white-f-purple-1
-    border-transparent 
-    border-solid 
-    border-2
-    rounded-xl 
-    text-gray-400 
-    text-lg
-    px-6
-    py-2
-    "
+    :class="classes"
     >
       {{ label }}
     </button>
@@ -35,7 +22,7 @@ export default {
     },
     primary: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     size: {
       type: String,
@@ -48,30 +35,35 @@ export default {
 
   computed: {
     classes() {
-      return {
-        'button': true,
-        'button--primary': this.primary,
-        'button--secondary': !this.primary,
-        [`button--${this.size}`]: true,
-      };
-    },
-    style() {
-      var style = {}
+      var classes = `
+      button 
+      button--${this.size}
+      relative
+      outline-none
+      focus:outline-none
+      text-gray-400 
+      text-lg
+      py-2
+      `
 
-      // if (this.primary) {
-      //   style['background-image'] = "linear-gradient(to bottom right," 
-      //     + Colors.primary1 + "," 
-      //     + Colors.primary2 + "," 
-      //     + Colors.primary3 + ")"
-      // } else {
-      //   style['border-style'] = "solid"
-      //   style['border-width'] = "2px"
-      //   style['border-color'] = Colors.secondary1
-      //   style['background-color'] = Colors.primary1
-      //   style['color'] = Colors.secondary1
-      // }
-
-      return style
+      if (this.primary) {
+        classes += `
+        button--primary
+        dark:border-gradient-br-blue-white-f-purple-1
+        border-transparent 
+        border-solid 
+        border-2
+        rounded-xl
+        px-6
+        `
+      } else {
+        classes += `
+        text-f-blue-1
+        underline
+        `
+      }
+      
+      return classes
     }
   },
 
