@@ -2,6 +2,12 @@ module.exports = {
   publicPath: './',
   chainWebpack: (config) => {
     config.module
+      .rule('png')
+      .use('file-loader')
+      .loader('file-loader')
+      .tap(options => Object.assign(options, { esModule: false }));
+
+    config.module
       .rule('vue')
       .use('vue-loader')
       .tap((options) => {
@@ -17,6 +23,6 @@ module.exports = {
             ...transformAssetUrls,
           },
         }
-      })
+      });
   }
 };
