@@ -5,10 +5,12 @@
 </template>
 
 <script>
+// import LottieAnimation from 'lottie-web-vue'
+
 export default {
   name: 'HeaderSection',
   components: {
-    
+    // LottieAnimation
   },
   computed: {
     style() {
