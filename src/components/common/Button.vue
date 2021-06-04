@@ -5,6 +5,8 @@
     @click="onClick" 
     class="
     relative
+    outline-none
+    focus:outline-none
     dark:border-gradient-br-blue-white-f-purple-1
     border-transparent 
     border-solid 
