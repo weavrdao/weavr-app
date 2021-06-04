@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-gray-100 dark:bg-gray-800 h-screen overflow-hidden relative flex items-start justify-between" :style="style">
+  <div id="app" class="h-screen overflow-hidden relative flex items-start justify-between" :style="style">
     <Background/>
     <SideNavigation/>
     <AppBody/>

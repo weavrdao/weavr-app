@@ -12,7 +12,7 @@ export default {
     style() {
       var style = {}
 
-      style['background'] = "radial-gradient(50% 50% at 50% 50%, " + Colors.primary1 + " 0%, " + Colors.primary3 + " 100%)"
+      style['background'] = "radial-gradient(50% 50% at 50% 50%, " + Colors.primary1 + " 0%, " + Colors.black + " 100%)"
 
       return style
     }
