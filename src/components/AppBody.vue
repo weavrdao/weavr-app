@@ -3,11 +3,7 @@
   flex flex-col items-start overflow-x-hidden h-screen w-full
   " :style="style">
     <div class="w-full">
-      <Section>
-        <div class="h-full flex flex-col justify-center">
-          <h1 class="relative">Header Section</h1>
-        </div>
-      </Section>
+      <HeaderSection/>
     </div>
     <div class="w-full">
       <Section>
@@ -39,27 +35,15 @@
 <script>
 import { Colors } from "../theme/index"
 import Section from "./common/Section"
+import HeaderSection from "./layout/HeaderSection"
 import CommunitySection from "./layout/CommunitySection"
 
 export default {
   name: 'AppBody',
   components: {
     Section,
+    HeaderSection,
     CommunitySection,
-  },
-  computed: {
-    style() {
-      var style = {}
-
-    //  style['background-image'] = "linear-gradient(to bottom right," 
-    //       + Colors.primary1 + "," 
-    //       + Colors.primary2 + "," 
-    //       + Colors.primary3 + ")"
-
-      style['color'] = Colors.white
-
-      return style
-    }
   }
 }
 </script>
