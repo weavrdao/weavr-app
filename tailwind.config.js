@@ -20,6 +20,7 @@ module.exports = {
         'blue-f-purple-3': ['#00A4FF', '#2E2C9B'],
       },
       background: {
+        'dark': '#111111',
         'f-purple-1':'#130248',
       },
       border: { // defaults to these values (optional)

@@ -4,6 +4,7 @@
     type="button" 
     @click="onClick" 
     class="
+    relative
     dark:border-gradient-br-blue-white-f-purple-1
     border-transparent 
     border-solid 

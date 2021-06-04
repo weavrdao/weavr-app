@@ -1,18 +1,36 @@
 <template>
-  <div class="flex flex-col w-full md:space-y-4" :style="style">
-    <div class="max-w-screen-lg mx-auto overflow-auto h-screen py-16 px-4 md:px-6">
+  <div class="
+  flex flex-col items-start overflow-x-hidden h-screen w-full
+  " :style="style">
+    <div class="w-full">
       <Section>
-        <h1>Header Section</h1>
+        <div class="h-full flex flex-col justify-center">
+          <h1 class="relative">Header Section</h1>
+        </div>
       </Section>
+    </div>
+    <div class="w-full">
       <Section>
-        <h1>Explainer Section</h1>
+        <div class="h-full flex flex-col justify-center">
+          <h1 class="relative">Explainer Section</h1>
+        </div>
       </Section>
+    </div>
+    <div class="w-full">
       <CommunitySection/>
+    </div>
+    <div class="w-full">
       <Section>
-        <h1>Roadmap Section</h1>
+        <div class="h-full flex flex-col justify-center">
+          <h1 class="relative">Roadmap Section</h1>
+        </div>
       </Section>
+    </div>
+    <div class="w-full">
       <Section>
-        <h1>Footer Section</h1>
+        <div class="h-full flex flex-col justify-center">
+          <h1 class="relative">Footer Section</h1>
+        </div>
       </Section>
     </div>
   </div>

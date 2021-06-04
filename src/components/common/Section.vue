@@ -1,5 +1,16 @@
 <template>
-  <div class="section">
+  <div class="
+  relative
+  w-full max-w-screen-lg mx-auto
+  h-48
+  my-12 
+  dark:border-gradient-br-blue-white-dark
+  text-center
+  border-transparent 
+  border-solid 
+  border-2
+  rounded-xl 
+  ">
     <slot></slot>
   </div>
 </template>
@@ -9,29 +20,3 @@ export default {
   name: 'Section'
 }
 </script>
-
-<style scoped>
-.section {
-  padding: 69px 20px;
-  max-width: 68rem;
-  margin: 20px auto;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-
-  border-color: white;
-  border-style: dashed;
-  border-width: 1px;
-}
-
-.section h1 {
-  font-weight: 400;
-  font-size: 3.4375rem;
-  line-height: 5.25rem;
-  color: #FFFFFF;
-  margin: 0;
-  text-align: center;
-}
-</style>

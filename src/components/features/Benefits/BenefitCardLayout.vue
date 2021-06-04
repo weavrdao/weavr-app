@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div class="w-full max-w-screen-lg mx-auto">
     <CardLayout :children="this.benefits">
       <template slot-scope="benefit">
         <BenefitCard :benefit="benefit"/>
+        <Button class="text-center" :label="benefit.cta"/>
       </template>
     </CardLayout>
   </div>
@@ -11,12 +12,14 @@
 <script>
 import CardLayout from '../../common/CardLayout'
 import BenefitCard from './BenefitCard'
+import Button from '../../common/Button'
 
 export default {
   name: 'BenefitCardLayout',
   components: {
     CardLayout,
     BenefitCard,
+    Button,
   },
   props: {
     benefits: {

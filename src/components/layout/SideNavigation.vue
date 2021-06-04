@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen hidden lg:block shadow-r-purple-3-glow relative w-80" :style="style">
     <div class="h-full dark:bg-gray-700 dark:bg-opacity-50">
-      <img class="p-6" :src="images.logo" alt="Frabric">
+      <img class="pl-6 pt-6 pr-24 w-full" :src="images.logo" alt="Frabric">
       <nav class="mt-6">
         <div>
           <div class="relative px-6 py-2 w-full" @click="clicked(item.id)">Header</div>

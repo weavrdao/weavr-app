@@ -1,6 +1,5 @@
 <template>
   <div id="app" class="dark">
-    <!-- <img class="logo" src="./assets/logo/compact/frabric_logo_compact-white.png" alt="Frabric"> -->
     <AppWrapper/>
   </div>
 </template>
