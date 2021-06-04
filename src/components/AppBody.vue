@@ -7,11 +7,7 @@
       <HeaderSection/>
     </div>
     <div class="w-full">
-      <Section>
-        <div class="h-full flex flex-col justify-center">
-          <h1 class="relative">Explainer Section</h1>
-        </div>
-      </Section>
+      <ExplainerSection/>
     </div>
     <div class="w-full">
       <CommunitySection/>
@@ -36,6 +32,7 @@
 <script>
 import Section from "./common/Section"
 import HeaderSection from "./layout/HeaderSection"
+import ExplainerSection from "./layout/ExplainerSection"
 import CommunitySection from "./layout/CommunitySection"
 
 export default {
@@ -43,6 +40,7 @@ export default {
   components: {
     Section,
     HeaderSection,
+    ExplainerSection,
     CommunitySection,
   }
 }
