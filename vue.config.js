@@ -2,10 +2,10 @@ module.exports = {
   publicPath: './',
   chainWebpack: (config) => {
     config.module
-      .rule('png')
-      .use('file-loader')
-      .loader('file-loader')
-      .tap(options => Object.assign(options, { esModule: false }));
+      .rule('images')
+      .use('url-loader')
+      .loader('url-loader')
+      .tap(options => Object.assign(options, { esModule: false }))
 
     config.module
       .rule('vue')
