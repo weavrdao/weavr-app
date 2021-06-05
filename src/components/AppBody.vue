@@ -13,11 +13,7 @@
       <CommunitySection/>
     </div>
     <div class="w-full">
-      <Section>
-        <div class="h-full flex flex-col justify-center">
-          <h1 class="relative">Roadmap Section</h1>
-        </div>
-      </Section>
+      <RoadmapSection/>
     </div>
     <div class="w-full">
       <Section>
@@ -34,6 +30,7 @@ import Section from "./common/Section"
 import HeaderSection from "./layout/HeaderSection"
 import ExplainerSection from "./layout/ExplainerSection"
 import CommunitySection from "./layout/CommunitySection"
+import RoadmapSection from "./layout/RoadmapSection"
 // import FooterSection from "./layout/FooterSection"
 
 export default {
@@ -43,6 +40,7 @@ export default {
     HeaderSection,
     ExplainerSection,
     CommunitySection,
+    RoadmapSection,
     // FooterSection,
   }
 }

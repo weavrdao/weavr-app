@@ -38,6 +38,11 @@ module.exports = {
 
       'f-blue-1': '#00A4FF',
     },
+    fill: {
+      'transparent': 'RGBA(0, 0, 0, 0.0)',
+      'f-purple-1': '#130248',
+      'f-blue-1': '#00A4FF',
+    },
     screens: {
       sm: '480px',
       md: '768px',
