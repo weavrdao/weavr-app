@@ -3,6 +3,7 @@
   flex flex-col items-start overflow-x-hidden h-screen w-full
   text-white
   ">
+    <HeaderNavigation/>
     <div class="w-full">
       <HeaderSection/>
     </div>
@@ -27,6 +28,7 @@
 
 <script>
 import Section from "./common/Section"
+import HeaderNavigation from "./layout/HeaderHavigation"
 import HeaderSection from "./layout/HeaderSection"
 import ExplainerSection from "./layout/ExplainerSection"
 import CommunitySection from "./layout/CommunitySection"
@@ -37,6 +39,7 @@ export default {
   name: 'AppBody',
   components: {
     Section,
+    HeaderNavigation,
     HeaderSection,
     ExplainerSection,
     CommunitySection,
