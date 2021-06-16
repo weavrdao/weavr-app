@@ -43,7 +43,7 @@ export default {
       focus:outline-none
       text-gray-400 
       text-lg
-      py-2
+      py-1
       `
 
       if (this.primary) {
