@@ -1,26 +1,22 @@
 <template>
-  <div class="h-screen hidden lg:block shadow-r-purple-3-glow relative w-80" :style="style">
+  <div class="h-screen hidden lg:block shadow-r-purple-3-glow relative w-16 z-50">
     <div class="flex flex-row items-start h-full w-full">
-      <div class="h-full w-full dark:bg-f-purple-1 dark:bg-opacity-100">
-        <img class="pl-6 pt-4 h-14 pr-24 w-auto" :src="images.logo" alt="Frabric">
-        <nav class="mt-6">
-          <div>
-            <div class="relative px-6 py-2 w-full" @click="clicked(item.id)">Header</div>
-            <div class="relative px-6 py-2 w-full">Explainer</div>
-            <div class="relative px-6 py-2 w-full">Community</div>
-            <div class="relative px-6 py-2 w-full">Roadmap</div>
-            <div class="relative px-6 py-2 w-full">Footer</div>
-          </div>
-        </nav>
+      <div class="flex flex-col justify-between items-center h-full w-full dark:bg-f-purple-1 dark:bg-opacity-100 px-2 pt-2 pb-4">
+        <div class="h-full w-full">
+          <img class="h-12 w-auto mx-auto" :src="images.logo" alt="Frabric">
+        </div>
+        <div class="flex flex-col gap-4 w-4/6 mx-auto">
+          <img :src="images.subscriptionIcon" alt="Frabric Newsletter" class="w-full h-auto">
+          <img :src="images.discordIcon" alt="Frabric Discord" class="w-full h-auto">
+        </div>
       </div>
+      
       <div class="h-full w-px bg-white"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { Colors } from '../../theme'
-
 export default {
   name: 'SideNavigation',
   components: {
@@ -30,18 +26,10 @@ export default {
     return {
       items: [], // TODO: Add binding to page contents
       images: {
-        logo: require('../../assets/logo/full/frabric_logo_full-white.png')
+        logo: require('../../assets/logo/compact/frabric_logo_compact-white.png'),
+        subscriptionIcon: require('../../assets/pics/reademail-filled.svg'),
+        discordIcon: require('../../assets/pics/discord-filled.svg')
       },
-    }
-  },
-  computed: {
-    style() {
-      var style = {}
-      
-      //style['background-color'] = Colors.primary1
-      style['color'] = Colors.white
-      
-      return style
     }
   }
 }
