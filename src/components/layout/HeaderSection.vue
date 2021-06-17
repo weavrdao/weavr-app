@@ -1,39 +1,53 @@
 <template>
-  <div class="relative flex flex-col justify-center h-screen">
-    <div 
-    class="
-    absolute
-    object-cover object-bottom opacity-50
-    w-full h-full section-bg-image
-    bg-gradient-to-r from-current
-    ">
-      
-    </div>
-    <div class="w-full max-w-screen-lg mx-auto pt-16 px-8 lg:px-4">
-      <div class="relative flex flex-col items-center">
-        <div class="container ml-0 mr-auto max-w-3xl">
-          <div class="font-bold text-3xl md:text-5xl text-high-emphasis">
-            Welcome to the Real Estate Blockchain Revolution
-          </div>
-          <div class="max-w-xl font-medium text-base md:text-lg lg:text-xl text-high-emphasis mt-0 md:mt-4 mb-8">
-            Own property or part of it. Decide and vote on how to manage it. Buy and sell at anytime, real-time.
+  <div class="relative flex flex-col justify-start h-screen">
+    <!-- <VideoBackground 
+    :src="videos.background"
+    class="w-full h-full"
+    > -->
+    <div>
+      <div class="w-full max-w-screen-lg mx-auto mt-16 pt-16 px-8 lg:px-4">
+        <div class="relative flex flex-col items-center">
+          <div class="container ml-0 mr-auto max-w-3xl">
+            <div class="
+            text-f-blue-1 text-shadow-lg font-bold text-3xl md:text-5xl
+            ">
+              Welcome to the Real Estate <span class="text-f-green-foam">Blockchain</span> Revolution.
+            </div>
+            <div class="
+            max-w-xl font-bold text-shadow-sm text-base md:text-lg lg:text-xl
+            mt-4 mb-8
+            ">
+              <p>Skip the mortgage, buy collaboratively.</p>
+              <p>Decide and vote on how to manage it.</p>
+              <p>Buy and sell at anytime, real-time.</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <Button label="Explore" @onClick="navigateTo('explainer')" />
+        <Button label="Find Out More" @onClick="navigateTo('explainer')" customClasses="shadow-xl" />
+      </div>
     </div>
+    <!-- </VideoBackground> -->
   </div>
 </template>
 
 <script>
 import Button from '../common/Button'
+//import VideoBackground from 'vue-responsive-video-background-player'
 // import LottieAnimation from 'lottie-web-vue'
 
 export default {
   name: 'HeaderSection',
+  data() {
+    return {
+      videos: {
+        //background: require('../../assets/animations/temp/temp-bg-video.mp4')
+      }
+    }
+  },
   components: {
     Button,
+    //VideoBackground,
     // LottieAnimation
   },
   methods: {
