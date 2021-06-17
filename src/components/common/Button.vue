@@ -30,6 +30,10 @@ export default {
       validator: function (value) {
         return ['small', 'medium', 'large'].indexOf(value) !== -1;
       },
+    },
+    customClasses: {
+      type: String,
+      default: ""
     }
   },
 
@@ -44,6 +48,10 @@ export default {
       text-gray-400 
       text-lg
       py-1
+      `
+
+      classes += `
+      ${this.customClasses}
       `
 
       if (this.primary) {
