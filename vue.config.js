@@ -6,6 +6,21 @@ module.exports = {
       .use('url-loader')
       .loader('url-loader')
       .tap(options => Object.assign(options, { esModule: false }))
+    config.module
+      .rule('svg')
+      .use('url-loader')
+      .loader('url-loader')
+      .tap(options => Object.assign(options, { esModule: false }))
+    config.module
+      .rule('svg')
+      .use('url-loader')
+      .loader('url-loader')
+      .tap(options => Object.assign(options, { esModule: false }))
+    config.module
+      .rule('mp4')
+      .use('url-loader')
+      .loader('url-loader')
+      .tap(options => Object.assign(options, { esModule: false }))
 
     config.module
       .rule('vue')
