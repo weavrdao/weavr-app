@@ -2,18 +2,22 @@
   <div class="h-full">
     <Card :children="[benefit]">
       <template slot-scope="benefit">
-        <div class="h-full">
-          <svg class="mx-auto h-12 w-12 text-f-blue-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
-              :d="benefit.iconSvgPath"
-            />
-          </svg>
-
-          <div class="my-6 text-center">
-            <div>{{ benefit.text }}</div>
+        <div :class="containerClasses">
+          <div class="
+          font-medium
+          text-center text-lg md:text-xl lg:text-2xl
+          p-4
+          ">
+            {{ benefit.title }}
+          </div>
+          <div class="h-1 w-full bg-white shadow-blue-1-glow"></div>
+          <div class="py-4">
+            <div 
+            v-for="b in benefit.benefits" :key="b"
+            class="px-8 py-2"
+            >
+              <div>{{ b }}</div>
+            </div>
           </div>
         </div>
       </template>
@@ -33,6 +37,27 @@ export default {
     benefit: {
       type: Object,
       required: true,
+    },
+    isBordered: {
+      type: Boolean,
+      default: true
+    }
+  },
+  computed: {
+    containerClasses() {
+      var classes = `
+      h-full w-full
+      rounded 
+      self-stretch
+      `
+
+      if (this.isBordered) {
+        classes += `
+        border-4 shadow-blue-1-glow
+        `
+      }
+
+      return classes
     }
   }
 }
