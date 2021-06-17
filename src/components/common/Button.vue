@@ -45,7 +45,7 @@ export default {
       relative
       outline-none
       focus:outline-none
-      text-gray-400 
+      text-white
       text-lg
       py-1
       `
@@ -57,16 +57,12 @@ export default {
       if (this.primary) {
         classes += `
         button--primary
-        dark:border-gradient-br-blue-white-f-purple-1
-        border-transparent 
-        border-solid 
-        border-2
+        bg-f-blue-1
         rounded-xl
         px-6
         `
       } else {
         classes += `
-        text-f-blue-1
         underline
         `
       }
