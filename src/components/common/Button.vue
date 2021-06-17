@@ -24,13 +24,6 @@ export default {
       type: Boolean,
       default: true,
     },
-    size: {
-      type: String,
-      default: 'medium',
-      validator: function (value) {
-        return ['small', 'medium', 'large'].indexOf(value) !== -1;
-      },
-    },
     customClasses: {
       type: String,
       default: ""
@@ -40,8 +33,7 @@ export default {
   computed: {
     classes() {
       var classes = `
-      button 
-      button--${this.size}
+      button
       relative
       outline-none
       focus:outline-none
@@ -56,7 +48,6 @@ export default {
 
       if (this.primary) {
         classes += `
-        button--primary
         bg-f-blue-1
         rounded-xl
         px-6
