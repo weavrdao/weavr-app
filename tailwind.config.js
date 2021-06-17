@@ -37,6 +37,8 @@ module.exports = {
       'f-purple-3': '#2E2C9B',
 
       'f-blue-1': '#00A4FF',
+
+      'f-green-foam': '#D6FCFE',
     },
     fill: {
       'transparent': 'RGBA(0, 0, 0, 0.0)',
@@ -122,7 +124,6 @@ module.exports = {
     extend: {
       backgroundImage: theme => ({
         ...defaultTheme.backgroundImage,
-        'frabric-hero': "url('/src/assets/bg/frabric.png')",
       }),
       fontFamily: {
         sans: ['Work Sans', ...defaultTheme.fontFamily.sans]
@@ -150,6 +151,8 @@ module.exports = {
         'r-purple-3-glow': '45px 0px 90px 0px RGBA(44, 48, 149, 0.30)',
         'b-purple-3-glow': '0px 90px 90px 0px RGBA(44, 48, 149, 0.30)',
         'b-purple-3-glow-hovered': '0px 57px 90px -47px RGBA(44, 48, 149, 0.15)',
+        'blue-1-glow': '0px 0px 15px 5px RGBA(70, 164, 248, 1.00)',
+        'blue-1-glow-inner': '0px 0px -15px -5px RGBA(70, 164, 248, 1.00)',
       },
       ringWidth: {
         ...defaultTheme.ringWidth,
@@ -186,5 +189,7 @@ module.exports = {
   },
   plugins: [
     require('tailwindcss-border-gradient-radius'),
+    require('tailwindcss-textshadow'),
+    require('@tailwindcss/aspect-ratio'),
   ],
 }
