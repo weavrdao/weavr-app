@@ -14,7 +14,7 @@
         <Button label="Join Our Discord" />
       </div>
     </div>
-    <div class="h-0.5 bg-white"></div>
+    <div class="w-full h-0.5 bg-white"></div>
   </div>
 </template>
 
