@@ -2,12 +2,14 @@ module.exports = {
   publicPath: './',
   chainWebpack: (config) => {
     config.module
-      .rule('images')
+      .rule('svg')
+      .test(/\.svg$/)
       .use('url-loader')
       .loader('url-loader')
       .tap(options => Object.assign(options, { esModule: false }))
+
     config.module
-      .rule('svg')
+      .rule('images')
       .use('url-loader')
       .loader('url-loader')
       .tap(options => Object.assign(options, { esModule: false }))
