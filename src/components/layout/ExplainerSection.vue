@@ -2,42 +2,65 @@
   <div class="pt-8 pb-24" ref="explainer">
     <div class="w-full max-w-screen-lg mx-auto px-8 lg:px-4">
       <div class="relative flex flex-col items-center">
-        <div class="container mx-auto max-w-screen-md">
-          <div class="font-bold text-center text-2xl md:text-4xl text-high-emphasis">
-            Buying property is complex, investing is complicated and accessing the global real estate market is almost impossible
+        <div class="container mx-auto max-w-screen-sm mb-24">
+          <div class="
+          text-shadow-md font-bold text-3xl md:text-5xl
+          text-center text-high-emphasis
+          ">
+            Buying property doesn’t have to be complex.
           </div>
-          <div class="max-w-screen-sm mx-auto font-medium text-center text-base md:text-lg lg:text-xl text-high-emphasis mt-4 md:mt-8 mb-8">
-            The Frabric Network is a decentralized ownership platform that brings property ownership and investment closer. Invest in seconds, not days or months.
+          <div class="
+          font-bold text-shadow-md 
+          text-center text-base md:text-lg lg:text-xl text-high-emphasis
+          mt-4 md:mt-8 mb-8
+          ">
+            With the Frabric network you can become a property owner within seconds.
           </div>
         </div>
-        <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr items-center max-w-screen-md">
-          <img class="w-full" :src="images.explainer1" alt="Temp1">
-          <img class="w-full" :src="images.explainer2" alt="Temp2">
+        <div class="grid sm:grid-cols-1 md:grid-rows-2 md:grid-flow-col gap-4 items-start max-w-screen-md">
+          <div class="row-span-1 col-span-2">
+            <div class="
+            text-shadow-sm font-bold text-2xl md:text-4xl
+            text-high-emphasis
+            ">
+              Find the property you like, choose to invest collaboratively, and pay directly from your wallet.
+            </div>
+          </div>
+          <div class="row-span-1 col-span-2">
+            <div class="
+            font-medium text-shadow-sm 
+            text-base md:text-lg lg:text-xl text-high-emphasis mt-4 md:mt-8 mb-8
+            ">
+              Investing gives you immediate access to the voting system (DAO) and communication channels of your property.
+            </div>
+          </div>
+          <div class="row-span-2 col-span-1">
+            <div class="h-full w-60 mx-auto">
+              <div class="aspect-w-3 aspect-h-4">
+                <VideoCard :src="videos.explainer1" />
+              </div>
+            </div>
+          </div>
         </div>
-        <Button 
-        class="mt-4 md:mt-8 mb-8"
-        label="Read the White Paper"
-        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Button from '../common/Button'
+import VideoCard from '../features/Video/VideoCard'
 
 export default {
   name: 'ExplainerSection',
   components: {
-    Button,
+    VideoCard,
   },
   data() {
     return {
-      images: {
-        explainer1: require('../../assets/pics/temp/eth.png'),
-        explainer2: require('../../assets/pics/temp/what-is-ethereum.png')
+      videos: {
+        explainer1: require('../../assets/animations/temp/temp-bg-video.mp4')
       }
     }
-  }
+  },
 }
 </script>
