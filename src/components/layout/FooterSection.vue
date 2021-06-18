@@ -87,7 +87,7 @@ export default {
     },
     finalStripStyle() {
       return `
-      backgroundImage: linear-gradient(to top, rgba(0, 0, 0, 1.0) 50%, rgba(0, 0, 0, 0.0) 150%);
+      backgroundImage: linear-gradient(to top, rgba(0, 0, 0, 1.0) 20%, rgba(0, 0, 0, 0.0) 150%);
       background-size: cover; 
       background-repeat: no-repeat;
       background-position: center top;

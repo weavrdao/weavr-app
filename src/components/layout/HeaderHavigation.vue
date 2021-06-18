@@ -4,12 +4,12 @@
     class="
     w-full h-16
     py-4 md:py-8 px-8
-    flex flex-row-reverse justify-center md:justify-start items-center gap-8
+    flex flex-row-reverse justify-center md:justify-start items-center
     dark:text-white
     "
     :style="headerStyle"
     >
-      <div>
+      <div class="ml-4">
         <Button label="View Whitepaper" />
       </div>
       <div>

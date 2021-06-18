@@ -5,9 +5,9 @@
         <div class="h-full w-full">
           <img class="h-12 w-auto mx-auto" :src="images.logo" alt="Frabric">
         </div>
-        <div class="flex flex-col gap-4 w-4/6 mx-auto">
+        <div class="flex flex-col w-4/6 mx-auto">
           <img :src="images.subscriptionIcon" alt="Frabric Newsletter" class="w-full h-auto">
-          <img :src="images.discordIcon" alt="Frabric Discord" class="w-full h-auto">
+          <img :src="images.discordIcon" alt="Frabric Discord" class="w-full h-auto mt-4">
         </div>
       </div>
       
