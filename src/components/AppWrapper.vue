@@ -1,7 +1,7 @@
 <template>
   <div 
   id="app" 
-  class="wrapper overflow-hidden flex items-start justify-between">
+  class="h-screen overflow-hidden flex items-start justify-between">
     <SideNavigation/>
     <AppBody/>
   </div>
@@ -19,9 +19,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.wrapper {
-  height: 100%;
-}
-</style>

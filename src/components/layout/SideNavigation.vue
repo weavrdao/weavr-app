@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen hidden lg:block shadow-r-purple-3-glow relative w-16 z-50">
+  <div class="h-full hidden lg:block shadow-r-purple-3-glow relative w-16 z-50">
     <div class="flex flex-row items-start h-full w-full">
       <div class="flex flex-col justify-between items-center h-full w-full dark:bg-f-purple-1 dark:bg-opacity-100 px-2 pt-2 pb-4">
         <div class="h-full w-full">

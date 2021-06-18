@@ -1,6 +1,6 @@
 <template>
   <div class="
-  flex flex-col items-start overflow-x-hidden h-screen w-full
+  flex flex-col items-start overflow-x-hidden h-full w-full
   text-white
   ">
     <div 
