@@ -1,5 +1,5 @@
 <template>
-  <div class="relative" ref="roadmap">
+  <div class="relative " ref="roadmap">
     <div class="relative w-full mx-auto px-8 lg:px-4">
       <div 
       class="

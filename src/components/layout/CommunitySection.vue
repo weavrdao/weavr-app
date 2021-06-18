@@ -1,8 +1,8 @@
 <template>
-  <div class="pt-8 pb-24" ref="community">
-    <div class="w-full max-w-screen-lg mx-auto px-8 lg:px-4">
+  <div class="pt-8 pb-48" ref="community">
+    <div class="w-5/6 md:w-full max-w-screen-lg mx-auto px-8 lg:px-4">
       <div class="relative flex flex-col items-center">
-        <div class="container mx-auto max-w-screen-md mb-24">
+        <div class="container mx-auto max-w-screen-md mb-48">
           <div class="
           mb-8
           text-white text-center text-shadow-lg font-bold text-3xl md:text-5xl
@@ -16,7 +16,9 @@
         flex flex-col md:flex-row items-center
         items-start max-w-screen-lg
         ">
-          <div class="flex flex-col items-start w-full md:w-2/3 pr-16">
+          <div class="
+          flex flex-col items-start w-full md:w-2/3 md:pr-16
+          ">
             <div class="
             text-shadow-sm font-bold text-2xl md:text-4xl
             text-high-emphasis
