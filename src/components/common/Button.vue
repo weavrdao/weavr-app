@@ -38,7 +38,7 @@ export default {
       outline-none
       focus:outline-none
       text-white
-      text-lg
+      text-md
       py-1
       `
 
