@@ -10,10 +10,12 @@
     :style="headerStyle"
     >
       <div class="ml-4">
-        <Button label="View Whitepaper" />
+        <Button label="View Whitepaper" class="hidden md:block"/>
+        <Button label="Whitepaper" class="block md:hidden"/>
       </div>
       <div>
-        <Button label="Join Our Discord" />
+        <Button label="Join Our Discord" class="hidden md:block"/>
+        <Button label="Discord" class="block md:hidden"/>
       </div>
     </div>
     <!-- <div class="w-full h-px bg-white"></div> -->
