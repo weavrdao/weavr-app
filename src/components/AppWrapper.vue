@@ -1,22 +1,19 @@
 <template>
   <div 
   id="app" 
-  class="wrapper h-screen overflow-hidden flex items-start justify-between">
-    <!-- <Background/> -->
+  class="wrapper overflow-hidden flex items-start justify-between">
     <SideNavigation/>
     <AppBody/>
   </div>
 </template>
 
 <script>
-// import Background from "./Background"
 import SideNavigation from "./layout/SideNavigation"
 import AppBody from "./AppBody"
 
 export default {
   name: 'AppWrapper',
   components: {
-    // Background,
     SideNavigation,
     AppBody
   }
@@ -24,9 +21,7 @@ export default {
 </script>
 
 <style>
-@supports (-webkit-touch-callout: none) {
-  .wrapper {
-    height: -webkit-fill-available;
-  }
+.wrapper {
+  height: 100%;
 }
 </style>
