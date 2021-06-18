@@ -4,7 +4,7 @@
       <template slot-scope="benefit">
         <div :class="containerClasses">
           <div class="
-          font-medium
+          font-bold
           text-center text-lg md:text-xl lg:text-2xl
           p-4
           ">
@@ -14,7 +14,10 @@
           <div class="py-4">
             <div 
             v-for="b in benefit.benefits" :key="b"
-            class="px-8 py-2"
+            class="
+            px-8 py-2
+            font-medium text-md md:text-lg lg:text-xl
+            "
             >
               <div>{{ b }}</div>
             </div>
