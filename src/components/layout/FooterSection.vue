@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="relative flex flex-col justify-start">
-      <div class="w-full h-full pt-24" :style="footerStyle">
+      <div class="w-full h-full" :style="footerStyle">
         <div class="w-5/6 md:w-full max-w-screen-lg mx-auto mt-16 pt-16 px-8 lg:px-4">
           <div class="
           flex flex-col md:flex-row gap-8 md:gap-4
