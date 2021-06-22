@@ -49,7 +49,15 @@
           ">
             <div class="h-full w-60 mx-auto">
               <div class="aspect-w-3 aspect-h-4">
-                <VideoCard :src="videos.explainer1" />
+                <div class="h-full w-full">
+                  <lottie-animation
+                    ref="anim"
+                    :animationData="require('@/assets/animations/temp/ease-animation.json')"
+                    :loop="true"
+                    :autoPlay="true"
+                    class="w-full h-full rounded-sm"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -60,17 +68,17 @@
 </template>
 
 <script>
-import VideoCard from '../features/Video/VideoCard'
+import LottieAnimation from 'lottie-web-vue'
 
 export default {
   name: 'ExplainerSection',
   components: {
-    VideoCard,
+    LottieAnimation
   },
   data() {
     return {
-      videos: {
-        explainer1: require('../../assets/animations/temp/temp-bg-video.mp4')
+      animations: {
+        explainer1: require('@/assets/animations/temp/ease-animation.json')
       }
     }
   },
