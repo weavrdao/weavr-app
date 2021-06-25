@@ -1,30 +1,30 @@
 <template>
   <div class="relative flex flex-col justify-start h-screen">
-    <!-- <VideoBackground 
-    :src="videos.background"
-    class="w-full h-full"
-    > -->
-    <div>
-      <div class="w-full max-w-screen-lg mx-auto mt-16 pt-16 px-8 lg:px-4">
-        <div class="relative flex flex-col items-center">
-          <div class="container ml-0 mr-auto max-w-3xl">
-            <div class="
-            text-f-blue-1 text-shadow-lg font-bold text-3xl md:text-5xl
-            ">
-              Welcome to the Real Estate <span class="text-f-green-foam">Blockchain</span> Revolution.
-            </div>
-            <div class="
-            max-w-xl font-bold text-shadow-sm text-base md:text-lg lg:text-xl
-            mt-4 mb-8
-            ">
-              <p>Skip the mortgage, buy collaboratively.</p>
-              <p>Decide and vote on how to manage it.</p>
-              <p>Buy and sell at anytime, real-time.</p>
-            </div>
+    <div 
+    class="
+    absolute
+    object-cover object-bottom opacity-50
+    w-full h-full section-bg-image
+    ">
+    </div>
+    <div class="h-full w-full max-w-screen-lg mx-auto mt-16 pt-16 px-8 lg:px-4">
+      <div class="h-full w-full flex flex-col items-start justify-center">
+        <div class="container ml-0 mr-auto max-w-3xl mb-8">
+          <h1 class="text-4xl tracking-tight font-extrabold text-gray-400 sm:text-5xl md:text-6xl">
+            <span class="inline md:block">The age of <span class="text-f-blue-1">Blockchain</span></span>
+            {{ ' ' }}
+            <span class="inline md:block">in <span class="text-gray-300">Real Estate</span></span>
+          </h1>
+          <div class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+            <p>Skip the mortgage, buy collaboratively.</p>
+            <p>Decide and vote on how to manage it.</p>
+            <p>Buy and sell at anytime, real-time.</p>
           </div>
         </div>
-
-        <Button label="Find Out More" @onClick="navigateTo('explainer')" customClasses="shadow-xl" />
+        <div class="flex flex-row items-start">
+          <Button label="Learn More" @onClick="navigateTo('explainer')" customClasses="shadow-xl" />
+          <Button :primary="false" label="View Whitepaper" @onClick="navigateTo('explainer')" customClasses="shadow-xl ml-4" />
+        </div>
       </div>
     </div>
     <!-- </VideoBackground> -->
@@ -42,6 +42,9 @@ export default {
     return {
       videos: {
         //background: require('../../assets/animations/temp/temp-bg-video.mp4')
+      },
+      images: {
+        background: require('../../assets/pics/temp/constellation.svg')
       }
     }
   },
@@ -63,8 +66,7 @@ export default {
 
 <style scoped>
 .section-bg-image {
-  background-image: url("data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M36 0H0v36h36V0zM15.126 2H2v13.126c.367.094.714.24 1.032.428L15.554 3.032c-.188-.318-.334-.665-.428-1.032zM18 4.874V18H4.874c-.094-.367-.24-.714-.428-1.032L16.968 4.446c.318.188.665.334 1.032.428zM22.874 2h11.712L20 16.586V4.874c1.406-.362 2.512-1.468 2.874-2.874zm10.252 18H20v13.126c.367.094.714.24 1.032.428l12.522-12.522c-.188-.318-.334-.665-.428-1.032zM36 22.874V36H22.874c-.094-.367-.24-.714-.428-1.032l12.522-12.522c.318.188.665.334 1.032.428zm0-7.748V3.414L21.414 18h11.712c.362-1.406 1.468-2.512 2.874-2.874zm-18 18V21.414L3.414 36h11.712c.362-1.406 1.468-2.512 2.874-2.874zM4.874 20h11.712L2 34.586V22.874c1.406-.362 2.512-1.468 2.874-2.874z' fill='%239C92AC' fill-opacity='0.30' fill-rule='evenodd'/%3E%3C/svg%3E");
-  -webkit-mask-image: -webkit-gradient(linear, top center, bottom center, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='440' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23ffffff'%3E%3Ccircle cx='769' cy='229' r='21'/%3E%3Ccircle cx='539' cy='269' r='21'/%3E%3Ccircle cx='603' cy='493' r='21'/%3E%3Ccircle cx='731' cy='737' r='21'/%3E%3Ccircle cx='520' cy='660' r='21'/%3E%3Ccircle cx='309' cy='538' r='21'/%3E%3Ccircle cx='295' cy='764' r='21'/%3E%3Ccircle cx='40' cy='599' r='21'/%3E%3Ccircle cx='102' cy='382' r='21'/%3E%3Ccircle cx='127' cy='80' r='21'/%3E%3Ccircle cx='370' cy='105' r='21'/%3E%3Ccircle cx='578' cy='42' r='21'/%3E%3Ccircle cx='237' cy='261' r='21'/%3E%3Ccircle cx='390' cy='382' r='21'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0));
 }
 </style>

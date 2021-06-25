@@ -1,67 +1,79 @@
 <template>
-  <div class="pt-8 mb-48 md:mb-0" ref="explainer">
+  <div class="pt-8 mb-48 md:mb-48" ref="explainer">
     <div class="w-5/6 md:w-full max-w-screen-lg mx-auto px-8 lg:px-4">
-      <div class="relative flex flex-col items-center">
-        <div class="flex flex-col items-center mx-auto max-w-screen-sm mb-48">
-          <div class="
-          text-shadow-md font-bold text-3xl md:text-5xl
-          text-center text-high-emphasis
-          ">
-            Buying property doesn’t have to be complex.
-          </div>
-          <div class="
-          font-bold text-shadow-md 
-          text-center text-base md:text-lg lg:text-xl text-high-emphasis
-          mt-4 md:mt-8 mb-8
-          ">
-            With the Frabric network you can become a property owner within seconds.
-          </div>
+      <div class="md:grid md:grid-flow-row-dense md:grid-cols-2 md:gap-16 md:items-center">
+        <div class="md:col-start-1">
+          <img :src="images.logo" alt="Frabric" class="w-1/2 mb-8">
+          <h3 class="text-2xl font-extrabold text-gray-300 tracking-tight sm:text-3xl">
+            Buying property doesn’t have to be complex
+          </h3>
+          <p class="mt-3 text-lg text-gray-500">
+             With the Frabric network you can become a property owner within seconds.
+          </p>
+
+          <dl class="mt-10 space-y-10">
+            <div v-for="item in communicationFeatures" :key="item.id" class="relative">
+              <dt>
+                <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                  <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-gray-900">{{ item.name }}</p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                {{ item.description }}
+              </dd>
+            </div>
+          </dl>
         </div>
-        <div class="
-        flex flex-col-reverse items-center gap-4
-        md:grid md:grid-rows-2 md:grid-flow-col md:gap-4 md:items-start md:max-w-screen-md
-        ">
-          <div class="
-          mt-4 md:mt-0
-          flex flex-col items-center
-          ">
-            <div class="row-span-1 col-span-2">
-              <div class="
-              text-center md:text-left
-              text-shadow-sm font-bold text-2xl md:text-4xl
-              text-high-emphasis
-              ">
-                Find the property you like, choose to invest collaboratively, and pay directly from your wallet.
-              </div>
-            </div>
-            <div class="row-span-1 col-span-2">
-              <div class="
-              text-center md:text-left
-              font-medium text-shadow-sm 
-              text-base md:text-lg lg:text-xl text-high-emphasis mt-4 md:mt-8
-              ">
-                Investing gives you immediate access to the voting system (DAO) and communication channels of your property.
-              </div>
-            </div>
-          </div>
-          <div class="
-          md:row-span-2 md:col-span-1
-          ">
-            <div class="h-full w-60 mx-auto">
-              <div class="aspect-w-3 aspect-h-4">
-                <div class="h-full w-full">
-                  <lottie-animation
-                    ref="anim"
-                    :animationData="require('@/assets/animations/temp/ease-animation.json')"
-                    :loop="true"
-                    :autoPlay="true"
-                    class="w-full h-full rounded-sm"
-                  />
+
+        <div class="mt-10 -mx-4 relative md:mt-0 md:col-start-2">
+          <ul class="space-y-3">
+            <li 
+              v-for="(item, i) in explainer.investing.steps" :key="item" 
+              class="
+              bg-gray-700 bg-opacity-50 shadow-b-purple-3-glow w-full overflow-hidden rounded-md px-6 py-8"
+            >
+              <div class="flex flex-row items-start justify-start">
+                <div class="w-6-h-6 mr-4">
+                  <svg v-if="i == 0"
+                  xmlns="http://www.w3.org/2000/svg" 
+                  class="h-6 w-6" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                  <svg v-if="i == 1"
+                  xmlns="http://www.w3.org/2000/svg" 
+                  class="h-6 w-6" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                  </svg>
+                  <svg v-if="i == 2"
+                  xmlns="http://www.w3.org/2000/svg" 
+                  class="h-6 w-6" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="font-normal text-lg">
+                  {{ item }}
                 </div>
               </div>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
+      </div>
+      <div class="text-center font-bold text-3xl my-60 text-f-purple-2">
+        The stuff below is under construction
       </div>
     </div>
   </div>
@@ -77,9 +89,21 @@ export default {
   },
   data() {
     return {
+      images: {
+        logo: require('@/assets/logo/full/frabric_logo_full-white.png')
+      },
       animations: {
         explainer1: require('@/assets/animations/temp/ease-animation.json')
-      }
+      },
+      explainer: {
+        investing: {
+          steps: [
+            "Find the property you like on the market", 
+            "Buy shares directly with your crypto wallet", 
+            "Govern the property with the other investors via Decentralized Autonomous Organization"
+          ]
+        }
+      },
     }
   },
 }

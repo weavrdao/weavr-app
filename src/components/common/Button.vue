@@ -37,9 +37,11 @@ export default {
       relative
       outline-none
       focus:outline-none
-      text-white
-      text-sm md:text-md
-      py-1
+      text-sm md:text-lg
+      py-2 md:py-3
+      px-6
+      rounded-xl
+      shadow-lg 
       `
 
       classes += `
@@ -48,13 +50,19 @@ export default {
 
       if (this.primary) {
         classes += `
-        bg-f-blue-1
-        rounded-xl
-        px-6
+        bg-gradient-to-br from-f-green-foam to-f-blue-1
+        text-gray-900
+        font-medium
+        border-2
+        border-f-blue-1
         `
       } else {
         classes += `
-        underline
+        border-gradient-br-blue-white-f-purple-1
+        border-transparent 
+        border-solid 
+        border-2
+        text-white
         `
       }
       

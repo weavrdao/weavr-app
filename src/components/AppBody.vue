@@ -6,7 +6,7 @@
     <div 
     class="
     w-full
-    bg-gradient-to-b from-f-purple-3 via-f-purple-2 to-f-purple-1
+    bg-gradient-to-b from-f-purple-1 to-black
     "
     >
       <HeaderNavigation/>

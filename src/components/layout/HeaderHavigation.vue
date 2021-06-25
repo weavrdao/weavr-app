@@ -1,21 +1,26 @@
 <template>
-  <div class="sticky top-0 w-full z-50 lg:block">
+  <div class="fixed top-0 w-full z-50 lg:block">
     <div 
     class="
     w-full h-16
     py-4 md:py-8 px-8
-    flex flex-row-reverse justify-center md:justify-start items-center
+    flex flex-row justify-between items-center
     dark:text-white
     "
     :style="headerStyle"
     >
-      <div class="ml-4">
-        <Button label="View Whitepaper" class="hidden md:block"/>
-        <Button label="Whitepaper" class="block md:hidden"/>
-      </div>
       <div>
-        <Button label="Join Our Discord" class="hidden md:block"/>
-        <Button label="Discord" class="block md:hidden"/>
+        <div>
+          <img class="h-8" :src="images.logo" alt="Frabric">
+        </div>
+      </div>
+      <div class="flex flex-row-reverse justify-start">
+        <div class="ml-4">
+          <img :src="images.subscriptionIcon" alt="Frabric Newsletter">
+        </div>
+        <div>
+          <img :src="images.discordIcon" alt="Frabric Discord">
+        </div>
       </div>
     </div>
     <!-- <div class="w-full h-px bg-white"></div> -->
@@ -23,22 +28,27 @@
 </template>
 
 <script>
-import Button from '../common/Button.vue'
+// import Button from '../common/Button.vue'
 
 export default {
   name: 'HeaderNavigation',
   components: {
-    Button,
+    // Button,
   },
   data() {
     return {
       items: [], // TODO: Add binding to page contents
+      images: {
+        logo: require('../../assets/logo/compact/frabric_logo_compact-white.png'),
+        subscriptionIcon: require('../../assets/pics/reademail-filled.svg'),
+        discordIcon: require('../../assets/pics/discord-filled.svg')
+      },
     }
   },
   computed: {
     headerStyle() {
       return `
-      backgroundImage: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.0) 100%);
+      backgroundImage: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.0) 100%);
       background-size: cover; 
       background-repeat: no-repeat;
       background-position: center top;
