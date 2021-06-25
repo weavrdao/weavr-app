@@ -7,7 +7,7 @@
     w-full h-full section-bg-image
     ">
     </div>
-    <div class="h-full w-full max-w-screen-lg mx-auto mt-16 pt-16 px-8 lg:px-4">
+    <div class="h-full w-full max-w-screen-lg mx-auto px-8 lg:px-4">
       <div class="h-full w-full flex flex-col items-start justify-center">
         <div class="container ml-0 mr-auto max-w-3xl mb-8">
           <h1 class="text-4xl tracking-tight font-extrabold text-gray-400 sm:text-5xl md:text-6xl">
