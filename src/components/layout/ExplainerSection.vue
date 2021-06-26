@@ -4,7 +4,7 @@
       <div class="md:grid md:grid-flow-row-dense md:grid-cols-2 md:gap-16 md:items-center">
         <div class="md:col-start-1">
           <img :src="images.logo" alt="Frabric" class="w-1/2 mb-8">
-          <h3 class="text-2xl font-extrabold text-gray-300 tracking-tight sm:text-3xl">
+          <h3 class="text-3xl font-extrabold text-gray-300 tracking-tight sm:text-4xl">
             Buying property doesn’t have to be complex
           </h3>
           <p class="mt-3 text-lg text-gray-500">
@@ -31,7 +31,7 @@
             <li 
               v-for="(item, i) in explainer.investing.steps" :key="item" 
               class="
-              bg-gray-700 bg-opacity-50 shadow-b-purple-3-glow w-full overflow-hidden rounded-md px-6 py-8"
+              bg-gray-700 bg-opacity-50 border-0 border-white shadow-b-purple-3-glow w-full overflow-hidden rounded-md px-6 py-8"
             >
               <div class="flex flex-row items-start justify-start">
                 <div class="w-6-h-6 mr-4">

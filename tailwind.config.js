@@ -149,7 +149,7 @@ module.exports = {
       boxShadow: {
         ...defaultTheme.boxShadow,
         'r-purple-3-glow': '45px 0px 90px 0px RGBA(44, 48, 149, 0.30)',
-        'b-purple-3-glow': '0px 0px 90px 0px RGBA(44, 48, 149, 0.30)',
+        'b-purple-3-glow': '0px 0px 180px 20px RGBA(44, 48, 149, 0.30)',
         'b-purple-3-glow-hovered': '0px 57px 90px -47px RGBA(44, 48, 149, 0.15)',
         'blue-1-glow': '0px 0px 15px 5px RGBA(70, 164, 248, 1.00)',
         'blue-1-glow-inner': '0px 0px -15px -5px RGBA(70, 164, 248, 1.00)',
