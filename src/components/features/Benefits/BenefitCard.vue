@@ -4,14 +4,13 @@
       <template slot-scope="benefit">
         <div 
           :class="`
-          relative rounded-xl shadow-2xl overflow-hidden w-full 
-          transition-shadow duration-500
+          relative rounded-xl overflow-hidden w-full
           shadow-green-foam-glow
           `"
         >
           <div class="absolute w-full h-full">
             <VideoBackground
-              class="w-full h-full rounded-xl"
+              class="w-full h-full"
               :src="benefit.bgIndex == 0 ? videos.background1 : videos.background2"
               overlay="linear-gradient(45deg,#2E2C9BA0,#D6FCFEA0)"
               :loop="true"
