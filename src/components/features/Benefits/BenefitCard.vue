@@ -11,7 +11,7 @@
         >
           <div class="absolute w-full h-full">
             <VideoBackground
-              class="w-full h-full"
+              class="w-full h-full rounded-xl"
               :src="benefit.bgIndex == 0 ? videos.background1 : videos.background2"
               overlay="linear-gradient(45deg,#2E2C9BA0,#D6FCFEA0)"
               :loop="true"
