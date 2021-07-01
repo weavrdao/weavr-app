@@ -109,6 +109,7 @@ export default {
   },
   data() {
     return {
+      benefits: [],
       examples: {
         dao: {
           activityItems: [
