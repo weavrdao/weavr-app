@@ -27,7 +27,7 @@ module.exports = {
           })
         )
         .end()
-
+        
     config.module
       .rule('vue')
       .use('vue-loader')

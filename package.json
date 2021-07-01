@@ -12,6 +12,7 @@
   "dependencies": {
     "@openzeppelin/contracts": "^4.1.0",
     "@tailwindcss/aspect-ratio": "^0.2.1",
+    "@tailwindcss/forms": "^0.3.3",
     "autoprefixer": "^9.8.6",
     "core-js": "^3.6.5",
     "lottie-web-vue": "^1.0.1",

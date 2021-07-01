@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CardLayout :children="this.benefits" gridClasses="grid grid-cols-1 lg:grid-cols-2 gap-12 my-4 auto-rows-fr">
+    <CardLayout :children="this.benefits" gridClasses="grid grid-cols-1 lg:grid-cols-2 gap-24 my-4 auto-rows-fr">
       <template slot-scope="benefit">
         <BenefitCard :benefit="benefit"/>
       </template>

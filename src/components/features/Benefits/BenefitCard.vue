@@ -1,25 +1,35 @@
 <template>
-  <div class="h-full">
+  <div class="">
     <Card :children="[benefit]">
       <template slot-scope="benefit">
-        <div :class="containerClasses">
-          <div class="
-          font-bold
-          text-center text-lg md:text-xl lg:text-2xl
-          p-4
-          ">
-            {{ benefit.title }}
-          </div>
-          <div class="h-1 w-full bg-white shadow-blue-1-glow"></div>
-          <div class="py-4">
-            <div 
-            v-for="b in benefit.benefits" :key="b"
-            class="
-            px-8 py-2
-            font-medium text-md md:text-lg lg:text-xl
-            "
+        <div 
+          :class="`
+          relative rounded-xl shadow-2xl overflow-hidden w-full 
+          transition-shadow duration-500
+          shadow-green-foam-glow
+          `"
+        >
+          <div class="absolute w-full h-full">
+            <VideoBackground
+              class="w-full h-full"
+              :src="benefit.bgIndex == 0 ? videos.background1 : videos.background2"
+              overlay="linear-gradient(45deg,#2E2C9BA0,#D6FCFEA0)"
+              :loop="true"
             >
-              <div>{{ b }}</div>
+            </VideoBackground>
+          </div>
+          <div class="relative py-16 px-8 lg:grid lg:grid-cols-3 lg:gap-x-8 bg-gray-900 bg-opacity-30">
+            <div class="lg:col-span-3">
+              <div class="font-bold text-3xl">
+                {{ benefit.title }}
+              </div>
+              <dl class="mt-10 space-y-10">
+                <div v-for="(b, i) in benefit.benefits" :key="i" class="relative">
+                  <div class="text-xl font-medium">
+                    <div class="text-left w-2/3">{{ b }}</div>
+                  </div>
+                </div>
+              </dl>
             </div>
           </div>
         </div>
@@ -30,11 +40,13 @@
 
 <script>
 import Card from '../../common/Card'
+import VideoBackground from 'vue-responsive-video-background-player'
 
 export default {
   name: 'BenefitCard',
   components: {
     Card,
+    VideoBackground,
   },
   props: {
     benefit: {
@@ -44,6 +56,14 @@ export default {
     isBordered: {
       type: Boolean,
       default: true
+    }
+  },
+  data() {
+    return {
+      videos: {
+        background1: require('../../../assets/animations/benefits-listers-bg.mp4'),
+        background2: require('../../../assets/animations/benefits-buyers-bg.mp4')
+      }
     }
   },
   computed: {

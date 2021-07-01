@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-8 mb-48 md:mb-48" ref="explainer">
+  <div class="pt-8 mb-60" ref="explainer">
     <div class="w-5/6 md:w-full max-w-screen-lg mx-auto px-8 lg:px-4">
       <div class="md:grid md:grid-flow-row-dense md:grid-cols-2 md:gap-16 md:items-center">
         <div class="md:col-start-1">
@@ -31,7 +31,7 @@
             <li 
               v-for="(item, i) in explainer.investing.steps" :key="item" 
               class="
-              bg-gray-700 bg-opacity-50 border-0 border-white shadow-b-purple-3-glow w-full overflow-hidden rounded-md px-6 py-8"
+              bg-gray-700 bg-opacity-50 border-0 border-white shadow-green-foam-glow w-full overflow-hidden rounded-md px-6 py-8"
             >
               <div class="flex flex-row items-start justify-start">
                 <div class="w-6-h-6 mr-4">
@@ -72,8 +72,8 @@
           </ul>
         </div>
       </div>
-      <div class="text-center font-bold text-3xl my-60 text-f-purple-2">
-        The stuff below is under construction
+      <div class="mt-24">
+        <img :src="images.ideaScheme" alt="">
       </div>
     </div>
   </div>
@@ -90,10 +90,8 @@ export default {
   data() {
     return {
       images: {
-        logo: require('@/assets/logo/full/frabric_logo_full-white.png')
-      },
-      animations: {
-        explainer1: require('@/assets/animations/temp/ease-animation.json')
+        logo: require('@/assets/logo/full/frabric_logo_full-white.png'),
+        ideaScheme: require('@/assets/pics/frabric_explainer_scheme1.png')
       },
       explainer: {
         investing: {

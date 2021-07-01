@@ -1,58 +1,45 @@
 <template>
   <div>
     <div class="relative flex flex-col justify-start">
-      <div class="w-full h-full" :style="footerStyle">
-        <div class="w-5/6 md:w-full max-w-screen-lg mx-auto mt-16 pt-16 px-8 lg:px-4">
-          <div class="
-          flex flex-col md:flex-row gap-8 md:gap-4
-          py-12 md:py-24
-          ">
-            <div class="flex flex-col items-center md:items-start justify-between md:w-2/4">
-              <div class="
-              text-center md:text-left
-              text-white text-shadow-lg font-bold text-3xl md:text-5xl
-              ">
-                Want to know more?
+      <div class="w-full px-8">
+        <footer class="bg-tranparent" aria-labelledby="footerHeading">
+          <div class="max-w-md-screen mx-auto py-12 lg:py-16">
+            <div class="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center space-y-4 mb-8">
+              <div class="space-y-2 xl:col-span-1">
+                <img class="h-10" :src="images.logo" alt="Frabric" />
+                <p class="text-gray-500 text-base">
+                  Changing property ownership forever.
+                </p>
               </div>
-              <div class="flex flex-col md:flex-row items-center md:items-start">
-                <div class="h-full w-auto">
-                  <img :src="images.mailIcon" alt="Frabric Newsletter" class="h-28 md:h-38 w-auto">
-                </div>
-                <div class="flex flex-col items-center md:items-start">
-                  <div class="
-                  max-w-xl font-medium text-base md:text-lg lg:text-xl
-                  mt-4 mb-4
-                  ">
-                    Sign up for our monthly newsletter!
-                  </div>
-                  <Button label="Subscribe Today" customClasses="shadow-xl mb-4" />
-                </div>
+              <div class="flex flex-row items-start">
+                <Button :primary="false" label="View Whitepaper" customClasses="shadow-xl" />
+                <Button :primary="false" label="Join Discord" customClasses="shadow-xl ml-4" />
               </div>
             </div>
-            <div class="flex flex-col items-center justify-between md:w-1/4">
-              <img :src="images.whitepaperIcon" alt="Frabric Whitepaper" class="h-28 md:h-46 w-auto">
-              <Button label="View Whitepaper" customClasses="shadow-xl mt-4 mb-4" />
+            <div class="border-t border-gray-700 pt-8 lg:flex lg:items-center lg:justify-between xl:mt-0">
+              <div>
+                <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                  Subscribe to our newsletter
+                </h3>
+                <p class="mt-2 text-base text-gray-300">
+                  The latest news, articles, and resources, sent to your inbox weekly.
+                </p>
+              </div>
+              <form class="mt-4 sm:flex sm:max-w-md lg:mt-0">
+                <label for="emailAddress" class="sr-only">Email address</label>
+                <input type="email" name="emailAddress" id="emailAddress" autocomplete="email" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs" placeholder="Enter your email" />
+                <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                  <Button label="Subscribe" customClasses="shadow-xl"/>
+                </div>
+              </form>
             </div>
-            <div class="flex flex-col items-center justify-between md:w-1/4">
-              <img :src="images.discordIcon" alt="Frabric Discord" class="h-28 md:h-46 w-auto">
-              <Button label="Join the Discord" customClasses="shadow-xl mt-4 mb-4" />
+            <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
+              <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                &copy; 2021 Fractional Finance. All rights reserved.
+              </p>
             </div>
           </div>
-        </div>
-        <div 
-        class="
-        flex flex-col justify-center w-full h-12 md:h-20
-        "
-        :style="finalStripStyle"
-        >
-          <div 
-          class="
-          w-full text-center text-lg md:text-xl lg:text-2xl
-          "
-          >
-            All rights reserved © Fractional Finance
-          </div>
-        </div>
+        </footer>
       </div>
     </div>
   </div>
@@ -69,6 +56,7 @@ export default {
   data() {
     return {
       images: {
+        logo: require('@/assets/logo/full/frabric_logo_full-white.png'),
         background: require('../../assets/pics/temp/mesh-footer.png'),
         mailIcon: require('../../assets/pics/reademail.svg'),
         whitepaperIcon: require('../../assets/pics/document.svg'),

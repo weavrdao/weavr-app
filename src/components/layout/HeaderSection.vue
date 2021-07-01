@@ -27,7 +27,6 @@
         </div>
       </div>
     </div>
-    <!-- </VideoBackground> -->
   </div>
 </template>
 
@@ -44,7 +43,7 @@ export default {
         //background: require('../../assets/animations/temp/temp-bg-video.mp4')
       },
       images: {
-        background: require('../../assets/pics/temp/constellation.svg')
+        background: require('../../assets/pics/constellation.svg')
       }
     }
   },
