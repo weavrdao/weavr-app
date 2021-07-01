@@ -10,20 +10,6 @@
           <p class="mt-3 text-lg text-gray-500">
              With the Frabric network you can become a property owner within seconds.
           </p>
-
-          <dl class="mt-10 space-y-10">
-            <div v-for="item in communicationFeatures" :key="item.id" class="relative">
-              <dt>
-                <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                  <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
-                </div>
-                <p class="ml-16 text-lg leading-6 font-medium text-gray-900">{{ item.name }}</p>
-              </dt>
-              <dd class="mt-2 ml-16 text-base text-gray-500">
-                {{ item.description }}
-              </dd>
-            </div>
-          </dl>
         </div>
 
         <div class="mt-10 -mx-4 relative md:mt-0 md:col-start-2">
@@ -80,12 +66,10 @@
 </template>
 
 <script>
-import LottieAnimation from 'lottie-web-vue'
-
 export default {
   name: 'ExplainerSection',
   components: {
-    LottieAnimation
+    
   },
   data() {
     return {

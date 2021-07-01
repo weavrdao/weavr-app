@@ -4,13 +4,13 @@
       <template slot-scope="benefit">
         <div 
           :class="`
-          relative rounded-xl overflow-hidden w-full
+          relative rounded-content overflow-hidden w-full
           shadow-green-foam-glow
           `"
         >
-          <div class="absolute w-full h-full">
+          <div class="absolute w-full h-full rounded-content overflow-hidden">
             <VideoBackground
-              class="w-full h-full"
+              class="w-full h-full rounded-content overflow-hidden"
               :src="benefit.bgIndex == 0 ? videos.background1 : videos.background2"
               overlay="linear-gradient(45deg,#2E2C9BA0,#D6FCFEA0)"
               :loop="true"
@@ -84,3 +84,16 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.rounded-content {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-radius: 0.75rem; 
+
+  /* Firefox 1-3.6 */
+  -moz-border-radius: 0.75rem; 
+  
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-radius: 0.75rem; 
+}
+</style>

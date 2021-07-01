@@ -1,6 +1,6 @@
 <template>
   <div class="h-full">
-    <div class="h-full" v-for="child in children" :key="child">
+    <div class="h-full" v-for="(child, i) in children" :key="i">
       <slot v-bind="child"></slot>
     </div>
   </div>

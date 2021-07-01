@@ -2,7 +2,7 @@
   <div class="flex justify-center">
     <div :class="gridClasses">
         <div 
-        v-for="child in children" :key="child"
+        v-for="(child, i) in children" :key="i"
         >
           <slot v-bind="child"></slot>
         </div>
