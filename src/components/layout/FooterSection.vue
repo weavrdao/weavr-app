@@ -56,18 +56,14 @@ export default {
   data() {
     return {
       images: {
-        logo: require('@/assets/logo/full/frabric_logo_full-white.png'),
-        background: require('../../assets/pics/temp/mesh-footer.png'),
-        mailIcon: require('../../assets/pics/reademail.svg'),
-        whitepaperIcon: require('../../assets/pics/document.svg'),
-        discordIcon: require('../../assets/pics/discord.svg')
+        logo: require('@/assets/logo/full/frabric_logo_full-white.png')
       }
     }
   },
   computed: {
     footerStyle() {
       return `
-      backgroundImage: linear-gradient(to top, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.0) 100%), url('${this.images.background}');
+      backgroundImage: linear-gradient(to top, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.0) 100%);
       background-size: cover; 
       background-repeat: no-repeat;
       background-position: center bottom;

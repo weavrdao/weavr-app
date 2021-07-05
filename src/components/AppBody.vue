@@ -1,12 +1,14 @@
 <template>
   <div class="
+  relative
   flex flex-col items-start overflow-x-hidden h-full w-full
   text-white
   ">
     <div 
     class="
+    relative
     w-full
-    bg-gradient-to-b from-f-purple-1 to-black
+    global-bg
     "
     >
       <HeaderNavigation/>
@@ -19,10 +21,16 @@
       <div class="w-full">
         <CommunitySection/>
       </div>
-      <div class="w-full">
+      <div class="relative w-full">
+        <div 
+          class="
+          absolute
+          object-cover object-center opacity-50
+          w-full h-full footer-bg
+          "
+        >
+        </div>
         <RoadmapSection/>
-      </div>
-      <div class="w-full">
         <FooterSection/>
       </div>
     </div>
@@ -49,3 +57,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.global-bg {
+  background-image: linear-gradient(to bottom, RGBA(22, 17, 86, 1.00) 0%, RGBA(8, 7, 30, 1.00) 50%), linear-gradient(to top, RGBA(44, 48, 149, 1.00) 0%, RGBA(8, 7, 30, 1.00) 50%);
+}
+.footer-bg {
+  background-image: linear-gradient(to top, RGBA(44, 48, 149, 0.50) 0%, RGBA(0, 0, 0, 0.00) 100%);
+}
+</style>
