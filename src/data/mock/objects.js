@@ -1,7 +1,6 @@
 import { db } from './db'
 
 export const Types = {
-  Property: "properties",
   UserBenefits: "user_benefits"
 }
 

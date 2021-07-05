@@ -15,12 +15,20 @@
         </div>
       </div>
       <div class="flex flex-row-reverse justify-start">
-        <div class="ml-4">
-          <img :src="images.subscriptionIcon" alt="Frabric Newsletter">
+        <div class="ml-4 hover:opacity-90" @click="onNewsletterClick">
+          <img 
+            class="cursor-pointer"
+            :src="images.subscriptionIcon" 
+            alt="Frabric Newsletter" 
+          >
         </div>
-        <div>
-          <img :src="images.discordIcon" alt="Frabric Discord">
-        </div>
+        <a class="hover:opacity-90" href="https://discord.gg/qgG98MJyzK" target="_blank" rel="noopener noreferrer">
+          <img 
+            class="cursor-pointer"
+            :src="images.discordIcon" 
+            alt="Frabric Discord"
+          >
+        </a>
       </div>
     </div>
     <!-- <div class="w-full h-px bg-white"></div> -->
@@ -53,6 +61,11 @@ export default {
       background-repeat: no-repeat;
       background-position: center top;
       `
+    }
+  },
+  methods: {
+    onNewsletterClick() {
+      this.$emit('scrollTo', 'frabric-footer')
     }
   }
 }

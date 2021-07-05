@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="frabric-footer">
     <div class="relative flex flex-col justify-start">
       <div class="w-full px-8">
         <footer class="bg-tranparent" aria-labelledby="footerHeading">
@@ -12,8 +12,8 @@
                 </p>
               </div>
               <div class="flex flex-row items-start">
-                <Button :primary="false" label="View Whitepaper" customClasses="shadow-xl" />
-                <Button :primary="false" label="Join Discord" customClasses="shadow-xl ml-4" />
+                <Button kind="secondary" @onClick="onViewWhitePaperClick" label="View Whitepaper" customClasses="shadow-xl" />
+                <Button kind="secondary" @onClick="onJoinDiscordClick" label="Join Discord" customClasses="shadow-xl ml-4" />
               </div>
             </div>
             <div class="border-t border-gray-700 pt-8 lg:flex lg:items-center lg:justify-between xl:mt-0">
@@ -27,9 +27,9 @@
               </div>
               <form class="mt-4 sm:flex sm:max-w-md lg:mt-0">
                 <label for="emailAddress" class="sr-only">Email address</label>
-                <input type="email" name="emailAddress" id="emailAddress" autocomplete="email" required="" class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs" placeholder="Enter your email" />
+                <input type="email" name="emailAddress" id="emailAddress" autocomplete="email" v-model="input.email" required class="appearance-none min-w-0 w-full bg-white border border-transparent rounded-md py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white focus:border-white focus:placeholder-gray-400 sm:max-w-xs" :placeholder="input.emailPlaceholder" />
                 <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                  <Button label="Subscribe" customClasses="shadow-xl"/>
+                  <Button @onClick="onNewsletterSubscribeClick" label="Subscribe" customClasses="shadow-xl"/>
                 </div>
               </form>
             </div>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { subscribe } from '../../actions/actions'
 import Button from '../common/Button'
 
 export default {
@@ -57,6 +58,10 @@ export default {
     return {
       images: {
         logo: require('@/assets/logo/full/frabric_logo_full-white.png')
+      },
+      input: {
+        email: "",
+        emailPlaceholder: 'Enter your email'
       }
     }
   },
@@ -76,6 +81,36 @@ export default {
       background-repeat: no-repeat;
       background-position: center top;
       `
+    }
+  },
+  methods: {
+    onViewWhitePaperClick() {
+      window.open('https://www.notion.so/fractionalfinance/Frabric-Whitepaper-f58768fdff4748978095c1733e7b2be5', '_blank')
+    },
+
+    onJoinDiscordClick() {
+      window.open('https://discord.gg/qgG98MJyzK', '_blank')
+    },
+
+    onNewsletterSubscribeClick() {
+      if (!this.input.email || !this.isValidEmail(this.input.email)) {
+        this.input.emailPlaceholder = 'Valid email required'
+        this.input.email = ""
+        return
+      }
+
+      subscribe(this.input.email)
+        .then(error => {
+          if (error == null) {
+            this.input.emailPlaceholder = 'Enter your email'
+            this.input.email = ""
+          }
+        })
+    },
+
+    isValidEmail(email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     }
   }
 }

@@ -11,15 +11,15 @@
     global-bg
     "
     >
-      <HeaderNavigation/>
+      <HeaderNavigation @scrollTo="scrollToElementByClass"/>
       <div class="w-full">
-        <HeaderSection/>
+        <HeaderSection @scrollTo="scrollToElementByClass"/>
       </div>
       <div class="w-full">
-        <ExplainerSection/>
+        <ExplainerSection @scrollTo="scrollToElementByClass"/>
       </div>
       <div class="w-full">
-        <CommunitySection/>
+        <CommunitySection @scrollTo="scrollToElementByClass"/>
       </div>
       <div class="relative w-full">
         <div 
@@ -30,8 +30,8 @@
           "
         >
         </div>
-        <RoadmapSection/>
-        <FooterSection/>
+        <RoadmapSection @scrollTo="scrollToElementByClass"/>
+        <FooterSection @scrollTo="scrollToElementByClass"/>
       </div>
     </div>
   </div>
@@ -54,6 +54,15 @@ export default {
     CommunitySection,
     RoadmapSection,
     FooterSection,
+  },
+  methods: {
+    scrollToElementByClass(className) {
+      const el = this.$el.getElementsByClassName(className)[0];
+      
+      if (el) {
+        el.scrollIntoView({behavior: 'smooth'});
+      }
+    }
   }
 }
 </script>

@@ -4,6 +4,7 @@ import store from './store'
 import './styles/index.css'
 
 Vue.config.productionTip = false
+require('dotenv').config()
 
 new Vue({
   store,

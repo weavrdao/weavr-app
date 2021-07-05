@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <Card :children="[benefit]">
       <template slot-scope="benefit">
         <div 
@@ -95,5 +95,10 @@ export default {
   
   /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
   border-radius: 0.75rem; 
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0)
 }
 </style>

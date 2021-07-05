@@ -11,11 +11,11 @@
       </div>
       <div 
       class="
-      w-full relative flex flex-col items-center 
+      w-5/6 md:w-full mx-auto relative flex flex-col items-center 
       py-24 md:py-24
       "
       >
-        <div class="mx-auto">
+        <div class="mx-auto w-2/3 md:w-full">
           <div class="
           text-white text-center
           font-bold text-3xl md:text-5xl
@@ -28,7 +28,7 @@
         </div>
         <div class="relative w-full flex flex-col items-start my-8">
           <div class="mx-auto px-8 lg:px-4">
-            <div class="relative flex flex-row gap-8">
+            <div class="relative flex flex-row">
               <svg 
               class="fill-current stroke-current text-f-blue-1"
               width="40" height="80"
@@ -55,7 +55,7 @@
                 class="stroke-2" 
                 />
               </svg>
-              <div class="flex flex-col items-start">
+              <div class="flex flex-col items-start ml-8">
                 <div class="font-medium text-base md:text-lg lg:text-xl h-36px mt-1">
                   MVP
                 </div>
@@ -78,7 +78,7 @@
                 />
               </svg>
             </div>
-            <div class="relative flex flex-row gap-8">
+            <div class="relative flex flex-row">
               <svg 
               class="fill-current stroke-current text-f-blue-1"
               width="40" height="80"
@@ -105,7 +105,7 @@
                 class="stroke-2" 
                 />
               </svg>
-              <div class="flex flex-col items-start">
+              <div class="flex flex-col items-start ml-8">
                 <div class="font-medium text-base md:text-lg lg:text-xl h-36px mt-1">
                   ALPHA TESTING
                 </div>
@@ -128,7 +128,7 @@
                 />
               </svg>
             </div>
-            <div class="relative flex flex-row gap-8">
+            <div class="relative flex flex-row">
               <svg 
               class="fill-current stroke-current text-f-blue-1"
               width="40" height="80"
@@ -155,7 +155,7 @@
                 class="stroke-2" 
                 />
               </svg>
-              <div class="flex flex-col items-start">
+              <div class="flex flex-col items-start ml-8">
                 <div class="font-medium text-base md:text-lg lg:text-xl h-36px mt-1">
                   BETA TESTING
                 </div>
@@ -178,7 +178,7 @@
                 />
               </svg>
             </div>
-            <div class="relative flex flex-row gap-8">
+            <div class="relative flex flex-row">
               <svg 
               class="fill-current stroke-current text-f-blue-1"
               width="40" height="80"
@@ -198,7 +198,7 @@
                 class="fill-transparent stroke-2"
                 />
               </svg>
-              <div class="flex flex-col items-start">
+              <div class="flex flex-col items-start ml-8">
                 <div class="font-medium text-base md:text-lg lg:text-xl h-36px mt-1">
                   LAUNCH
                 </div>

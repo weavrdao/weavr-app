@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-8" ref="explainer">
+  <div class="frabric-explainer pt-8">
     <div class="relative w-full pb-60">
       <div 
         class="
