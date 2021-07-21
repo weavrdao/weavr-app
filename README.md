@@ -1,4 +1,4 @@
-# Frabric Website
+# Frabric Web Intefrace
 
 ## Project setup
 ```

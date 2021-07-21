@@ -1,12 +1,18 @@
-import Vue from 'vue'
+import { createApp, h } from 'vue'
 import App from './App.vue'
+import router from '@/router'
 import store from './store'
 import './styles/index.css'
 
-Vue.config.productionTip = false
 require('dotenv').config()
 
-new Vue({
-  store,
-  render: h => h(App),
-}).$mount('#app')
+const app = createApp({
+  render: ()=>h(App)
+})
+
+app.config.productionTip = false
+
+app.use(router)
+app.use(store)
+
+app.mount('#app')

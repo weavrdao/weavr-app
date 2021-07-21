@@ -1,22 +1,11 @@
 <template>
-  <div class="app-background" :style="style">
+  <div class="app-background bg-purple-black">
   </div>
 </template>
 
 <script>
-import { Colors } from "../theme/index"
-
 export default {
   name: 'Background',
-  computed: {
-    style() {
-      var style = {}
-
-      style['background'] = "radial-gradient(50% 50% at 50% 50%, " + Colors.primary1 + " 0%, " + Colors.black + " 100%)"
-
-      return style
-    }
-  }
 }
 </script>
 

@@ -1,5 +1,11 @@
 <template>
-  <div id="app" class="dark">
+  <div 
+    id="app" 
+    class="
+      dark
+      text-foam text-opacity-75
+    "
+  >
     <AppWrapper/>
   </div>
 </template>

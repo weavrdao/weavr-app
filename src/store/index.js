@@ -1,10 +1,7 @@
-import Vuex from 'vuex'
-import Vue from 'vue'
+import { createStore } from 'vuex'
 import state from "./state"
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export default createStore({
   modules: {
     state
   }

@@ -2,17 +2,20 @@
   <div 
   id="app" 
   class="h-screen overflow-hidden flex items-start justify-between">
+    <Background/>
     <AppBody/>
   </div>
 </template>
 
 <script>
-import AppBody from "./AppBody"
+import Background from './Background.vue'
+import AppBody from './AppBody'
 
 export default {
   name: 'AppWrapper',
   components: {
-    AppBody
+    Background,
+    AppBody,
   }
 }
 </script>
