@@ -1,7 +1,7 @@
 <template>
   <div class="h-full w-full overflow-auto">
     <div class="w-full fixed">
-      <HeaderNavigation />
+      <HeaderHavigationBar />
     </div>
 
     <div class="py-24">
@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import HeaderNavigation from "./layout/navigation/HeaderHavigation"
+import HeaderHavigationBar from './layout/navigation/HeaderHavigationBar.vue'
 
 export default {
   name: 'AppBody',
   components: {
-    HeaderNavigation,
+    HeaderHavigationBar,
   },
 }
 </script>
