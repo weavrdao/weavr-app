@@ -1,15 +1,12 @@
 <template>
   <div>
     <button 
-    v-if="kind != 'image'"
     type="button" 
     @click="onClick" 
     :class="classes"
     >
       {{ label }}
     </button>
-
-    <!-- <img :src="src" alt=""> -->
   </div>
 </template>
 
@@ -20,14 +17,6 @@ export default {
 
   props: {
     label: {
-      type: String,
-      required: false
-    },
-    kind: {
-      type: String,
-      default: 'primary'
-    },
-    src: {
       type: String,
       required: false
     },
@@ -46,34 +35,29 @@ export default {
         focus:outline-none
       `
 
-      if (this.kind != 'image') {
-        classes += `
-          text-sm md:text-lg
-          py-2 md:py-3
-          px-6
-          rounded-xl
-          shadow-lg 
-        `
+      classes += `
+        text-sm md:text-lg
+        py-2 md:py-3
+        px-6
+        rounded-xl
+      `
 
-        if (this.isPrimary) {
-          classes += `
-            bg-gradient-to-br from-f-green-foam to-f-blue-1
-            text-gray-900
-            font-medium
-            border-2
-            border-f-blue-1
-            hover:opacity-80
-          `
-        } else {
-          classes += `
-            border-gradient-br-blue-white-f-purple-1
-            border-transparent 
-            border-solid 
-            border-2
-            text-white
-            hover:border-f-blue-1
-          `
-        }
+      if (this.isPrimary) {
+        classes += `
+          bg-action-blue
+          text-gray-900
+          font-medium
+          hover:opacity-80
+        `
+      } else {
+        classes += `
+          border-gradient-br-blue-white-f-purple-1
+          border-transparent 
+          border-solid 
+          border-2
+          text-white
+          hover:border-f-blue-1
+        `
       }
 
       classes += `

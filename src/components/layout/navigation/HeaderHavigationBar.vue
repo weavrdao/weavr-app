@@ -10,7 +10,7 @@
             <div 
               v-for="item in navigation.items" :key="item.name"
               v-on:click="transitTo(item.path)"
-              :class="[this.isItemCurrent(item) ? 'border-foam border-opacity-75 text-foam text-opacity-75' : 'border-transparent text-foam text-opacity-25 hover:text-opacity-50', 'inline-flex items-center px-1 pt-1 border-b text-sm font-medium cursor-pointer']" 
+              :class="[this.isItemCurrent(item) ? 'border-foam border-opacity-75 text-foam text-opacity-75' : 'border-transparent text-foam text-opacity-25 hover:text-opacity-50', 'inline-flex items-center px-1 pt-1 border-b text-md font-medium cursor-pointer']" 
             >
               {{ item.name }}
             </div>
