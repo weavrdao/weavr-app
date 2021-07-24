@@ -20,6 +20,10 @@ export default {
       type: String,
       required: false
     },
+    isPrimary: {
+      type: Boolean,
+      default: true
+    },
     customClasses: {
       type: String,
       default: ""
@@ -66,10 +70,6 @@ export default {
 
       return classes
     },
-
-    isPrimary() {
-      return this.kind == 'primary'
-    }
   },
 
   methods: {
