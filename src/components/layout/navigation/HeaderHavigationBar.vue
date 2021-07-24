@@ -1,7 +1,7 @@
 <template>
   <Disclosure 
     as="nav" 
-    class="border-b border-purple-three border-gray-200"
+    class="bg-purple-black border-b border-purple-three border-gray-200"
   >
     <div class="w-full mx-auto px-4 sm:px-6 lg:px-16">
       <div class="flex justify-between items-center h-16">

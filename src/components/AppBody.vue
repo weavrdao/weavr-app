@@ -1,6 +1,6 @@
 <template>
   <div class="h-full w-full overflow-auto">
-    <div class="w-full fixed">
+    <div class="z-50 w-full fixed">
       <HeaderHavigationBar />
     </div>
 

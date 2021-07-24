@@ -97,7 +97,6 @@
                       :aria-labelledby="`vote-option-${ i }-label`" 
                     >
                     <div class="ml-3 flex flex-col">
-                      <!-- Checked: "text-indigo-900", Not Checked: "text-gray-900" -->
                       <span :id="`vote-option-${ i }-label`" class="block text-lg font-medium">
                         {{ option.title }}
                       </span>
