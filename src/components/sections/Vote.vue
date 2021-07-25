@@ -12,11 +12,11 @@
       <div class="space-y-6 lg:col-start-1 lg:col-span-2">
         <!-- Details-->
         <section>
-          <div class="bg-level-1-light opacity-95 shadow sm:rounded-lg">
+          <div class="bg-level-1-light opacity-95 shadow-xl sm:rounded-lg">
             <div class="px-8 py-8">
               <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                 <div class="sm:col-span-1">
-                  <dt class="text-sm font-medium text-opacity-50">
+                  <dt class="text-sm font-medium text-foam text-opacity-50">
                     Created By
                   </dt>
                   <dd class="mt-2">
@@ -24,7 +24,7 @@
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
-                  <dt class="text-sm font-medium text-opacity-50">
+                  <dt class="text-sm font-medium text-foam text-opacity-50">
                     Title
                   </dt>
                   <dd class="mt-2 text-lg font-bold text-opacity-80">
@@ -32,7 +32,7 @@
                   </dd>
                 </div>
                 <div class="sm:col-span-2">
-                  <dt class="text-sm font-medium text-opacity-50">
+                  <dt class="text-sm font-medium text-foam text-opacity-50">
                     Description
                   </dt>
                   <dd class="mt-2 text-md font-normal text-opacity-80">
@@ -46,11 +46,11 @@
       </div>
 
       <section class="lg:col-start-3 lg:col-span-1">
-        <div class="bg-level-1-light opacity-95 px-8 py-8 rounded-lg">
+        <div class="bg-level-1-light opacity-95 shadow-xl px-8 py-8 rounded-lg">
           <!-- Actions -->
           <dl class="flex flex-col gap-8">
             <div>
-              <dt class="text-sm font-medium text-opacity-50">
+              <dt class="text-sm font-medium text-foam text-opacity-50">
                 Time Remaning
               </dt>
               <dd class="mt-2 text-lg font-bold text-opacity-80">
@@ -58,7 +58,7 @@
               </dd>
             </div>
             <div>
-              <dt class="text-sm font-medium text-opacity-50">
+              <dt class="text-sm font-medium text-foam text-opacity-50">
                 Holders Voted
               </dt>
               <dd class="mt-2 text-lg font-bold text-opacity-80">
@@ -72,7 +72,7 @@
               </dd>
             </div>
             <div>
-              <dt class="text-sm font-medium text-opacity-50">
+              <dt class="text-sm font-medium text-foam text-opacity-50">
                 Your Vote
               </dt>
               <dd class="mt-4">
