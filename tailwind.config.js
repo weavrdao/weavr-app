@@ -17,10 +17,11 @@ module.exports = {
         'tl': 'to top left',
       },
       colors: { // defaults to {}
-        'l2-light-purple-tree': [frabricTheme.Colors.bgLevel2Light, frabricTheme.Colors.purpleThree],
+        'l2-light-purple-three': [frabricTheme.Colors.bgLevel2Light, frabricTheme.Colors.purpleThree],
       },
       background: {
-        
+        'purple-black': frabricTheme.Colors.purpleBlack,
+        'level-1-light': frabricTheme.Colors.bgLevel1Light,
       },
       border: { // defaults to these values (optional)
         '1': '1px',

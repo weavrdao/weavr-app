@@ -8,7 +8,7 @@
       w-56
       overflow-hidden
       cursor-pointer
-      opacity-95 hover:opacity-75
+      opacity-95 hover:bg-opacity-75
     "
   >
     <div class="h-full w-full flex flex-row justify-between items-center">

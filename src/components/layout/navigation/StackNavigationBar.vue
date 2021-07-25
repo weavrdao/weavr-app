@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-level-1-light opacity-95 rounded-lg h-16 w-full overflow-hidden">
+  <div class="bg-level-1-light opacity-95 rounded-lg shadow-xl h-16 w-full overflow-hidden">
     <div class="flex flex-row items-center h-full">
       <div 
         class="bg-level-2-light hover:opacity-75 h-full flex flex-row justify-start items-center p-4 w-24 cursor-pointer"

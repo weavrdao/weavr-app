@@ -1,4 +1,4 @@
-import faker from 'faker'
+const faker = require('faker/locale/en')
 
 export const votes = [
   {
@@ -27,3 +27,56 @@ export const votes = [
     ]
   },
 ]
+
+export const marketOffers = () => {
+  var offers = []
+
+  for (var i = 0; i < faker.datatype.number(10) + 2; i++) {
+    let offer = {
+      id: faker.datatype.hexaDecimal(40),
+      world: {
+        env: {
+          currency: {
+            code: "USD",
+            symbol: "$",
+            rate: {
+              eth: 0.00046,
+            },
+          },
+          measurements: {
+            area: {
+              system: 'imperial',
+              unit: 'sqft',
+            },
+          }
+        },
+        property: {
+          address: `${ faker.address.streetAddress(true) }, ${ faker.address.cityName() }, ${ faker.address.stateAbbr() }, ${ faker.address.zipCode() }, ${ faker.address.country() }`,
+          currentRent: faker.datatype.number(8000) + 800,
+          marketValue: faker.datatype.number(90000000) + 200000,
+          area: faker.datatype.number(3000) + 1000,
+          rooms: {
+            bd: faker.datatype.number(6),
+            ba: faker.datatype.number(6),
+          },
+          grossYieldPct: faker.datatype.number(12),
+          yearBuilt: faker.datatype.number(20) + 1990,
+          coverImageUrl: faker.image.imageUrl(),
+        },
+      },
+      chain: {
+        holderCount: faker.datatype.number(30000),
+        erc20: {
+          address: "0xfdf21d1cd5d3f0edbaed7cd1172ab3e49882d056",
+          code: "FRBA-" + faker.datatype.hexaDecimal(40),
+          marketCap: faker.datatype.number(90000000) + 200000,
+          price: 0.00028,
+        },
+      },
+    }
+
+    offers.push(offer)
+  }
+
+  return offers
+}
