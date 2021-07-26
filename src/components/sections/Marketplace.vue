@@ -5,7 +5,7 @@
     "
   >
     <div class="mt-8 bg-level-1-light opacity-95 shadow-lg overflow-hidden rounded-lg">
-      <div class="px-8 mt-8">
+      <div :class="`px-8 mt-8 ${ searchResults.length == 0 ? 'mb-8' : '' }`">
         <label for="search" class="sr-only">Search by token name or address</label>
         <div class="mt-1 relative rounded-lg bg-level-2-dark">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" aria-hidden="true">
@@ -13,13 +13,20 @@
               <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
             </svg>
           </div>
-          <input type="text" name="search" id="search" class="bg-level-2-dark border-0 focus:ring-action-blue focus:border-action-blue block w-full pl-9 sm:text-sm rounded-lg" placeholder="Search by token name or address">
+          <input 
+            type="text" 
+            name="search" 
+            id="search" 
+            class="bg-level-2-dark border-0 focus:ring-action-blue focus:border-action-blue block w-full pl-9 sm:text-sm rounded-lg" 
+            placeholder="Search by token name or address"
+            v-model="searchQuery"
+            >
         </div>
       </div>
 
       <ul>
         <li
-          v-for="offer in offers" :key="offer.id"
+          v-for="offer in searchResults" :key="offer.id"
           class="px-8 py-8"
         >
           <MarketListItem :offer="offer"/>
@@ -40,7 +47,18 @@ export default {
   },
   data() {
     return {
-      offers: null
+      offers: null,
+      searchQuery: '',
+    }
+  },
+  computed: {
+    searchResults() {
+      if (this.searchQuery.length == 0) { return this.offers }
+
+      return this.offers
+        .filter(item => { 
+          return item.world.property.address.toLowerCase().includes(this.searchQuery.toLowerCase())
+        })
     }
   },
   methods: {

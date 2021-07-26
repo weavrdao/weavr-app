@@ -4,32 +4,77 @@
     w-full max-w-screen mx-auto
     "
   >
-    <div>My Assets Placeholder</div>
-    <div v-on:click="testVote" class="cursor-pointer">
-      Test Vote Transition
+    <div class="mt-8 bg-level-1-light opacity-95 shadow-lg overflow-hidden rounded-lg">
+      <div class="px-8 mt-8">
+        <label for="search" class="sr-only">Search by token name or address</label>
+        <div class="mt-1 relative rounded-lg bg-level-2-dark">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" aria-hidden="true">
+            <svg class="mr-3 h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <input 
+            type="text" 
+            name="search" 
+            id="search" 
+            class="bg-level-2-dark border-0 focus:ring-action-blue focus:border-action-blue block w-full pl-9 sm:text-sm rounded-lg" 
+            placeholder="Search by token name or address"
+            v-model="searchQuery"
+          >
+        </div>
+      </div>
+
+      <ul>
+        <li
+          v-for="asset in searchResults" :key="asset.id"
+          class="px-8 py-8"
+        >
+          <AssetListItem :asset="asset"/>
+        </li>
+        <li
+          class="px-8 py-8"
+        >
+          <AssetListItemPlaceholder/>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import { votes } from '../../data/mock/mockDataProvider'
-import { mapActions } from 'vuex'
+import { myAssets } from '../../data/mock/mockDataProvider'
+import AssetListItem from '../views/assets/AssetListItem.vue'
+import AssetListItemPlaceholder from '../views/assets/AssetListItemPlaceholder.vue'
 
 export default {
   name: 'MyAssets',
   components: {
-    
+    AssetListItem,
+    AssetListItemPlaceholder,
   },
   data() {
     return {
-      
+      assets: null,
+      searchQuery: '',
+    }
+  },
+  computed: {
+    searchResults() {
+      if (this.searchQuery.length == 0) { return this.assets }
+
+      return this.assets
+        .filter(item => { 
+          return item.world.property.address.toLowerCase().includes(this.searchQuery.toLowerCase())
+        })
     }
   },
   methods: {
-    ...mapActions(['openVote']),
-    testVote() {
-      this.$router.push('/vote/' + votes[0].id)
-    }
+    pullData() {
+      this.assets = myAssets()
+    },
   },
+  created() {
+    this.pullData()
+  }
 }
 </script>

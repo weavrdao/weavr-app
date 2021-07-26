@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { votes } from '../../../data/mock/mockDataProvider'
+
 import { Disclosure } from '@headlessui/vue'
 import SignerAddress from '../../views/address/SignerAddress.vue'
 import { useRoute } from 'vue-router'
@@ -41,7 +43,7 @@ export default {
           { name: 'My Assets', path: '/assets' },
           { name: 'Marketplace', path: '/market' },
           { name: 'Swap', path: '/swap' },
-          { name: 'Vote Demo', path: '/vote' },
+          { name: 'Vote Demo', path: '/vote/' + votes[0].id },
         ]
       },
     }

@@ -19,7 +19,7 @@
                     Current Rent
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ offer.world.env.currency.symbol }} {{ offer.world.property.currentRent }}
+                    {{ offer.world.env.currency.symbol }} {{ numberFormat.format(offer.world.property.currentRent) }}
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -27,7 +27,7 @@
                     Area
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ offer.world.property.area }} {{ offer.world.env.measurements.area.unit }}
+                    {{ numberFormat.format(offer.world.property.area) }} {{ offer.world.env.measurements.area.unit }}
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -35,7 +35,7 @@
                     Market Value
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ offer.world.env.currency.symbol }} {{ offer.world.property.marketValue }}
+                    {{ offer.world.env.currency.symbol }} {{ numberFormat.format(offer.world.property.marketValue) }}
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -72,6 +72,7 @@
                 </div>
               </dl>
             </div>
+
             <div class="px-4 py-4 max-w-sm">
               <dl class="flex flex-col gap-4 justify-between h-full">
                 <div>
@@ -88,7 +89,7 @@
                       Holder Count
                     </dt>
                     <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      {{ offer.chain.holderCount }}
+                      {{ numberFormat.format(offer.chain.holderCount) }}
                     </dd>
                   </div>
                   <div>
@@ -96,7 +97,7 @@
                       Maket Cap
                     </dt>
                     <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      {{ offer.world.env.currency.symbol }} {{ offer.chain.erc20.marketCap }}
+                      {{ offer.world.env.currency.symbol }} {{ numberFormat.format(offer.chain.erc20.marketCap) }}
                     </dd>
                   </div>
                 </div>
@@ -111,7 +112,7 @@
                     <div class="h-full flex flex-col justify-between space-y-8">
                       <div class="flex flex-col space-y-8">
                         <div>
-                          <div class="flex flex-row items-center">
+                          <div class="flex flex-row items-center justify-between">
                             <label for="company-website" class="block text-sm font-medium text-foam text-opacity-50">
                               From
                             </label>
@@ -179,7 +180,7 @@
                       </div>
                       <div>
                         <div class="mt-8 flex flex-col">
-                          <Button label="Review Order" customClasses="w-full"/>
+                          <Button label="Review Order" customClasses="w-full" @click="openSwap"/>
                         </div>
                       </div>
                     </div>
@@ -208,6 +209,16 @@ export default {
     offer: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 })
+    }
+  },
+  methods: {
+    openSwap() {
+      this.$router.push('/swap')
     }
   },
 }
