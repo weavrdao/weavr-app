@@ -1,7 +1,7 @@
 <template>
   <div>
     <section aria-labelledby="asset-title">
-      <div class="rounded-lg border-gradient-br-l2-light-purple-three-level-1-light border-transparent border-solid border-4 overflow-hidden shadow">
+      <div class="rounded-lg border-gradient-br-l2-light-purple-three-level-2-dark border-transparent border-solid border-4 overflow-hidden shadow">
         <div class="flex flex-col items-center justify-center p-8">
           <div class="text-md text-foam text-centet">
             Your Next Asset Will Be Here

@@ -22,6 +22,7 @@ module.exports = {
       background: {
         'purple-black': frabricTheme.Colors.purpleBlack,
         'level-1-light': frabricTheme.Colors.bgLevel1Light,
+        'level-2-dark': frabricTheme.Colors.bgLevel2Dark,
       },
       border: { // defaults to these values (optional)
         '1': '1px',
