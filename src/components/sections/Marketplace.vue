@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { marketOffers } from '../../data/mock/mockDataProvider'
+import { mapGetters } from 'vuex'
 import MarketListItem from '../views/market/MarketListItem.vue'
 
 export default {
@@ -47,11 +47,13 @@ export default {
   },
   data() {
     return {
-      offers: null,
       searchQuery: '',
     }
   },
   computed: {
+    ...mapGetters({
+      offers: 'marketplaceActiveOffers'
+    }),
     searchResults() {
       if (this.searchQuery.length == 0) { return this.offers }
 
@@ -60,14 +62,6 @@ export default {
           return item.world.property.address.toLowerCase().includes(this.searchQuery.toLowerCase())
         })
     }
-  },
-  methods: {
-    pullData() {
-      this.offers = marketOffers()
-    },
-  },
-  created() {
-    this.pullData()
   }
 }
 </script>
