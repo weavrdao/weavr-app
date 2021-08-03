@@ -1,6 +1,6 @@
 import { pick } from 'lodash'
 
-const assetMetadataSchema = {
+const assetDataSchema = {
   world: {
       property: {
           address: null,
@@ -14,36 +14,37 @@ const assetMetadataSchema = {
           grossYieldPct: 0,
           yearBuilt: 0,
           coverImage: null,
-          description: null
+          description: null,
+          doc: null
       }
   }
 }
 
-const voteMetadataSchema = {
+const voteDataSchema = {
   title: null,
   description: null,
   startTimestamp: 0,
   endTimestamp: 0
 }
 
-export const newAssetMetadata = (fields, validate = false) => {
+export const newAssetData = (fields, validate = false) => {
   const validFields = validate
-    ? pick(fields, Object.keys(assetMetadataSchema))
+    ? pick(fields, Object.keys(assetDataSchema))
     : fields
   
   return {
-    ...assetMetadataSchema,
+    ...assetDataSchema,
     ...validFields
   }
 }
 
-export const newVoteMetadata = (fields, validate = false) => {
+export const newVoteData = (fields, validate = false) => {
   const validFields = validate
-    ? pick(fields, Object.keys(voteMetadataSchema))
+    ? pick(fields, Object.keys(voteDataSchema))
     : fields
   
   return {
-    ...voteMetadataSchema,
+    ...voteDataSchema,
     ...validFields
   }
 }

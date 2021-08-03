@@ -16,7 +16,8 @@
                   "grossYieldPct": 10,
                   "yearBuilt": 2000,
                   "coverImage": "Qmqwerty",
-                  "description": "Lorem ipsum."
+                  "description": "Lorem ipsum.",
+                  "doc": "Qmqwerty"
               }
           }
       }
@@ -49,7 +50,8 @@
                       "rooms",
                       "grossYieldPct",
                       "yearBuilt",
-                      "coverImage"
+                      "coverImage",
+                      "doc"
                   ],
                   "title": "The property schema",
                   "type": "object",
@@ -100,7 +102,13 @@
                       },
                       "description": {
                           "type": "string"
-                      }
+                      },
+                      "doc": {
+                        "maxLength": 46,
+                        "minLength": 46,
+                        "pattern": "^Qm[a-zA-Z0-9]{44}$",
+                        "type": "string"
+                    }
                   },
                   "additionalProperties": true
               }
