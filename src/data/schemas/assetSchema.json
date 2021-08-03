@@ -1,156 +1,124 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$ref": "#/definitions/Asset",
-  "definitions": {
-    "Asset": {
-      "type": "object",
-      "additionalProperties": true,
-      "properties": {
-        "world": {
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "examples": [
+      {
+          "world": {
+              "property": {
+                  "address": "Test address 1",
+                  "currentRent": 1234,
+                  "marketValue": 1234,
+                  "area": 1234,
+                  "rooms": {
+                      "bdCount": 1,
+                      "baCount": 2
+                  },
+                  "grossYieldPct": 10,
+                  "yearBuilt": 2000,
+                  "coverImage": "Qmqwerty",
+                  "description": "Lorem ipsum."
+              }
+          }
+      }
+  ],
+  "required": [
+      "world"
+  ],
+  "title": "The root schema",
+  "type": "object",
+  "properties": {
+      "assetId": {
+          "default": 0,
+          "type": "integer"
+      },
+      "world": {
+          "$id": "#/properties/world",
+          "required": [
+              "property"
+          ],
+          "title": "The world schema",
           "type": "object",
-          "$ref": "#/definitions/AssetWorldInfo",
-          "default": null
-        },
-        "market": {
+          "properties": {
+              "property": {
+                  "$id": "#/properties/world/properties/property",
+                  "required": [
+                      "address",
+                      "currentRent",
+                      "marketValue",
+                      "area",
+                      "rooms",
+                      "grossYieldPct",
+                      "yearBuilt",
+                      "coverImage"
+                  ],
+                  "title": "The property schema",
+                  "type": "object",
+                  "properties": {
+                      "address": {
+                          "type": "string"
+                      },
+                      "currentRent": {
+                          "type": "integer"
+                      },
+                      "marketValue": {
+                          "type": "integer"
+                      },
+                      "area": {
+                          "type": "integer"
+                      },
+                      "rooms": {
+                          "$id": "#/properties/world/properties/property/properties/rooms",
+                          "required": [
+                              "bdCount",
+                              "baCount"
+                          ],
+                          "title": "The rooms schema",
+                          "type": "object",
+                          "properties": {
+                              "bdCount": {
+                                  "type": "integer"
+                              },
+                              "baCount": {
+                                  "type": "integer"
+                              }
+                          },
+                          "additionalProperties": true
+                      },
+                      "grossYieldPct": {
+                          "maximum": 100,
+                          "minimum": 0,
+                          "type": "integer"
+                      },
+                      "yearBuilt": {
+                          "type": "integer"
+                      },
+                      "coverImage": {
+                          "maxLength": 46,
+                          "minLength": 46,
+                          "pattern": "^Qm[a-zA-Z0-9]{44}$",
+                          "type": "string"
+                      },
+                      "description": {
+                          "type": "string"
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
+      },
+      "market": {
+          "$id": "#/properties/market",
+          "title": "The market schema",
           "type": "object",
-          "$ref": "#/definitions/AssetMarketInfo",
-          "default": null
-        },
-        "dao": {
+          "additionalProperties": true
+      },
+      "dao": {
+          "$id": "#/properties/dao",
+          "title": "The dao schema",
           "type": "object",
-          "$ref": "#/definitions/AssetDAOInfo",
-          "default": null
-        }
-      },
-      "required": [
-        "world",
-        "chain"
-      ],
-      "title": "Asset"
-    },
-    "AssetWorldInfo": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "property": {
-          "type": "object",
-          "$ref": "#/definitions/Property",
-          "default": null
-        }
-      },
-      "required": [
-        "property"
-      ],
-      "title": "AssetWorldInfo"
-    },
-    "AssetMarketInfo": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "holderCount": {
-          "type": ["integer", "null"],
-          "default": null
-        },
-        "tokenName": {
-          "type": ["string"],
-          "default": null
-        }
-      },
-      "required": [
-          "holderCount",
-          "tokenName"
-      ],
-      "title": "AssetMarketInfo"
-    },
-    "AssetDAOInfo": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-          
-      },
-      "required": [
-          
-      ],
-      "title": "AssetDAOInfo"
-    },
-    "Property": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "address": {
-          "type": "string",
-          "default": null
-        },
-        "currentRent": {
-          "type": ["integer", "null"],
-          "default": null
-        },
-        "marketValue": {
-          "type": ["integer", "null"],
-          "default": null
-        },
-        "area": {
-          "type": ["integer", "null"],
-          "default": null
-        },
-        "rooms": {
-          "type": "object",
-          "$ref": "#/definitions/PropertyRooms",
-          "default": null
-        },
-        "grossYieldPct": {
-          "type": ["integer", "null"],
-          "minimum": 0,
-          "maximum": 100,
-          "default": null
-        },
-        "yearBuilt": {
-          "type": ["integer", "null"],
-          "default": null
-        },
-        "coverImage": {
-          "type": ["string", "null"],
-          "default": null,
-          "$ref": "#/definitions/CID"
-        }
-      },
-      "required": [
-          "address",
-          "currentRent",
-          "marketValue",
-          "area",
-          "rooms",
-          "grossYieldPct",
-          "yearBuilt",
-          "coverImage"
-      ],
-      "title": "Property"
-    },
-    "PropertyRooms": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "bedroomCount": {
-          "type": ["integer", "null"],
-          "default": null
-        },
-        "bathroomCount": {
-          "type": ["integer", "null"],
-          "default": null
-        }
-      },
-      "required": [
-          "bedroomCount",
-          "bathroomCount"
-      ],
-      "title": "PropertyRooms"
-    },
-    "CID": {
-      "type": ["string", "null"],
-      "minLength": 46,
-      "maxLength": 46,
-      "pattern": "^Qm[a-zA-Z0-9]{44}$",
-      "title": "CID"
-    }
-  }
+          "additionalProperties": true
+      }
+  },
+  "additionalProperties": true
 }
