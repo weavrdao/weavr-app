@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Asset",
+  "definitions": {
+    "Asset": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "world": {
+          "type": "object",
+          "$ref": "#/definitions/AssetWorldInfo",
+          "default": null
+        },
+        "market": {
+          "type": "object",
+          "$ref": "#/definitions/AssetMarketInfo",
+          "default": null
+        },
+        "dao": {
+          "type": "object",
+          "$ref": "#/definitions/AssetDAOInfo",
+          "default": null
+        }
+      },
+      "required": [
+        "world",
+        "chain"
+      ],
+      "title": "Asset"
+    },
+    "AssetWorldInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "property": {
+          "type": "object",
+          "$ref": "#/definitions/Property",
+          "default": null
+        }
+      },
+      "required": [
+        "property"
+      ],
+      "title": "AssetWorldInfo"
+    },
+    "AssetMarketInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "holderCount": {
+          "type": ["integer", "null"],
+          "default": null
+        },
+        "tokenName": {
+          "type": ["string"],
+          "default": null
+        }
+      },
+      "required": [
+          "holderCount",
+          "tokenName"
+      ],
+      "title": "AssetMarketInfo"
+    },
+    "AssetDAOInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+          
+      },
+      "required": [
+          
+      ],
+      "title": "AssetDAOInfo"
+    },
+    "Property": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "type": "string",
+          "default": null
+        },
+        "currentRent": {
+          "type": ["integer", "null"],
+          "default": null
+        },
+        "marketValue": {
+          "type": ["integer", "null"],
+          "default": null
+        },
+        "area": {
+          "type": ["integer", "null"],
+          "default": null
+        },
+        "rooms": {
+          "type": "object",
+          "$ref": "#/definitions/PropertyRooms",
+          "default": null
+        },
+        "grossYieldPct": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "maximum": 100,
+          "default": null
+        },
+        "yearBuilt": {
+          "type": ["integer", "null"],
+          "default": null
+        },
+        "coverImage": {
+          "type": ["string", "null"],
+          "default": null,
+          "$ref": "#/definitions/CID"
+        }
+      },
+      "required": [
+          "address",
+          "currentRent",
+          "marketValue",
+          "area",
+          "rooms",
+          "grossYieldPct",
+          "yearBuilt",
+          "coverImage"
+      ],
+      "title": "Property"
+    },
+    "PropertyRooms": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "bedroomCount": {
+          "type": ["integer", "null"],
+          "default": null
+        },
+        "bathroomCount": {
+          "type": ["integer", "null"],
+          "default": null
+        }
+      },
+      "required": [
+          "bedroomCount",
+          "bathroomCount"
+      ],
+      "title": "PropertyRooms"
+    },
+    "CID": {
+      "type": ["string", "null"],
+      "minLength": 46,
+      "maxLength": 46,
+      "pattern": "^Qm[a-zA-Z0-9]{44}$",
+      "title": "CID"
+    }
+  }
+}
