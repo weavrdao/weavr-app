@@ -7,6 +7,7 @@ public/
 dist/
 .deploy*/
 src/_drafts
+src/temp/
 package-lock.json
 
 # local env files
