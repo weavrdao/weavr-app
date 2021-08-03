@@ -1,17 +1,18 @@
-import AssetContract from '../../data/network/web3/contracts/assetContract'
+import PlatformContract from '../../data/network/web3/contracts/platformContract'
 import StorageNetwork from '../../data/network/storage/storageNetwork'
+import Asset from './models/asset'
 
 /**
  * Market Provider service
- * @param {AssetContract} assetContract Asset contract instance
+ * @param {PlatformContract} platformContract Platform contract instance
  * @param {StorageNetwork} storageNetwork Storage network to use
  */
 class Market {
   constructor (
-    assetContract,
+    platformContract,
     storageNetwork,
   ) {
-    this.assetContract = assetContract
+    this.assetContract = platformContract
     this.storageNetwork = storageNetwork
   }
   
@@ -34,7 +35,38 @@ class Market {
     sort = null, 
     minBlockNumber = null
   ) {
-    // TODO: IMPLEMENT SERVICE METHOD
+    /*
+      On-chain info to request:
+        - Token address
+        - Holder count 
+        - Market cap
+
+      Off-chain info to request:
+        See JSON schema
+    */
+
+    // Request all the assets that are created AND currently active on the chain.
+
+    const assetCreationEvents = this.platformContract.listAssetsCreated()
+
+    // TODO: CONSIDER DISCONTINUED/DEACTIVATED ASSETS
+
+    // Load the data for every asset in the list
+
+    let assetDataArray = await this.storageNetwork
+      .getFiles(assetCreationEvents.map(e => e.uri))
+    
+    // Combine and return the assets
+
+    let assets = assetCreationEvents
+      .map((event, index) => { 
+        return new Asset(
+          event.address, 
+          assetDataArray[index]
+        )
+      })
+
+    return assets
   }
 }
 
