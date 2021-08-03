@@ -66,6 +66,41 @@ class IPFSStorageNetwork extends StorageNetwork {
         reject(err)
       })
   })
+
+  async getFiles(names) {
+    const url = `https://ipfs.infura.io:5001/api/v0/cat`
+    
+    let headers = { }
+    headers['Authorization'] = `Basic ${auth}`
+  
+    let data =  { }
+
+    const requests = names.map(async name => {
+      let params = { 
+        arg: name
+      }
+
+      return new Promise((resolve) => {
+        network
+          .postRequest(
+            url, 
+            params, 
+            headers, 
+            data
+          )
+          .then(response => {
+            resolve(name)
+          })
+          .catch((thrown) => {
+            resolve(null)
+          })
+      })
+    })
+    
+    const responses = (await Promise.all(requests)).filter(Boolean)
+    
+    return responses
+  }
 }
 
 export default IPFSStorageNetwork
