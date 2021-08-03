@@ -46,12 +46,11 @@ class AssetContract {
   }
 
   /**
-   * List all the assets ever created on the platform
-   * // TODO: Take discontinued ones into account.
+   * List all the proposals ever created for the asset
    * @param {string} address 
    * @returns {Promise<Array<ethers.Event>>} Raw EVM events for now.
    */
-  async listAssetsCreated() {
+  async listProposals() {
     const filter = this.contract.filters.NewProposal(
       null, 
       null,
