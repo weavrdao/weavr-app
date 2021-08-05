@@ -2,11 +2,11 @@ import EthereumClient from '../ethereum/ethereumClient'
 
 const contractAddress = "0x0" // TODO: ADD CONTRACT ADDRESS
 const contractAbi = [
-  // Vote Yes on a certain proposal
-  "function voteYes(uint256 id)",
+  // Proposal Yes on a certain proposal
+  "function proposalYes(uint256 id)",
 
-  // Vote No on a certain proposal
-  "function voteNo(uint256 id)",
+  // Proposal No on a certain proposal
+  "function proposalNo(uint256 id)",
 
   // Event triggered whenever a new proposal is created in the asset's DAO
   "event NewProposal(uint256 id, address creator, string info)",
@@ -26,23 +26,23 @@ class AssetContract {
   }
 
   /**
-   * Vote Yes on a certain proposal
+   * Proposal Yes on a certain proposal
    * @param {string} proposalID ID of the proposal
    */
-  async voteYes(
+  async proposalYes(
     proposalID
   ) {
-    return await this.mutableContract.voteYes(proposalID)
+    return await this.mutableContract.proposalYes(proposalID)
   }
 
   /**
-   * Vote No on a certain proposal
+   * Proposal No on a certain proposal
    * @param {string} proposalID ID of the proposal
    */
-  async voteNo(
+  async proposalNo(
     proposalID
   ) {
-    return await this.mutableContract.voteNo(proposalID)
+    return await this.mutableContract.proposalNo(proposalID)
   }
 
   /**

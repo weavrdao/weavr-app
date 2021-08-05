@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import MyAssets from '@/components/sections/MyAssets.vue'
 import Marketplace from '@/components/sections/Marketplace.vue'
 import Swap from '@/components/sections/Swap.vue'
-import Vote from '@/components/sections/Vote.vue'
+import Proposal from '@/components/sections/Proposal.vue'
 
 export default new createRouter({
   history: createWebHashHistory(),
@@ -28,9 +28,9 @@ export default new createRouter({
       component: Swap
     },
     {
-      path: '/vote/:id',
-      name: 'vote',
-      component: Vote
+      path: '/proposal/:id',
+      name: 'proposal',
+      component: Proposal
     }
   ]
 })

@@ -20,7 +20,7 @@ const assetDataSchema = {
   }
 }
 
-const voteDataSchema = {
+const proposalDataSchema = {
   title: null,
   description: null
 }
@@ -36,13 +36,13 @@ export const newAssetData = (fields, validate = false) => {
   }
 }
 
-export const newVoteData = (fields, validate = false) => {
+export const newProposalData = (fields, validate = false) => {
   const validFields = validate
-    ? pick(fields, Object.keys(voteDataSchema))
+    ? pick(fields, Object.keys(proposalDataSchema))
     : fields
   
   return {
-    ...voteDataSchema,
+    ...proposalDataSchema,
     ...validFields
   }
 }

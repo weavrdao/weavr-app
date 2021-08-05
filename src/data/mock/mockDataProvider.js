@@ -1,6 +1,6 @@
 const faker = require('faker/locale/en')
 
-export const votes = [
+export const proposals = [
   {
     id: '0x109b588a4f2a234e302c722f91fe42c5ab828a32',
     org: {
@@ -127,10 +127,10 @@ export const myAssets = () => {
           balance: 44772.22,
         },
         dao: {
-          votes: [
-            votes[0],
+          proposals: [
+            proposals[0],
           ],
-          votesOpen: 1,
+          proposalsOpen: 1,
           votingStrengthFactor: 2,
         },
       },

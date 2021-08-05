@@ -125,10 +125,10 @@
                   </div>
                   <div>
                     <dt class="text-sm font-medium text-foam text-opacity-50">
-                      Voted Open / Closed
+                      Proposals Open / Closed
                     </dt>
                     <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      {{ numberFormat.format(asset.chain.dao.votesOpen) }} / {{ numberFormat.format(asset.chain.dao.votes.length) }}
+                      {{ numberFormat.format(asset.chain.dao.proposalsOpen) }} / {{ numberFormat.format(asset.chain.dao.proposals.length) }}
                     </dd>
                   </div>
                   <div>

@@ -15,7 +15,7 @@
   "title": "The root schema",
   "type": "object",
   "properties": {
-      "voteId": {
+      "proposalId": {
           "type": "integer"
       },
       "title": {
