@@ -22,9 +22,7 @@ const assetDataSchema = {
 
 const voteDataSchema = {
   title: null,
-  description: null,
-  startTimestamp: 0,
-  endTimestamp: 0
+  description: null
 }
 
 export const newAssetData = (fields, validate = false) => {

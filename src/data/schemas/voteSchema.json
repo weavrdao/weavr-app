@@ -10,9 +10,7 @@
   ],
   "required": [
       "title",
-      "description",
-      "startTimestamp",
-      "endTimestamp"
+      "description"
   ],
   "title": "The root schema",
   "type": "object",
@@ -25,12 +23,6 @@
       },
       "description": {
           "type": "string"
-      },
-      "startTimestamp": {
-          "type": "integer"
-      },
-      "endTimestamp": {
-          "type": "integer"
       }
   },
   "additionalProperties": true
