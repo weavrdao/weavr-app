@@ -1,17 +1,21 @@
 import PlatformContract from '../../data/network/web3/contracts/platformContract'
 import StorageNetwork from '../../data/network/storage/storageNetwork'
 import Asset from './models/asset'
+import { GraphQLAPIClient, ALL_ASSETS_QUERY } from '../../data/network/graph/graphQLAPIClient'
 
 /**
  * Market Provider service
+ * @param {GraphQLAPIClient} graphQLAPIClient GraphQL API Client
  * @param {PlatformContract} platformContract Platform contract instance
  * @param {StorageNetwork} storageNetwork Storage network to use
  */
 class Market {
   constructor (
+    graphQLAPIClient,
     platformContract,
     storageNetwork,
   ) {
+    this.graphQLAPIClient = graphQLAPIClient
     this.assetContract = platformContract
     this.storageNetwork = storageNetwork
   }
@@ -35,36 +39,13 @@ class Market {
     sort = null, 
     minBlockNumber = null
   ) {
-    /*
-      On-chain info to request:
-        - Token address
-        - Holder count 
-        - Market cap
+    const assets = await this.graphQLAPIClient
+      .query(ALL_ASSETS_QUERY)
 
-      Off-chain info to request:
-        See JSON schema
-    */
-
-    // Request all the assets that are created AND currently active on the chain.
-
-    const assetCreationEvents = this.platformContract.listAssetsCreated()
+      console.log("Received asset data:")
+      console.log(assets)
 
     // TODO: CONSIDER DISCONTINUED/DEACTIVATED ASSETS
-
-    // Load the data for every asset in the list
-
-    let assetDataArray = await this.storageNetwork
-      .getFiles(assetCreationEvents.map(e => e.uri))
-    
-    // Combine and return the assets
-
-    let assets = assetCreationEvents
-      .map((event, index) => { 
-        return new Asset(
-          event.address, 
-          assetDataArray[index]
-        )
-      })
 
     return assets
   }
