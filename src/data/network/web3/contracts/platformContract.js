@@ -17,15 +17,6 @@ class PlatformContract {
     this.contract = ethereumClient.getContract(contractAddress, contractAbi)
     this.mutableContract = ethereumClient.getMutableContract(this.contract)
   }
-
-  /**
-   * List all the assets ever created on the platform
-   * @param {string} address 
-   * @returns {Promise<Array<ethers.Event>>} Raw EVM events for now.
-   */
-  async listAssetsCreated() {
-    // TODO: IMPLEMENT CONTRACT REQUEST
-  }
 }
 
 export default PlatformContract
