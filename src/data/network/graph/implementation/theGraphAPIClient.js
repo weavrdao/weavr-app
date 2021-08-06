@@ -1,14 +1,14 @@
 import {
   ApolloClient,
   InMemoryCache
-} from "@apollo/client/core";
+} from "@apollo/client/core"
 
 const client = new ApolloClient({
   uri: process.env.THE_GRAPH_API_URL,
   cache: new InMemoryCache()
 })
 
-class TheGraphAPIClient {
+class TheGraphAPIClient extends GraphQLAPIClient {
   constructor() {
     this.client = apolloClient
   }
