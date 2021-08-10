@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { votes } from '../../../data/mock/mockDataProvider'
+import { proposals } from '../../../data/mock/mockDataProvider'
 
 import { Disclosure } from '@headlessui/vue'
 import SignerAddress from '../../views/address/SignerAddress.vue'
@@ -43,7 +43,7 @@ export default {
           { name: 'My Assets', path: '/assets' },
           { name: 'Marketplace', path: '/market' },
           { name: 'Swap', path: '/swap' },
-          { name: 'Vote Demo', path: '/vote/' + votes[0].id },
+          { name: 'Proposal Demo', path: '/proposal/' + proposals[0].id },
         ]
       },
     }

@@ -4,8 +4,8 @@
     w-full max-w-screen mx-auto
     "
   >
-    <StackNavigationBar class="mt-8" @onBack="openVotes">
-      {{ 'Vote — ' + vote.org.title }}
+    <StackNavigationBar class="mt-8" @onBack="openProposals">
+      {{ 'Proposal — ' + proposal.org.title }}
     </StackNavigationBar>
 
     <div class="mt-12 mx-auto grid grid-cols-1 gap-8 lg:grid-flow-col-dense lg:grid-cols-3">
@@ -28,7 +28,7 @@
                     Title
                   </dt>
                   <dd class="mt-2 text-lg font-bold text-opacity-80">
-                    {{ vote.title }}
+                    {{ proposal.title }}
                   </dd>
                 </div>
                 <div class="sm:col-span-2">
@@ -36,7 +36,7 @@
                     Description
                   </dt>
                   <dd class="mt-2 text-md font-normal text-opacity-80">
-                    {{ vote.description }}
+                    {{ proposal.description }}
                   </dd>
                 </div>
               </dl>
@@ -65,9 +65,9 @@
                 41 / 214 (min 53 required)
                 <VotingProgressBar 
                   class="mt-2"
-                  :sumbittedVoteCount="41"
-                  :totalVoteCount="214"
-                  :minPassVoteCount="53"
+                  :sumbittedProposalCount="41"
+                  :totalProposalCount="214"
+                  :minPassProposalCount="53"
                 />
               </dd>
             </div>
@@ -78,11 +78,11 @@
               <dd class="mt-4">
                 <div class="rounded-lg -space-y-px">
                   <label 
-                    v-for="(option, i) in vote.options" :key="option.id"
+                    v-for="(option, i) in proposal.options" :key="option.id"
                     :class="
                       `
                       border-action-blue 
-                      ${ i == 0 ? 'rounded-tl-lg rounded-tr-lg' : i == (vote.options.length - 1) ? 'rounded-bl-lg rounded-br-lg' : '' }
+                      ${ i == 0 ? 'rounded-tl-lg rounded-tr-lg' : i == (proposal.options.length - 1) ? 'rounded-bl-lg rounded-br-lg' : '' }
                       relative border p-4 flex
                       cursor-pointer hover:bg-purple-three hover:bg-opacity-50
                       focus-within:bg-purple-three
@@ -91,13 +91,13 @@
                   >
                     <input 
                       type="radio" 
-                      name="vote-option" 
+                      name="proposal-option" 
                       :value="option.title" 
                       class="sr-only" 
-                      :aria-labelledby="`vote-option-${ i }-label`" 
+                      :aria-labelledby="`proposal-option-${ i }-label`" 
                     >
                     <div class="ml-3 flex flex-col">
-                      <span :id="`vote-option-${ i }-label`" class="block text-lg font-medium">
+                      <span :id="`proposal-option-${ i }-label`" class="block text-lg font-medium">
                         {{ option.title }}
                       </span>
                     </div>
@@ -116,14 +116,14 @@
 </template>
 
 <script>
-import { votes } from '../../data/mock/mockDataProvider'
+import { proposals } from '../../data/mock/mockDataProvider'
 import StackNavigationBar from '../layout/navigation/StackNavigationBar.vue'
 import Address from '../views/address/Address.vue'
 import VotingProgressBar from '../views/voting/VotingProgressBar.vue'
 import Button from '../common/Button.vue'
 
 export default {
-  name: 'Vote',
+  name: 'Proposal',
   components: {
     StackNavigationBar,
     Address,
@@ -132,14 +132,14 @@ export default {
   },
   data() {
     return {
-      vote: null
+      proposal: null
     }
   },
   methods: {
     pullData() {
-      this.vote = votes[0]
+      this.proposal = proposals[0]
     },
-    openVotes() {
+    openProposals() {
       this.$router.push('/assets')
     }
   },

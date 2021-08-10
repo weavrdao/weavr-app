@@ -11,7 +11,7 @@
     <div class="relative h-full w-full">
       <div
         class="absolute h-full bg-purple-three"
-        :style="voteFractionStyle"
+        :style="proposalFractionStyle"
       >
       </div>
       <div 
@@ -29,27 +29,27 @@
 export default {
   name: 'VotingProgressBar',
   props: {
-    totalVoteCount: {
+    totalProposalCount: {
       type: Number,
       required: true
     },
-    sumbittedVoteCount: {
+    sumbittedProposalCount: {
       type: Number,
       required: true
     },
-    minPassVoteCount: {
+    minPassProposalCount: {
       type: Number,
       required: true
     },
   },
   computed: {
-    voteFractionStyle() {
-      return `width:${ 100 / (this.totalVoteCount / this.sumbittedVoteCount) }%;`
+    proposalFractionStyle() {
+      return `width:${ 100 / (this.totalProposalCount / this.sumbittedProposalCount) }%;`
     },
 
     minThresholdStyle() {
       return `
-        margin-left:${ 100 / (this.totalVoteCount / this.minPassVoteCount) }%;
+        margin-left:${ 100 / (this.totalProposalCount / this.minPassProposalCount) }%;
         margin-right: auto;
       `
     }

@@ -7,11 +7,11 @@ public/
 dist/
 .deploy*/
 src/_drafts
+src/temp/
 package-lock.json
 
-# local env files
-.env.local
-.env.*.local
+# env files
+*.env*
 
 # Log files
 npm-debug.log*
