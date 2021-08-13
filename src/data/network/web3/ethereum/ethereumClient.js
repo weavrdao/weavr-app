@@ -3,22 +3,52 @@ const { ethers } = require("ethers")
 
 const infuraNodeId = process.env.INFURA_ETH_PROJECT_ID
 
+/**
+ * @property {ethers.Web3Provider} walletProvider
+ * @property {ethers.JsonRpcSigner} walletSigner
+ */
 class EthereumClient {
   constructor() {
     // Using Infura to talk to the network
-    this.provider = new ethers.providers.InfuraProvider('rinkeby', infuraNodeId)
+    this.readProvider = new ethers.providers.InfuraProvider('rinkeby', infuraNodeId)
 
-    // Using in-browser wallet to sign transactions
-    this.signer = (new ethers.providers.Web3Provider(window.ethereum)).getSigner()
+    this.walletProvider = null
+    this.walletSigner = null
   }
+
+  /* --- Blockchain state --- */
 
   /**
    * Get current block number.
    */
   async getBlockNumber() {
-    const number = await this.provider.getBlockNumber()
+    const number = await this.readProvider.getBlockNumber()
     console.log(number)
   }
+
+  /* --- Wallet access --- */
+
+  async syncWallet() {
+    // Using in-browser wallet to access wallet state and sign transactions
+    if (window.ethereum) {
+      try {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+      } catch(error) {
+        console.log(error)
+      }
+    }
+
+    this.walletProvider = new ethers.providers.Web3Provider(window.ethereum)
+    this.walletSigner = this.walletProvider.getSigner()
+  }
+
+  async getWalletAddress() {
+    await this.syncWallet()
+
+    return this.walletSigner.getAddress()    
+  }
+
+  /* --- Contract access --- */
 
   /**
    * Initialize contract.
@@ -27,7 +57,7 @@ class EthereumClient {
    * @returns Read-only contract instance
    */
   getContract(address, abi) {
-    return new ethers.Contract(address, abi, this.provider)
+    return new ethers.Contract(address, abi, this.readProvider)
   }
 
   /**
@@ -36,7 +66,7 @@ class EthereumClient {
    * @returns {ethers.Contract} Contract instance with signer (wallet) connected to it
    */
   getMutableContract(contract) {
-    return contract.connect(this.signer)
+    return contract.connect(this.walletSigner)
   } 
 }
 

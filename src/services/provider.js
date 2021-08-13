@@ -1,3 +1,4 @@
+import Wallet from './wallet'
 import Market from './market'
 import AssetContract from '../data/network/web3/contracts/assetContract'
 import IPFSStorageNetwork from '../data/network/storage/ipfs/IPFSStorageNetwork'
@@ -9,6 +10,16 @@ const ethereumClient = new EthereumClient()
 const storageNetwork = new IPFSStorageNetwork()
 
 class ServiceProvider {
+  /**
+   * Creates wallet service.
+   * @returns {Wallet} Wallet service
+   */
+   static wallet() {
+    return new Wallet(
+      ethereumClient
+    )
+  }
+  
   /**
    * Creates market service.
    * @returns {Market} Market service
