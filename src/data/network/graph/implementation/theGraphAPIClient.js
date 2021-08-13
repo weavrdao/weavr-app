@@ -2,6 +2,7 @@ import {
   ApolloClient,
   InMemoryCache
 } from "@apollo/client/core"
+import { GraphQLAPIClient } from '../graphQLAPIClient'
 
 const client = new ApolloClient({
   uri: process.env.THE_GRAPH_API_URL,
@@ -10,14 +11,15 @@ const client = new ApolloClient({
 
 class TheGraphAPIClient extends GraphQLAPIClient {
   constructor() {
-    this.client = apolloClient
+    super()
+    this.client = client
   }
 
   async query(query, vars = {}) {
     return new Promise((resolve) => {
       this.client
       .query({
-        query: gql`${ query }`,
+        query: query,
         variables: vars
       })
       .then(data => resolve(data))

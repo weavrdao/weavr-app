@@ -18,8 +18,8 @@ class AssetContract {
   constructor(
     ethereumClient
   ) {
-    this.contract = ethereumClient.getContract(contractAddress, contractAbi)
-    this.mutableContract = ethereumClient.getMutableContract(this.contract)
+    // this.contract = ethereumClient.getContract(contractAddress, contractAbi)
+    // this.mutableContract = ethereumClient.getMutableContract(this.contract)
   }
 
   /**

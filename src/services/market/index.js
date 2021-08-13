@@ -16,7 +16,7 @@ class Market {
     storageNetwork,
   ) {
     this.graphQLAPIClient = graphQLAPIClient
-    this.assetContract = platformContract
+    this.platformContract = platformContract
     this.storageNetwork = storageNetwork
   }
   

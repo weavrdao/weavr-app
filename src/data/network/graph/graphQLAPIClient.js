@@ -1,6 +1,6 @@
 import {
   ALL_ASSETS_QUERY
-} from '../queries'
+} from './queries'
 
 /**
  * Abstract GraphQL API client
@@ -14,7 +14,7 @@ class GraphQLAPIClient {
   async query(query, vars = {}) { }
 }
 
-export default { 
+export { 
   GraphQLAPIClient,
   ALL_ASSETS_QUERY
 }
