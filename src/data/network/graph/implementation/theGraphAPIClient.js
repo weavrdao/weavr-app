@@ -10,19 +10,23 @@ const client = new ApolloClient({
 })
 
 class TheGraphAPIClient extends GraphQLAPIClient {
-  constructor() {
-    super()
+  constructor(
+    mapper
+  ) {
+    super(mapper)
     this.client = client
   }
 
-  async query(query, vars = {}) {
+  async query(query, vars = {}, mappingCallback) {
     return new Promise((resolve) => {
       this.client
       .query({
         query: query,
         variables: vars
       })
-      .then(data => resolve(data))
+      .then(response => {
+        resolve(mappingCallback(this.mapper, response))
+      })
       .catch(err => { 
         // TODO: Propagate error
         console.log("Error fetching data: ", err) 
