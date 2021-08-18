@@ -30,9 +30,15 @@
 
 export default {
   name: 'Address',
+  props: {
+    value: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
-      address: '0x220866b1a2219f40e72f5c628b65d54268ca3a9d'
+      address: ""
     }
   },
   methods: {
@@ -40,5 +46,8 @@ export default {
       
     },
   },
+  created() {
+    this.address = this.value
+  }
 }
 </script>

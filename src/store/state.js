@@ -10,7 +10,7 @@ function state() {
       wallet: WalletState
     },
     marketplace: {
-      offers: []
+      assets: []
     }
   }
 }
@@ -20,12 +20,12 @@ const getters = {
     return state.user.wallet.address
   },
 
-  marketplaceActiveOffers(state) {
-    return state.marketplace.offers
   userEthBalance(state) {
     return state.user.wallet.ethBalance
   },
 
+  marketplaceActiveAssets(state) {
+    return state.marketplace.assets
   }
 }
 
@@ -37,7 +37,7 @@ const actions = {
 
   async refreshMarketplaceData(context) {
     let assets = await market.getAssetsOnTheMarket()
-    context.commit('setMarketplaceOffers', assets)
+    context.commit('setMarketplaceAssets', assets)
   }
 }
 
@@ -46,12 +46,12 @@ const mutations = {
     state.user.wallet = wallet
   },
 
-  setMarketplaceOffers(state, offers) {
-    state.marketplace.offers = offers
   setEthBalance(state, ethBalance) {
     state.user.wallet.ethBalance = ethBalance
   },
 
+  setMarketplaceAssets(state, assets) {
+    state.marketplace.assets = assets
   }
 }
 

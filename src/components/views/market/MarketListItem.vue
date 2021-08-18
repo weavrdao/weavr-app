@@ -1,13 +1,13 @@
 <template>
   <div>
-    <section aria-labelledby="offer-title">
+    <section aria-labelledby="asset-title">
       <div class="rounded-lg border-gradient-br-l2-light-purple-three-level-1-light border-transparent border-solid border-4 overflow-hidden shadow">
-        <h2 class="sr-only" id="offer-title"> Offer — {{ offer.world.property.address }}</h2>
+        <h2 class="sr-only" id="asset-title"> Asset — {{ asset.address }}</h2>
         <div class="flex flex-row justify-between items-stretch">
           <div class="flex flex-row justify-start items-stretch">
             <div class="w-60 h-1/1 overflow-hidden">
               <img 
-                :src="offer.world.property.coverImageUrl" :alt="offer.world.property.address" 
+                :src="asset.coverPictureURI" :alt="asset.address" 
                 class="object-cover w-full h-full pointer-events-none group-hover:opacity-75"
               >
             </div>
@@ -19,7 +19,7 @@
                     Current Rent
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ offer.world.env.currency.symbol }} {{ numberFormat.format(offer.world.property.currentRent) }}
+                    $ {{ numberFormat.format(asset.currentRent) }}
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -27,7 +27,7 @@
                     Area
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ numberFormat.format(offer.world.property.area) }} {{ offer.world.env.measurements.area.unit }}
+                    {{ numberFormat.format(asset.area) }} sqft
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -35,7 +35,7 @@
                     Market Value
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ offer.world.env.currency.symbol }} {{ numberFormat.format(offer.world.property.marketValue) }}
+                    $ {{ numberFormat.format(asset.marketValue) }}
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -43,7 +43,7 @@
                     Rooms
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ offer.world.property.rooms.bd }} bd, {{ offer.world.property.rooms.ba }} ba
+                    {{ asset.bedroomCount }} bd, {{ asset.bathroomCount }} ba
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -51,7 +51,7 @@
                     Gross Yield
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ offer.world.property.grossYieldPct }}%
+                    {{ asset.grossYieldPct }}%
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -59,7 +59,7 @@
                     Year Built
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ offer.world.property.yearBuilt }}
+                    {{ asset.yearBuilt }}
                   </dd>
                 </div>
                 <div class="sm:col-span-2">
@@ -67,7 +67,7 @@
                     Address
                   </dt>
                   <dd class="mt-1 text-md font-normal text-opacity-80">
-                    {{ offer.world.property.address }}
+                    {{ asset.address }}
                   </dd>
                 </div>
               </dl>
@@ -80,24 +80,24 @@
                     Token
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    <Address/>
+                    <Address :value="asset.contractAddress"/>
                   </dd>
                 </div>
                 <div class="flex flex-col gap-4">
                   <div>
                     <dt class="text-sm font-medium text-foam text-opacity-50">
-                      Holder Count
+                      Total Supply
                     </dt>
                     <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      {{ numberFormat.format(offer.chain.holderCount) }}
+                      {{ numberFormat.format(asset.numOfShares) }}
                     </dd>
                   </div>
                   <div>
                     <dt class="text-sm font-medium text-foam text-opacity-50">
-                      Maket Cap
+                      Proposals
                     </dt>
                     <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      {{ offer.world.env.currency.symbol }} {{ numberFormat.format(offer.chain.erc20.marketCap) }}
+                      {{ numberFormat.format(asset.proposals.length) }}
                     </dd>
                   </div>
                 </div>
@@ -117,25 +117,24 @@
                               From
                             </label>
                             <label for="company-website" class="block text-sm font-light text-foam text-opacity-50">
-                              Balance: 42.31
+                              Balance: {{ ethBalance }}
                             </label>
                           </div>
                           <div class="mt-2 h-12 rounded-md shadow-sm flex">
                             <div 
                               class="
                                 flex flex-row items-center justify-between
-                                bg-level-2-light rounded-l-lg pl-3 pr-2 w-48
-                                hover:bg-opacity-75 cursor-pointer
+                                bg-level-2-light rounded-l-lg pl-3 pr-2 w-60
                               "
                             >
-                              <div class="text-foam font-bold text-opacity-80 ">
+                              <div class="text-foam font-bold text-opacity-80">
                                 ETH
                               </div>
-                              <div>
+                              <!-- <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-action-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
                                 </svg>
-                              </div>
+                              </div> -->
                             </div>
                             <input 
                               type="text" 
@@ -153,19 +152,20 @@
                               To
                             </label>
                             <label for="company-website" class="block text-sm font-light text-foam text-opacity-50">
-                              Balance: 0.02
+                              Balance: 0.00
                             </label>
                           </div>
                           <div class="mt-2 h-12 rounded-md shadow-sm flex">
                             <div 
                               class="
                                 flex flex-row items-center justify-between
-                                bg-level-2-light rounded-l-lg pl-3 pr-2 w-48
+                                bg-level-2-light rounded-l-lg pl-3 pr-2 w-60
                                 hover:bg-opacity-75 cursor-pointer
                               "
+                              @click="pickActiveToken"
                             >
                               <div class="text-foam font-bold text-opacity-80 overflow-ellipsis overflow-hidden">
-                                {{ offer.chain.erc20.code.substring(0, 7) + '..' }}
+                                {{ asset.symbol }}
                               </div>
                             </div>
                             <input 
@@ -196,6 +196,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Address from '../address/Address.vue'
 import Button from '../../common/Button.vue'
 
@@ -206,7 +207,7 @@ export default {
     Button,
   },
   props: {
-    offer: {
+    asset: {
       type: Object,
       required: true
     }
@@ -216,10 +217,15 @@ export default {
       numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 })
     }
   },
+  computed: {
+    ...mapGetters({
+      ethBalance: 'userEthBalance'
+    })
+  },
   methods: {
     openSwap() {
       this.$router.push('/swap')
     }
-  },
+  }
 }
 </script>

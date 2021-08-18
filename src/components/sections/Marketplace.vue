@@ -26,10 +26,10 @@
 
       <ul>
         <li
-          v-for="offer in searchResults" :key="offer.id"
+          v-for="asset in searchResults" :key="asset.id"
           class="px-8 py-8"
         >
-          <MarketListItem :offer="offer"/>
+          <MarketListItem :asset="asset"/>
         </li>
       </ul>
     </div>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import MarketListItem from '../views/market/MarketListItem.vue'
 
 export default {
@@ -52,16 +52,26 @@ export default {
   },
   computed: {
     ...mapGetters({
-      offers: 'marketplaceActiveOffers'
+      assets: 'marketplaceActiveAssets'
     }),
     searchResults() {
-      if (this.searchQuery.length == 0) { return this.offers }
+      if (this.searchQuery.length == 0) { return this.assets }
 
-      return this.offers
+      return this.assets
         .filter(item => { 
           return item.world.property.address.toLowerCase().includes(this.searchQuery.toLowerCase())
         })
     }
+  },
+  methods: { 
+    ...mapActions({
+      refresh: 'refreshMarketplaceData',
+      syncWallet: 'syncWallet'
+    })
+  },
+  mounted() {
+    this.refresh()
+    this.syncWallet()
   }
 }
 </script>
