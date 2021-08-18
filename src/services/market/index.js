@@ -1,6 +1,7 @@
+import * as CommonUtils from '../../utils/common'
 import PlatformContract from '../../data/network/web3/contracts/platformContract'
 import StorageNetwork from '../../data/network/storage/storageNetwork'
-import Asset from './models/asset'
+import Asset from '../../models/asset'
 import { GraphQLAPIClient, ALL_ASSETS_QUERY } from '../../data/network/graph/graphQLAPIClient'
 
 /**
@@ -39,13 +40,59 @@ class Market {
     sort = null, 
     minBlockNumber = null
   ) {
-    const assets = await this.graphQLAPIClient
-      .query(ALL_ASSETS_QUERY)
+    // Get indexed on-chain data
 
-      console.log("Received asset data:")
-      console.log(assets)
+    var assets = await this.graphQLAPIClient
+      .query(
+        ALL_ASSETS_QUERY, 
+        {}, 
+        (mapper, response) => { return mapper.mapAssets(response.data.deployedAssets) }
+      )
 
     // TODO: CONSIDER DISCONTINUED/DEACTIVATED ASSETS
+
+    // Fetch and append off-chain data
+
+    const assetDataURIArray = assets
+      .map(asset => asset.dataURI)
+    let assetOffchainDataArray = (
+        await this.storageNetwork
+          .getFiles(assetDataURIArray.map(uri => CommonUtils.pathFromURL(uri)))
+      )
+      .map(obj => obj.world.property)
+
+    console.log('Data: ')
+    console.log(assetOffchainDataArray)
+
+    if (assetOffchainDataArray.length != assets.length) {
+      throw("Off-chain data count doesn't match the on-chain data")
+    }
+
+    for (var i = 0; i < assets.length; i++) {
+      let asset = assets[i]
+      let data = assetOffchainDataArray[i]
+
+      let completeAsset = new Asset(
+        asset.id,
+        asset.dataURI,
+        asset.contractAddress,
+        asset.symbol,
+        asset.numOfShares,
+        asset.proposals,
+        data.address,
+        data.area,
+        data.coverImage,
+        data.currentRent,
+        data.description,
+        data.grossYieldPct,
+        data.marketValue,
+        data.rooms.bdCount,
+        data.rooms.baCount,
+        data.yearBuilt
+      )
+
+      assets[i] = completeAsset
+    }
 
     return assets
   }
