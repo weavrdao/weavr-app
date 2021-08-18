@@ -1,4 +1,5 @@
 import ServiceProvider from '../services/provider'
+import WalletState from '../models/walletState'
 
 const wallet = ServiceProvider.wallet()
 const market = ServiceProvider.market()
@@ -6,9 +7,7 @@ const market = ServiceProvider.market()
 function state() {
   return {
     user: {
-      wallet: {
-        address: null
-      }
+      wallet: WalletState
     },
     marketplace: {
       offers: []
@@ -23,13 +22,17 @@ const getters = {
 
   marketplaceActiveOffers(state) {
     return state.marketplace.offers
+  userEthBalance(state) {
+    return state.user.wallet.ethBalance
+  },
+
   }
 }
 
 const actions = {
   async syncWallet(context) {
-    const address = await wallet.getAddress()
-    context.commit('setWalletAddress', address)
+    const walletState = await wallet.getState()
+    context.commit('setWallet', walletState)
   },
 
   async refreshMarketplaceData(context) {
@@ -39,12 +42,16 @@ const actions = {
 }
 
 const mutations = {
-  setWalletAddress(state, address) {
-    state.user.wallet.address = address
+  setWallet(state, wallet) {
+    state.user.wallet = wallet
   },
 
   setMarketplaceOffers(state, offers) {
     state.marketplace.offers = offers
+  setEthBalance(state, ethBalance) {
+    state.user.wallet.ethBalance = ethBalance
+  },
+
   }
 }
 

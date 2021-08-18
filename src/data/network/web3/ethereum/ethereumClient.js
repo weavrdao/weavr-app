@@ -29,12 +29,15 @@ class EthereumClient {
   /* --- Wallet access --- */
 
   async syncWallet() {
+    if (this.walletProvider != null && this.walletSigner != null) { return }
+
     // Using in-browser wallet to access wallet state and sign transactions
     if (window.ethereum) {
       try {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
       } catch(error) {
         console.log(error)
+        return
       }
     }
 
@@ -46,6 +49,12 @@ class EthereumClient {
     await this.syncWallet()
 
     return this.walletSigner.getAddress()    
+  }
+
+  async getWalletEthBalance() {
+    await this.syncWallet()
+
+    return (await this.walletSigner.getBalance()).toNumber()
   }
 
   /* --- Contract access --- */
