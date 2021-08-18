@@ -1,27 +1,34 @@
 import {
   gql
-} from "@apollo/client/core";
+} from "@apollo/client/core"
 
 const ALL_ASSETS_QUERY = gql`
   query {
     deployedAssets {
       id
+      mintedAsset {
+        id
+        dataURI
+      }
       contract
+      symbol
       numOfShares
-      address
-      currentRent
-      marketValue
-      area
-      bdCount
-      baCount
-      grossYieldPct
-      yearBuilt
-      coverImage
-      description,
-      proposals
+      proposals {
+        id
+        creator
+        dataURI
+        votes {
+          id
+          voter
+          voteType
+          count
+        }
+        startTimestamp
+        endTimestamp
+      }
     }
   }
 `
-export default {
+export {
   ALL_ASSETS_QUERY
 }
