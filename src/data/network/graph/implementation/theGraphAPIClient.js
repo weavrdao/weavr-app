@@ -5,7 +5,7 @@ import {
 import { GraphQLAPIClient } from '../graphQLAPIClient'
 
 const client = new ApolloClient({
-  uri: process.env.THE_GRAPH_API_URL,
+  uri: 'https://api.thegraph.com/subgraphs/name/vladaverin24/frabric-subgraph-rinkeby',
   cache: new InMemoryCache()
 })
 
