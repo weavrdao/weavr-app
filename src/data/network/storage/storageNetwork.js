@@ -3,7 +3,7 @@ class StorageNetwork {
 
   addFile = (fileData) => new Promise((resolve, reject) => { })
   getFile = (name) => new Promise((resolve, reject) => { })
-  getFiles = (names) => new Promise((resolve, reject) => { })
+  async getFiles(names) { }
 }
 
 export default StorageNetwork

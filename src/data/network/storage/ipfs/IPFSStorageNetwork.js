@@ -5,6 +5,10 @@ import StorageNetwork from '../storageNetwork'
 const auth = process.env.INFURA_IPFS_PROJECT_ID + ':' + process.env.INFURA_IPFS_PROJECT_SECRET
 
 class IPFSStorageNetwork extends StorageNetwork {
+  constructor() {
+    super()
+  }
+
   addFile = (
     fileData
   ) => new Promise((resolve, reject) => {
@@ -68,10 +72,12 @@ class IPFSStorageNetwork extends StorageNetwork {
   })
 
   async getFiles(names) {
+    console.log('Requesting files from IPFS')
+
     const url = `https://ipfs.infura.io:5001/api/v0/cat`
     
     let headers = { }
-    headers['Authorization'] = `Basic ${auth}`
+    //headers['Authorization'] = `Basic ${auth}`
   
     let data =  { }
 
@@ -89,7 +95,7 @@ class IPFSStorageNetwork extends StorageNetwork {
             data
           )
           .then(response => {
-            resolve(name)
+            resolve(response)
           })
           .catch((thrown) => {
             resolve(null)
