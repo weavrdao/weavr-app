@@ -16,7 +16,7 @@
                       From
                     </label>
                     <label for="company-website" class="block text-sm font-light text-foam text-opacity-50">
-                      Balance: 42.31
+                      Balance: {{ ethBalance }}
                     </label>
                   </div>
                   <div class="mt-2 h-12 rounded-md shadow-sm flex">
@@ -24,17 +24,16 @@
                       class="
                         flex flex-row items-center justify-between
                         bg-level-2-light rounded-l-lg pl-3 pr-2 w-60
-                        hover:bg-opacity-75 cursor-pointer
                       "
                     >
-                      <div class="text-foam font-bold text-opacity-80 ">
+                      <div class="text-foam font-bold text-opacity-80">
                         ETH
                       </div>
-                      <div>
+                      <!-- <div>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-action-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
                         </svg>
-                      </div>
+                      </div> -->
                     </div>
                     <input 
                       type="text" 
@@ -52,7 +51,7 @@
                       To
                     </label>
                     <label for="company-website" class="block text-sm font-light text-foam text-opacity-50">
-                      Balance: 0.02
+                      Balance: 0.00
                     </label>
                   </div>
                   <div class="mt-2 h-12 rounded-md shadow-sm flex">
@@ -62,9 +61,10 @@
                         bg-level-2-light rounded-l-lg pl-3 pr-2 w-60
                         hover:bg-opacity-75 cursor-pointer
                       "
+                      @click="pickActiveToken"
                     >
                       <div class="text-foam font-bold text-opacity-80 overflow-ellipsis overflow-hidden">
-                        {{ activePair.to != null ? activePair.to.code.substring(0, 7) + '..' : 'Select token' }}
+                        {{ activeToken != null ? activeToken.code.substring(0, 7) + '..' : 'Select token' }}
                       </div>
                       <div>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-action-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -108,19 +108,23 @@
         </form>
       </div>
     </div>
+    <TokenPicker ref="tokenPicker"/>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import Button from '../common/Button.vue'
+import TokenPicker from '../views/tokens/TokenPicker.vue'
 
 export default {
   name: 'Swap',
   components: {
     Button,
+    TokenPicker,
   },
   props: {
-    pair: {
+    assetToken: {
       type: Object,
       required: false
     }
@@ -130,8 +134,25 @@ export default {
       util: {
         numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 })
       },
-      activePair: this.pair ?? { from: null, to: null }
+      activeAssetToken: this.assetToken ?? null
     }
   },
+  computed: {
+    ...mapGetters({
+      ethBalance: 'userEthBalance'
+    })
+  },
+  methods: {
+    ...mapActions({
+      sync: 'syncWallet'
+    }),
+    
+    pickActiveToken() {
+      this.$refs.tokenPicker.open = true
+    }
+  },
+  created() {
+    this.sync()
+  }
 }
 </script>
