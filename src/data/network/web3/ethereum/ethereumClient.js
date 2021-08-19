@@ -54,7 +54,7 @@ class EthereumClient {
   async getWalletEthBalance() {
     await this.syncWallet()
 
-    return (await this.walletSigner.getBalance()).toNumber()
+    return (await this.walletSigner.getBalance()).toString()
   }
 
   /* --- Contract access --- */
