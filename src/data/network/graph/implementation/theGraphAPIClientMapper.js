@@ -13,12 +13,19 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
       .map(rawAsset => {
         const proposals = this.mapProposals(rawAsset.proposals)
 
+        var ownersMap = new Map()
+        rawAsset.owners
+          .forEach(ownership => { 
+            ownersMap.set(ownership.owner, ownership.shares)
+          })
+
         return new Asset(
           rawAsset.id,
           rawAsset.mintedAsset.dataURI,
           rawAsset.contract,
           rawAsset.symbol,
           rawAsset.numOfShares,
+          ownersMap,
           proposals
         )
       })

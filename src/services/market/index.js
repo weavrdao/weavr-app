@@ -78,6 +78,7 @@ class Market {
         asset.contractAddress,
         asset.symbol,
         asset.numOfShares,
+        asset.owners,
         asset.proposals,
         data.address,
         data.area,

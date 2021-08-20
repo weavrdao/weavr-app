@@ -13,6 +13,11 @@ const ALL_ASSETS_QUERY = gql`
       contract
       symbol
       numOfShares
+      owners {
+        id
+        owner
+        shares
+      }
       proposals {
         id
         creator

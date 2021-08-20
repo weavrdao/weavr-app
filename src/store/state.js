@@ -9,7 +9,7 @@ function state() {
     user: {
       wallet: WalletState
     },
-    marketplace: {
+    platform: {
       assets: []
     }
   }
@@ -24,8 +24,13 @@ const getters = {
     return state.user.wallet.ethBalance
   },
 
+  ownedAssets(state) {
+    return state.platform.assets
+      .filter(asset => { return asset.owners.get(state.user.wallet.address) })
+  },
+
   marketplaceActiveAssets(state) {
-    return state.marketplace.assets
+    return state.platform.assets
   }
 }
 
@@ -35,9 +40,14 @@ const actions = {
     context.commit('setWallet', walletState)
   },
 
+  async refreshOwnedAssetsData(context) {
+    let assets = await market.getAssetsOnTheMarket()
+    context.commit('setAssets', assets)
+  },
+
   async refreshMarketplaceData(context) {
     let assets = await market.getAssetsOnTheMarket()
-    context.commit('setMarketplaceAssets', assets)
+    context.commit('setAssets', assets)
   }
 }
 
@@ -50,8 +60,8 @@ const mutations = {
     state.user.wallet.ethBalance = ethBalance
   },
 
-  setMarketplaceAssets(state, assets) {
-    state.marketplace.assets = assets
+  setAssets(state, assets) {
+    state.platform.assets = assets
   }
 }
 
