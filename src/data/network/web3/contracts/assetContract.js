@@ -1,6 +1,5 @@
 import EthereumClient from '../ethereum/ethereumClient'
 
-const contractAddress = "0x0" // TODO: ADD CONTRACT ADDRESS
 const contractAbi = [
   // Vote Yes on a certain proposal
   "function voteYes(uint256 id)",
@@ -8,7 +7,7 @@ const contractAbi = [
   // Vote No on a certain proposal
   "function voteNo(uint256 id)",
 ]
-const startBlock = 0 // TODO: ADD CONTRACT DEPLOYMENT BLOCK TO AVOID QUERYING EXTRA HISTORY
+const startBlock = 9140112
 
 /**
  * Asset contract
@@ -16,10 +15,11 @@ const startBlock = 0 // TODO: ADD CONTRACT DEPLOYMENT BLOCK TO AVOID QUERYING EX
  */
 class AssetContract {
   constructor(
-    ethereumClient
+    ethereumClient,
+    contractAddress
   ) {
-    // this.contract = ethereumClient.getContract(contractAddress, contractAbi)
-    // this.mutableContract = ethereumClient.getMutableContract(this.contract)
+    this.contract = ethereumClient.getContract(contractAddress, contractAbi)
+    this.mutableContract = ethereumClient.getMutableContract(this.contract)
   }
 
   /**

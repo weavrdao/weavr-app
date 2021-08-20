@@ -13,11 +13,9 @@ import { GraphQLAPIClient, ALL_ASSETS_QUERY } from '../../data/network/graph/gra
 class Market {
   constructor (
     graphQLAPIClient,
-    platformContract,
     storageNetwork,
   ) {
     this.graphQLAPIClient = graphQLAPIClient
-    this.platformContract = platformContract
     this.storageNetwork = storageNetwork
   }
   

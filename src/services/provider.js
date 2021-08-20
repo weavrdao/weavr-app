@@ -1,6 +1,5 @@
 import Wallet from './wallet'
 import Market from './market'
-import AssetContract from '../data/network/web3/contracts/assetContract'
 import IPFSStorageNetwork from '../data/network/storage/ipfs/IPFSStorageNetwork'
 import EthereumClient from '../data/network/web3/ethereum/ethereumClient'
 import TheGraphAPIClient from '../data/network/graph/implementation/theGraphAPIClient'
@@ -28,7 +27,6 @@ class ServiceProvider {
   static market() {
     return new Market(
       graphQLAPIClient,
-      new AssetContract(ethereumClient),
       storageNetwork
     )
   }
