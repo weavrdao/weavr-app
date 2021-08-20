@@ -160,7 +160,6 @@
                               class="
                                 flex flex-row items-center justify-between
                                 bg-level-2-light rounded-l-lg pl-3 pr-2 w-60
-                                hover:bg-opacity-75 cursor-pointer
                               "
                               @click="pickActiveToken"
                             >
