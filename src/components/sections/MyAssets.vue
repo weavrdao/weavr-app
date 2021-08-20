@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { myAssets } from '../../data/mock/mockDataProvider'
+import { mapGetters, mapActions } from 'vuex'
 import AssetListItem from '../views/assets/AssetListItem.vue'
 import AssetListItemPlaceholder from '../views/assets/AssetListItemPlaceholder.vue'
 
@@ -54,11 +54,13 @@ export default {
   },
   data() {
     return {
-      assets: null,
       searchQuery: '',
     }
   },
   computed: {
+    ...mapGetters({
+      assets: 'ownedAssets'
+    }),
     searchResults() {
       if (this.searchQuery.length == 0) { return this.assets }
 
@@ -68,13 +70,15 @@ export default {
         })
     }
   },
-  methods: {
-    pullData() {
-      this.assets = myAssets()
-    },
+  methods: { 
+    ...mapActions({
+      refresh: 'refreshOwnedAssetsData',
+      syncWallet: 'syncWallet'
+    })
   },
-  created() {
-    this.pullData()
+  mounted() {
+    this.refresh()
+    this.syncWallet()
   }
 }
 </script>
