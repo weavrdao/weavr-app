@@ -13,12 +13,12 @@ import WalletState from '../../models/walletState'
   }
   
   async getAddress() {
-    return this.client.getWalletAddress()
+    return (await this.client.getWalletAddress()).toLowerCase()
   }
 
   async getState() {
     let values = await Promise.all([
-      this.client.getWalletAddress(),
+      this.getAddress(),
       this.client.getWalletEthBalance()
     ])
 

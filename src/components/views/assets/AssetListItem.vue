@@ -2,12 +2,12 @@
   <div>
     <section aria-labelledby="asset-title">
       <div class="rounded-lg border-gradient-br-l2-light-purple-three-level-1-light border-transparent border-solid border-4 overflow-hidden shadow">
-        <h2 class="sr-only" id="asset-title"> asset — {{ asset.world.property.address }}</h2>
+        <h2 class="sr-only" id="asset-title"> asset — {{ asset.address }}</h2>
         <div class="flex flex-row justify-between items-stretch">
           <div class="flex flex-row justify-start items-stretch">
             <div class="w-60 h-1/1 overflow-hidden">
               <img 
-                :src="asset.world.property.coverImageUrl" :alt="asset.world.property.address" 
+                :src="asset.coverPictureURI" :alt="asset.address" 
                 class="object-cover w-full h-full pointer-events-none group-hover:opacity-75"
               >
             </div>
@@ -19,7 +19,7 @@
                     Current Rent
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ asset.world.env.currency.symbol }} {{ numberFormat.format(asset.world.property.currentRent) }}
+                    $ {{ numberFormat.format(asset.currentRent) }}
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -27,7 +27,7 @@
                     Area
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ numberFormat.format(asset.world.property.area) }} {{ asset.world.env.measurements.area.unit }}
+                    {{ numberFormat.format(asset.area) }} sqft
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -35,7 +35,7 @@
                     Market Value
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ asset.world.env.currency.symbol }} {{ numberFormat.format(asset.world.property.marketValue) }}
+                    $ {{ numberFormat.format(asset.marketValue) }}
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -43,7 +43,7 @@
                     Rooms
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ asset.world.property.rooms.bd }} bd, {{ asset.world.property.rooms.ba }} ba
+                    {{ asset.bedroomCount }} bd, {{ asset.bathroomCount }} ba
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -51,7 +51,7 @@
                     Gross Yield
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ asset.world.property.grossYieldPct }}%
+                    {{ asset.grossYieldPct }}%
                   </dd>
                 </div>
                 <div class="sm:col-span-1">
@@ -59,7 +59,7 @@
                     Year Built
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
-                    {{ asset.world.property.yearBuilt }}
+                    {{ asset.yearBuilt }}
                   </dd>
                 </div>
                 <div class="sm:col-span-2">
@@ -67,7 +67,7 @@
                     Address
                   </dt>
                   <dd class="mt-1 text-md font-normal text-opacity-80">
-                    {{ asset.world.property.address }}
+                    {{ asset.address }}
                   </dd>
                 </div>
               </dl>
@@ -85,7 +85,7 @@
                       Token
                     </dt>
                     <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      <Address/>
+                      <Address :value="asset.contractAddress"/>
                     </dd>
                   </div>
                   <div>
@@ -93,15 +93,15 @@
                       Balance
                     </dt>
                     <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      {{ asset.chain.erc20.balance }} ({{ asset.world.env.currency.symbol }} {{ numberFormat.format(asset.world.property.marketValue) }})
+                      {{ shareBalance }}
                     </dd>
                   </div>
                   <div>
                     <dt class="text-sm font-medium text-foam text-opacity-50">
-                      Maket Cap
+                      Total Supply
                     </dt>
                     <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      {{ asset.world.env.currency.symbol }} {{ numberFormat.format(asset.chain.erc20.marketCap) }}
+                      {{ numberFormat.format(asset.numOfShares) }}
                     </dd>
                   </div>
                   <div>
@@ -120,23 +120,15 @@
                       Holder Count
                     </dt>
                     <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      {{ numberFormat.format(asset.chain.holderCount) }}
+                      {{ numberFormat.format(asset.owners.size) }}
                     </dd>
                   </div>
                   <div>
                     <dt class="text-sm font-medium text-foam text-opacity-50">
-                      Proposals Open / Closed
+                      Proposals Open / Total
                     </dt>
                     <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      {{ numberFormat.format(asset.chain.dao.proposalsOpen) }} / {{ numberFormat.format(asset.chain.dao.proposals.length) }}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt class="text-sm font-medium text-foam text-opacity-50">
-                      Voting Strength
-                    </dt>
-                    <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      {{ asset.chain.dao.votingStrengthFactor }}x
+                      {{ numberFormat.format(openProposalCount) }} / {{ numberFormat.format(asset.proposals.length) }}
                     </dd>
                   </div>
                   <div>
@@ -155,16 +147,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Address from '../address/Address.vue'
 import Button from '../../common/Button.vue'
 
 export default {
   name: 'AssetListItem',
-  data() {
-    return {
-      numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 })
-    }
-  },
   components: {
     Address,
     Button,
@@ -173,6 +161,25 @@ export default {
     asset: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 })
+    }
+  },
+  computed: {
+    ...mapGetters({
+      walletAddress: 'userWalletAddress'
+    }),
+    shareBalance() {
+      return this.asset.owners.get(this.walletAddress)
+    },
+    timestamp() {
+      return Math.floor(Date.now() / 1000)
+    },
+    openProposalCount() {
+      return this.asset.proposals.filter(p => { return p.endTimestamp < this.timestamp }).length
     }
   },
   methods: {
