@@ -26,6 +26,7 @@ class ServiceProvider {
    */
   static market() {
     return new Market(
+      ethereumClient,
       graphQLAPIClient,
       storageNetwork
     )

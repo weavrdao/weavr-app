@@ -3,18 +3,22 @@ import PlatformContract from '../../data/network/web3/contracts/platformContract
 import StorageNetwork from '../../data/network/storage/storageNetwork'
 import Asset from '../../models/asset'
 import { GraphQLAPIClient, ALL_ASSETS_QUERY } from '../../data/network/graph/graphQLAPIClient'
+import EthereumClient from '../../data/network/web3/ethereum/ethereumClient'
 
 /**
  * Market Provider service
+ * @param {EthereumClient} ethereumClient Ethereum client
  * @param {GraphQLAPIClient} graphQLAPIClient GraphQL API Client
  * @param {PlatformContract} platformContract Platform contract instance
  * @param {StorageNetwork} storageNetwork Storage network to use
  */
 class Market {
   constructor (
+    ethereumClient,
     graphQLAPIClient,
     storageNetwork,
   ) {
+    this.ethereumClient = ethereumClient
     this.graphQLAPIClient = graphQLAPIClient
     this.storageNetwork = storageNetwork
   }
