@@ -1,13 +1,22 @@
+/* global BigInt */
+const { ethers } = require("ethers")
+
 import EthereumClient from '../ethereum/ethereumClient'
 
 const contractAbi = [
+  // Make a buy order
+  "function buy(uint256 amount, uint256 price) payable",
+
   // Vote Yes on a certain proposal
   "function voteYes(uint256 id)",
 
   // Vote No on a certain proposal
   "function voteNo(uint256 id)",
+
+  // Event that is triggered every time an order is filled on the market
+  "event Filled(address indexed sender, address indexed recipient, uint256 indexed price, uint256 amount)"
 ]
-const startBlock = 9140112
+const startBlock = 0 // TODO: Inject the actual contract deployment block instead
 
 /**
  * Asset contract
@@ -20,6 +29,31 @@ class AssetContract {
   ) {
     this.contract = ethereumClient.getContract(contractAddress, contractAbi)
     this.mutableContract = ethereumClient.getMutableContract(this.contract)
+  }
+
+  /**
+   * Make a buy order
+   * @param {number} amount Amount of shares to buy
+   * @param {BigInt} price Price to buy at
+   */
+   async buy(
+    amount,
+    price
+  ) {
+    console.log('Amount ' + amount)
+    console.log('Price ' + price)
+
+    let tx = await this.mutableContract
+      .buy(
+        amount, 
+        price,
+        {
+          value: BigInt(amount) * BigInt(price),
+          gasLimit: 5000000
+        }
+      )
+
+    return (await tx.wait()).status
   }
 
   /**
