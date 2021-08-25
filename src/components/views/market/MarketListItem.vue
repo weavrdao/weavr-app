@@ -142,6 +142,9 @@
                               id="order-from" 
                               class="text-right text-lg font-bold border-level-2-light bg-level-2-dark focus:ring-action-blue focus:border-action-blue flex-grow block w-full min-w-0 rounded-none rounded-r-md border-gray-300"
                               placeholder="0.0"
+                              :value="orderFromString"
+                              @keypress="isNumber($event)"
+                              @input="orderInputUpdated(0, $event)"
                             >
                           </div>
                         </div>
@@ -152,7 +155,7 @@
                               To
                             </label>
                             <label for="company-website" class="block text-sm font-light text-foam text-opacity-50">
-                              Balance: 0.00
+                              Balance: {{ shareBalance }}
                             </label>
                           </div>
                           <div class="mt-2 h-12 rounded-md shadow-sm flex">
@@ -168,18 +171,31 @@
                               </div>
                             </div>
                             <input 
-                              type="text" 
-                              name="order-from" 
-                              id="order-from" 
+                              type="text"
+                              name="order-to" 
+                              id="order-to" 
                               class="text-right text-lg font-bold border-level-2-light bg-level-2-dark focus:ring-action-blue focus:border-action-blue flex-grow block w-full min-w-0 rounded-none rounded-r-md border-gray-300"
                               placeholder="0.0"
+                              :value="orderToString"
+                              @keypress="isNumber($event)"
+                              @input="orderInputUpdated(1, $event)"
                             >
+                          </div>
+                        </div>
+                        <div>
+                          <div class="flex flex-row justify-between items-center">
+                            <label for="company-website" class="block text-sm font-medium text-foam text-opacity-50">
+                              Rate
+                            </label>
+                            <label for="company-website" class="block text-sm font-light text-foam text-opacity-50">
+                              1 {{ asset.symbol }} = {{ askPriceString }} ETH
+                            </label>
                           </div>
                         </div>
                       </div>
                       <div>
                         <div class="mt-8 flex flex-col">
-                          <Button label="Review Order" customClasses="w-full" @click="openSwap"/>
+                          <Button label="Swap" customClasses="w-full" @click="performSwap"/>
                         </div>
                       </div>
                     </div>
@@ -195,7 +211,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { toFixedNumber } from '../../../utils/common'
+import { mapGetters, mapActions } from 'vuex'
 import Address from '../address/Address.vue'
 import Button from '../../common/Button.vue'
 
@@ -213,17 +230,72 @@ export default {
   },
   data() {
     return {
-      numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 })
+      numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }),
+      orderFromValue: "",
+      orderToValue: ""
     }
   },
   computed: {
     ...mapGetters({
-      ethBalance: 'userEthBalance'
-    })
+      walletAddress: 'userWalletAddress',
+      ethBalance: 'userEthBalance',
+      assetPrices: 'bestAssetPrices'
+    }),
+    shareBalance() {
+      return this.asset.owners.get(this.walletAddress)
+    },
+    askPrice() {
+      var askETH = this.assetPrices.get(this.asset.id).ask
+
+      if (askETH) {
+        askETH = askETH.toString() / Math.pow(10, 18)
+      } else {
+        askETH = 0.0
+      }
+
+      return askETH
+    },
+    askPriceString() {
+      return toFixedNumber(this.askPrice)
+    },
+    orderToString() {
+      return toFixedNumber(this.orderToValue)
+    },
+    orderFromString() {
+      return toFixedNumber(this.orderFromValue)
+    }
   },
   methods: {
-    openSwap() {
-      this.$router.push('/swap')
+    isNumber(evt) {
+      evt = (evt) ? evt : window.event
+      var charCode = (evt.which) ? evt.which : evt.keyCode
+      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+        evt.preventDefault()
+      } else {
+        return true
+      }
+    },
+    orderInputUpdated(index, event) {
+      switch (index) {
+        case 0:
+          this.orderFromValue = event.target.value
+          this.orderToValue = this.convertToShares(this.orderFromValue)
+          break
+        case 1:
+          this.orderToValue = event.target.value
+          this.orderFromValue = this.convertToETH(this.orderToValue)
+          break
+        default:
+          break
+      }
+    },
+    convertToETH(shares) {
+      return shares * this.askPrice
+    },
+    convertToShares(eth) {
+      return eth / this.askPrice
+    },
+    performSwap() {
     }
   }
 }

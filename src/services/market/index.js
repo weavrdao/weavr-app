@@ -51,6 +51,9 @@ class Market {
         (mapper, response) => { return mapper.mapAssets(response.data.deployedAssets) }
       )
 
+      console.log('Mapped assets:')
+      console.log(assets)
+
     // TODO: CONSIDER DISCONTINUED/DEACTIVATED ASSETS
 
     // Fetch and append off-chain data
@@ -63,7 +66,7 @@ class Market {
       )
       .map(obj => obj.world.property)
 
-    console.log('Data: ')
+    console.log('Off-chain data:')
     console.log(assetOffchainDataArray)
 
     if (assetOffchainDataArray.length != assets.length) {
@@ -81,6 +84,7 @@ class Market {
         asset.symbol,
         asset.numOfShares,
         asset.owners,
+        asset.marketOrders,
         asset.proposals,
         data.address,
         data.area,

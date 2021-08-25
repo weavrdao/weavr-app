@@ -79,6 +79,9 @@ export default {
   mounted() {
     this.refresh()
     this.syncWallet()
+  },
+  watch: {
+    '$route': 'refresh'
   }
 }
 </script>
