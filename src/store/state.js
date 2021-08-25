@@ -11,6 +11,9 @@ function state() {
     },
     platform: {
       assets: []
+    },
+    interface: {
+      alert: null
     }
   }
 }
@@ -31,6 +34,10 @@ const getters = {
 
   marketplaceActiveAssets(state) {
     return state.platform.assets
+  },
+
+  activeAlert(state) {
+    return state.interface.alert
   }
 }
 
@@ -48,6 +55,10 @@ const actions = {
   async refreshMarketplaceData(context) {
     let assets = await market.getAssetsOnTheMarket()
     context.commit('setAssets', assets)
+  },
+
+  dismissAlert(context) {
+    context.commit('setAlert', null)
   }
 }
 
@@ -62,6 +73,10 @@ const mutations = {
 
   setAssets(state, assets) {
     state.platform.assets = assets
+  },
+
+  setAlert(state, alert) {
+    state.interface.alert = alert
   }
 }
 
