@@ -1,19 +1,14 @@
 require('dotenv').config()
 const { ethers } = require("ethers")
 
-const infuraNodeId = process.env.INFURA_ETH_PROJECT_ID
-
 /**
- * @property {ethers.Web3Provider} walletProvider
+ * @property {ethers.JsonRpcSigner} walletProvider
  * @property {ethers.JsonRpcSigner} walletSigner
  */
 class EthereumClient {
   constructor() {
-    // Using Infura to talk to the network
-    this.readProvider = new ethers.providers.InfuraProvider('rinkeby', infuraNodeId)
-
-    this.walletProvider = null
-    this.walletSigner = null
+    // this.walletProvider = new ethers.providers.JsonRpcProvider(null, 'rinkeby')
+    // this.walletSigner = this.walletProvider.getSigner(0)
   }
 
   /* --- Blockchain state --- */
@@ -66,7 +61,7 @@ class EthereumClient {
    * @returns Read-only contract instance
    */
   getContract(address, abi) {
-    return new ethers.Contract(address, abi, this.readProvider)
+    return new ethers.Contract(address, abi, this.walletSigner)
   }
 
   /**
