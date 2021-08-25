@@ -22,9 +22,12 @@ class TheGraphAPIClient extends GraphQLAPIClient {
       this.client
       .query({
         query: query,
-        variables: vars
+        variables: vars,
+        fetchPolicy: "no-cache"
       })
       .then(response => {
+        console.log('Query result:')
+        console.log(response)
         resolve(mappingCallback(this.mapper, response))
       })
       .catch(err => { 
