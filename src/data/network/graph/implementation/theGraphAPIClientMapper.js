@@ -2,6 +2,7 @@ import GraphQLAPIMapper from '../graphQLAPIMapper'
 import Asset  from '../../../../models/asset'
 import Proposal  from '../../../../models/proposal'
 import Vote  from '../../../../models/vote'
+import { MarketOrder } from '../../../../models/marketOrder'
 
 class TheGraphAPIMapper extends GraphQLAPIMapper {
   mapAssets(rawAssets) {
@@ -19,6 +20,8 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
             ownersMap.set(ownership.owner, ownership.shares)
           })
 
+        let marketOrders = this.mapMarketOrders(rawAsset.marketOrders)
+
         return new Asset(
           rawAsset.id,
           rawAsset.mintedAsset.dataURI,
@@ -26,7 +29,24 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
           rawAsset.symbol,
           rawAsset.numOfShares,
           ownersMap,
+          marketOrders,
           proposals
+        )
+      })
+  }
+
+  mapMarketOrders(rawMarketOrders) {
+    if (!rawMarketOrders || rawMarketOrders.length < 1) {
+      return []
+    }
+
+    return rawMarketOrders
+      .map(rawMarketOrder => {
+        return new MarketOrder(
+          rawMarketOrder.id,
+          rawMarketOrder.orderType,
+          rawMarketOrder.price,
+          rawMarketOrder.amount
         )
       })
   }

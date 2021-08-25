@@ -6,6 +6,7 @@
  * @property {string} symbol ERC-20 Symbol of the asset
  * @property {number} numOfShares Total supply of the asset shares
  * @property {Map<string, number>} owners The amount of shares held by all the owners
+ * @property {MarketOrder[]} marketOrders The most recent state of the asset's order book
  * @property {Proposal[]} proposals Proposals made in the asset's DAO
  * @property {string} address Address of the property
  * @property {number} area Area of the property
@@ -26,6 +27,7 @@ class Asset {
     symbol,
     numOfShares,
     owners,
+    marketOrders,
     proposals,
     address = null,
     area = null,
@@ -44,6 +46,7 @@ class Asset {
     this.symbol = symbol
     this.numOfShares = numOfShares
     this.owners = owners
+    this.marketOrders = marketOrders
     this.proposals = proposals
     this.address = address
     this.area = area
