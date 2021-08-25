@@ -104,11 +104,11 @@
                       {{ numberFormat.format(asset.numOfShares) }}
                     </dd>
                   </div>
-                  <div>
+                  <!-- <div>
                     <div class="flex flex-col">
                       <Button label="Swap" customClasses="w-full" @click="openSwap"/>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </dl>
             </div>
