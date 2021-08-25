@@ -266,6 +266,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      swap: 'swapToAsset'
+    }),
     isNumber(evt) {
       evt = (evt) ? evt : window.event
       var charCode = (evt.which) ? evt.which : evt.keyCode
@@ -296,6 +299,7 @@ export default {
       return eth / this.askPrice
     },
     performSwap() {
+      this.swap({ asset: this.asset, amount: this.orderToValue })
     }
   }
 }

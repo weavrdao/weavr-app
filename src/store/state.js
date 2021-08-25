@@ -2,6 +2,7 @@ import ServiceProvider from '../services/provider'
 import WalletState from '../models/walletState'
 import { MarketOrderType } from '../models/marketOrder'
 import { bigIntMax, bigIntMin } from '../utils/common'
+import router from '../router/index'
 
 const wallet = ServiceProvider.wallet()
 const market = ServiceProvider.market()
@@ -84,6 +85,40 @@ const actions = {
   async refreshMarketplaceData(context) {
     let assets = await market.getAssetsOnTheMarket()
     context.commit('setAssets', assets)
+  },
+
+  async swapToAsset(context, params) {
+    const asset = params.asset
+    const amount = params.amount
+
+    const price = context.getters.bestAssetPrices.get(asset.id).ask
+
+    const pendingAlert = {
+      type: "pending",
+      title: "Confirming Transaction",
+      message: "Please wait.."
+    }
+    context.commit('setAlert', pendingAlert)
+
+    const status = await market.buy(asset, amount, price)
+
+    if (status) {
+      const successAlert = {
+        type: "info",
+        title: "Transaction Confirmed",
+        message: "See details in MetaMask."
+      }
+      context.commit('setAlert', successAlert)
+
+      router.push("/assets")
+    } else {
+      const failAlert = {
+        type: "info",
+        title: "Transaction Failed",
+        message: "See details in MetaMask."
+      }
+      context.commit('setAlert', failAlert)
+    }
   },
 
   dismissAlert(context) {

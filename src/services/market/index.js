@@ -1,5 +1,8 @@
+/* global BigInt */
+
 import * as CommonUtils from '../../utils/common'
 import PlatformContract from '../../data/network/web3/contracts/platformContract'
+import AssetContract from '../../data/network/web3/contracts/assetContract'
 import StorageNetwork from '../../data/network/storage/storageNetwork'
 import Asset from '../../models/asset'
 import { GraphQLAPIClient, ALL_ASSETS_QUERY } from '../../data/network/graph/graphQLAPIClient'
@@ -88,7 +91,7 @@ class Market {
         asset.proposals,
         data.address,
         data.area,
-        data.coverImage,
+        /*data.coverImage*/'https://i.pinimg.com/originals/47/b9/7e/47b97e62ef6f28ea4ae2861e01def86c.jpg',
         data.currentRent,
         data.description,
         data.grossYieldPct,
@@ -102,6 +105,24 @@ class Market {
     }
 
     return assets
+  }
+
+  /**
+   * Post a buy order on the market
+   * @param {Asset} asset Asset to post an order for
+   * @param {number} amount Amount of shares to buy
+   * @param {BigInt} price Price level of the order
+   * @returns {Boolean} Transaction status (true — mined; false - reverted)
+   */
+  async buy(
+    asset,
+    amount,
+    price
+  ) {
+    const assetContract = new AssetContract(this.ethereumClient, asset.contractAddress)
+    let status = await assetContract.buy(amount, price)
+
+    return status
   }
 }
 
