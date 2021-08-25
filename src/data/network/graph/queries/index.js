@@ -18,6 +18,12 @@ const ALL_ASSETS_QUERY = gql`
         owner
         shares
       }
+      marketOrders {
+        id
+        orderType
+        price
+        amount
+      }
       proposals {
         id
         creator
