@@ -93,7 +93,7 @@
                       Balance
                     </dt>
                     <dd class="mt-1 text-lg font-bold text-opacity-80">
-                      {{ shareBalance }}
+                      {{ numberFormat.format(shareBalance) }}
                     </dd>
                   </div>
                   <div>
@@ -179,7 +179,7 @@ export default {
       return Math.floor(Date.now() / 1000)
     },
     openProposalCount() {
-      return this.asset.proposals.filter(p => { return p.endTimestamp < this.timestamp }).length
+      return this.asset.proposals.filter(p => { return p.endTimestamp > this.timestamp }).length
     }
   },
   methods: {
