@@ -58,22 +58,42 @@ class AssetContract {
 
   /**
    * Vote Yes on a certain proposal
-   * @param {string} proposalID ID of the proposal
+   * @param {string} proposalId ID of the proposal
    */
   async voteYes(
-    proposalID
+    proposalId
   ) {
-    return await this.mutableContract.voteYes(proposalID)
+    console.log('Voting Yes on the proposal ' + proposalId)
+
+    let tx = await this.mutableContract
+      .voteYes(
+        proposalId, 
+        {
+          gasLimit: 5000000
+        }
+      )
+
+    return (await tx.wait()).status
   }
 
   /**
    * Vote No on a certain proposal
-   * @param {string} proposalID ID of the proposal
+   * @param {string} proposalId ID of the proposal
    */
   async voteNo(
-    proposalID
+    proposalId
   ) {
-    return await this.mutableContract.voteNo(proposalID)
+    console.log('Voting No on the proposal ' + proposalId)
+
+    let tx = await this.mutableContract
+      .voteNo(
+        proposalId, 
+        {
+          gasLimit: 5000000
+        }
+      )
+
+    return (await tx.wait()).status
   }
 }
 
