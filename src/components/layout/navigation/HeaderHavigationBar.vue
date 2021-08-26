@@ -43,7 +43,6 @@ export default {
           { name: 'My Assets', path: '/assets' },
           { name: 'Marketplace', path: '/market' },
           { name: 'Swap', path: '/swap' },
-          { name: 'Proposal Demo', path: '/proposal/' + proposals[0].id },
         ]
       },
     }
