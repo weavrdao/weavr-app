@@ -6,6 +6,8 @@
  * @property {number} startTimestamp Unix timestamp marking the start of the voting window
  * @property {number} endTimestamp Unix timestamp marking the end of the voting window
  * @property {Vote[]} votes Votes posted on the proposal
+ * @property {string} title Title of the proposal
+ * @property {string} description Body of the proposal
  */
  class Proposal {
   constructor(
@@ -14,7 +16,9 @@
     dataURI,
     startTimestamp,
     endTimestamp,
-    votes
+    votes,
+    title = null,
+    description = null
   ) {
     this.id = id
     this.creatorAddress = creatorAddress
@@ -22,6 +26,8 @@
     this.startTimestamp = startTimestamp
     this.endTimestamp = endTimestamp
     this.votes = votes
+    this.title = title
+    this.description = description
   }
 }
 
