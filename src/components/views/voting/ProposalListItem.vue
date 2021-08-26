@@ -155,7 +155,7 @@ export default {
     },
 
     openProposal() {
-       this.$router.push(`/dao/${ this.assetId }/proposal/${ this.proposal.id }`)
+       this.$router.push(`/dao/${ this.assetId }/proposals/${ this.proposal.id }`)
     }
   },
 }

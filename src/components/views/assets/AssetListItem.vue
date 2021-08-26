@@ -187,7 +187,7 @@ export default {
       this.$router.push('/swap')
     },
     openDAO() {
-      this.$router.push(`/dao/${ this.asset.id }`)
+      this.$router.push(`/dao/${ this.asset.id }/proposals`)
     }
   },
 }

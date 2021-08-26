@@ -29,13 +29,13 @@ export default new createRouter({
       component: Swap
     },
     {
-      path: '/dao/:assetId',
+      path: '/dao/:assetId/proposals',
       name: 'dao',
       props: true,
       component: Voting
     },
     {
-      path: '/dao/:assetId/proposal/:proposalId',
+      path: '/dao/:assetId/proposals/:proposalId',
       name: 'proposal',
       props: true,
       component: Proposal
