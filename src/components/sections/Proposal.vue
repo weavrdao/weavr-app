@@ -281,6 +281,7 @@ export default {
   },
   mounted() {
     this.refresh({ assetId: this.assetId })
+    this.syncWallet()
   },
   created() {
    this.setTimeRemainingCountdown()

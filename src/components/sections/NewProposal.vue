@@ -114,6 +114,7 @@ export default {
   methods: {
     ...mapActions({
       refresh: 'refreshProposalsDataForAsset',
+      syncWallet: 'syncWallet',
       createProposal: 'createProposal'
     }),
 
@@ -129,6 +130,7 @@ export default {
   },
   mounted() {
     this.refresh({ assetId: this.assetId })
+    this.syncWallet()
   },
 }
 </script>
