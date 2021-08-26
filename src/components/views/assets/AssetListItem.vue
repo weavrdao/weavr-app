@@ -149,7 +149,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import Address from '../address/Address.vue'
-import Button from '../../common/Button.vue'
+import Button from '../common/Button.vue'
 
 export default {
   name: 'AssetListItem',

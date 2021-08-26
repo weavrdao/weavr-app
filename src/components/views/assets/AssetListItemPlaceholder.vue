@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Button from '../../common/Button.vue'
+import Button from '../common/Button.vue'
 
 export default {
   name: 'AssetListItemPlaceholder',

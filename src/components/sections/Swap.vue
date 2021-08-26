@@ -114,7 +114,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Button from '../common/Button.vue'
+import Button from '../views/common/Button.vue'
 import TokenPicker from '../views/tokens/TokenPicker.vue'
 
 export default {

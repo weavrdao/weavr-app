@@ -214,7 +214,7 @@
 import { toFixedNumber } from '../../../utils/common'
 import { mapGetters, mapActions } from 'vuex'
 import Address from '../address/Address.vue'
-import Button from '../../common/Button.vue'
+import Button from '../common/Button.vue'
 
 export default {
   name: 'MarketListItem',
