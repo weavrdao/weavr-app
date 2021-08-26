@@ -177,6 +177,41 @@ const actions = {
     context.commit('setProposalsForAsset', { assetId: assetId, proposals: assetProposals })
   },
 
+  async createProposal(context, params) {
+    let asset = context.getters.assetsById.get(params.assetId)
+    let title = params.title
+    let description = params.description
+
+    const pendingAlert = {
+      type: "pending",
+      title: "Confirming Transaction",
+      message: "Please wait.."
+    }
+    context.commit('setAlert', pendingAlert)
+
+    const status = await dao.createProposal(asset, title, description)
+
+    if (status) {
+      const successAlert = {
+        type: "info",
+        title: "Transaction Confirmed",
+        message: "See details in MetaMask."
+      }
+      context.commit('setAlert', successAlert)
+
+      context.dispatch('refreshProposalsDataForAsset', { assetId: params.assetId })
+
+      router.push("/dao/" + params.assetId + "/proposals")
+    } else {
+      const failAlert = {
+        type: "info",
+        title: "Transaction Failed",
+        message: "See details in MetaMask."
+      }
+      context.commit('setAlert', failAlert)
+    }
+  },
+
   async voteOnProposal(context, params) {
     let asset = context.getters.assetsById.get(params.assetId)
     let proposal = context.getters.proposalsById.get(params.proposalId)
