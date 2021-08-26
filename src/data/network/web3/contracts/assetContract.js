@@ -7,6 +7,9 @@ const contractAbi = [
   // Make a buy order
   "function buy(uint256 amount, uint256 price) payable",
 
+  // Create a standard proposal
+  "function proposePaper(string info) returns (uint256)",
+
   // Vote Yes on a certain proposal
   "function voteYes(uint256 id)",
 
@@ -29,6 +32,26 @@ class AssetContract {
   ) {
     this.contract = ethereumClient.getContract(contractAddress, contractAbi)
     this.mutableContract = ethereumClient.getMutableContract(this.contract)
+  }
+
+  /**
+   * Create a standard proposal
+   * @param {string} info Proposal info
+   */
+   async proposePaper(
+    info
+  ) {
+    console.log('Creating a proposal..')
+
+    let tx = await this.mutableContract
+      .proposePaper(
+        info, 
+        {
+          gasLimit: 5000000
+        }
+      )
+
+    return (await tx.wait()).status
   }
 
   /**
