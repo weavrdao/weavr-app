@@ -90,7 +90,7 @@ class Market {
         asset.proposals,
         data.address,
         data.area,
-        /*data.coverImage*/'https://i.pinimg.com/originals/47/b9/7e/47b97e62ef6f28ea4ae2861e01def86c.jpg',
+        data.coverImage,
         data.currentRent,
         data.description,
         data.grossYieldPct,
