@@ -82,6 +82,39 @@ class DAO {
   }
 
   /**
+   * Create a proposal
+   * @param {Asset} asset Asset that the DAO controls
+   * @param {string} title Proposal title
+   * @param {string} description Proposal body
+   * @returns {Boolean} Transaction status (true — mined; false - reverted)
+   */
+   async createProposal(
+    asset,
+    title,
+    description
+  ) {
+    const assetContract = new AssetContract(this.ethereumClient, asset.contractAddress)
+
+    let proposalCID = await this.storageNetwork
+      .addFile(
+        {
+          title: title,
+          description: description
+        }
+      )
+    
+    if (proposalCID == null) {
+      return
+    }
+
+    let proposalURI = "ipfs://" + proposalCID.path
+
+    let status = await assetContract.proposePaper(proposalURI)
+
+    return status
+  }
+
+  /**
    * Vote on a proposal
    * @param {Asset} asset Asset that the DAO controls
    * @param {Proposal} proposal Proposal to vote on
