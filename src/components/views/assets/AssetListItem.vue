@@ -74,7 +74,7 @@
             </div>
           </div>
           <div class="flex flex-col justify-center max-w-xs text-center">
-            This emptiness create confusion should not let you. For it's a WIP.
+            
           </div>
           <div class="flex flex-row justify-start items-stretch">
             <div class="px-4 py-4 max-w-sm">
@@ -133,7 +133,7 @@
                   </div>
                   <div>
                     <div class="flex flex-col">
-                      <Button label="Open DAO" customClasses="w-full"/>
+                      <Button label="Open DAO" customClasses="w-full" @click="openDAO"/>
                     </div>
                   </div>
                 </div>
@@ -185,6 +185,9 @@ export default {
   methods: {
     openSwap() {
       this.$router.push('/swap')
+    },
+    openDAO() {
+      this.$router.push(`/dao/${ this.asset.id }`)
     }
   },
 }

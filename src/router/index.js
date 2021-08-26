@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import MyAssets from '@/components/sections/MyAssets.vue'
 import Marketplace from '@/components/sections/Marketplace.vue'
 import Swap from '@/components/sections/Swap.vue'
+import Voting from '@/components/sections/Voting.vue'
 import Proposal from '@/components/sections/Proposal.vue'
 
 export default new createRouter({
@@ -28,7 +29,10 @@ export default new createRouter({
       component: Swap
     },
     {
-      path: '/proposal/:id',
+      path: '/dao/:assetId',
+      name: 'dao',
+      props: true,
+      component: Voting
       name: 'proposal',
       component: Proposal
     }
