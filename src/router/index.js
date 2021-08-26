@@ -4,6 +4,7 @@ import Marketplace from '@/components/sections/Marketplace.vue'
 import Swap from '@/components/sections/Swap.vue'
 import Voting from '@/components/sections/Voting.vue'
 import Proposal from '@/components/sections/Proposal.vue'
+import NewProposal from '@/components/sections/NewProposal.vue'
 
 export default new createRouter({
   history: createWebHashHistory(),
@@ -39,6 +40,12 @@ export default new createRouter({
       name: 'proposal',
       props: true,
       component: Proposal
+    },
+    {
+      path: '/dao/:assetId/proposals/create',
+      name: 'newProposal',
+      props: true,
+      component: NewProposal
     }
   ]
 })

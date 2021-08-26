@@ -70,6 +70,10 @@ export default {
 
     goBack() {
       this.$router.back()
+    },
+
+    createProposal() {
+      this.$router.push(`/dao/${ this.assetId }/proposals/create`)
     }
   },
   mounted() {
