@@ -1,5 +1,6 @@
 import Wallet from './wallet'
 import Market from './market'
+import DAO from './dao'
 import IPFSStorageNetwork from '../data/network/storage/ipfs/IPFSStorageNetwork'
 import EthereumClient from '../data/network/web3/ethereum/ethereumClient'
 import TheGraphAPIClient from '../data/network/graph/implementation/theGraphAPIClient'
@@ -26,6 +27,17 @@ class ServiceProvider {
    */
   static market() {
     return new Market(
+      ethereumClient,
+      graphQLAPIClient,
+      storageNetwork
+    )
+  }
+
+  /**
+   * Creates DAO service
+   */
+  static dao() {
+    return new DAO(
       ethereumClient,
       graphQLAPIClient,
       storageNetwork
