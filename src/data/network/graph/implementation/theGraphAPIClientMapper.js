@@ -1,7 +1,7 @@
 import GraphQLAPIMapper from '../graphQLAPIMapper'
 import Asset  from '../../../../models/asset'
 import Proposal  from '../../../../models/proposal'
-import Vote  from '../../../../models/vote'
+import { Vote }  from '../../../../models/vote'
 import { MarketOrder } from '../../../../models/marketOrder'
 
 class TheGraphAPIMapper extends GraphQLAPIMapper {
@@ -64,6 +64,8 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
           rawProposal.id,
           rawProposal.creator,
           rawProposal.dataURI,
+          rawProposal.startTimestamp,
+          rawProposal.endTimestamp,
           votes
         )
       })
