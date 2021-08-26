@@ -33,7 +33,11 @@ export default new createRouter({
       name: 'dao',
       props: true,
       component: Voting
+    },
+    {
+      path: '/dao/:assetId/proposal/:proposalId',
       name: 'proposal',
+      props: true,
       component: Proposal
     }
   ]

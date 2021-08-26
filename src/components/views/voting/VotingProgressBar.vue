@@ -15,6 +15,7 @@
       >
       </div>
       <div 
+      v-if="minPassCount > 0"
       class="absolute w-1 h-full border-dashed border-l border-foam"
       :style="minThresholdStyle"
       >
@@ -29,27 +30,27 @@
 export default {
   name: 'VotingProgressBar',
   props: {
-    totalProposalCount: {
+    totalCount: {
       type: Number,
       required: true
     },
-    sumbittedProposalCount: {
+    sumbittedCount: {
       type: Number,
       required: true
     },
-    minPassProposalCount: {
+    minPassCount: {
       type: Number,
-      required: true
+      default: -1
     },
   },
   computed: {
     proposalFractionStyle() {
-      return `width:${ 100 / (this.totalProposalCount / this.sumbittedProposalCount) }%;`
+      return `width:${ 100 / (this.totalCount / this.sumbittedCount) }%;`
     },
 
     minThresholdStyle() {
       return `
-        margin-left:${ 100 / (this.totalProposalCount / this.minPassProposalCount) }%;
+        margin-left:${ 100 / (this.totalCount / this.minPassCount) }%;
         margin-right: auto;
       `
     }

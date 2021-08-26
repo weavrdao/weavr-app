@@ -177,6 +177,9 @@ const actions = {
     context.commit('setProposalsForAsset', { assetId: assetId, proposals: assetProposals })
   },
 
+  async voteOnProposal(context, params) {
+  },
+
   dismissAlert(context) {
     context.commit('setAlert', null)
   }
