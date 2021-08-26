@@ -178,6 +178,36 @@ const actions = {
   },
 
   async voteOnProposal(context, params) {
+    let asset = context.getters.assetsById.get(params.assetId)
+    let proposal = context.getters.proposalsById.get(params.proposalId)
+    let voteType = params.voteType
+
+    const pendingAlert = {
+      type: "pending",
+      title: "Confirming Transaction",
+      message: "Please wait.."
+    }
+    context.commit('setAlert', pendingAlert)
+
+    const status = await dao.vote(asset, proposal, voteType)
+
+    if (status) {
+      const successAlert = {
+        type: "info",
+        title: "Transaction Confirmed",
+        message: "See details in MetaMask."
+      }
+      context.commit('setAlert', successAlert)
+
+      context.dispatch('refreshProposalsDataForAsset', { assetId: params.assetId })
+    } else {
+      const failAlert = {
+        type: "info",
+        title: "Transaction Failed",
+        message: "See details in MetaMask."
+      }
+      context.commit('setAlert', failAlert)
+    }
   },
 
   dismissAlert(context) {
