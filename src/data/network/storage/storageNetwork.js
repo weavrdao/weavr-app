@@ -1,7 +1,7 @@
 class StorageNetwork {
   constructor() { }
 
-  addFile = (fileData) => new Promise((resolve, reject) => { })
+  async addFile(file) { }
   getFile = (name) => new Promise((resolve, reject) => { })
   async getFiles(names) { }
 }
