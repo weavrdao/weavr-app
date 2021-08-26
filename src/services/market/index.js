@@ -12,7 +12,6 @@ import EthereumClient from '../../data/network/web3/ethereum/ethereumClient'
  * Market Provider service
  * @param {EthereumClient} ethereumClient Ethereum client
  * @param {GraphQLAPIClient} graphQLAPIClient GraphQL API Client
- * @param {PlatformContract} platformContract Platform contract instance
  * @param {StorageNetwork} storageNetwork Storage network to use
  */
 class Market {
