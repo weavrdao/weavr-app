@@ -25,4 +25,4 @@ const VoteType = {
   Abstain: 'Abstain'
 }
 
-export default Vote
+export {Vote, VoteType }
