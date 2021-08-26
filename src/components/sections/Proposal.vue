@@ -37,7 +37,7 @@
                     Description
                   </dt>
                   <dd class="mt-2 text-md font-normal text-opacity-80">
-                    {{ proposal.description }}
+                    <span style="white-space: pre-wrap;">{{ proposal.description }}</span>
                   </dd>
                 </div>
                 <div v-if="!isVotable" class="sm:col-span-2">

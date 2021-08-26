@@ -1,5 +1,6 @@
 <template>
   <div 
+    v-if="asset"
     class="
     w-full max-w-screen mx-auto
     "
@@ -12,10 +13,10 @@
       class="mt-12 w-full flex flex-row justify-between items-center opacity-95"
     >
       <div class="font-bold text-lg text-foam text-opacity-80">Voting</div>
-      <Button label="New Proposal" customClasses="w-full"/>
+      <Button label="New Proposal" customClasses="w-full" @click="createProposal"/>
     </div>
 
-    <div class="w-full mt-8 overflow-hidden">
+    <div v-if="proposals" class="w-full mt-8 overflow-hidden">
       <ul>
         <li
           v-for="proposal in proposals" :key="proposal.id"
