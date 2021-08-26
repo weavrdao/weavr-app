@@ -3,9 +3,11 @@ import WalletState from '../models/walletState'
 import { MarketOrderType } from '../models/marketOrder'
 import { bigIntMax, bigIntMin } from '../utils/common'
 import router from '../router/index'
+import { Vote } from '../models/vote'
 
 const wallet = ServiceProvider.wallet()
 const market = ServiceProvider.market()
+const dao = ServiceProvider.dao()
 
 function state() {
   return {
@@ -13,13 +15,23 @@ function state() {
       wallet: WalletState
     },
     platform: {
-      assets: []
+      assets: [],
+      proposals: new Map()
     },
     interface: {
       alert: null
     }
   }
 }
+
+/**
+ * Note: 
+ * I haven't spent too much time figuring out how to pass arguments to Vuex getters, only knowing that it's not well-supported natively.
+ * So for the first implementation whenever we need to get a subset of data for particular parameters —
+ * — we return a Map from the corresponding getter, so that the consuming part can access the data with one key lookup operation.
+ * 
+ * Pretty suboptimal, but at the time of writing this the bigger picture matters the most!
+ */
 
 const getters = {
   userWalletAddress(state) {
@@ -28,6 +40,25 @@ const getters = {
 
   userEthBalance(state) {
     return state.user.wallet.ethBalance
+  },
+
+  allAssets(state) {
+    return state.platform.assets
+  },
+
+  assetsById(state) {
+    var assetMap = new Map()
+
+    state.platform.assets
+      .forEach(asset => { 
+        assetMap.set(asset.id, asset)
+      })
+
+    return assetMap
+  },
+
+  marketplaceActiveAssets(state) {
+    return state.platform.assets
   },
 
   ownedAssets(state) {
@@ -62,8 +93,20 @@ const getters = {
       return assetPriceMap
   },
 
-  marketplaceActiveAssets(state) {
-    return state.platform.assets
+  assetProposals(state) {
+    return state.platform.proposals
+  },
+
+  proposalsById(state) {
+    var proposalsMap = new Map()
+
+    console.log(state.platform.proposals.values())
+
+    Array.from(state.platform.proposals.values())
+      .flatMap(p => { return p })
+      .forEach(p => { proposalsMap.set(p.id, p) })
+
+    return proposalsMap
   },
 
   activeAlert(state) {
@@ -121,6 +164,19 @@ const actions = {
     }
   },
 
+  async refreshProposalsDataForAsset(context, params) {
+    context.dispatch('refreshMarketplaceData')
+
+    let assetId = params.assetId
+
+    let assetProposals = await dao.getProposalsForAsset(assetId)
+
+    console.log('New Proposals')
+    console.log(assetProposals)
+
+    context.commit('setProposalsForAsset', { assetId: assetId, proposals: assetProposals })
+  },
+
   dismissAlert(context) {
     context.commit('setAlert', null)
   }
@@ -137,6 +193,10 @@ const mutations = {
 
   setAssets(state, assets) {
     state.platform.assets = assets
+  },
+
+  setProposalsForAsset(state, { proposals, assetId }) {
+    state.platform.proposals.set(assetId, proposals)
   },
 
   setAlert(state, alert) {
