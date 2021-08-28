@@ -11,14 +11,12 @@ import WalletState from '../../models/walletState'
   ) {
     this.client = ethereumClient
   }
-  
-  async getAddress() {
-    return (await this.client.getWalletAddress()).toLowerCase()
-  }
 
   async getState() {
+    await this.client.syncWallet()
+
     let values = await Promise.all([
-      this.getAddress(),
+      (await this.client.getWalletAddress()).toLowerCase(),
       this.client.getWalletEthBalance()
     ])
 

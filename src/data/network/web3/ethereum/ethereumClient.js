@@ -6,10 +6,7 @@ const { ethers } = require("ethers")
  * @property {ethers.JsonRpcSigner} walletSigner
  */
 class EthereumClient {
-  constructor() {
-    // this.walletProvider = new ethers.providers.JsonRpcProvider(null, 'rinkeby')
-    // this.walletSigner = this.walletProvider.getSigner(0)
-  }
+  constructor() { }
 
   /* --- Blockchain state --- */
 
@@ -38,17 +35,15 @@ class EthereumClient {
 
     this.walletProvider = new ethers.providers.Web3Provider(window.ethereum)
     this.walletSigner = this.walletProvider.getSigner()
+
+    return true
   }
 
   async getWalletAddress() {
-    await this.syncWallet()
-
-    return this.walletSigner.getAddress()    
+    return this.walletSigner.getAddress()
   }
 
   async getWalletEthBalance() {
-    await this.syncWallet()
-
     return (await this.walletSigner.getBalance()).toString()
   }
 
