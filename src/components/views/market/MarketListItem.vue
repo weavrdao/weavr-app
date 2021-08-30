@@ -24,7 +24,7 @@
                 </div>
                 <div class="sm:col-span-1">
                   <dt class="text-sm font-medium text-foam text-opacity-50">
-                    Area
+                    Living Space
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
                     {{ numberFormat.format(asset.area) }} sqft
@@ -48,7 +48,7 @@
                 </div>
                 <div class="sm:col-span-1">
                   <dt class="text-sm font-medium text-foam text-opacity-50">
-                    Gross Yield
+                    Capitalization Rate
                   </dt>
                   <dd class="mt-1 text-lg font-bold text-opacity-80">
                     {{ asset.grossYieldPct }}%
