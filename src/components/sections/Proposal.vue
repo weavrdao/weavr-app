@@ -198,7 +198,7 @@ export default {
     holderCounts() {
       return {
         voted: this.proposal.votes.length,
-        total: this.asset.owners.size
+        total: parseInt(this.proposalId, 10) < 3 ? this.asset.owners.size - 1 : this.asset.owners.size
       }
     },
 
@@ -207,6 +207,10 @@ export default {
     },
 
     isVotable() {
+      if (parseInt(this.proposalId, 10) < 3) {
+        return false
+      }
+
       let hasWalletVoted = this.proposal.votes
         .find(v => { return v.voterAddress == this.walletAddress })
 
