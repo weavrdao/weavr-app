@@ -242,7 +242,7 @@ export default {
       assetPrices: 'bestAssetPrices'
     }),
     shareBalance() {
-      return this.asset.owners.get(this.walletAddress)
+      return this.asset.owners.get(this.walletAddress) ?? 0
     },
     askPrice() {
       var askETH = this.assetPrices.get(this.asset.id).ask
