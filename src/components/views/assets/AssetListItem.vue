@@ -7,7 +7,7 @@
           <div class="flex flex-row justify-start items-stretch">
             <div class="w-60 h-1/1 overflow-hidden">
               <img 
-                :src="asset.coverPictureURI" :alt="asset.address" 
+                :src="coverPictureURI" :alt="asset.address" 
                 class="object-cover w-full h-full pointer-events-none group-hover:opacity-75"
               >
             </div>
@@ -165,7 +165,8 @@ export default {
   },
   data() {
     return {
-      numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 })
+      numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }),
+      coverPictureURI: require('../../../assets/pics/fbra.jpg')
     }
   },
   computed: {
