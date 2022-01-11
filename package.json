@@ -1,6 +1,7 @@
 {
   "name": "frabric-app",
   "version": "1.0.0",
+  "license": "AGPL-3.0-only",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
