@@ -39,7 +39,7 @@
         "default-param-last": "warn",
         "no-constructor-return": "error",
         /* "no-promise-executor-return": "error", */
-        "default-case-last": "error",
+        /* "default-case-last": "error", */
         "no-alert": "error",
         "no-eval": "error",
         "no-implied-eval": "error",
