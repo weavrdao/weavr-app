@@ -28,8 +28,8 @@
         "no-sparse-arrays": "warn",
         "no-template-curly-in-string": "warn",
         "no-unsafe-finally": "warn",
-        "no-unreachable-loop": "warn",
-        "no-unused-private-class-members": "warn",
+        /* "no-unreachable-loop": "warn", */
+        /* "no-unused-private-class-members": "warn", */
         "no-unused-vars": "warn",
         "no-use-before-define": "warn",
         "block-scoped-var": "warn",
@@ -38,7 +38,7 @@
         "dot-notation": "warn",
         "default-param-last": "warn",
         "no-constructor-return": "error",
-        "no-promise-executor-return": "error",
+        /* "no-promise-executor-return": "error", */
         "default-case-last": "error",
         "no-alert": "error",
         "no-eval": "error",
