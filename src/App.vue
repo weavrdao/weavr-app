@@ -14,7 +14,7 @@
 import AppWrapper from "./components/AppWrapper";
 
 export default {
-  name: "App",
+  name: 'The Frabric',
   components: {
     AppWrapper,
   }
