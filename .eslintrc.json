@@ -13,7 +13,7 @@
             "double"
         ],
         "indent": [
-            "error",
+            "warn",
             2
         ],
         "no-empty": "warn",
@@ -37,12 +37,10 @@
         "default-case": "warn",
         "dot-notation": "warn",
         "default-param-last": "warn",
-        "function-name-matching": "warn",
         "no-constructor-return": "error",
         "no-promise-executor-return": "error",
         "default-case-last": "error",
         "no-alert": "error",
-        "no-console": "warn",
         "no-eval": "error",
         "no-implied-eval": "error",
         "no-invalid-this": "warn",
