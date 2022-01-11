@@ -6,7 +6,7 @@
     "
   >
     <StackNavigationBar class="mt-8" @onBack="goBack">
-      {{ 'New Proposal — ' + asset.address }}
+      {{ "New Proposal — " + asset.address }}
     </StackNavigationBar>
 
     <div class="mt-12 mx-auto grid grid-cols-1 gap-8 lg:grid-flow-col-dense lg:grid-cols-3">
@@ -78,12 +78,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import StackNavigationBar from '../layout/navigation/StackNavigationBar.vue'
-import Button from '../views/common/Button.vue'
+import { mapGetters, mapActions } from "vuex"
+import StackNavigationBar from "../layout/navigation/StackNavigationBar.vue"
+import Button from "../views/common/Button.vue"
 
 export default {
-  name: 'NewProposal',
+  name: "NewProposal",
   components: {
     StackNavigationBar,
     Button,
@@ -104,7 +104,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      assetMap: 'assetsById',
+      assetMap: "assetsById",
     }),
 
     asset() {
@@ -113,9 +113,9 @@ export default {
   },
   methods: {
     ...mapActions({
-      refresh: 'refreshProposalsDataForAsset',
-      syncWallet: 'syncWallet',
-      createProposal: 'createProposal'
+      refresh: "refreshProposalsDataForAsset",
+      syncWallet: "syncWallet",
+      createProposal: "createProposal"
     }),
 
     goBack() {

@@ -147,12 +147,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Address from '../address/Address.vue'
-import Button from '../common/Button.vue'
+import { mapGetters } from "vuex"
+import Address from "../address/Address.vue"
+import Button from "../common/Button.vue"
 
 export default {
-  name: 'AssetListItem',
+  name: "AssetListItem",
   components: {
     Address,
     Button,
@@ -165,13 +165,13 @@ export default {
   },
   data() {
     return {
-      numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }),
-      coverPictureURI: require('../../../assets/pics/fbra.jpg')
+      numberFormat: new Intl.NumberFormat("en-US", { maximumSignificantDigits: 3 }),
+      coverPictureURI: require("../../../assets/pics/fbra.jpg")
     }
   },
   computed: {
     ...mapGetters({
-      walletAddress: 'userWalletAddress'
+      walletAddress: "userWalletAddress"
     }),
     shareBalance() {
       return this.asset.owners.get(this.walletAddress)
@@ -185,7 +185,7 @@ export default {
   },
   methods: {
     openSwap() {
-      this.$router.push('/swap')
+      this.$router.push("/swap")
     },
     openDAO() {
       this.$router.push(`/dao/${ this.asset.id }/proposals`)

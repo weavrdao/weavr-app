@@ -1,4 +1,4 @@
-const axios = require('axios')
+const axios = require("axios")
 
 const postRequest = (
   url,
@@ -42,7 +42,7 @@ const postRequest = (
   const requests = urls.map(async url => {
     return new Promise((resolve) => {
       axios({
-        method: 'get',
+        method: "get",
         timeout,
         url
       })

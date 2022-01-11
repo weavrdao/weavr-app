@@ -1,10 +1,10 @@
-import * as CommonUtils from '../../utils/common'
-import StorageNetwork from '../../data/network/storage/storageNetwork'
-import Proposal from '../../models/proposal'
-import { VoteType } from '../../models/vote'
-import { GraphQLAPIClient, ALL_ASSET_PROPOSALS_QUERY } from '../../data/network/graph/graphQLAPIClient'
-import EthereumClient from '../../data/network/web3/ethereum/ethereumClient'
-import AssetContract from '../../data/network/web3/contracts/assetContract'
+import * as CommonUtils from "../../utils/common"
+import StorageNetwork from "../../data/network/storage/storageNetwork"
+import Proposal from "../../models/proposal"
+import { VoteType } from "../../models/vote"
+import { GraphQLAPIClient, ALL_ASSET_PROPOSALS_QUERY } from "../../data/network/graph/graphQLAPIClient"
+import EthereumClient from "../../data/network/web3/ethereum/ethereumClient"
+import AssetContract from "../../data/network/web3/contracts/assetContract"
 
 // TODO: Should there be a single service instance per proposal?
 
@@ -26,7 +26,7 @@ class DAO {
   }
   
   /**
-   * Get proposals that from this asset's DAO.
+   * Get proposals that from this asset"s DAO.
    * @param {string} proposalId
    */
   async getProposalsForAsset(
@@ -41,7 +41,7 @@ class DAO {
         (mapper, response) => { return mapper.mapProposals(response.data.proposals) }
       )
 
-      console.log('Mapped proposals:')
+      console.log("Mapped proposals:")
       console.log(proposals)
 
     // Fetch and append off-chain data
@@ -53,7 +53,7 @@ class DAO {
           .getFiles(proposalDataURIArray.map(uri => CommonUtils.pathFromURL(uri)))
       )
 
-    console.log('Off-chain data:')
+    console.log("Off-chain data:")
     console.log(proposalOffchainDataArray)
 
     if (proposalOffchainDataArray.length != proposals.length) {

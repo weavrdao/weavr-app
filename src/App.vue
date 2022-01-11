@@ -5,7 +5,7 @@
       dark
       text-foam text-opacity-75
     "
-  >
+  > 
     <AppWrapper/>
   </div>
 </template>
@@ -14,7 +14,7 @@
 import AppWrapper from "./components/AppWrapper";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     AppWrapper,
   }

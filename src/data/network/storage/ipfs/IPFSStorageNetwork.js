@@ -1,8 +1,8 @@
-const network = require('../../../../utils/network')
-const { create } = require('ipfs-http-client')
-import StorageNetwork from '../storageNetwork'
+const network = require("../../../../utils/network")
+const { create } = require("ipfs-http-client")
+import StorageNetwork from "../storageNetwork"
 
-const ipfsAPIClient = create('https://ipfs.infura.io:5001/api/v0')
+const ipfsAPIClient = create("https://ipfs.infura.io:5001/api/v0")
 
 class IPFSStorageNetwork extends StorageNetwork {
   constructor() {
@@ -24,7 +24,7 @@ class IPFSStorageNetwork extends StorageNetwork {
     }
   
     let headers = { }
-    //headers['Authorization'] = `Basic ${auth}`
+    //headers["Authorization"] = `Basic ${auth}`
   
     let data =  { }
     network
@@ -43,12 +43,12 @@ class IPFSStorageNetwork extends StorageNetwork {
   })
 
   async getFiles(names) {
-    console.log('Requesting files from IPFS')
+    console.log("Requesting files from IPFS")
 
     const url = `https://ipfs.infura.io:5001/api/v0/cat`
     
     let headers = { }
-    //headers['Authorization'] = `Basic ${auth}`
+    //headers["Authorization"] = `Basic ${auth}`
   
     let data =  { }
 

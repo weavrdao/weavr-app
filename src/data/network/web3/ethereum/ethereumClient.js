@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config()
 const { ethers } = require("ethers")
 
 /**
@@ -26,7 +26,7 @@ class EthereumClient {
     // Using in-browser wallet to access wallet state and sign transactions
     if (window.ethereum) {
       try {
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        await window.ethereum.request({ method: "eth_requestAccounts" });
       } catch(error) {
         console.log(error)
         return

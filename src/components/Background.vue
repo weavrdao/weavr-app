@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: 'Background',
+  name: "Background",
 }
 </script>
 

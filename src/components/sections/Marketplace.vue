@@ -1,10 +1,8 @@
 <template>
   <div 
-    class="
-    w-full max-w-screen mx-auto
-    "
+    class="container"
   >
-    <div class="mt-8 bg-level-1-light opacity-95 shadow-lg overflow-hidden rounded-lg">
+    <div class="mt-8 bg-level-1-light opacity-95 shadow-lg overflow-hidden lg:rounded-lg">
       <div :class="`px-8 mt-8 ${ searchResults.length == 0 ? 'mb-8' : '' }`">
         <label for="search" class="sr-only">Search by token name or address</label>
         <div class="mt-1 relative rounded-lg bg-level-2-dark">
@@ -17,13 +15,12 @@
             type="text" 
             name="search" 
             id="search" 
-            class="bg-level-2-dark border-0 focus:ring-action-blue focus:border-action-blue block w-full pl-9 sm:text-sm rounded-lg" 
+            class="bg-level-2-dark sm:border-0 focus:ring-action-blue focus:border-action-blue block w-full pl-9 sm:text-sm rounded-lg" 
             placeholder="Search by token name or address"
             v-model="searchQuery"
             >
         </div>
       </div>
-
       <ul>
         <li
           v-for="asset in searchResults" :key="asset.id"
@@ -37,22 +34,22 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import MarketListItem from '../views/market/MarketListItem.vue'
+import { mapGetters, mapActions } from "vuex"
+import MarketListItem from "../views/market/MarketListItem.vue"
 
 export default {
-  name: 'Marketplace',
+  name: "Marketplace",
   components: {
     MarketListItem,
   },
   data() {
     return {
-      searchQuery: '',
+      searchQuery: "",
     }
   },
   computed: {
     ...mapGetters({
-      assets: 'marketplaceActiveAssets'
+      assets: "marketplaceActiveAssets"
     }),
     searchResults() {
       if (this.searchQuery.length == 0) { return this.assets }
@@ -65,8 +62,8 @@ export default {
   },
   methods: { 
     ...mapActions({
-      refresh: 'refreshMarketplaceData',
-      syncWallet: 'syncWallet'
+      refresh: "refreshMarketplaceData",
+      syncWallet: "syncWallet"
     })
   },
   mounted() {
@@ -74,7 +71,7 @@ export default {
     this.syncWallet()
   },
   watch: {
-    '$route': 'refresh'
+    "$route": "refresh"
   }
 }
 </script>

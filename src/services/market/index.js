@@ -1,12 +1,12 @@
 /* global BigInt */
 
-import * as CommonUtils from '../../utils/common'
-import PlatformContract from '../../data/network/web3/contracts/platformContract'
-import AssetContract from '../../data/network/web3/contracts/assetContract'
-import StorageNetwork from '../../data/network/storage/storageNetwork'
-import Asset from '../../models/asset'
-import { GraphQLAPIClient, ALL_ASSETS_QUERY } from '../../data/network/graph/graphQLAPIClient'
-import EthereumClient from '../../data/network/web3/ethereum/ethereumClient'
+import * as CommonUtils from "../../utils/common"
+import PlatformContract from "../../data/network/web3/contracts/platformContract"
+import AssetContract from "../../data/network/web3/contracts/assetContract"
+import StorageNetwork from "../../data/network/storage/storageNetwork"
+import Asset from "../../models/asset"
+import { GraphQLAPIClient, ALL_ASSETS_QUERY } from "../../data/network/graph/graphQLAPIClient"
+import EthereumClient from "../../data/network/web3/ethereum/ethereumClient"
 
 /**
  * Market Provider service
@@ -53,7 +53,7 @@ class Market {
         (mapper, response) => { return mapper.mapAssets(response.data.deployedAssets) }
       )
 
-      console.log('Mapped assets:')
+      console.log("Mapped assets:")
       console.log(assets)
 
     // TODO: CONSIDER DISCONTINUED/DEACTIVATED ASSETS
@@ -68,7 +68,7 @@ class Market {
       )
       .map(obj => obj.world.property)
 
-    console.log('Off-chain data:')
+    console.log("Off-chain data:")
     console.log(assetOffchainDataArray)
 
     if (assetOffchainDataArray.length != assets.length) {

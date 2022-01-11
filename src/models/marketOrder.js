@@ -22,8 +22,8 @@
 }
 
 const MarketOrderType = {
-  Buy: 'Buy',
-  Sell: 'Sell'
+  Buy: "Buy",
+  Sell: "Sell"
 }
 
 export { MarketOrder, MarketOrderType }

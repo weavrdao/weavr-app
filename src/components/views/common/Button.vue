@@ -13,7 +13,7 @@
 <script>
 
 export default {
-  name: 'Button',
+  name: "Button",
 
   props: {
     label: {
@@ -74,7 +74,7 @@ export default {
 
   methods: {
     onClick() {
-      this.$emit('onClick');
+      this.$emit("onClick");
     },
   },
 }

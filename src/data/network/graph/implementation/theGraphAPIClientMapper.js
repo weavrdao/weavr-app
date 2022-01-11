@@ -1,8 +1,8 @@
-import GraphQLAPIMapper from '../graphQLAPIMapper'
-import Asset  from '../../../../models/asset'
-import Proposal  from '../../../../models/proposal'
-import { Vote }  from '../../../../models/vote'
-import { MarketOrder } from '../../../../models/marketOrder'
+import GraphQLAPIMapper from "../graphQLAPIMapper"
+import Asset  from "../../../../models/asset"
+import Proposal  from "../../../../models/proposal"
+import { Vote }  from "../../../../models/vote"
+import { MarketOrder } from "../../../../models/marketOrder"
 
 class TheGraphAPIMapper extends GraphQLAPIMapper {
   mapAssets(rawAssets) {

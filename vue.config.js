@@ -1,22 +1,22 @@
 module.exports = {
-  publicPath: './',
+  publicPath: "./", 
   chainWebpack: (config) => {
     config
-      .plugin('html')
+      .plugin("html")
       .tap(args => {
           args[0].title = "Frabric";
           return args;
       })
 
-    const svgRule = config.module.rule('svg');
+    const svgRule = config.module.rule("svg");
     svgRule.uses.clear();
 
     svgRule
-      .use('file-loader')
-        .loader('file-loader')
+      .use("file-loader")
+        .loader("file-loader")
         .tap(options => {
           const newOptions = {
-            symbolId: '[name][hash]',
+            symbolId: "[name][hash]",
             esModule: false
           };
 
@@ -25,9 +25,9 @@ module.exports = {
         .end()
 
     config.module
-      .rule('images')
-      .use('url-loader')
-        .loader('url-loader')
+      .rule("images")
+      .use("url-loader")
+        .loader("url-loader")
         .tap(
           options => Object.assign(options, { 
             esModule: false
@@ -36,17 +36,17 @@ module.exports = {
         .end()
         
     config.module
-      .rule('vue')
-      .use('vue-loader')
+      .rule("vue")
+      .use("vue-loader")
         .tap((options) => {
           const transformAssetUrls = options.transformAssetUrls || {}
           return {
             ...options,
             transformAssetUrls: {
-              video: ['src', 'poster'],
-              source: 'src',
-              img: 'src',
-              image: 'xlink:href',
+              video: ["src", "poster"],
+              source: "src",
+              img: "src",
+              image: "xlink:href",
               // ..others
               ...transformAssetUrls,
             },

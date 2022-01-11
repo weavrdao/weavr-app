@@ -1,7 +1,7 @@
 import {
   ALL_ASSETS_QUERY,
   ALL_ASSET_PROPOSALS_QUERY
-} from './queries'
+} from "./queries"
 
 /**
  * Abstract GraphQL API client

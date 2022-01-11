@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import Background from './Background.vue'
-import AppBody from './AppBody'
+import Background from "./Background.vue"
+import AppBody from "./AppBody"
 
 export default {
-  name: 'AppWrapper',
+  name: "AppWrapper",
   components: {
     Background,
     AppBody,

@@ -14,16 +14,16 @@
 </template>
 
 <script>
-import Button from '../common/Button.vue'
+import Button from "../common/Button.vue"
 
 export default {
-  name: 'AssetListItemPlaceholder',
+  name: "AssetListItemPlaceholder",
   components: {
     Button,
   },
   methods: {
     openMarketplace() {
-      this.$router.push('/market')
+      this.$router.push("/market")
     }
   },
 }

@@ -28,12 +28,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import { RefreshIcon, InformationCircleIcon } from '@heroicons/vue/outline'
-import { XIcon } from '@heroicons/vue/solid'
+import { mapActions } from "vuex"
+import { RefreshIcon, InformationCircleIcon } from "@heroicons/vue/outline"
+import { XIcon } from "@heroicons/vue/solid"
 
 export default {
-  name: 'Alert',
+  name: "Alert",
   components: {
     RefreshIcon,
     InformationCircleIcon,
@@ -46,7 +46,7 @@ export default {
     },
     type: {
       type: String,
-      default: 'info'
+      default: "info"
     },
     title: {
       type: String,
@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      dismiss: 'dismissAlert'
+      dismiss: "dismissAlert"
     })
   }
 }

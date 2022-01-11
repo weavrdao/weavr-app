@@ -6,7 +6,7 @@
     "
   > 
     <StackNavigationBar class="mt-8" @onBack="goBack">
-      {{ 'DAO — ' + asset.address }}
+      {{ "DAO — " + asset.address }}
     </StackNavigationBar>
 
     <div
@@ -30,13 +30,13 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import StackNavigationBar from '../layout/navigation/StackNavigationBar.vue'
-import Button from '../views/common/Button.vue'
-import ProposalListItem from '../views/voting/ProposalListItem.vue'
+import { mapGetters, mapActions } from "vuex"
+import StackNavigationBar from "../layout/navigation/StackNavigationBar.vue"
+import Button from "../views/common/Button.vue"
+import ProposalListItem from "../views/voting/ProposalListItem.vue"
 
 export default {
-  name: 'Voting',
+  name: "Voting",
   props: {
     assetId: {
       type: String,
@@ -50,8 +50,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      assetMap: 'assetsById',
-      assetProposalMap: 'assetProposals'
+      assetMap: "assetsById",
+      assetProposalMap: "assetProposals"
     }),
 
     asset() {
@@ -64,8 +64,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      refresh: 'refreshProposalsDataForAsset',
-      syncWallet: 'syncWallet'
+      refresh: "refreshProposalsDataForAsset",
+      syncWallet: "syncWallet"
     }),
 
     goBack() {
