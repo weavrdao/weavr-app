@@ -2,10 +2,10 @@ import {
   ApolloClient,
   InMemoryCache
 } from "@apollo/client/core"
-import { GraphQLAPIClient } from '../graphQLAPIClient'
+import { GraphQLAPIClient } from "../graphQLAPIClient"
 
 const client = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/0xnshuman/frabric-subgraph-rinkeby-v2',
+  uri: "https://api.thegraph.com/subgraphs/name/0xnshuman/frabric-subgraph-rinkeby-v2",
   cache: new InMemoryCache()
 })
 
@@ -26,7 +26,7 @@ class TheGraphAPIClient extends GraphQLAPIClient {
         fetchPolicy: "no-cache"
       })
       .then(response => {
-        console.log('Query result:')
+        console.log("Query result:")
         console.log(response)
         resolve(mappingCallback(this.mapper, response))
       })
