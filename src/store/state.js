@@ -48,9 +48,8 @@ const getters = {
 
   assetsById(state) {
     var assetMap = new Map()
-
     state.platform.assets
-      .forEach(asset => { 
+      .forEach(asset => {
         assetMap.set(asset.id, asset)
       })
 
@@ -71,7 +70,7 @@ const getters = {
     var assetPriceMap = new Map()
 
     state.platform.assets
-      .forEach(asset => { 
+      .forEach(asset => {
         let buyPrices = asset.marketOrders
           .filter(o => { return o.orderType == MarketOrderType.Buy })
           .map(o => { return o.price })
@@ -87,10 +86,10 @@ const getters = {
         assetPriceMap.set(asset.id, prices)
       })
 
-      console.log("Best asset prices:")
-      console.log(assetPriceMap)
+    console.log("Best asset prices:")
+    console.log(assetPriceMap)
 
-      return assetPriceMap
+    return assetPriceMap
   },
 
   assetProposals(state) {
