@@ -14,7 +14,7 @@
     <div class="h-full w-full flex flex-row justify-between items-center">
       <div class="font-bold w-5/6">
         {{
-          address.substring(0, 8) + '...' + address.substring(address.length - 4)
+          address.substring(0, 8) + "..." + address.substring(address.length - 4)
         }}
       </div>
       <div class="ml-4">
@@ -29,7 +29,7 @@
 <script>
 
 export default {
-  name: 'Address',
+  name: "Address",
   props: {
     value: {
       type: String,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section aria-labelledby="asset-title">
+    <!-- <section aria-labelledby="asset-title">
       <div class="rounded-lg border-gradient-br-l2-light-purple-three-level-1-light border-transparent border-solid border-4 overflow-hidden shadow">
         <h2 class="sr-only" id="asset-title"> Asset — {{ asset.address }}</h2>
         <div class="flex flex-row justify-between items-stretch">
@@ -104,123 +104,85 @@
               </dl>
             </div>
           </div>
-          <div class="flex flex-row justify-start items-stretch">
-            <div class="bg-level-2-dark m-4 overflow-hidden rounded-lg">
-              <form class="h-full" action="#">
-                <div class="h-full shadow rounded-lg">
-                  <div class="h-full py-4 px-4">
-                    <div class="h-full flex flex-col justify-between space-y-8">
-                      <div class="flex flex-col space-y-8">
-                        <div>
-                          <div class="flex flex-row items-center justify-between">
-                            <label for="company-website" class="block text-sm font-medium text-foam text-opacity-50">
-                              From
-                            </label>
-                            <label for="company-website" class="block text-sm font-light text-foam text-opacity-50">
-                              Balance: {{ ethBalance }}
-                            </label>
-                          </div>
-                          <div class="mt-2 h-12 rounded-md shadow-sm flex">
-                            <div 
-                              class="
-                                flex flex-row items-center justify-between
-                                bg-level-2-light rounded-l-lg pl-3 pr-2 w-60
-                              "
-                            >
-                              <div class="text-foam font-bold text-opacity-80">
-                                ETH
-                              </div>
-                              <!-- <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-action-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
-                                </svg>
-                              </div> -->
-                            </div>
-                            <input 
-                              type="text" 
-                              name="order-from" 
-                              id="order-from" 
-                              class="text-right text-lg font-bold border-level-2-light bg-level-2-dark focus:ring-action-blue focus:border-action-blue flex-grow block w-full min-w-0 rounded-none rounded-r-md border-gray-300"
-                              placeholder="0.0"
-                              :value="orderFromString"
-                              @keypress="isNumber($event)"
-                              @input="orderInputUpdated(0, $event)"
-                            >
-                          </div>
-                        </div>
-
-                        <div>
-                          <div class="flex flex-row justify-between items-center">
-                            <label for="company-website" class="block text-sm font-medium text-foam text-opacity-50">
-                              To
-                            </label>
-                            <label for="company-website" class="block text-sm font-light text-foam text-opacity-50">
-                              Balance: {{ shareBalance }}
-                            </label>
-                          </div>
-                          <div class="mt-2 h-12 rounded-md shadow-sm flex">
-                            <div 
-                              class="
-                                flex flex-row items-center justify-between
-                                bg-level-2-light rounded-l-lg pl-3 pr-2 w-60
-                              "
-                              @click="pickActiveToken"
-                            >
-                              <div class="text-foam font-bold text-opacity-80 overflow-ellipsis overflow-hidden">
-                                {{ asset.symbol }}
-                              </div>
-                            </div>
-                            <input 
-                              type="text"
-                              name="order-to" 
-                              id="order-to" 
-                              class="text-right text-lg font-bold border-level-2-light bg-level-2-dark focus:ring-action-blue focus:border-action-blue flex-grow block w-full min-w-0 rounded-none rounded-r-md border-gray-300"
-                              placeholder="0.0"
-                              :value="orderToString"
-                              @keypress="isNumber($event)"
-                              @input="orderInputUpdated(1, $event)"
-                            >
-                          </div>
-                        </div>
-                        <div>
-                          <div class="flex flex-row justify-between items-center">
-                            <label for="company-website" class="block text-sm font-medium text-foam text-opacity-50">
-                              Rate
-                            </label>
-                            <label for="company-website" class="block text-sm font-light text-foam text-opacity-50">
-                              1 {{ asset.symbol }} = {{ askPriceString }} ETH
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="mt-8 flex flex-col">
-                          <Button label="Swap" customClasses="w-full" @click="performSwap"/>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
+    </section> -->
+    <div class="card">
+      <div class="columns">
+        <div class="column p-3 md:p-6">
+          <div class="card-image">
+            <figure class="image is-4by3" >
+              <img :src="coverPictureURI" :alt="asset.address">
+            </figure>
+          </div>
+        </div>
+        <div class="column p-6">
+          <div class="level" style="border-bottom: 1px black solid">
+          <div class="level-item">
+            Current Rent
+          </div>
+          <div class="level-item">
+            $ {{ numberFormat.format(asset.currentRent) }}
+          </div>
+        </div>
+        <div class="level" style="border-bottom: 1px black solid">
+          <div class="level-item">
+            Living Space
+          </div>
+          <div class="level-item">
+            {{ numberFormat.format(asset.area) }} sqft
+          </div>
+        </div>
+        <div class="level" style="border-bottom: 1px black solid">
+          <div class="level-item">
+            Market Value
+          </div>
+          <div class="level-item">
+            $ {{ numberFormat.format(asset.marketValue) }}
+          </div>
+        </div>
+        <div class="level" style="border-bottom: 1px black solid">
+          <div class="level-item">
+            Living Space
+          </div>
+          <div class="level-item">
+            {{ numberFormat.format(asset.area) }} sqft
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img :src="coverPictureURI" :alt="asset.address">
+            </figure>
+          </div>
+        <div class="media-content">
+          <p class="title is-4">{{ asset.address }}</p>
+          <p class="subtitle is-6">@johnsmith</p>
+        </div>
+      </div>
+      <div class="content">
+          <button class="button is-danger m-3">close thread</button>
+          <button class="button is-primary m-3">Open thread</button>
+    </div>
+    </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { toFixedNumber } from '../../../utils/common'
-import { mapGetters, mapActions } from 'vuex'
-import Address from '../address/Address.vue'
-import Button from '../common/Button.vue'
+import { toFixedNumber } from "../../../utils/common"
+import { mapGetters, mapActions } from "vuex"
+import Address from "../address/Address.vue"
+import Button from "../common/Button.vue"
 
 export default {
-  name: 'MarketListItem',
+  name: "MarketListItem",
   components: {
-    Address,
-    Button,
+    // Address,
+    // Button,
   },
   props: {
     asset: {
@@ -230,17 +192,17 @@ export default {
   },
   data() {
     return {
-      numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }),
+      numberFormat: new Intl.NumberFormat("en-US", { maximumSignificantDigits: 3 }),
       orderFromValue: "",
       orderToValue: "",
-      coverPictureURI: require('../../../assets/pics/fbra.jpg')
+      coverPictureURI: require("../../../assets/pics/fbra.jpg")
     }
   },
   computed: {
     ...mapGetters({
-      walletAddress: 'userWalletAddress',
-      ethBalance: 'userEthBalance',
-      assetPrices: 'bestAssetPrices'
+      walletAddress: "userWalletAddress",
+      ethBalance: "userEthBalance",
+      assetPrices: "bestAssetPrices"
     }),
     shareBalance() {
       return this.asset.owners.get(this.walletAddress) ?? 0
@@ -268,7 +230,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      swap: 'swapToAsset'
+      swap: "swapToAsset"
     }),
     isNumber(evt) {
       evt = (evt) ? evt : window.event

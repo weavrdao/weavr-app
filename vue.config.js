@@ -1,14 +1,14 @@
 module.exports = {
-  publicPath: './',
+  publicPath: "./", 
   chainWebpack: (config) => {
     config
-      .plugin('html')
+      .plugin("html")
       .tap(args => {
         args[0].title = "The Frabric";
         return args;
       })
 
-    const svgRule = config.module.rule('svg');
+    const svgRule = config.module.rule("svg");
     svgRule.uses.clear();
 
     svgRule

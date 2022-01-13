@@ -6,7 +6,7 @@
     "
   >
     <StackNavigationBar class="mt-8" @onBack="goBack">
-      {{ 'Proposal — ' + proposal.title }}
+      {{ "Proposal — " + proposal.title }}
     </StackNavigationBar>
 
     <div class="mt-12 mx-auto grid grid-cols-1 gap-8 lg:grid-flow-col-dense lg:grid-cols-3">
@@ -125,15 +125,15 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import StackNavigationBar from '../layout/navigation/StackNavigationBar.vue'
-import Address from '../views/address/Address.vue'
-import VotingProgressBar from '../views/voting/VotingProgressBar.vue'
-import Button from '../views/common/Button.vue'
-import { VoteType } from '../../models/vote'
+import { mapGetters, mapActions } from "vuex"
+import StackNavigationBar from "../layout/navigation/StackNavigationBar.vue"
+import Address from "../views/address/Address.vue"
+import VotingProgressBar from "../views/voting/VotingProgressBar.vue"
+import Button from "../views/common/Button.vue"
+import { VoteType } from "../../models/vote"
 
 export default {
-  name: 'Proposal',
+  name: "Proposal",
   components: {
     StackNavigationBar,
     Address,
@@ -152,7 +152,7 @@ export default {
   },
   data() {
     return {
-      numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 }),
+      numberFormat: new Intl.NumberFormat("en-US", { maximumSignificantDigits: 3 }),
       countdownRef: null,
       timeRemainingString: "",
       pickedOption: null
@@ -160,9 +160,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      walletAddress: 'userWalletAddress',
-      assetMap: 'assetsById',
-      proposalsMap: 'proposalsById'
+      walletAddress: "userWalletAddress",
+      assetMap: "assetsById",
+      proposalsMap: "proposalsById"
     }),
 
     asset() {
@@ -219,9 +219,9 @@ export default {
   },
   methods: {
     ...mapActions({
-      refresh: 'refreshProposalsDataForAsset',
-      syncWallet: 'syncWallet',
-      voteOnProposal: 'voteOnProposal'
+      refresh: "refreshProposalsDataForAsset",
+      syncWallet: "syncWallet",
+      voteOnProposal: "voteOnProposal"
     }),
 
     goBack() {

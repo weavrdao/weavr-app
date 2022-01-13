@@ -28,7 +28,7 @@
 <script>
 
 export default {
-  name: 'VotingProgressBar',
+  name: "VotingProgressBar",
   props: {
     totalCount: {
       type: Number,

@@ -1,4 +1,4 @@
-import EthereumClient from '../ethereum/ethereumClient'
+import EthereumClient from "../ethereum/ethereumClient"
 
 const contractAddress = "0x0" // TODO: ADD CONTRACT ADDRESS
 const contractAbi = [

@@ -1,7 +1,7 @@
 /* global BigInt */
 const { ethers } = require("ethers")
 
-import EthereumClient from '../ethereum/ethereumClient'
+import EthereumClient from "../ethereum/ethereumClient"
 
 const contractAbi = [
   // Make a buy order
@@ -41,7 +41,7 @@ class AssetContract {
    async proposePaper(
     info
   ) {
-    console.log('Creating a proposal..')
+    console.log("Creating a proposal..")
 
     let tx = await this.mutableContract
       .proposePaper(
@@ -63,8 +63,8 @@ class AssetContract {
     amount,
     price
   ) {
-    console.log('Amount ' + amount)
-    console.log('Price ' + price)
+    console.log("Amount " + amount)
+    console.log("Price " + price)
 
     let tx = await this.mutableContract
       .buy(
@@ -86,7 +86,7 @@ class AssetContract {
   async voteYes(
     proposalId
   ) {
-    console.log('Voting Yes on the proposal ' + proposalId)
+    console.log("Voting Yes on the proposal " + proposalId)
 
     let tx = await this.mutableContract
       .voteYes(
@@ -106,7 +106,7 @@ class AssetContract {
   async voteNo(
     proposalId
   ) {
-    console.log('Voting No on the proposal ' + proposalId)
+    console.log("Voting No on the proposal " + proposalId)
 
     let tx = await this.mutableContract
       .voteNo(

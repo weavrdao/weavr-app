@@ -9,16 +9,18 @@
       overflow-hidden
       cursor-pointer
       opacity-95 hover:bg-opacity-75
+      
     "
+
     @click="onClick"
   >
-    <div class="h-full w-full flex flex-row justify-between items-center">
-      <div v-if="address != null" class="font-bold w-5/6">
+    <div class="h-full w-full flex flex-row justify-between items-center has-text-white	">
+      <div v-if="address != null" class="w-5/6">
         {{
-          address.substring(0, 8) + '...' + address.substring(address.length - 4)
+          address.substring(0, 8) + "..." + address.substring(address.length - 4)
         }}
       </div>
-      <div v-else class="font-bold w-5/6">
+      <div v-else class="font-bold w-5/6 has-text-white	">
         Connect Wallet
       </div>
       <div class="ml-4">
@@ -27,22 +29,21 @@
         </svg>
       </div>
     </div>
-  </div>
+  </div> 
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-
+import { mapGetters, mapActions } from "vuex"
 export default {
-  name: 'SignerAddress',
+  name: "SignerAddress",
   computed: {
     ...mapGetters({
-      address: 'userWalletAddress'
+      address: "userWalletAddress"
     })
   },
   methods: {
     ...mapActions({
-      sync: 'syncWallet'
+      sync: "syncWallet"
     }),
     onClick() {
       this.sync()

@@ -29,22 +29,22 @@
 </template>
 
 <script>
-import { Dialog, DialogOverlay, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import { Dialog, DialogOverlay, TransitionChild, TransitionRoot } from "@headlessui/vue"
 
 const tokens = [
   {
-    symbol: 'FBRA-001'
+    symbol: "FBRA-001"
   },
   {
-    symbol: 'FBRA-002'
+    symbol: "FBRA-002"
   },
   {
-    symbol: 'FBRA-003'
+    symbol: "FBRA-003"
   },
 ]
 
 export default {
-  name: 'TokenPicker',
+  name: "TokenPicker",
   components: {
     Dialog,
     DialogOverlay,

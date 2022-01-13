@@ -82,12 +82,12 @@
 </template>
 
 <script>
-import Address from '../address/Address.vue'
-import Button from '../common/Button.vue'
-import { VoteType } from '../../../models/vote'
+import Address from "../address/Address.vue"
+import Button from "../common/Button.vue"
+import { VoteType } from "../../../models/vote"
 
 export default {
-  name: 'ProposalListItem',
+  name: "ProposalListItem",
   components: {
     Address,
     Button,
@@ -104,7 +104,7 @@ export default {
   },
   data() {
     return {
-      numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 })
+      numberFormat: new Intl.NumberFormat("en-US", { maximumSignificantDigits: 3 })
     }
   },
   computed: {

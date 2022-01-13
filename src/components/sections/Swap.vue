@@ -64,7 +64,7 @@
                       @click="pickActiveToken"
                     >
                       <div class="text-foam font-bold text-opacity-80 overflow-ellipsis overflow-hidden">
-                        {{ activeToken != null ? activeToken.code.substring(0, 7) + '..' : 'Select token' }}
+                        {{ activeToken != null ? activeToken.code.substring(0, 7) + ".." : "Select token" }}
                       </div>
                       <div>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-action-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,12 +113,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import Button from '../views/common/Button.vue'
-import TokenPicker from '../views/tokens/TokenPicker.vue'
+import { mapGetters, mapActions } from "vuex"
+import Button from "../views/common/Button.vue"
+import TokenPicker from "../views/tokens/TokenPicker.vue"
 
 export default {
-  name: 'Swap',
+  name: "Swap",
   components: {
     Button,
     TokenPicker,
@@ -132,19 +132,19 @@ export default {
   data() {
     return {
       util: {
-        numberFormat: new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 })
+        numberFormat: new Intl.NumberFormat("en-US", { maximumSignificantDigits: 3 })
       },
       activeAssetToken: this.assetToken ?? null
     }
   },
   computed: {
     ...mapGetters({
-      ethBalance: 'userEthBalance'
+      ethBalance: "userEthBalance"
     })
   },
   methods: {
     ...mapActions({
-      sync: 'syncWallet'
+      sync: "syncWallet"
     }),
     
     pickActiveToken() {

@@ -21,19 +21,19 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import HeaderHavigationBar from './layout/navigation/HeaderHavigationBar.vue'
-import Alert from './views/common/Alert.vue'
+import { mapGetters } from "vuex"
+import HeaderHavigationBar from "./layout/navigation/HeaderHavigationBar.vue"
+import Alert from "./views/common/Alert.vue"
 
 export default {
-  name: 'AppBody',
+  name: "AppBody",
   components: {
     HeaderHavigationBar,
     Alert,
   },
   computed: {
     ...mapGetters({
-      alert: 'activeAlert'
+      alert: "activeAlert"
     })
   }
 }

@@ -5,7 +5,7 @@
       dark
       text-foam text-opacity-75
     "
-  >
+  > 
     <AppWrapper/>
   </div>
 </template>

@@ -1,7 +1,7 @@
 // import {
 //   gql
 // } from "@apollo/client/core"
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 const ALL_ASSETS_QUERY = gql`
   query {

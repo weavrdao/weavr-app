@@ -1,62 +1,76 @@
 <template>
-  <Disclosure 
-    as="nav" 
-    class="bg-purple-black border-b border-purple-three border-gray-200"
-  >
-    <div class="w-full mx-auto px-4 sm:px-6 lg:px-16">
-      <div class="flex justify-between items-center h-16">
-        <div class="flex h-full">
-          <div class="hidden sm:-my-px sm:flex sm:space-x-8">
-            <div 
-              v-for="item in navigation.items" :key="item.name"
-              v-on:click="transitTo(item.path)"
-              :class="[this.isItemCurrent(item) ? 'border-foam border-opacity-75 text-foam text-opacity-75' : 'border-transparent text-foam text-opacity-25 hover:text-opacity-50', 'inline-flex items-center px-1 pt-1 border-b text-md font-medium cursor-pointer']" 
-            >
-              {{ item.name }}
-            </div>
-          </div>
-        </div>
-        <SignerAddress class="h-8" />
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="#">
+      <div class="text-xl">FRTHREAD#001</div>
+    </a>
+
+    <a role="button" ref="menuButton" :class="[ navigation.isOpen ? 'is-active' : '', 'navbar-burger']" @click="menuToggle()" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="threadNavbar" :class="[ navigation.isOpen ? 'is-active' : '','navbar-menu']">
+    <div class="navbar-start">
+      <a class="navbar-item"
+        v-for="item in navigation.items" :key="item.name"
+        v-on:click="transitTo(item.path)"
+      >
+        {{ item.name }}
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <SignerAddress class="h-8"/>
       </div>
     </div>
-  </Disclosure>
+  </div>
+</nav>
 </template>
 
 <script>
-import { proposals } from '../../../data/mock/mockDataProvider'
-
-import { Disclosure } from '@headlessui/vue'
-import SignerAddress from '../../views/address/SignerAddress.vue'
-import { useRoute } from 'vue-router'
-import { mapGetters, mapActions } from 'vuex'
-
+import { proposals } from "../../../data/mock/mockDataProvider"
+import SignerAddress from "../../views/address/SignerAddress.vue"
+import { useRoute } from "vue-router"
+import { mapGetters, mapActions } from "vuex"
 export default {
-  name: 'HeaderHavigationBar',
+  name: "HeaderHavigationBar",
   components: {
-    Disclosure,
+    // Disclosure,
+    // DisclosureButton,
+    // DisclosurePanel,
     SignerAddress,
   },
   data() {
     return {
       navigation: {
+        isOpen: false,
         items: [
-          { name: 'My Assets', path: '/assets' },
-          { name: 'Marketplace', path: '/market' },
-          { name: 'Swap', path: '/swap' },
+          { name: "My Assets", path: "/assets" },
+          { name: "Marketplace", path: "/market" },
+          { name: "Swap", path: "/swap" },
         ]
       },
     }
   },
   computed: {
-    ...mapGetters(['currentNavigationItem']),
+    ...mapGetters(["currentNavigationItem"]),
   },
   methods: {
-    ...mapActions(['goBack']),
+    ...mapActions(["goBack"]),
     isItemCurrent(item) {
       return item.path == useRoute().path
     },
     transitTo(path) {
       this.$router.push(path)
+      this.menuToggle()
+    },
+    menuToggle (){
+      this.navigation.isOpen = !this.navigation.isOpen
+      console.log(this.navigation.isOpen)
     }
   },
 }

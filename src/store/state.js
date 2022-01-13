@@ -1,9 +1,9 @@
-import ServiceProvider from '../services/provider'
-import WalletState from '../models/walletState'
-import { MarketOrderType } from '../models/marketOrder'
-import { bigIntMax, bigIntMin } from '../utils/common'
-import router from '../router/index'
-import { Vote } from '../models/vote'
+import ServiceProvider from "../services/provider"
+import WalletState from "../models/walletState"
+import { MarketOrderType } from "../models/marketOrder"
+import { bigIntMax, bigIntMin } from "../utils/common"
+import router from "../router/index"
+import { Vote } from "../models/vote"
 
 const wallet = ServiceProvider.wallet()
 const market = ServiceProvider.market()
@@ -26,7 +26,7 @@ function state() {
 
 /**
  * Note: 
- * I haven't spent too much time figuring out how to pass arguments to Vuex getters, only knowing that it's not well-supported natively.
+ * I haven"t spent too much time figuring out how to pass arguments to Vuex getters, only knowing that it"s not well-supported natively.
  * So for the first implementation whenever we need to get a subset of data for particular parameters —
  * — we return a Map from the corresponding getter, so that the consuming part can access the data with one key lookup operation.
  * 
@@ -87,7 +87,7 @@ const getters = {
         assetPriceMap.set(asset.id, prices)
       })
 
-      console.log('Best asset prices:')
+      console.log("Best asset prices:")
       console.log(assetPriceMap)
 
       return assetPriceMap
@@ -117,17 +117,17 @@ const getters = {
 const actions = {
   async syncWallet(context) {
     const walletState = await wallet.getState()
-    context.commit('setWallet', walletState)
+    context.commit("setWallet", walletState)
   },
 
   async refreshOwnedAssetsData(context) {
     let assets = await market.getAssetsOnTheMarket()
-    context.commit('setAssets', assets)
+    context.commit("setAssets", assets)
   },
 
   async refreshMarketplaceData(context) {
     let assets = await market.getAssetsOnTheMarket()
-    context.commit('setAssets', assets)
+    context.commit("setAssets", assets)
   },
 
   async swapToAsset(context, params) {
@@ -141,7 +141,7 @@ const actions = {
       title: "Confirming Transaction",
       message: "Please wait.."
     }
-    context.commit('setAlert', pendingAlert)
+    context.commit("setAlert", pendingAlert)
 
     const status = await market.buy(asset, amount, price)
 
@@ -151,7 +151,7 @@ const actions = {
         title: "Transaction Confirmed",
         message: "See details in MetaMask."
       }
-      context.commit('setAlert', successAlert)
+      context.commit("setAlert", successAlert)
 
       router.push("/assets")
     } else {
@@ -160,21 +160,21 @@ const actions = {
         title: "Transaction Failed",
         message: "See details in MetaMask."
       }
-      context.commit('setAlert', failAlert)
+      context.commit("setAlert", failAlert)
     }
   },
 
   async refreshProposalsDataForAsset(context, params) {
-    context.dispatch('refreshMarketplaceData')
+    context.dispatch("refreshMarketplaceData")
 
     let assetId = params.assetId
 
     let assetProposals = await dao.getProposalsForAsset(assetId)
 
-    console.log('New Proposals')
+    console.log("New Proposals")
     console.log(assetProposals)
 
-    context.commit('setProposalsForAsset', { assetId: assetId, proposals: assetProposals })
+    context.commit("setProposalsForAsset", { assetId: assetId, proposals: assetProposals })
   },
 
   async createProposal(context, params) {
@@ -187,7 +187,7 @@ const actions = {
       title: "Confirming Transaction",
       message: "Please wait.."
     }
-    context.commit('setAlert', pendingAlert)
+    context.commit("setAlert", pendingAlert)
 
     const status = await dao.createProposal(asset, title, description)
 
@@ -197,9 +197,9 @@ const actions = {
         title: "Transaction Confirmed",
         message: "See details in MetaMask."
       }
-      context.commit('setAlert', successAlert)
+      context.commit("setAlert", successAlert)
 
-      context.dispatch('refreshProposalsDataForAsset', { assetId: params.assetId })
+      context.dispatch("refreshProposalsDataForAsset", { assetId: params.assetId })
 
       router.push("/dao/" + params.assetId + "/proposals")
     } else {
@@ -208,7 +208,7 @@ const actions = {
         title: "Transaction Failed",
         message: "See details in MetaMask."
       }
-      context.commit('setAlert', failAlert)
+      context.commit("setAlert", failAlert)
     }
   },
 
@@ -222,7 +222,7 @@ const actions = {
       title: "Confirming Transaction",
       message: "Please wait.."
     }
-    context.commit('setAlert', pendingAlert)
+    context.commit("setAlert", pendingAlert)
 
     const status = await dao.vote(asset, proposal, voteType)
 
@@ -232,21 +232,21 @@ const actions = {
         title: "Transaction Confirmed",
         message: "See details in MetaMask."
       }
-      context.commit('setAlert', successAlert)
+      context.commit("setAlert", successAlert)
 
-      context.dispatch('refreshProposalsDataForAsset', { assetId: params.assetId })
+      context.dispatch("refreshProposalsDataForAsset", { assetId: params.assetId })
     } else {
       const failAlert = {
         type: "info",
         title: "Transaction Failed",
         message: "See details in MetaMask."
       }
-      context.commit('setAlert', failAlert)
+      context.commit("setAlert", failAlert)
     }
   },
 
   dismissAlert(context) {
-    context.commit('setAlert', null)
+    context.commit("setAlert", null)
   }
 }
 

@@ -1,5 +1,5 @@
-import EthereumClient from '../../data/network/web3/ethereum/ethereumClient'
-import WalletState from '../../models/walletState'
+import EthereumClient from "../../data/network/web3/ethereum/ethereumClient"
+import WalletState from "../../models/walletState"
 
 /**
  * Wallet service

@@ -20,9 +20,9 @@
 }
 
 const VoteType = {
-  Yes: 'Yes',
-  No: 'No',
-  Abstain: 'Abstain'
+  Yes: "Yes",
+  No: "No",
+  Abstain: "Abstain"
 }
 
 export {Vote, VoteType }

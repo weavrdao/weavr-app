@@ -1,14 +1,14 @@
 module.exports = {
   client: {
     service: {
-      name: 'frabric-app',
+      name: "frabric-app",
       // URL to the GraphQL API
-      url: 'http://localhost:3000/graphql',
+      url: "http://localhost:3000/graphql",
     },
     // Files processed by the extension
     includes: [
-      'src/**/*.vue',
-      'src/**/*.js',
+      "src/**/*.vue",
+      "src/**/*.js",
     ],
   },
 }
