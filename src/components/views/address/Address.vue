@@ -1,5 +1,5 @@
 <template>
-  <div class="tag is-info is-large is-clickable" @click="onClick">
+  <div class="tag is-info is-medium is-clickable" @click="onClick">
     <span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
