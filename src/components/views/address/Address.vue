@@ -16,7 +16,7 @@
         />
       </svg>
     </span>
-    <span class="is-family-monospace">
+    <span class="is-family-monospace" v-bind:title="address">
       {{
         address.substring(0, 8) + "..." + address.substring(address.length - 4)
       }}
