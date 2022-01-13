@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-4">
     Viewing <strong><slot></slot></strong> (<a
       href="javascript:void(0)"
       v-on:click="goBack"
