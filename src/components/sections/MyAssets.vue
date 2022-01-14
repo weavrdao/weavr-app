@@ -32,7 +32,7 @@
         </div>
       </div>
       <ul class="column is-two-fifths">
-        <li v-if="searchResults.length === 0" class="p-3 m-2">
+        <li class="p-3 m-2">
           <AssetListItemPlaceholder />
         </li>
         <li v-for="asset in searchResults" :key="asset.id" class="p-1 m-3">
