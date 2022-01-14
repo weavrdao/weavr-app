@@ -36,6 +36,7 @@
     "stylus": "^0.56.0",
     "stylus-loader": "^3.0.2",
     "vue": "^3.0.0",
+    "vue-markdown-render": "^2.0.0",
     "vue-router": "^4.0.10",
     "vue-template-compiler": "^2.6.11",
     "vuex": "^4.0.2"

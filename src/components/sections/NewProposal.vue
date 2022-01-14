@@ -24,7 +24,7 @@
         <label for="new-proposal-desc" class="label">Description</label>
         <div class="control">
           <textarea
-            class="textarea"
+            class="textarea is-family-monospace"
             type="text"
             id="new-proposal-desc"
             name="new-proposal-desc"
@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <div class="field">
+      <!--       <div class="field">
         <label for="new-proposal-start-date" class="label"
           >Start Date and Time</label
         >
@@ -63,7 +63,7 @@
             v-model="endDate"
           />
         </div>
-      </div>
+      </div> -->
 
       <Button label="Publish" customClasses="w-full" @click="publish" />
     </div>
@@ -91,8 +91,6 @@ export default {
     return {
       title: "",
       description: "",
-      startDate: "",
-      endDate: "",
     };
   },
   computed: {
