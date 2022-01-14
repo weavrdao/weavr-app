@@ -1,58 +1,57 @@
 <template>
-  <div>
-    <section aria-labelledby="proposal-title">
-      <div>
-        <div class="panel m-2 p-4">
-          <h2 id="proposal-title" class="is-size-5 has-text-weight-bold">
-            {{ proposal.title }}
-          </h2>
-          <div class="mb-2 mt-2" v-if="ended">
-            <span v-if="this.passed == this.PASSED.Yes" class="tag is-success"
-              >PASSED</span
-            >
-            <span
-              v-else-if="this.passed == this.PASSED.No"
-              class="tag is-danger"
-              >FAILED</span
-            >
-            <span v-else class="tag is-info">TIED</span>
-          </div>
-          <div v-else>
-            <span class="tag is-success">ONGOING</span> — Ends on
-            <strong>{{ endDateString }}</strong>
-          </div>
-          <dl>
-            <dt class="mt-1 has-text-weight-bold help">Created By</dt>
-            <dd class="mb-3">
-              <Address :value="proposal.creatorAddress" />
-            </dd>
-            <dt class="mt-1 has-text-weight-bold help">Results</dt>
-            <dd class="mb-3">
-              <div>
-                <span class="tag is-success">Yes</span> —
-                {{ numberFormat.format(votes.yes.percentage) }}% ({{
-                  votes.yes.count
-                }}
-                shares)
-              </div>
-              <div>
-                <span class="tag is-danger">No</span> —
-                {{ numberFormat.format(votes.no.percentage) }}% ({{
-                  votes.no.count
-                }}
-                shares)
-              </div>
-            </dd>
-          </dl>
-          <Button
-            label="View Details"
-            customClasses="pt-1 is-info"
-            @click="openProposal"
-          />
-        </div>
+  <section aria-labelledby="proposal-title">
+    <div class="panel mb-2 mt-2 p-4">
+      <h2 id="proposal-title" class="is-size-5 has-text-weight-bold mb-4">
+        {{ proposal.title }}
+      </h2>
+      <div class="mb-2 mt-2" v-if="ended">
+        <span v-if="this.passed == this.PASSED.Yes" class="tag is-success"
+          >PASSED</span
+        >
+        <span v-else-if="this.passed == this.PASSED.No" class="tag is-danger"
+          >FAILED</span
+        >
+        <span v-else class="tag is-info">TIED</span>
       </div>
-    </section>
-  </div>
+      <div v-else>
+        <span class="tag is-success">ONGOING</span> — Ends on
+        <strong>{{ endDateString }}</strong
+        >, (<strong>{{ timeRemainingString }}</strong> left)
+      </div>
+      <dl>
+        <dt class="mt-1 has-text-weight-bold help">Created By</dt>
+        <dd class="mb-3">
+          <Address :value="proposal.creatorAddress" />
+        </dd>
+        <dt class="mt-1 has-text-weight-bold help">Results</dt>
+        <dd class="mb-3">
+          <div>
+            <span class="tag is-success">Yes</span> —
+            {{ numberFormat.format(votes.yes.percentage) }}% ({{
+              votes.yes.count
+            }}
+            shares)
+          </div>
+          <div>
+            <span class="tag is-danger">No</span> —
+            {{ numberFormat.format(votes.no.percentage) }}% ({{
+              votes.no.count
+            }}
+            shares)
+          </div>
+        </dd>
+      </dl>
+      <Button
+        v-if="!embedded"
+        label="View Details"
+        customClasses="pt-1 is-info"
+        @click="openProposal"
+      />
+      <div v-else>
+        <slot></slot>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -75,6 +74,10 @@ export default {
       type: Object,
       required: true,
     },
+    embedded: {
+      type: Boolean,
+      required: false,
+    },
   },
   data() {
     return {
@@ -87,6 +90,8 @@ export default {
         No: 1,
         Tie: 2,
       },
+
+      timeRemainingString: "",
     };
   },
   computed: {
@@ -139,6 +144,29 @@ export default {
     },
   },
   methods: {
+    setTimeRemainingCountdown() {
+      clearInterval(this.countdownRef);
+
+      this.countdownRef = setInterval(
+        function () {
+          let now = new Date().getTime() / 1000;
+
+          let t = this.proposal.endTimestamp - now;
+
+          if (t >= 0) {
+            let days = Math.floor(t / (60 * 60 * 24));
+            let hours = Math.floor((t % (60 * 60 * 24)) / (60 * 60));
+            let mins = Math.floor((t % (60 * 60)) / 60);
+            let secs = Math.floor(t % 60);
+
+            this.timeRemainingString = `${days}d, ${hours}h, ${mins}m, ${secs}s`;
+          } else {
+            this.timeRemainingString = "The voting is over";
+          }
+        }.bind(this),
+        1000
+      );
+    },
     dateStringForTimestamp(timestamp) {
       var date = new Date(timestamp * 1000);
 
@@ -163,6 +191,10 @@ export default {
     openProposal() {
       this.$router.push(`/dao/${this.assetId}/proposals/${this.proposal.id}`);
     },
+  },
+
+  created() {
+    this.setTimeRemainingCountdown();
   },
 };
 </script>

@@ -31,8 +31,7 @@
       </div>
       <ul class="column is-half mt-5 mb-5 mr-1 ml-1">
         <li>
-          <div class="panel m-2 p-4">
-            <!-- <Button label="New Proposal"></Button> -->
+          <div class="panel mt-2 mb-2 p-4">
             <a href="javascript:void(0)" @click="createProposal"
               ><strong>Create a new proposal...</strong></a
             >
@@ -59,7 +58,7 @@ import { mapGetters, mapActions } from "vuex";
 import StackNavigationBar from "../layout/navigation/StackNavigationBar.vue";
 /* import Button from "../views/common/Button.vue"; */
 import ProposalListItem from "../views/voting/ProposalListItem.vue";
-import Accordion from "../layout/utils/Accordion.vue";
+import Accordion from "../utils/Accordion.vue";
 import Address from "../views/address/Address.vue";
 
 export default {
