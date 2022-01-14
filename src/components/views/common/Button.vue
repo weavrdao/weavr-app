@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <button type="button" @click="onClick" :class="classes">
-      {{ label }}
-    </button>
-  </div>
+  <button type="button" @click="onClick" :class="classes">
+    {{ label }}
+  </button>
 </template>
 
 <script>
