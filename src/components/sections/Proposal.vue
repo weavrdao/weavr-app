@@ -24,7 +24,7 @@
     <div class="columns">
       <div class="m-2 p-4 panel content column is-two-thirds">
         <h3 class="subtitle is-size-4 mt-3">Description</h3>
-        {{ proposal.description }}
+        <vue-markdown class="content" :source="proposal.description" />
       </div>
 
       <div class="m-2 p-4 column is-narrow panel ml-2 p-4" v-if="isVotable">
@@ -74,6 +74,7 @@ import VotingProgressBar from "../views/voting/VotingProgressBar.vue";
 import Button from "../views/common/Button.vue";
 import { VoteType } from "../../models/vote";
 import ProposalListItem from "../views/voting/ProposalListItem.vue";
+import VueMarkdown from "vue-markdown-render";
 
 export default {
   name: "Proposal",
@@ -82,6 +83,7 @@ export default {
     VotingProgressBar,
     Button,
     ProposalListItem,
+    VueMarkdown,
   },
   props: {
     assetId: {
@@ -230,6 +232,7 @@ export default {
         assetId: this.assetId,
         proposalId: this.proposalId,
         voteType: this.pickedOption,
+        $toast: this.$toast,
       });
     },
 

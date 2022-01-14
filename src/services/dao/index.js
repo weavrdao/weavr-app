@@ -15,7 +15,7 @@ import AssetContract from "../../data/network/web3/contracts/assetContract"
  * @param {StorageNetwork} storageNetwork Storage network to use
  */
 class DAO {
-  constructor (
+  constructor(
     ethereumClient,
     graphQLAPIClient,
     storageNetwork,
@@ -24,7 +24,7 @@ class DAO {
     this.graphQLAPIClient = graphQLAPIClient
     this.storageNetwork = storageNetwork
   }
-  
+
   /**
    * Get proposals that from this asset"s DAO.
    * @param {string} proposalId
@@ -36,28 +36,27 @@ class DAO {
 
     var proposals = await this.graphQLAPIClient
       .query(
-        ALL_ASSET_PROPOSALS_QUERY, 
-        { assetId }, 
+        ALL_ASSET_PROPOSALS_QUERY,
+        { assetId },
         (mapper, response) => { return mapper.mapProposals(response.data.proposals) }
       )
 
-      console.log("Mapped proposals:")
-      console.log(proposals)
+    console.log("Mapped proposals:")
+    console.log(proposals)
 
     // Fetch and append off-chain data
 
     const proposalDataURIArray = proposals
       .map(proposal => proposal.dataURI)
     let proposalOffchainDataArray = (
-        await this.storageNetwork
-          .getFiles(proposalDataURIArray.map(uri => CommonUtils.pathFromURL(uri)))
-      )
+      await this.storageNetwork
+        .getFiles(proposalDataURIArray.map(uri => CommonUtils.pathFromURL(uri)))
+    )
 
-    console.log("Off-chain data:")
-    console.log(proposalOffchainDataArray)
+    console.log("Off-chain data:", proposalOffchainDataArray);
 
     if (proposalOffchainDataArray.length != proposals.length) {
-      throw("Off-chain data count doesn't match the on-chain data")
+      throw ("Off-chain data count doesn't match the on-chain data")
     }
 
     for (var i = 0; i < proposals.length; i++) {
@@ -88,7 +87,7 @@ class DAO {
    * @param {string} description Proposal body
    * @returns {Boolean} Transaction status (true — mined; false - reverted)
    */
-   async createProposal(
+  async createProposal(
     asset,
     title,
     description
@@ -102,7 +101,7 @@ class DAO {
           description: description
         }
       )
-    
+
     if (proposalCID == null) {
       return
     }
@@ -121,7 +120,7 @@ class DAO {
    * @param {VoteType} voteType Type of the vote
    * @returns {Boolean} Transaction status (true — mined; false - reverted)
    */
-   async vote(
+  async vote(
     asset,
     proposal,
     voteType

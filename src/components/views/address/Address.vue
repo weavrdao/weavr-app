@@ -1,6 +1,6 @@
 <template>
   <div class="tag is-info is-medium is-clickable" @click="onClick">
-    <span>
+    <span class="icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-5 w-5 text-action-blue"
