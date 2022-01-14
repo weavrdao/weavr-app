@@ -15,8 +15,12 @@
         />
       </div>
     </div>
+
     <ul>
-      <li v-for="asset in searchResults" :key="asset.id" class="px-8 py-8">
+      <li v-if="searchResults.length === 0" class="p-3 m-3">
+        <MarketListItemPlaceholder />
+      </li>
+      <li v-for="asset in searchResults" :key="asset.id" class="p-3 m-3">
         <MarketListItem :asset="asset" />
       </li>
     </ul>
