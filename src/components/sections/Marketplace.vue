@@ -30,11 +30,13 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import MarketListItem from "../views/market/MarketListItem.vue";
+import MarketListItemPlaceholder from "../views/market/MarketListItemPlaceholder.vue";
 
 export default {
   name: "Marketplace",
   components: {
     MarketListItem,
+    MarketListItemPlaceholder,
   },
   data() {
     return {
