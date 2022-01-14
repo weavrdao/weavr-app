@@ -4,13 +4,15 @@ import router from "@/router"
 import store from "./store"
 import "./styles/index.css"
 import "bulma/css/bulma.css"
-import Toaster from '@meforma/vue-toaster';
+import Toaster from "@meforma/vue-toaster";
 
 require("dotenv").config()
 
 const app = createApp({
   render: () => h(App)
 })
+
+store.$toast = app.$toast;
 
 app.config.productionTip = false
 app.use(router)

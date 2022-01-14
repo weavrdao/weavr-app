@@ -1,41 +1,31 @@
 <template>
-  <div 
-    class="container"
-  >
-    <div class="mt-8 bg-level-1-light opacity-95 shadow-lg overflow-hidden lg:rounded-lg">
-      <div :class="`px-8 mt-8 ${ searchResults.length == 0 ? 'mb-8' : '' }`">
-        <label for="search" class="sr-only">Search by token name or address</label>
-        <div class="mt-1 relative rounded-lg bg-level-2-dark">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" aria-hidden="true">
-            <svg class="mr-3 h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-            </svg>
-          </div>
-          <input 
-            type="text" 
-            name="search" 
-            id="search" 
-            class="bg-level-2-dark sm:border-0 focus:ring-action-blue focus:border-action-blue block w-full pl-9 sm:text-sm rounded-lg" 
-            placeholder="Search by token name or address"
-            v-model="searchQuery"
-            >
-        </div>
+  <div class="container">
+    <div class="m-4">
+      <label for="search" class="is-sr-only">
+        Search by token name or address
+      </label>
+      <div class="mt-1 relative rounded-lg bg-level-2-dark">
+        <input
+          type="text"
+          name="search"
+          id="search"
+          class="input"
+          placeholder="Search by token name or address"
+          v-model="searchQuery"
+        />
       </div>
-      <ul>
-        <li
-          v-for="asset in searchResults" :key="asset.id"
-          class="px-8 py-8"
-        >
-          <MarketListItem :asset="asset"/>
-        </li>
-      </ul>
     </div>
+    <ul>
+      <li v-for="asset in searchResults" :key="asset.id" class="px-8 py-8">
+        <MarketListItem :asset="asset" />
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex"
-import MarketListItem from "../views/market/MarketListItem.vue"
+import { mapGetters, mapActions } from "vuex";
+import MarketListItem from "../views/market/MarketListItem.vue";
 
 export default {
   name: "Marketplace",
@@ -45,33 +35,36 @@ export default {
   data() {
     return {
       searchQuery: "",
-    }
+    };
   },
   computed: {
     ...mapGetters({
-      assets: "marketplaceActiveAssets"
+      assets: "marketplaceActiveAssets",
     }),
     searchResults() {
-      if (this.searchQuery.length == 0) { return this.assets }
+      if (this.searchQuery.length == 0) {
+        return this.assets;
+      }
 
-      return this.assets
-        .filter(item => { 
-          return item.world.property.address.toLowerCase().includes(this.searchQuery.toLowerCase())
-        })
-    }
+      return this.assets.filter((item) => {
+        return item.world.property.address
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase());
+      });
+    },
   },
-  methods: { 
+  methods: {
     ...mapActions({
       refresh: "refreshMarketplaceData",
-      syncWallet: "syncWallet"
-    })
+      syncWallet: "syncWallet",
+    }),
   },
   mounted() {
-    this.refresh()
-    this.syncWallet()
+    this.refresh();
+    this.syncWallet();
   },
   watch: {
-    "$route": "refresh"
-  }
-}
+    $route: "refresh",
+  },
+};
 </script>

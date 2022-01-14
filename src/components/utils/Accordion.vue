@@ -1,7 +1,7 @@
 <template>
   <div>
     <details class="panel m-2 p-4">
-      <summary>
+      <summary class="is-clickable">
         <strong>{{ summary }}</strong>
       </summary>
       <slot></slot>
