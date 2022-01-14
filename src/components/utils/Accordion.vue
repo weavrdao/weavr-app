@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <details class="panel m-2 p-4">
-      <summary class="is-clickable">
-        <strong>{{ summary }}</strong>
-      </summary>
-      <slot></slot>
-    </details>
-  </div>
+  <details
+    :class="`${shadow ? 'panel' : ''} m-${margin} p-${padding} 
+      ${extraClasses || ''}`"
+    v-bind:open="open"
+  >
+    <summary class="is-clickable">
+      <strong>{{ summary }}</strong>
+    </summary>
+    <slot></slot>
+  </details>
 </template>
 
 <style scoped>
@@ -38,6 +40,26 @@ export default {
     summary: {
       type: String,
       required: true,
+    },
+    shadow: {
+      type: Boolean,
+      default: true,
+    },
+    margin: {
+      type: Number,
+      default: 2,
+    },
+    padding: {
+      type: Number,
+      default: 4,
+    },
+    extraClasses: {
+      type: String,
+      required: false,
+    },
+    open: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {},
