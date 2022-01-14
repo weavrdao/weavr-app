@@ -134,32 +134,19 @@ const actions = {
     const amount = params.amount
 
     const price = context.getters.bestAssetPrices.get(asset.id).ask
+    params.$toast.info("Confirming transaction...", {
+      duration: false
+    });
 
-    const pendingAlert = {
-      type: "pending",
-      title: "Confirming Transaction",
-      message: "Please wait.."
-    }
-    context.commit("setAlert", pendingAlert)
-
-    const status = await market.buy(asset, amount, price)
+    const status = await market.buy(asset, amount, price);
+    params.$toast.clear();
+    console.log(params, params?.$toast);
 
     if (status) {
-      const successAlert = {
-        type: "info",
-        title: "Transaction Confirmed",
-        message: "See details in MetaMask."
-      }
-      context.commit("setAlert", successAlert)
-
+      params.$toast.success("Transaction confirmed!");
       router.push("/assets")
     } else {
-      const failAlert = {
-        type: "info",
-        title: "Transaction Failed",
-        message: "See details in MetaMask."
-      }
-      context.commit("setAlert", failAlert)
+      params.$toast.error("Transaction failed. See details in MetaMask.");
     }
   },
 
@@ -181,33 +168,19 @@ const actions = {
     let title = params.title
     let description = params.description
 
-    const pendingAlert = {
-      type: "pending",
-      title: "Confirming Transaction",
-      message: "Please wait.."
-    }
-    context.commit("setAlert", pendingAlert)
+    params.$toast.show("Confirming transaction...", {
+      duration: false
+    });
 
-    const status = await dao.createProposal(asset, title, description)
+    const status = await dao.createProposal(asset, title, description);
+    params.$toast.clear();
 
     if (status) {
-      const successAlert = {
-        type: "info",
-        title: "Transaction Confirmed",
-        message: "See details in MetaMask."
-      }
-      context.commit("setAlert", successAlert)
-
+      params.$toast.success("Transaction confirmed!");
       context.dispatch("refreshProposalsDataForAsset", { assetId: params.assetId })
-
       router.push("/dao/" + params.assetId + "/proposals")
     } else {
-      const failAlert = {
-        type: "info",
-        title: "Transaction Failed",
-        message: "See details in MetaMask."
-      }
-      context.commit("setAlert", failAlert)
+      params.$toast.error("Transaction failed. See details in MetaMask.");
     }
   },
 
@@ -216,37 +189,20 @@ const actions = {
     let proposal = context.getters.proposalsById.get(params.proposalId)
     let voteType = params.voteType
 
-    const pendingAlert = {
-      type: "pending",
-      title: "Confirming Transaction",
-      message: "Please wait.."
-    }
-    context.commit("setAlert", pendingAlert)
+    params.$toast.show("Confirming transaction...", {
+      duration: false
+    })
 
-    const status = await dao.vote(asset, proposal, voteType)
+    const status = await dao.vote(asset, proposal, voteType);
+    params.$toast.clear();
 
     if (status) {
-      const successAlert = {
-        type: "info",
-        title: "Transaction Confirmed",
-        message: "See details in MetaMask."
-      }
-      context.commit("setAlert", successAlert)
-
+      params.$toast.success("Transaction confirmed!");
       context.dispatch("refreshProposalsDataForAsset", { assetId: params.assetId })
     } else {
-      const failAlert = {
-        type: "info",
-        title: "Transaction Failed",
-        message: "See details in MetaMask."
-      }
-      context.commit("setAlert", failAlert)
+      params.$toast.error("Transaction failed. See details in MetaMask.");
     }
   },
-
-  dismissAlert(context) {
-    context.commit("setAlert", null)
-  }
 }
 
 const mutations = {

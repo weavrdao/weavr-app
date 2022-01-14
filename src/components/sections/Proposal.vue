@@ -230,6 +230,7 @@ export default {
         assetId: this.assetId,
         proposalId: this.proposalId,
         voteType: this.pickedOption,
+        $toast: this.$toast,
       });
     },
 
