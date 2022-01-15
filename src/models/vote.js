@@ -5,7 +5,7 @@
  * @property {VoteType} type Type of the vote posted
  * @property {number} count Voting power of the voter
  */
- class Vote {
+class Vote {
   constructor(
     proposalID,
     voterAddress,
@@ -25,4 +25,4 @@ const VoteType = {
   Abstain: "Abstain"
 }
 
-export {Vote, VoteType }
+export { Vote, VoteType }

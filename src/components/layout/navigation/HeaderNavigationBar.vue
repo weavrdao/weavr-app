@@ -83,7 +83,6 @@ export default {
     },
     menuToggle() {
       this.navigation.isOpen = !this.navigation.isOpen;
-      console.log(this.navigation.isOpen);
     },
   },
 };
