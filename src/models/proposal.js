@@ -31,4 +31,10 @@
   }
 }
 
+const ProposalType = {
+  Normal: {
+    Structural: "Structural",
+    
+  }
+}
 export default Proposal
