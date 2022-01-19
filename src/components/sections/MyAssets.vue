@@ -66,14 +66,14 @@ export default {
       assets: "ownedAssets",
     }),
     searchResults() {
-      if (this.searchQuery.length == 0) {
+      if (this.searchQuery.trim().length == 0) {
         return this.assets;
       }
 
       return this.assets.filter((item) => {
         return item.world.property.address
           .toLowerCase()
-          .includes(this.searchQuery.toLowerCase());
+          .includes(this.searchQuery.trim().toLowerCase());
       });
     },
   },
