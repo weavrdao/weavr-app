@@ -144,7 +144,6 @@ const actions = {
 
     if (status) {
       params.$toast.success("Transaction confirmed!");
-      router.push("/assets")
     } else {
       params.$toast.error("Transaction failed. See details in MetaMask.");
     }
