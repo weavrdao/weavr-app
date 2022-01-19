@@ -1,5 +1,21 @@
 <template>
   <div>
+      <div class="tabs is-centered is-boxed">
+  <ul>
+    <li class="is-active">
+      <a>
+        <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+        <span>Info</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+        <span>Swap</span>
+      </a>
+    </li>
+  </ul>
+</div>
       <a role="button" class="card">
         <div class="card-header">
           <div class="card-title">

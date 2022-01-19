@@ -1,5 +1,17 @@
+/* eslint-disable max-lines-per-function */
+const globalSassFiles = [
+  '~@/styles/_variables.sass',
+  // '~@/styles/App.scss'
+]
 module.exports = {
   publicPath: "./", 
+  css: {
+    loaderOptions: {
+      sass: {
+        additionalData: globalSassFiles.map((src)=>'@import "' + src + '"').join('\n')
+      }
+    }
+},
   chainWebpack: (config) => {
     config
       .plugin("html")
@@ -12,11 +24,11 @@ module.exports = {
     svgRule.uses.clear();
 
     svgRule
-      .use('file-loader')
-      .loader('file-loader')
+      .use("file-loader")
+      .loader("file-loader")
       .tap(options => {
         const newOptions = {
-          symbolId: '[name][hash]',
+          symbolId: "[name][hash]",
           esModule: false
         };
 
@@ -25,9 +37,9 @@ module.exports = {
       .end()
 
     config.module
-      .rule('images')
-      .use('url-loader')
-      .loader('url-loader')
+      .rule("images")
+      .use("url-loader")
+      .loader("url-loader")
       .tap(
         options => Object.assign(options, {
           esModule: false
@@ -36,22 +48,51 @@ module.exports = {
       .end()
 
     config.module
-      .rule('vue')
-      .use('vue-loader')
+      .rule("vue")
+      .use("vue-loader")
       .tap((options) => {
         const transformAssetUrls = options.transformAssetUrls || {}
         return {
           ...options,
           transformAssetUrls: {
-            video: ['src', 'poster'],
-            source: 'src',
-            img: 'src',
-            image: 'xlink:href',
+            video: ["src", "poster"],
+            source: "src",
+            img: "src",
+            image: "xlink:href",
             // ..others
             ...transformAssetUrls,
           },
         }
       })
       .end()
+
+    // config.module
+    //   .rule("sass")
+    //   .test(/\.sass$/)
+    //   .use("sass-loader")
+    //   .loader("sass-loader")
+    //   .loader("css-loader")
+    //   .loader("style-loader")
+    //   .tap((options) => {
+        
+    //     return {
+    //       ...options,
+    //       additionalData: `
+    //         @import "@/bulma/bulma.sass"
+    //       `
+    //     }
+    //   })
+    //   .end()
+
   }
 };
+
+// module.exports = {
+//   css: {
+//     loaderOptions: {
+//       sass: {
+//         // additionalData: `@import "@/styles/variables.sass"`
+//       }
+//     }
+//   },
+// }
