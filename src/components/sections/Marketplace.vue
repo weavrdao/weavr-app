@@ -1,16 +1,14 @@
 <template>
   <div class="container">
     <div class="m-4">
-      <label for="search" class="is-sr-only">
-        Search by token name or address
-      </label>
+      <label for="search" class="is-sr-only"> Filter by address </label>
       <div class="mt-1 relative rounded-lg bg-level-2-dark">
         <input
           type="text"
           name="search"
           id="search"
           class="input"
-          placeholder="Search by token name or address"
+          placeholder="Filter by address..."
           v-model="searchQuery"
         />
       </div>
@@ -47,9 +45,10 @@ export default {
       }
 
       return this.assets.filter((item) => {
-        return item.world.property.address
+        console.log(item);
+        return item.address
           .toLowerCase()
-          .includes(this.searchQuery.toLowerCase());
+          .includes(this.searchQuery.trim().toLowerCase());
       });
     },
   },
