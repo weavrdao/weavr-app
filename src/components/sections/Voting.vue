@@ -101,20 +101,6 @@
         </div>
       </div>
       <div class="column is-one-third mt-5 mb-5 mr-1 ml-1">
-        <div class="panel mt-2 mb-2 p-4">
-          <strong>Links</strong>
-          <ul>
-            <li><a href="#">Contract Etherscan page</a></li>
-            <li><a href="#">IPFS Document</a></li>
-          </ul>
-        </div>
-
-        <div class="panel mt-2 mb-2 p-4">
-          <strong>Join the discussion</strong>
-          <ul>
-            <li><a href="#">Discord</a></li>
-          </ul>
-        </div>
         <div class="panel mt-2 mb-2">
           <Accordion extraClasses="is-shadowless" summary="Swap">
             <div class="field">
@@ -166,6 +152,21 @@
 
             <Button label="Swap" customClasses="w-full" @click="performSwap" />
           </Accordion>
+        </div>
+
+        <div class="panel mt-2 mb-2 p-4">
+          <strong>Links</strong>
+          <ul>
+            <li><a href="#">Contract Etherscan page</a></li>
+            <li><a href="#">IPFS Document</a></li>
+          </ul>
+        </div>
+
+        <div class="panel mt-2 mb-2 p-4">
+          <strong>Join the discussion</strong>
+          <ul>
+            <li><a href="#">Discord</a></li>
+          </ul>
         </div>
         <div class="panel mt-2 mb-2">
           <Accordion extraClasses="is-shadowless" summary="Price graph">
