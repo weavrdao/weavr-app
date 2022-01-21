@@ -6,7 +6,7 @@
   >
     <div class="navbar-brand">
       <a class="navbar-item" href="#">
-        <div>FRTHREAD#001</div>
+        <div class="title">FRABRIC DAO</div>
       </a>
 
       <a
@@ -46,16 +46,12 @@
 </template>
 
 <script>
-import { proposals } from "../../../data/mock/mockDataProvider";
 import SignerAddress from "../../views/address/SignerAddress.vue";
 import { useRoute } from "vue-router";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "HeaderHavigationBar",
   components: {
-    // Disclosure,
-    // DisclosureButton,
-    // DisclosurePanel,
     SignerAddress,
   },
   data() {
@@ -83,7 +79,6 @@ export default {
     },
     menuToggle() {
       this.navigation.isOpen = !this.navigation.isOpen;
-      console.log(this.navigation.isOpen);
     },
   },
 };

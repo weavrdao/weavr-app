@@ -53,7 +53,6 @@
     "eslint-plugin-vue": "^7.0.0",
     "file-loader": "^3.0.1",
     "postcss": "^7.0.36",
-    "style-loader": "^3.3.1",
     "vue-loader": "^15.9.7"
   },
   "browserslist": [

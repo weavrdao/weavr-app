@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="">
 
     <div class="m-4">
       <label for="search" class="is-sr-only">
@@ -16,63 +16,61 @@
         />
       </div>
     </div>
-      <div class="">
-        <span class="bulma-arrow-mixin"></span>
-            
-      <div class="block is-flex is-justify-content-flex-end">
-        <a role="button" @click="toggleView">
-        <unicon  v-if="!isGrid" name="apps" :width="iconSize" :height="iconSize" fill="black" icon-style="solid"></unicon>
-        <unicon  v-if="isGrid" name="list-ul" :width="iconSize" :height="iconSize" fill="black" icon-style="solid"></unicon>
-      </a>
-    </div>
-    <ul v-if="!isGrid">
-      <li v-for="asset in searchResults" :key="asset.id" class="px-8 py-8">
-        <div class="block p-3">
-         <MarketListItem :asset="asset" />
-       </div>
-       <div class="block p-3">
-         <MarketListItem :asset="asset" />
-       </div>
-       <div class="block p-3">
-         <MarketListItem :asset="asset" />
-       </div>
-       <div class="block p-3">
-         <MarketListItem :asset="asset" />
-       </div>
-       <div class="block p-3">
-         <MarketListItem :asset="asset" />
-       </div>
-       <div class="block p-3">
-         <MarketListItem :asset="asset" />
-       </div>
-      </li>
-    </ul>
-    <div class="" v-if="isGrid">
-      <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-flex-grow-3"   v-for="asset in searchResults" :key="asset.id">
-       <div class="block p-3">
-         <MarketListItem :asset="asset" />
-       </div>
-       <div class="block p-3">
-         <MarketListItem :asset="asset" />
-       </div>
-       <div class="block p-3">
-         <MarketListItem :asset="asset" />
-       </div><div class="block p-3">
-         <MarketListItem :asset="asset" />
-       </div>
-       <div class="block p-3">
-         <MarketListItem :asset="asset" />
-       </div>
+      <div class="box">
+        <div class="block is-flex is-justify-content-flex-end">
+          <a role="button" @click="toggleView" v-show="!isMobile">
+            <unicon  v-if="!isGrid" name="apps" :width="iconSize" :height="iconSize" fill="black" icon-style="solid"></unicon>
+            <unicon  v-if="isGrid" name="list-ul" :width="iconSize" :height="iconSize" fill="black" icon-style="solid"></unicon>
+          </a>
+        </div>
+        <ul v-if="!isGrid && !isMobile">
+          <li v-for="asset in searchResults" :key="asset.id" class="px-8 py-8">
+            <div class="block p-3">
+            <MarketListItem :is-grid="isGrid" :asset="asset" />
+          </div>
+          <div class="block p-3">
+            <MarketListItem :is-grid="isGrid" :asset="asset" />
+          </div>
+          <div class="block p-3">
+            <MarketListItem :is-grid="isGrid" :asset="asset" />
+          </div>
+          <div class="block p-3">
+            <MarketListItem :is-grid="isGrid" :asset="asset" />
+          </div>
+          <div class="block p-3">
+            <MarketListItem :is-grid="isGrid" :asset="asset" />
+          </div>
+          <div class="block p-3">
+            <MarketListItem :is-grid="isGrid" :asset="asset" />
+          </div>
+          </li>
+        </ul>
+        <div class="block" v-if="isGrid">
+          <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-flex-grow-3"   v-for="asset in searchResults" :key="asset.id">
+          <div class="block p-3">
+            <MarketListItem :isGrid="isGrid" :asset="asset" />
+          </div>
+          <div class="block p-3">
+            <MarketListItem :isGrid="isGrid" :asset="asset" />
+          </div>
+          <div class="block p-3">
+            <MarketListItem :isGrid="isGrid" :asset="asset" />
+          </div><div class="block p-3">
+            <MarketListItem :isGrid="isGrid" :asset="asset" />
+          </div>
+          <div class="block p-3">
+            <MarketListItem  :isGrid="isGrid" :asset="asset" />
+          </div>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
 
 <script>
+
 import { mapGetters, mapActions } from "vuex";
 import MarketListItem from "../views/market/MarketListItem.vue";
-
 export default {
   name: "Marketplace",
   components: {
@@ -81,7 +79,8 @@ export default {
   data() {
     return {
       searchQuery: "",
-      isGrid: false,
+      isGrid: true``,
+      isMobile: false,
       iconSize: "32"
     };
   },
@@ -100,6 +99,11 @@ export default {
           .includes(this.searchQuery.toLowerCase());
       });
     },
+    
+  },
+  beforeUpdate() {
+    this.isMobile = window.innerWidth < 769
+    console.log(this.isMobile)
   },
   methods: {
     ...mapActions({
@@ -119,3 +123,4 @@ export default {
   },
 };
 </script>
+

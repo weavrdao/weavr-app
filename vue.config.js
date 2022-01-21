@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 const globalSassFiles = [
-  '~@/styles/_variables.sass',
-  // '~@/styles/App.scss'
+  // '~@/styles/_variables.scss',
+  '~@/styles/index.scss'
 ]
 module.exports = {
   publicPath: "./", 

@@ -6,7 +6,6 @@
  * @property {number} startTimestamp Unix timestamp marking the start of the voting window
  * @property {number} endTimestamp Unix timestamp marking the end of the voting window
  * @property {Vote[]} votes Votes posted on the proposal
- * @property {ProposalType} type Type of the proposal
  * @property {string} title Title of the proposal
  * @property {string} description Body of the proposal
  */
@@ -19,7 +18,6 @@ class Proposal {
     startTimestamp,
     endTimestamp,
     votes,
-    type,
     title = null,
     description = null
   ) {
@@ -29,23 +27,10 @@ class Proposal {
     this.startTimestamp = startTimestamp
     this.endTimestamp = endTimestamp
     this.votes = votes,
-    this.type = type
     this.title = title
     this.description = description
   }
 }
 
-const ProposalType = {
-  Normal: {
-    Structural: "Structural",
-    Paper: "Paper",
-    Service: "Service"
-  },
-  Special: {
-    Upgrade: "Upgrade",
-    Dissolution: "Dissolution",
-    Network: "Network",
-  }
-}
 
-export default {Proposal, ProposalType}
+export default Proposal

@@ -1,44 +1,103 @@
 <template>
-  <div>
-      <a role="button" class="card">
-        <div class="card-header">
-          <div class="card-title">
-            {{asset.address}}
+  <div class="card">
+      <div v-if="isGrid">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img :src="asset.coverPictureURI" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img :src="asset.coverPictureURI" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4"><Address :value="asset.contractAddress"></Address></p>
+            </div>
+          </div>
+
+          <div class="content">
+            <div class="">
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+              </div>
+            <p class="is-italic	">{{asset.description}}</p>
+            <p class="has-text-weight-semibold">Year Built:<time class="has-text-weight-normal" datetime="2016">{{asset.yearBuilt}}</time></p>
+            <p class="has-text-weight-semibold">Token Holders: <span class="has-text-weight-normal">{{ownersCount}}</span></p>
           </div>
         </div>
-        <div class="media">
-          <div class="media-left">
-            <div class="card-image">
-            <figure class="image is-128x128">
-              <img :src="coverPictureURI" alt="">
-            </figure>
-          </div>
-          </div>
-          <div class="media-content">
-            <Address :value="walletAddress"></Address>
-          </div>
+        <div class="card-footer">
+          <a role="button" class="button is-primary is-fullwidth">Open Thread</a>
         </div>
-      </a>
-    </div>
+      </div>
+      <div v-else>
+        <div class="card-header p-3">
+            <Address :value="asset.contractAddress"></Address>
+        </div>
+         <div class="card-content">
+              <div class="level">
+                <div class="level-item">
+                  <figure class="image is-128x128">
+                    <img :src="asset.coverPictureURI" alt="Placeholder image">
+                  </figure>
+                </div>
+                <div class="level-item">
+                  <div class="is-flex is-flex-wrap-wrap is-hidden-thouch">
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+              </div>
+              <div class="level-item">
+                <div class="level">
+                  <div class="level-item">
+                    <p class="is-italic	">{{asset.description}}</p>
+                  </div>
+                  <div class="level-item">
+                    <p class="has-text-weight-semibold">Year Built:<time class="has-text-weight-normal" datetime="2016">{{asset.yearBuilt}}</time></p>
+                  </div>
+                  <div class="level-item">
+                    <p class="has-text-weight-semibold">Token Holders: <span class="has-text-weight-normal">{{ownersCount}}</span></p>         
+                  </div>
+                </div>
+              </div>  
+            </div>
+          </div>   
+        </div>
+        <div class="card-footer">
+          <a role="button" class="button is-primary is-fullwidth">Open Thread</a>
+        </div>
+      </div>
+  </div>
 </template>
 
 <script>
 import { toFixedNumber } from "../../../utils/common";
 import { mapGetters, mapActions } from "vuex";
 import Address from "../address/Address.vue";
-import Button from "../common/Button.vue";
 
 export default {
   name: "MarketListItem",
   components: {
     Address,
-    // Button,
   },
   props: {
     asset: {
       type: Object,
       required: true,
     },
+    isGrid: {
+      type: Boolean,
+      required: true
+    }
   },
   data() {
     return {
@@ -47,7 +106,7 @@ export default {
       }),
       orderFromValue: "",
       orderToValue: "",
-      coverPictureURI: require("../../../assets/pics/fbra.jpg"),
+      
     };
   },
   computed: {
@@ -78,6 +137,13 @@ export default {
     },
     orderFromString() {
       return toFixedNumber(this.orderFromValue);
+    },
+    ownersCount() {
+      let i = 0
+      this.asset.owners.forEach(() => {
+        i = i+1
+      })
+      return i
     },
   },
   methods: {
