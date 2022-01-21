@@ -18,6 +18,9 @@
             {{ numberFormat.format(openProposalCount) }} open proposals)
           </div>
 
+          <div class="help"><strong>Token</strong></div>
+          <Address class="mb-3" :value="asset.contractAddress" />
+
           <div class="mb-3">
             <span class="tag m-1 is-success">badge2</span>
             <span class="tag m-1 is-warning">badge3</span>
@@ -30,10 +33,14 @@
             <span class="tag m-1 is-success">badge2</span>
             <span class="tag m-1 is-warning">badge3</span>
           </div>
-
-          <div class="help"><strong>Token</strong></div>
-          <Address class="mb-3" :value="asset.contractAddress" />
-
+        </div>
+        <div class="panel m-2 p-4">
+          <div class="mt-2 mb-2 title is-5 has-text-weight-bold">
+            Description
+          </div>
+          <div class="content">
+            {{ asset.description }}
+          </div>
           <dl class="columns is-mobile">
             <div class="column">
               <dt class="help">
@@ -90,14 +97,6 @@
               </dd>
             </div>
           </dl>
-          <Accordion
-            extraClasses="is-shadowless"
-            summary="Description"
-            margin="0"
-            padding="0"
-          >
-            {{ asset.description }}
-          </Accordion>
         </div>
       </div>
       <div class="column is-one-third mt-5 mb-5 mr-1 ml-1">
