@@ -150,7 +150,7 @@
               </div>
             </div>
 
-            <Button label="Swap" customClasses="w-full" @click="performSwap" />
+            <Button label="Swap" extraClasses="w-full" @click="performSwap" />
           </Accordion>
         </div>
 

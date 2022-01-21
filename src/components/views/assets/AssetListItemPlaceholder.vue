@@ -4,7 +4,7 @@
       <div>Your Next Asset Will Be Here</div>
       <Button
         label="Go to Marketplace"
-        customClasses="mt-4"
+        extraClasses="mt-4"
         @click="openMarketplace"
       />
     </div>

@@ -44,7 +44,7 @@
       <Button
         v-if="!embedded"
         label="View Details"
-        customClasses="pt-1 is-info"
+        extraClasses="pt-1 is-info"
         @click="openProposal"
       />
       <div v-else>
