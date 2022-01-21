@@ -90,9 +90,25 @@
               </dd>
             </div>
           </dl>
+          <Accordion
+            extraClasses="is-shadowless"
+            summary="Description"
+            margin="0"
+            padding="0"
+          >
+            {{ asset.description }}
+          </Accordion>
         </div>
       </div>
       <div class="column is-one-third mt-5 mb-5 mr-1 ml-1">
+        <div class="panel mt-2 mb-2 p-4">
+          <strong>Links</strong>
+          <ul>
+            <li><a href="#">Contract Etherscan page</a></li>
+            <li><a href="#">IPFS Document</a></li>
+          </ul>
+        </div>
+
         <div class="panel mt-2 mb-2 p-4">
           <strong>Join the discussion</strong>
           <ul>
