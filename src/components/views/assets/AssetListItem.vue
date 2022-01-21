@@ -53,7 +53,7 @@
           :isPrimary="true"
           label="Open DAO"
           @click="openDAO"
-          customClasses="p-0 pl-2 pr-2"
+          extraClasses="p-0 pl-2 pr-2"
         />
       </Accordion>
     </div>
