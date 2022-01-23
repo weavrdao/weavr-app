@@ -122,6 +122,7 @@ export default {
         assetId: this.assetId,
         title: this.title,
         description: this.description,
+        type: "type",
         $toast: this.$toast,
       });
     },

@@ -17,6 +17,7 @@
     startTimestamp,
     endTimestamp,
     votes,
+    type = null,
     title = null,
     description = null
   ) {
@@ -26,6 +27,7 @@
     this.startTimestamp = startTimestamp
     this.endTimestamp = endTimestamp
     this.votes = votes
+    this.type = type
     this.title = title
     this.description = description
   }
@@ -37,4 +39,4 @@ const ProposalType = {
     
   }
 }
-export default Proposal
+export default {Proposal, ProposalType}

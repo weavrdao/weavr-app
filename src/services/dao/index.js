@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import * as CommonUtils from "../../utils/common"
 import StorageNetwork from "../../data/network/storage/storageNetwork"
 import Proposal from "../../models/proposal"
@@ -70,6 +71,7 @@ class DAO {
         proposal.startTimestamp,
         proposal.endTimestamp,
         proposal.votes,
+        proposal.type,
         data.title,
         data.description
       )
@@ -85,12 +87,14 @@ class DAO {
    * @param {Asset} asset Asset that the DAO controls
    * @param {string} title Proposal title
    * @param {string} description Proposal body
+   * @param {string} type Proposal type
    * @returns {Boolean} Transaction status (true — mined; false - reverted)
    */
   async createProposal(
     asset,
     title,
-    description
+    description,
+    type
   ) {
     const assetContract = new AssetContract(this.ethereumClient, asset.contractAddress)
 
@@ -98,7 +102,8 @@ class DAO {
       .addFile(
         {
           title: title,
-          description: description
+          description: description,
+          type: type
         }
       )
 
@@ -129,6 +134,7 @@ class DAO {
 
     let status
 
+    // eslint-disable-next-line default-case
     switch (voteType) {
       case VoteType.Yes:
         status = await assetContract.voteYes(proposal.id)

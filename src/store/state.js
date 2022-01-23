@@ -167,12 +167,13 @@ const actions = {
     let asset = context.getters.assetsById.get(params.assetId)
     let title = params.title
     let description = params.description
+    let type = params.type
 
     params.$toast.show("Confirming transaction...", {
       duration: false
     });
 
-    const status = await dao.createProposal(asset, title, description);
+    const status = await dao.createProposal(asset, title, description, type);
     params.$toast.clear();
 
     if (status) {
