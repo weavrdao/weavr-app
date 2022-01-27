@@ -1,5 +1,5 @@
 <template>
-  <section class="card">
+  <section class="card has-text-foam has-background-levelOne" >
       <div v-if="isGrid">
         <div class="card-image">
           <figure class="image is-4by3">
@@ -18,7 +18,7 @@
             </div>
           </div>
 
-          <div class="content">
+          <div class="card-content">
             <div class="">
                 <span class="tag mr-2 is-primary">tag</span>
                 <span class="tag mr-2 is-primary">tag</span>
@@ -32,7 +32,7 @@
             <p class="has-text-weight-semibold">Token Holders: <span class="has-text-weight-normal">{{ownersCount}}</span></p>
           </div>
         </div>
-        <div class="card-footer">
+        <div class="card-footer" style="border: 0px;">
           <a role="button" class="button is-primary is-fullwidth">Open Thread</a>
         </div>
       </div>

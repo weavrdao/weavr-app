@@ -1,0 +1,67 @@
+@charset "utf-8";
+// 1. Import the initial variables
+@import "../../node_modules/bulma/sass/utilities/initial-variables.sass";
+@import "../../node_modules/bulma/sass/utilities/functions";
+
+
+// Add font family
+$family-sans: "Work Sans", "sans";
+
+//FRABRIC THEME
+$purpleBlack: #080220;
+$purpleBlack-invert: findColorInvert($purpleBlack);
+$purpleOne: #100545;
+$purpleTwo: #181A50;
+$purpleThree: #57467B;
+$foam: #D6FCFE;
+$actionBlue: #46A4F8;
+$bgLevel1Light: #1B1B33;
+$bgLevel2Light: #41485A;
+$bgLevel2Dark: #111028;
+$affirmativeGreen: #6EA082;
+$negativeRed: #AC5960;
+$black: $purpleBlack;
+$dark: $bgLevel2Dark;
+// Derived variables
+$primary: $actionBlue;
+$primary-invert: findColorInvert($primary);
+$danger: $negativeRed;
+// Use the new serif family
+$family-primary: $family-sans;
+// Components and tags Styling
+$input-color:$foam;
+$scheme-main: $purpleBlack;
+$scheme-color: $negativeRed;
+$text: $foam;
+$strong-color: $danger;
+$border-light: $foam;
+// Setup your Custom Colors
+$linkedin: #0077b5;
+$linkedin-invert: findColorInvert($linkedin);
+$twitter: #55acee;
+$twitter-invert: findColorInvert($twitter);
+$github: #333;
+$github-invert: findColorInvert($github);
+
+
+
+// Adding new color variables to the color map.
+@import "../../node_modules/bulma/sass/utilities/derived-variables";
+$addColors: (
+  "twitter":($twitter, $twitter-invert),
+  "linkedin": ($linkedin, $linkedin-invert),
+  "github": ($github, $github-invert),
+  "purpleBlack": ($purpleBlack, $purpleBlack-invert),
+  "purpleOne": ($purpleOne, findColorInvert($purpleOne)),
+  "purpleTwo": ($purpleTwo, findColorInvert($purpleTwo)),
+  "purpleThree": ($purpleThree, findColorInvert($purpleThree)),
+  "foam": ($foam, findColorInvert($foam)),
+  "affirmativeGreen": ($affirmativeGreen, findColorInvert($affirmativeGreen)),
+  "levelOne": ($bgLevel1Light , findColorInvert($bgLevel1Light)),
+  "levelTwoLight": ($bgLevel2Light, findColorInvert($bgLevel2Light)),
+  "levelTwoDark": ($bgLevel2Dark, findColorInvert($bgLevel2Dark)),
+);
+$colors: map-merge($colors, $addColors);
+
+// Importing the rest of Bulma
+@import "../../node_modules/bulma/bulma.sass";

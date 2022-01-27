@@ -1,26 +1,26 @@
 <template>
-  <div class="">
+  <div class="has-text-foam">
 
     <div class="">
       <label for="search" class="is-sr-only">
         Search by token name or address
       </label>
-      <div class="mt-1 relative rounded-lg bg-level-2-dark">
+      <div class="mt-1 relative rounded-lg " >
         <input
           type="text"
           name="search"
           id="search"
-          class="input"
+          class="input has-background-levelTwoDark"
           placeholder="Search by token name or address"
           v-model="searchQuery"
         />
       </div>
     </div>
-      <div class="">
+      <div class="mt-3">
         <div class="block is-flex is-justify-content-flex-end is-flex-wrap-wrap">
           <a role="button" @click="toggleView" v-show="!isMobile">
-            <unicon  v-if="!isGrid" name="apps" :width="iconSize" :height="iconSize" fill="black" icon-style="solid"></unicon>
-            <unicon  v-if="isGrid" name="list-ul" :width="iconSize" :height="iconSize" fill="black" icon-style="solid"></unicon>
+            <unicon  v-if="!isGrid" name="apps" :width="iconSize" :height="iconSize" fill="white" icon-style="solid"></unicon>
+            <unicon  v-if="isGrid" name="list-ul" :width="iconSize" :height="iconSize" :fill="colors.foam" icon-style="solid"></unicon>
           </a>
         </div>
         <ul v-if="!isGrid && !isMobile">
@@ -45,6 +45,7 @@
 
 import { mapGetters, mapActions } from "vuex";
 import MarketListItem from "../views/market/MarketListItem.vue";
+import {Colors} from "../../styles/theme"
 export default {
   name: "Marketplace",
   components: {
@@ -54,8 +55,9 @@ export default {
     return {
       searchQuery: "",
       isGrid: true,
-      iconSize: "32",
+      iconSize: "24",
       windowWidth: 0,
+      colors: Colors
     };
   },
   computed: {
