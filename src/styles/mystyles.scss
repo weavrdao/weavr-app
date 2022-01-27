@@ -5,7 +5,7 @@
 
 
 // Add font family
-$family-sans: "Work Sans", "sans";
+$family-sans-serif: "Work Sans", "sans";
 
 //FRABRIC THEME
 $purpleBlack: #080220;
@@ -27,7 +27,7 @@ $primary: $actionBlue;
 $primary-invert: findColorInvert($primary);
 $danger: $negativeRed;
 // Use the new serif family
-$family-primary: $family-sans;
+$family-primary: $family-sans-serif;
 // Components and tags Styling
 $input-color:$foam;
 $scheme-main: $purpleBlack;

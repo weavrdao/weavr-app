@@ -1,5 +1,5 @@
 <template>
-  <div class="has-text-foam">
+  <div class="has-text-foam has-background-levelOne">
     <div class="">
       <label for="search" class="is-sr-only">
         Search by token name or address

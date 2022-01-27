@@ -1,5 +1,5 @@
 <template>
-  <section class="card has-text-foam has-background-levelOne" >
+  <section class="card has-text-foam has-background-levelTwoLight" >
       <div v-if="isGrid">
         <div class="card-image">
           <figure class="image is-4by3">
