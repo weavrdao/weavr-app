@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <section class="card">
       <div v-if="isGrid">
         <div class="card-image">
           <figure class="image is-4by3">
@@ -41,30 +41,27 @@
             <Address :value="asset.contractAddress"></Address>
         </div>
          <div class="card-content">
-              <div class="level">
-                <div class="level-item">
+              <div class="media p-0">
+                <div class="media-left">
                   <figure class="image is-128x128">
                     <img :src="asset.coverPictureURI" alt="Placeholder image">
                   </figure>
+                  <a role="button" class="button is-primary">Open Thread</a>
                 </div>
-                <div class="level-item">
-                  <div class="is-flex is-flex-wrap-wrap is-hidden-thouch">
-                <span class="tag mr-2 is-primary">tag</span>
-                <span class="tag mr-2 is-primary">tag</span>
-                <span class="tag mr-2 is-primary">tag</span>
-                <span class="tag mr-2 is-primary">tag</span>
-                <span class="tag mr-2 is-primary">tag</span>
-                <span class="tag mr-2 is-primary">tag</span>
-              </div>
-              <div class="level-item">
-                <div class="level">
-                  <div class="level-item">
+                <div class="media-content">
+                  <div class="mb-2 is-flex is-flex-wrap-wrap is-hidden-thouch">
+                    <span class="tag mr-2 is-primary">tag</span>
+                    <span class="tag mr-2 is-primary">tag</span>
+                    <span class="tag mr-2 is-primary">tag</span>
+                    <span class="tag mr-2 is-primary">tag</span>
+                    <span class="tag mr-2 is-primary">tag</span>
+                    <span class="tag mr-2 is-primary">tag</span>
+                  </div>
+              <div class="p-0">
+                <div class="media is-fullwidth">
+                  <div class="media-content">
                     <p class="is-italic	">{{asset.description}}</p>
-                  </div>
-                  <div class="level-item">
                     <p class="has-text-weight-semibold">Year Built:<time class="has-text-weight-normal" datetime="2016">{{asset.yearBuilt}}</time></p>
-                  </div>
-                  <div class="level-item">
                     <p class="has-text-weight-semibold">Token Holders: <span class="has-text-weight-normal">{{ownersCount}}</span></p>         
                   </div>
                 </div>
@@ -72,11 +69,8 @@
             </div>
           </div>   
         </div>
-        <div class="card-footer">
-          <a role="button" class="button is-primary is-fullwidth">Open Thread</a>
-        </div>
       </div>
-  </div>
+  </section>
 </template>
 
 <script>

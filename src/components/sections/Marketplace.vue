@@ -1,7 +1,7 @@
 <template>
   <div class="">
 
-    <div class="m-4">
+    <div class="">
       <label for="search" class="is-sr-only">
         Search by token name or address
       </label>
@@ -16,8 +16,8 @@
         />
       </div>
     </div>
-      <div class="box">
-        <div class="block is-flex is-justify-content-flex-end">
+      <div class="">
+        <div class="block is-flex is-justify-content-flex-end is-flex-wrap-wrap">
           <a role="button" @click="toggleView" v-show="!isMobile">
             <unicon  v-if="!isGrid" name="apps" :width="iconSize" :height="iconSize" fill="black" icon-style="solid"></unicon>
             <unicon  v-if="isGrid" name="list-ul" :width="iconSize" :height="iconSize" fill="black" icon-style="solid"></unicon>
@@ -26,40 +26,14 @@
         <ul v-if="!isGrid && !isMobile">
           <li v-for="asset in searchResults" :key="asset.id" class="px-8 py-8">
             <div class="block p-3">
-            <MarketListItem :is-grid="isGrid" :asset="asset" />
-          </div>
-          <div class="block p-3">
-            <MarketListItem :is-grid="isGrid" :asset="asset" />
-          </div>
-          <div class="block p-3">
-            <MarketListItem :is-grid="isGrid" :asset="asset" />
-          </div>
-          <div class="block p-3">
-            <MarketListItem :is-grid="isGrid" :asset="asset" />
-          </div>
-          <div class="block p-3">
-            <MarketListItem :is-grid="isGrid" :asset="asset" />
-          </div>
-          <div class="block p-3">
-            <MarketListItem :is-grid="isGrid" :asset="asset" />
-          </div>
+             <MarketListItem :is-grid="isGrid" :asset="asset" />
+            </div>
           </li>
         </ul>
         <div class="block" v-if="isGrid">
           <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-flex-grow-3"   v-for="asset in searchResults" :key="asset.id">
           <div class="block p-3">
             <MarketListItem :isGrid="isGrid" :asset="asset" />
-          </div>
-          <div class="block p-3">
-            <MarketListItem :isGrid="isGrid" :asset="asset" />
-          </div>
-          <div class="block p-3">
-            <MarketListItem :isGrid="isGrid" :asset="asset" />
-          </div><div class="block p-3">
-            <MarketListItem :isGrid="isGrid" :asset="asset" />
-          </div>
-          <div class="block p-3">
-            <MarketListItem  :isGrid="isGrid" :asset="asset" />
           </div>
         </div>
       </div>
@@ -79,9 +53,9 @@ export default {
   data() {
     return {
       searchQuery: "",
-      isGrid: true``,
-      isMobile: false,
-      iconSize: "32"
+      isGrid: true,
+      iconSize: "32",
+      windowWidth: 0,
     };
   },
   computed: {
@@ -99,11 +73,9 @@ export default {
           .includes(this.searchQuery.toLowerCase());
       });
     },
-    
-  },
-  beforeUpdate() {
-    this.isMobile = window.innerWidth < 769
-    console.log(this.isMobile)
+    isMobile(){
+      return this.getWindowWidth() < 768;
+    } 
   },
   methods: {
     ...mapActions({
@@ -112,15 +84,33 @@ export default {
     }),
     toggleView(){
       this.isGrid = !this.isGrid
-    }
+    },
+    getWindowWidth() {
+      this.windowWidth = document.documentElement.clientWidth;
+      
+      if( this.isMobile && !this.isGrid){
+        this.isGrid = true
+      }
+    },
+    
+    
   },
   mounted() {
     this.refresh();
     this.syncWallet();
+    this.$nextTick(function() {
+      window.addEventListener("resize", this.getWindowWidth);
+
+      //Init
+      this.getWindowWidth()
+    })
   },
   watch: {
     $route: "refresh",
   },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.windowWidth);
+  }
 };
 </script>
 
