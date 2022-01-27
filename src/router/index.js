@@ -25,11 +25,11 @@ export default new createRouter({
       name: "market",
       component: Marketplace
     },
-    {
-      path: "/swap",
-      name: "swap",
-      component: Swap
-    },
+    /* {
+          path: "/swap",
+          name: "swap",
+          component: Swap
+    }, */
     {
       path: "/dao/:assetId/proposals",
       name: "dao",

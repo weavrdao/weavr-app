@@ -1,6 +1,5 @@
 <template>
   <div class="has-text-foam">
-
     <div class="">
       <label for="search" class="is-sr-only">
         Search by token name or address
@@ -70,9 +69,10 @@ export default {
       }
 
       return this.assets.filter((item) => {
-        return item.world.property.address
+        console.log(item);
+        return item.address
           .toLowerCase()
-          .includes(this.searchQuery.toLowerCase());
+          .includes(this.searchQuery.trim().toLowerCase());
       });
     },
     isMobile(){

@@ -19,7 +19,7 @@ export default {
       type: Boolean,
       default: true,
     },
-    customClasses: {
+    extraClasses: {
       type: String,
       default: "",
     },
@@ -30,7 +30,7 @@ export default {
       return `
         button
         ${this.isPrimary ? "is-primary" : ""}
-        ${this.customClasses}
+        ${this.extraClasses}
       `;
     },
   },

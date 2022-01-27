@@ -65,7 +65,7 @@
         </div>
       </div> -->
 
-      <Button label="Publish" customClasses="w-full" @click="publish" />
+      <Button label="Publish" extraClasses="w-full" @click="publish" />
     </div>
   </div>
 </template>
