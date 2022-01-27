@@ -35,22 +35,13 @@ $scheme-color: $negativeRed;
 $text: $foam;
 $strong-color: $danger;
 $border-light: $foam;
-// Setup your Custom Colors
-$linkedin: #0077b5;
-$linkedin-invert: findColorInvert($linkedin);
-$twitter: #55acee;
-$twitter-invert: findColorInvert($twitter);
-$github: #333;
-$github-invert: findColorInvert($github);
+
 
 
 
 // Adding new color variables to the color map.
 @import "../../node_modules/bulma/sass/utilities/derived-variables";
 $addColors: (
-  "twitter":($twitter, $twitter-invert),
-  "linkedin": ($linkedin, $linkedin-invert),
-  "github": ($github, $github-invert),
   "purpleBlack": ($purpleBlack, $purpleBlack-invert),
   "purpleOne": ($purpleOne, findColorInvert($purpleOne)),
   "purpleTwo": ($purpleTwo, findColorInvert($purpleTwo)),
