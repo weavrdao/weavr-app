@@ -9,7 +9,8 @@
  * @property {string} title Title of the proposal
  * @property {string} description Body of the proposal
  */
- class Proposal {
+
+class Proposal {
   constructor(
     id,
     creatorAddress,
@@ -25,10 +26,11 @@
     this.dataURI = dataURI
     this.startTimestamp = startTimestamp
     this.endTimestamp = endTimestamp
-    this.votes = votes
+    this.votes = votes,
     this.title = title
     this.description = description
   }
 }
+
 
 export default Proposal

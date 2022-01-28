@@ -1,79 +1,97 @@
 <template>
-  <div>
-    <div class="card">
-      <div class="columns">
-        <div class="column p-3 md:p-6">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img :src="coverPictureURI" :alt="asset.address" />
-            </figure>
+  <section class="card has-text-foam has-background-levelTwoLight" >
+      <div v-if="isGrid">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img :src="asset.coverPictureURI" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img :src="asset.coverPictureURI" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4"><Address :value="asset.contractAddress"></Address></p>
+            </div>
+          </div>
+
+          <div class="card-content">
+            <div class="">
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+                <span class="tag mr-2 is-primary">tag</span>
+              </div>
+            <p class="is-italic	">{{asset.description}}</p>
+            <p class="has-text-weight-semibold">Year Built:<time class="has-text-weight-normal" datetime="2016">{{asset.yearBuilt}}</time></p>
+            <p class="has-text-weight-semibold">Token Holders: <span class="has-text-weight-normal">{{ownersCount}}</span></p>
           </div>
         </div>
-        <div class="column p-6">
-          <div class="level" style="border-bottom: 1px black solid">
-            <div class="level-item">Current Rent</div>
-            <div class="level-item">
-              $ {{ numberFormat.format(asset.currentRent) }}
-            </div>
-          </div>
-          <div class="level" style="border-bottom: 1px black solid">
-            <div class="level-item">Living Space</div>
-            <div class="level-item">
-              {{ numberFormat.format(asset.area) }} sqft
-            </div>
-          </div>
-          <div class="level" style="border-bottom: 1px black solid">
-            <div class="level-item">Market Value</div>
-            <div class="level-item">
-              $ {{ numberFormat.format(asset.marketValue) }}
-            </div>
-          </div>
-          <div class="level" style="border-bottom: 1px black solid">
-            <div class="level-item">Living Space</div>
-            <div class="level-item">
-              {{ numberFormat.format(asset.area) }} sqft
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
-            <figure class="image is-48x48">
-              <img :src="coverPictureURI" :alt="asset.address" />
-            </figure>
-          </div>
-          <div class="media-content">
-            <p class="title is-4">{{ asset.address }}</p>
-            <p class="subtitle is-6">@johnsmith</p>
-          </div>
-        </div>
-        <div class="content">
-          <button class="button is-danger m-3">close thread</button>
-          <button class="button is-primary m-3">Open thread</button>
+        <div class="card-footer" style="border: 0px;">
+          <a role="button" class="button is-primary is-fullwidth">Open Thread</a>
         </div>
       </div>
-    </div>
-  </div>
+      <div v-else>
+        <div class="card-header p-3">
+            <Address :value="asset.contractAddress"></Address>
+        </div>
+         <div class="card-content">
+              <div class="media p-0">
+                <div class="media-left">
+                  <figure class="image is-128x128">
+                    <img :src="asset.coverPictureURI" alt="Placeholder image">
+                  </figure>
+                  <a role="button" class="button is-primary">Open Thread</a>
+                </div>
+                <div class="media-content">
+                  <div class="mb-2 is-flex is-flex-wrap-wrap is-hidden-thouch">
+                    <span class="tag mr-2 is-primary">tag</span>
+                    <span class="tag mr-2 is-primary">tag</span>
+                    <span class="tag mr-2 is-primary">tag</span>
+                    <span class="tag mr-2 is-primary">tag</span>
+                    <span class="tag mr-2 is-primary">tag</span>
+                    <span class="tag mr-2 is-primary">tag</span>
+                  </div>
+              <div class="p-0">
+                <div class="media is-fullwidth">
+                  <div class="media-content">
+                    <p class="is-italic	">{{asset.description}}</p>
+                    <p class="has-text-weight-semibold">Year Built:<time class="has-text-weight-normal" datetime="2016">{{asset.yearBuilt}}</time></p>
+                    <p class="has-text-weight-semibold">Token Holders: <span class="has-text-weight-normal">{{ownersCount}}</span></p>         
+                  </div>
+                </div>
+              </div>  
+            </div>
+          </div>   
+        </div>
+      </div>
+  </section>
 </template>
 
 <script>
 import { toFixedNumber } from "../../../utils/common";
 import { mapGetters, mapActions } from "vuex";
 import Address from "../address/Address.vue";
-import Button from "../common/Button.vue";
 
 export default {
   name: "MarketListItem",
   components: {
-    // Address,
-    // Button,
+    Address,
   },
   props: {
     asset: {
       type: Object,
       required: true,
     },
+    isGrid: {
+      type: Boolean,
+      required: true
+    }
   },
   data() {
     return {
@@ -82,7 +100,7 @@ export default {
       }),
       orderFromValue: "",
       orderToValue: "",
-      coverPictureURI: require("../../../assets/pics/fbra.jpg"),
+      
     };
   },
   computed: {
@@ -113,6 +131,13 @@ export default {
     },
     orderFromString() {
       return toFixedNumber(this.orderFromValue);
+    },
+    ownersCount() {
+      let i = 0
+      this.asset.owners.forEach(() => {
+        i = i+1
+      })
+      return i
     },
   },
   methods: {

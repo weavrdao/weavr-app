@@ -1,12 +1,12 @@
 <template>
   <nav
-    class="navbar is-fixed-top"
+    class="navbar is-fixed-top is-dark"
     role="navigation"
     aria-label="main navigation"
   >
     <div class="navbar-brand">
       <a class="navbar-item" href="#">
-        <div>FRTHREAD#001</div>
+        <div class="title">FRABRIC DAO</div>
       </a>
 
       <a
@@ -46,16 +46,12 @@
 </template>
 
 <script>
-import { proposals } from "../../../data/mock/mockDataProvider";
 import SignerAddress from "../../views/address/SignerAddress.vue";
 import { useRoute } from "vue-router";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "HeaderHavigationBar",
   components: {
-    // Disclosure,
-    // DisclosureButton,
-    // DisclosurePanel,
     SignerAddress,
   },
   data() {

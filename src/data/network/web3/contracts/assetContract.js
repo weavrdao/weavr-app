@@ -16,8 +16,13 @@ const contractAbi = [
   // Vote No on a certain proposal
   "function voteNo(uint256 id)",
 
+  // Propose a thread dissolution
+  "function proposeDissolution(string info, address purchaser, address token, uint256 purchaseAmount)",
+
   // Event that is triggered every time an order is filled on the market
   "event Filled(address indexed sender, address indexed recipient, uint256 indexed price, uint256 amount)"
+
+  
 ]
 const startBlock = 0 // TODO: Inject the actual contract deployment block instead
 
@@ -38,7 +43,7 @@ class AssetContract {
    * Create a standard proposal
    * @param {string} info Proposal info
    */
-   async proposePaper(
+  async proposePaper(
     info
   ) {
     console.log("Creating a proposal..")
@@ -59,7 +64,7 @@ class AssetContract {
    * @param {number} amount Amount of shares to buy
    * @param {BigInt} price Price to buy at
    */
-   async buy(
+  async buy(
     amount,
     price
   ) {
@@ -116,6 +121,35 @@ class AssetContract {
         }
       )
 
+    return (await tx.wait()).status
+  }
+
+  /**
+   * Propose a thread dissolution
+   * @param {string} info Proposal info
+   * @param {address} purchaser Dissolution proposer
+   * @param {address} token Currency provided for payment
+   * @param {uint256} purchaseAmount Amount proposed for the purchase
+   */
+  async proposeDissolution(
+    info, 
+    purchaser, 
+    token, 
+    purchaseAmount
+  ) {
+    console.log("Dissolution proposal for " + token, + " by " + purchaser + "for $" + purchaseAmount)
+
+    let tx = await this.mutableContract
+      .proposeDissolution(
+        info, 
+        purchaser, 
+        token, 
+        purchaseAmount,
+        {
+          gasLimit: 5000000
+        }
+      )
+      
     return (await tx.wait()).status
   }
 }
