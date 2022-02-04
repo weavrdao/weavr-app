@@ -1,5 +1,5 @@
 <template>
-  <section class="card has-text-foam has-background-levelTwoLight" >
+  <section class="card  is-rounded-lg" >
       <div v-if="isGrid">
         <div class="card-image">
           <figure class="image is-4by3">
@@ -33,11 +33,11 @@
           </div>
         </div>
         <div class="card-footer" style="border: 0px;">
-          <a role="button" class="button is-primary is-fullwidth">Open Thread</a>
+          <a role="button" @click="openDAO" class="button is-primary is-fullwidth">Open Thread</a>
         </div>
       </div>
       <div v-else>
-        <div class="card-header p-3">
+        <div class="card-header p-3 ">
             <Address :value="asset.contractAddress"></Address>
         </div>
          <div class="card-content">
@@ -46,7 +46,7 @@
                   <figure class="image is-128x128">
                     <img :src="asset.coverPictureURI" alt="Placeholder image">
                   </figure>
-                  <a role="button" class="button is-primary">Open Thread</a>
+                  <a role="button" @click="openDAO" class="button has-background-foam">Open Thread</a>
                 </div>
                 <div class="media-content">
                   <div class="mb-2 is-flex is-flex-wrap-wrap is-hidden-thouch">
@@ -144,6 +144,9 @@ export default {
     ...mapActions({
       swap: "swapToAsset",
     }),
+    openDAO() {
+      this.$router.push(`/dao/${this.asset.id}/proposals`);
+    },
     isNumber(evt) {
       evt = evt ? evt : window.event;
       var charCode = evt.which ? evt.which : evt.keyCode;

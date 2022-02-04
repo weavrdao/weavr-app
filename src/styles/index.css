@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --scrollbar-color: grey;
 }
 
@@ -27,4 +27,4 @@ body ::-webkit-scrollbar-thumb {
 body * {
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-color) transparent;
-}
+} */

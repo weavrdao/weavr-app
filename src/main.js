@@ -2,7 +2,7 @@ import { createApp, h } from "vue"
 import App from "./App.vue"
 import router from "@/router"
 import store from "./store"
-import "./styles/mystyles.css"
+import "./styles/frabric-custom.scss";
 // import "bulma/css/bulma.css"
 import Toaster from "@meforma/vue-toaster";
 import Unicon from "vue-unicons"

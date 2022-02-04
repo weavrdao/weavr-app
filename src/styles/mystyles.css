@@ -1,4 +1,20 @@
 @charset "UTF-8";
+input {
+  border: none !important;
+}
+
+.has-radius-md {
+  border-radius: 0.75rem !important;
+}
+
+.has-radius-lg {
+  border-radius: 1rem !important;
+}
+
+.has-border-bottom {
+  border-bottom: #D6FCFE 1px solid !important;
+}
+
 /*! bulma.io v0.9.3 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
 .pagination-previous,
@@ -116,7 +132,7 @@ fieldset[disabled] .file-name, fieldset[disabled] .select select, .select fields
   width: 20px;
 }
 .modal-close::before, .delete::before, .modal-close::after, .delete::after {
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
   content: "";
   display: block;
   left: 50%;
@@ -297,7 +313,7 @@ th:not([align]) {
 }
 
 html {
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
   font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -389,7 +405,7 @@ span {
 }
 
 strong {
-  color: #AC5960;
+  color: #46A4F8;
   font-weight: 700;
 }
 
@@ -436,7 +452,7 @@ table th {
 }
 /* Bulma Elements */
 .box {
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
   border-radius: 6px;
   box-shadow: 0 0.5em 1em -0.125em rgba(8, 2, 32, 0.1), 0 0px 0 1px rgba(8, 2, 32, 0.02);
   color: #D6FCFE;
@@ -452,7 +468,7 @@ a.box:active {
 }
 
 .button {
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
   border-color: #dbdbdb;
   border-width: 1px;
   color: #363636;
@@ -2205,7 +2221,7 @@ a.box:active {
   font-size: 1.5rem;
 }
 .button[disabled], fieldset[disabled] .button {
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
   border-color: #dbdbdb;
   box-shadow: none;
   opacity: 0.5;
@@ -2681,7 +2697,7 @@ div.icon-text {
 }
 .notification code,
 .notification pre {
-  background: #080220;
+  background: linear-gradient(red, yellow);
 }
 .notification pre code {
   background: transparent;
@@ -3088,7 +3104,7 @@ div.icon-text {
   }
 }
 .table {
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
   color: #363636;
 }
 .table td,
@@ -3286,10 +3302,10 @@ div.icon-text {
   width: 100%;
 }
 .table.is-hoverable tbody tr:not(.is-selected):hover {
-  background-color: #fafafa;
+  background-color: #AC5960;
 }
 .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover {
-  background-color: #fafafa;
+  background-color: #AC5960;
 }
 .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) {
   background-color: whitesmoke;
@@ -3299,7 +3315,7 @@ div.icon-text {
   padding: 0.25em 0.5em;
 }
 .table.is-striped tbody tr:not(.is-selected):nth-child(even) {
-  background-color: #fafafa;
+  background-color: #AC5960;
 }
 
 .table-container {
@@ -3657,7 +3673,7 @@ a.tag:hover {
 
 /* Bulma Form */
 .select select, .textarea, .input {
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
   border-color: #dbdbdb;
   border-radius: 4px;
   color: #D6FCFE;
@@ -5137,8 +5153,8 @@ a.tag:hover {
 }
 
 .card {
-  background-color: #080220;
-  border-radius: 0.25rem;
+  background-color: linear-gradient(red, yellow);
+  border-radius: 1rem;
   box-shadow: 0 0.5em 1em -0.125em rgba(8, 2, 32, 0.1), 0 0px 0 1px rgba(8, 2, 32, 0.02);
   color: #D6FCFE;
   max-width: 100%;
@@ -5146,12 +5162,12 @@ a.tag:hover {
 }
 
 .card-footer:first-child, .card-content:first-child, .card-header:first-child {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 .card-footer:last-child, .card-content:last-child, .card-header:last-child {
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .card-header {
@@ -5196,12 +5212,12 @@ a.tag:hover {
   position: relative;
 }
 .card-image:first-child img {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 .card-image:last-child img {
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .card-content {
@@ -5263,7 +5279,7 @@ a.tag:hover {
 }
 
 .dropdown-content {
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
   border-radius: 4px;
   box-shadow: 0 0.5em 1em -0.125em rgba(8, 2, 32, 0.1), 0 0px 0 1px rgba(8, 2, 32, 0.02);
   padding-bottom: 0.5rem;
@@ -5762,7 +5778,7 @@ button.dropdown-item.is-active {
 }
 .message-body code,
 .message-body pre {
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
 }
 .message-body pre code {
   background-color: transparent;
@@ -5855,7 +5871,7 @@ button.dropdown-item.is-active {
 
 .modal-card-body {
   -webkit-overflow-scrolling: touch;
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
   flex-grow: 1;
   flex-shrink: 1;
   overflow: auto;
@@ -5863,7 +5879,7 @@ button.dropdown-item.is-active {
 }
 
 .navbar {
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
   min-height: 3.25rem;
   position: relative;
   z-index: 30;
@@ -7055,7 +7071,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 .navbar-link:focus-within,
 .navbar-link:hover,
 .navbar-link.is-active {
-  background-color: #fafafa;
+  background-color: #AC5960;
   color: #485fc7;
 }
 
@@ -7139,7 +7155,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   }
 
   .navbar-menu {
-    background-color: #080220;
+    background-color: linear-gradient(red, yellow);
     box-shadow: 0 8px 16px rgba(8, 2, 32, 0.1);
     padding: 0.5rem 0;
   }
@@ -7267,7 +7283,7 @@ body.has-navbar-fixed-bottom-touch {
   }
 
   .navbar-dropdown {
-    background-color: #080220;
+    background-color: linear-gradient(red, yellow);
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     border-top: 2px solid #dbdbdb;
@@ -7360,7 +7376,7 @@ body.has-spaced-navbar-fixed-bottom {
 
   a.navbar-item.is-active,
 .navbar-link.is-active {
-    color: #080220;
+    color: #AC5960;
   }
   a.navbar-item.is-active:not(:focus):not(:hover),
 .navbar-link.is-active:not(:focus):not(:hover) {
@@ -7368,7 +7384,7 @@ body.has-spaced-navbar-fixed-bottom {
   }
 
   .navbar-item.has-dropdown:focus .navbar-link, .navbar-item.has-dropdown:hover .navbar-link, .navbar-item.has-dropdown.is-active .navbar-link {
-    background-color: #fafafa;
+    background-color: #AC5960;
   }
 }
 .hero.is-fullheight-with-navbar {
@@ -7911,7 +7927,7 @@ label.panel-block:hover {
   border-bottom-color: #dbdbdb;
 }
 .tabs.is-boxed li.is-active a {
-  background-color: #080220;
+  background-color: linear-gradient(red, yellow);
   border-color: #dbdbdb;
   border-bottom-color: transparent !important;
 }
@@ -13010,6 +13026,6 @@ a.has-text-levelTwoDark:hover, a.has-text-levelTwoDark:focus {
 }
 
 .footer {
-  background-color: #fafafa;
+  background-color: #AC5960;
   padding: 3rem 1.5rem 6rem;
 }

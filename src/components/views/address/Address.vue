@@ -1,9 +1,9 @@
 <template>
-  <div class="tag is-info is-medium is-clickable" @click="onClick">
+  <div class="tag is-purpleOne is-medium is-clickable has-radius-lg" @click="onClick">
     <span class="icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5 text-action-blue"
+        class="h-5 w-5"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
