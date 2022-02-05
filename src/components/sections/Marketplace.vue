@@ -1,15 +1,15 @@
 <template>
-  <div class="has-text-foam has-background-levelOne">
+  <div class="has-text-foam has-radius-lg">
     <div class="">
       <label for="search" class="is-sr-only">
         Search by token name or address
       </label>
-      <div class="mt-1 relative rounded-lg " >
+      <div class="mt-1 relative " >
         <input
           type="text"
           name="search"
           id="search"
-          class="input has-background-levelTwoDark"
+          class="input is-rounded is-borderless"
           placeholder="Search by token name or address"
           v-model="searchQuery"
         />

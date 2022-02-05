@@ -1,14 +1,16 @@
 /* eslint-disable max-lines-per-function */
+const path = require("path");
+
 const globalSassFiles = [
-  // '~@/styles/_variables.scss',
-  '~@/styles/index.scss'
+
 ]
 module.exports = {
   publicPath: "./", 
   css: {
+    requireModuleExtension: true,
     loaderOptions: {
       sass: {
-        additionalData: globalSassFiles.map((src)=>'@import "' + src + '"').join('\n')
+        additionalData: globalSassFiles.map((src)=>'@import "' + src + '";').join('\n')
       }
     }
 },

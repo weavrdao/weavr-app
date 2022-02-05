@@ -1,22 +1,9 @@
 <template>
   <div class="container">
     <div class="columns">
-      <div class="column is-three-fifths">
+      <div class="column is-three-fifths has-radius-lg">
         <div class="p-1 m-2">
-          <div class="m-2">
-            <label for="search" class="is-sr-only"> Filter by address </label>
-            <div class="mt-1 relative rounded-lg bg-level-2-dark">
-              <input
-                type="text"
-                name="search"
-                id="search"
-                class="input"
-                placeholder="Filter by address..."
-                v-model="searchQuery"
-              />
-            </div>
-          </div>
-          <Accordion summary="Overview" extraClasses="mt-4" :open="true">
+          <Accordion summary="Overview" extraClasses="mt-4  has-radius-lg" :open="true">
             <dl>
               <dt class="help">
                 <strong>Total value</strong>
@@ -29,7 +16,21 @@
           </Accordion>
         </div>
       </div>
-      <ul class="column is-two-fifths">
+       <div class="column is-two-fifths">
+         <div class="m-2">
+            <label for="search" class="is-sr-only"> Filter by address </label>
+            <div class="mt-1 relative rounded-lg">
+              <input
+                type="text"
+                name="search"
+                id="search"
+                class="input has-radius-lg"
+                placeholder="Filter by address..."
+                v-model="searchQuery"
+              />
+            </div>
+          </div>
+      <ul class="">
         <li class="p-3 m-2">
           <AssetListItemPlaceholder />
         </li>
@@ -37,6 +38,7 @@
           <AssetListItem :asset="asset" />
         </li>
       </ul>
+       </div>
     </div>
   </div>
 </template>

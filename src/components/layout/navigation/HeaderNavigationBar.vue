@@ -1,18 +1,18 @@
 <template>
   <nav
-    class="navbar is-fixed-top is-dark"
+    class="navbar  p-5"
     role="navigation"
     aria-label="main navigation"
   >
     <div class="navbar-brand">
       <a class="navbar-item" href="#">
-        <div class="title">FRABRIC DAO</div>
+        <div class="title has-text-purpleThree">FRABRIC DAO</div>
       </a>
 
       <a
         role="button"
         ref="menuButton"
-        :class="[navigation.isOpen ? 'is-active' : '', 'navbar-burger']"
+        :class="[navigation.isOpen ? 'is-active' : '', 'navbar-burger', 'has-border-bottom']"
         @click="menuToggle()"
         aria-label="menu"
         aria-expanded="false"
@@ -27,7 +27,7 @@
     <div :class="[navigation.isOpen ? 'is-active' : '', 'navbar-menu']">
       <div class="navbar-start">
         <a
-          class="navbar-item"
+        :class="[isItemCurrent(item) ? 'has-border-bottom' : '', 'navbar-item']"
           v-for="item in navigation.items"
           :key="item.name"
           v-on:click="transitTo(item.path)"
