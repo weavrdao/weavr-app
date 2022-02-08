@@ -71,7 +71,8 @@ class DAO {
         proposal.endTimestamp,
         proposal.votes,
         data.title,
-        data.description
+        data.description,
+        data.proposalType
       )
 
       proposals[i] = completeProposal
@@ -85,12 +86,14 @@ class DAO {
    * @param {Asset} asset Asset that the DAO controls
    * @param {string} title Proposal title
    * @param {string} description Proposal body
+   * @param {string} proposalType Proposal type
    * @returns {Boolean} Transaction status (true — mined; false - reverted)
    */
   async createProposal(
     asset,
     title,
-    description
+    description,
+    proposalType
   ) {
     const assetContract = new AssetContract(this.ethereumClient, asset.contractAddress)
 
@@ -98,7 +101,8 @@ class DAO {
       .addFile(
         {
           title: title,
-          description: description
+          description: description,
+          proposalType
         }
       )
 

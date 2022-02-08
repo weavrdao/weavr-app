@@ -8,6 +8,7 @@
  * @property {Vote[]} votes Votes posted on the proposal
  * @property {string} title Title of the proposal
  * @property {string} description Body of the proposal
+ * @property {string} proposalType Type of the proposal
  */
 
 class Proposal {
@@ -19,16 +20,18 @@ class Proposal {
     endTimestamp,
     votes,
     title = null,
-    description = null
+    description = null,
+    proposalType = null
   ) {
     this.id = id
     this.creatorAddress = creatorAddress
     this.dataURI = dataURI
     this.startTimestamp = startTimestamp
     this.endTimestamp = endTimestamp
-    this.votes = votes,
+    this.votes = votes
     this.title = title
     this.description = description
+    this.proposalType = proposalType
   }
 }
 

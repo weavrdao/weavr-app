@@ -9,6 +9,7 @@ export const proposals = [
     createdBy: "0x220866b1a2219f40e72f5c628b65d54268ca3a9d",
     title: faker.commerce.productName(),
     description: faker.lorem.paragraphs(6),
+    type: faker.commerce.type(),
     startTimestamp: 1626796800,
     endTimestamp: 1627228800,
     options: [
