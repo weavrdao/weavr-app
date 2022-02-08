@@ -102,7 +102,7 @@ class DAO {
         {
           title: title,
           description: description,
-          proposalType
+          proposalType: proposalType
         }
       )
 
