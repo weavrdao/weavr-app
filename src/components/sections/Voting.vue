@@ -204,6 +204,9 @@
         </li>
       </ul>
     </div>
+    <div v-else>
+      <Loader :shadowless="true" />
+    </div>
   </div>
 </template>
 
@@ -222,6 +225,7 @@ import StackNavigationBar from "../layout/navigation/StackNavigationBar.vue";
 import Button from "../views/common/Button.vue";
 import ProposalListItem from "../views/voting/ProposalListItem.vue";
 import Accordion from "../utils/Accordion.vue";
+import Loader from "../utils/Loader.vue";
 import Address from "../views/address/Address.vue";
 
 export default {
@@ -236,6 +240,7 @@ export default {
     StackNavigationBar,
     ProposalListItem,
     Accordion,
+    Loader,
     Address,
     Button,
   },
