@@ -15,7 +15,7 @@ function state() {
       wallet: WalletState
     },
     platform: {
-      assets: [],
+      assets: null,
       proposals: new Map()
     },
     interface: {
@@ -49,7 +49,7 @@ const getters = {
   assetsById(state) {
     var assetMap = new Map()
     state.platform.assets
-      .forEach(asset => {
+      ?.forEach(asset => {
         assetMap.set(asset.id, asset)
       })
 
@@ -62,7 +62,7 @@ const getters = {
 
   ownedAssets(state) {
     return state.platform.assets
-      .filter(asset => { return asset.owners.get(state.user.wallet.address) })
+      ?.filter(asset => { return asset.owners.get(state.user.wallet.address) }) || null
   },
 
   // TODO: Quick implementation for testing, need something smarter than that
@@ -70,7 +70,7 @@ const getters = {
     var assetPriceMap = new Map()
 
     state.platform.assets
-      .forEach(asset => {
+      ?.forEach(asset => {
         let buyPrices = asset.marketOrders
           .filter(o => { return o.orderType == MarketOrderType.Buy })
           .map(o => { return o.price })
