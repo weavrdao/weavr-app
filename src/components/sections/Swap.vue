@@ -235,7 +235,7 @@ export default {
     },
   },
   created() {
-    this.sync();
+    this.sync({ $toast: this.$toast });
   },
 };
 </script>

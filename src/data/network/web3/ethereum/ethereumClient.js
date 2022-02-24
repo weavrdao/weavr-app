@@ -27,16 +27,28 @@ class EthereumClient {
     if (window.ethereum) {
       try {
         await window.ethereum.request({ method: "eth_requestAccounts" });
-      } catch(error) {
-        console.log(error)
-        return
+      } catch (error) {
+        if (error.code === -32002) {
+          return {
+            ok: false,
+            msg: 'Unable to connect to your MetaMask wallet. Is it unlocked?'
+          }
+        }
+        else {
+          return {
+            ok: false,
+            msg: error.message
+          }
+        }
       }
     }
 
     this.walletProvider = new ethers.providers.Web3Provider(window.ethereum)
     this.walletSigner = this.walletProvider.getSigner()
 
-    return true
+    return {
+      ok: true
+    }
   }
 
   async getWalletAddress() {
@@ -66,7 +78,7 @@ class EthereumClient {
    */
   getMutableContract(contract) {
     return contract.connect(this.walletSigner)
-  } 
+  }
 }
 
 export default EthereumClient

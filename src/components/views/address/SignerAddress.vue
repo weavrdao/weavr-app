@@ -42,7 +42,7 @@ export default {
       sync: "syncWallet",
     }),
     onClick() {
-      this.sync();
+      this.sync({ $toast: this.$toast });
       this.$toast.show("Syncing wallet...");
     },
   },

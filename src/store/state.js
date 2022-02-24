@@ -42,6 +42,10 @@ const getters = {
     return state.user.wallet.ethBalance
   },
 
+  walletError(state) {
+    return state.user.wallet.error
+  },
+
   allAssets(state) {
     return state.platform.assets
   },
@@ -114,8 +118,12 @@ const getters = {
 }
 
 const actions = {
-  async syncWallet(context) {
+  async syncWallet(context, params) {
     const walletState = await wallet.getState()
+    console.log(124, walletState);
+    if (walletState.error) {
+      params.$toast.error(walletState.error.msg)
+    }
     context.commit("setWallet", walletState)
   },
 
@@ -207,6 +215,9 @@ const actions = {
 const mutations = {
   setWallet(state, wallet) {
     state.user.wallet = wallet
+    if (wallet.error) {
+      console.log(wallet.error);
+    }
   },
 
   setEthBalance(state, ethBalance) {

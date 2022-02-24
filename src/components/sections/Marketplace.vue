@@ -124,7 +124,7 @@ export default {
   },
   mounted() {
     this.refresh();
-    this.syncWallet();
+    this.syncWallet({ $toast: this.$toast });
     this.$nextTick(function () {
       window.addEventListener("resize", this.getWindowWidth);
 
