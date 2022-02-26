@@ -1,5 +1,5 @@
 import EthereumClient from "../../data/network/web3/ethereum/ethereumClient"
-import WalletState from "../../models/walletState"
+import { WalletState } from "../../models/walletState"
 
 /**
  * Wallet service
@@ -20,7 +20,7 @@ class Wallet {
       return new WalletState(null, 0, result);
     }
     return new WalletState(
-      (await this.client.getWalletAddress()).toLowerCase(),
+      (await this.client.getWalletAddress() || '').toLowerCase(),
       this.client.getWalletEthBalance() / Math.pow(10, 18)
     )
   }

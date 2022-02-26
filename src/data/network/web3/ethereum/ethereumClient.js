@@ -27,6 +27,13 @@ class EthereumClient {
     if (window.ethereum) {
       try {
         await window.ethereum.request({ method: "eth_requestAccounts" });
+
+        this.walletProvider = new ethers.providers.Web3Provider(window.ethereum)
+        this.walletSigner = this.walletProvider.getSigner()
+
+        return {
+          ok: true
+        }
       } catch (error) {
         if (error.code === -32002) {
           return {
@@ -42,20 +49,15 @@ class EthereumClient {
         }
       }
     }
-
-    this.walletProvider = new ethers.providers.Web3Provider(window.ethereum)
-    this.walletSigner = this.walletProvider.getSigner()
-
-    return {
-      ok: true
-    }
   }
 
   async getWalletAddress() {
+    if (!this.walletSigner) await this.syncWallet();
     return this.walletSigner.getAddress()
   }
 
   async getWalletEthBalance() {
+    if (!this.walletSigner) await this.syncWallet();
     return (await this.walletSigner.getBalance()).toString()
   }
 
