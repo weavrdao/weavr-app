@@ -106,7 +106,7 @@ export default {
   },
   mounted() {
     this.refresh();
-    this.syncWallet();
+    this.syncWallet({ $toast: this.$toast });
   },
   watch: {
     $route: "refresh",

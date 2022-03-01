@@ -1,5 +1,5 @@
 import ServiceProvider from "../services/provider"
-import WalletState from "../models/walletState"
+import { networks, WalletState } from "../models/walletState"
 import { MarketOrderType } from "../models/marketOrder"
 import { bigIntMax, bigIntMin } from "../utils/common"
 import router from "../router/index"
@@ -40,6 +40,10 @@ const getters = {
 
   userEthBalance(state) {
     return state.user.wallet.ethBalance
+  },
+
+  walletError(state) {
+    return state.user.wallet.error
   },
 
   allAssets(state) {
@@ -114,8 +118,19 @@ const getters = {
 }
 
 const actions = {
-  async syncWallet(context) {
+  async syncWallet(context, params) {
     const walletState = await wallet.getState()
+    if (walletState.error) {
+      params.$toast.error(walletState.error.msg)
+    }
+    else {
+      if (walletState.chainId !== networks.rinkeby) {
+        params.$toast.show('Wallet connected, but you seem to be on the wrong network! Switch to Rinkeby in your wallet.')
+      }
+      else {
+        params.$toast.success('Wallet connected!')
+      }
+    }
     context.commit("setWallet", walletState)
   },
 
@@ -207,6 +222,9 @@ const actions = {
 const mutations = {
   setWallet(state, wallet) {
     state.user.wallet = wallet
+    if (wallet.error) {
+      console.log(wallet.error);
+    }
   },
 
   setEthBalance(state, ethBalance) {

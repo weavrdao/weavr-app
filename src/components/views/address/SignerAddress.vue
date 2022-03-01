@@ -1,5 +1,8 @@
 <template>
-  <div class="tag is-primary has-radius-lg is-medium is-clickable" @click="onClick">
+  <div
+    class="tag is-primary has-radius-lg is-medium is-clickable"
+    @click="onClick"
+  >
     <span class="icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +42,7 @@ export default {
       sync: "syncWallet",
     }),
     onClick() {
-      this.sync();
+      this.sync({ $toast: this.$toast });
       this.$toast.show("Syncing wallet...");
     },
   },
