@@ -1,5 +1,5 @@
 # Frabric Application Interface
-points https://app.thefrabric.com
+https://app.thefrabric.com
 
 
 
