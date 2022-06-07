@@ -1,26 +1,37 @@
 <template>
   <div v-if="asset" class="container p-5 is-dark">
-    <StackNavigationBar @onBack="goBack">
-      {{ `${asset.address} - DAO` }}
-    </StackNavigationBar>
+    <HeroImage src="https://via.placeholder.com/1000" />
 
-    <div class="columns" v-if="proposals">
-      <div class="column is-one-third mt-5 mb-5 mr-1 ml-1">
-        <div class="panel m-2 p-4">
-          <div class="image is-square">
-            <img src="https://via.placeholder.com/1000" alt="Property image" />
-          </div>
-          <h2 id="asset-title" class="title is-4 mt-3 mb-3">
-            {{ asset.address }}
-          </h2>
-          <div class="subtitle mt-2 mb-2 is-6">
-            ({{ numberFormat.format(asset.owners.size) }} holders,
-            {{ numberFormat.format(openProposalCount) }} open proposals)
-          </div>
+    <div class="columns">
+      <div class="column is-two-thirds">
+        <StackNavigationBar @onBack="goBack" :size="3">
+          <div>
+            <h1 class="mt-6 title">
+              <b>{{ `${asset.address} - DAO` }}</b>
+              <!-- is a b tag because it's already an h1 -->
+            </h1>
 
+            <div class="subtitle mt-2 mb-2 is-6">
+              ({{ numberFormat.format(asset.owners.size) }} holders,
+              {{ numberFormat.format(openProposalCount) }} open proposals)
+            </div>
+          </div>
+        </StackNavigationBar>
+
+        <div class="my-1 p-1">
           <div class="help"><strong>Token</strong></div>
           <Address class="mb-3" :value="asset.contractAddress" />
+        </div>
 
+        <div class="my-1 p-1">
+          <div class="help"><strong>Documents</strong></div>
+          <ul>
+            <li><a href="#">Contract Etherscan page</a></li>
+            <li><a href="#">IPFS Document</a></li>
+          </ul>
+        </div>
+        <div class="my-1 p-1">
+          <div class="help"><strong>Tags</strong></div>
           <div class="mb-3">
             <span class="tag m-1 is-success">badge2</span>
             <span class="tag m-1 is-warning">badge3</span>
@@ -28,80 +39,82 @@
             <span class="tag m-1 is-danger">badge4</span>
             <span class="tag m-1 is-success">badge2</span>
             <span class="tag m-1 is-warning">badge3</span>
-            <span class="tag m-1 is-info">badge1</span>
-            <span class="tag m-1 is-danger">badge4</span>
-            <span class="tag m-1 is-success">badge2</span>
-            <span class="tag m-1 is-warning">badge3</span>
           </div>
         </div>
-        <div class="panel m-2 p-4">
-          <div class="mt-2 mb-2 title is-5 has-text-weight-bold">
-            Description
-          </div>
-          <div class="content">
-            {{ asset.description }}
-          </div>
-          <dl class="columns is-mobile">
-            <div class="column">
-              <dt class="help">
-                <strong>Current Rent</strong>
-              </dt>
-              <dd>${{ numberFormat.format(asset.currentRent) }}</dd>
-            </div>
-            <div class="column">
-              <dt class="help">
-                <strong>Market Value</strong>
-              </dt>
-              <dd>${{ numberFormat.format(asset.marketValue) }}</dd>
-            </div>
-          </dl>
 
-          <dl class="columns is-mobile">
-            <div class="column">
-              <dt class="help">
-                <strong>Living Space</strong>
-              </dt>
-              <dd>{{ numberFormat.format(asset.area) }} sqft</dd>
-            </div>
+        <div class="my-1 p-1">
+          <div class="help"><strong>Description</strong></div>
+          <div>{{ asset.description }}</div>
+        </div>
 
-            <div class="column">
-              <dt class="help">
-                <strong>Rooms</strong>
-              </dt>
-              <dd>
-                {{ asset.bedroomCount }} bed, {{ asset.bathroomCount }} bath
-              </dd>
-            </div>
-          </dl>
-          <dl class="columns is-mobile">
-            <div class="column">
-              <dt class="help">
-                <strong>Year Built</strong>
-              </dt>
-              <dd>
-                {{ asset.yearBuilt }}
-              </dd>
-            </div>
-            <div class="column">
-              <dt class="help">
-                <strong>Capitalization Rate</strong>
-              </dt>
-              <dd>{{ asset.grossYieldPct }}%</dd>
-            </div>
-          </dl>
-          <dl class="columns is-mobile">
-            <div class="column">
-              <dt class="help"><strong>Total Supply</strong></dt>
-              <dd>
-                {{ numberFormat.format(asset.numOfShares) }}
-              </dd>
-            </div>
-          </dl>
+        <div
+          class="button mt-2 mb-2 p-4 has-text-centered"
+          style="width: 100%"
+          @click="createProposal"
+        >
+          <a href="javascript:void(0)">
+            <strong>Create a new proposal</strong></a
+          >
+        </div>
+
+        <ul class="mt-5 mb-5 mr-1 ml-1" v-if="proposals">
+          <li v-for="proposal in proposals" :key="proposal.id">
+            <ProposalListItem :assetId="assetId" :proposal="proposal" />
+          </li>
+        </ul>
+        <div v-else>
+          <Loader :shadowless="true" />
         </div>
       </div>
-      <div class="column is-one-third mt-5 mb-5 mr-1 ml-1">
-        <div class="panel mt-2 mb-2">
-          <Accordion extraClasses="is-shadowless" summary="Swap">
+      <div class="column is-one-third my-5 mx-1">
+        <div class="panel m-2 p-4 is-flex is-flex-direction-column">
+          <h2 class="is-size-5 has-text-weight-bold mb-4">Price graph</h2>
+          <img class="image" src="https://via.placeholder.com/500x300" />
+          <div class="table-container mt-2 mb-0">
+            <table class="table" style="width: 100%">
+              <tbody>
+                <tr>
+                  <th>Current rent</th>
+                  <td class="has-text-right">
+                    ${{ numberFormat.format(asset.currentRent) }}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Market value</th>
+                  <td class="has-text-right">
+                    ${{ numberFormat.format(asset.marketValue) }}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Living space</th>
+                  <td class="has-text-right">
+                    {{ numberFormat.format(asset.area) }} sqft
+                  </td>
+                </tr>
+                <tr>
+                  <th>Rooms</th>
+                  <td class="has-text-right">
+                    {{ asset.bedroomCount }} bed, {{ asset.bathroomCount }} bath
+                  </td>
+                </tr>
+                <tr>
+                  <th>Year built</th>
+                  <td class="has-text-right">{{ asset.yearBuilt }}</td>
+                </tr>
+                <tr>
+                  <th>Capitalization rate</th>
+                  <td class="has-text-right">{{ asset.grossYieldPct }}</td>
+                </tr>
+                <tr>
+                  <th>Total supply</th>
+                  <td class="has-text-right">
+                    {{ numberFormat.format(asset.numOfShares) }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <Accordion extraClasses="is-shadowless" margin="0" summary="Swap">
             <div class="field">
               <div class="subtitle is-6">
                 <div>
@@ -153,56 +166,28 @@
           </Accordion>
         </div>
 
-        <div class="panel mt-2 mb-2 p-4">
-          <strong>Links</strong>
+        <div class="panel m-2 p-4 is-flex is-flex-direction-column">
+          <h2 class="is-size-5 has-text-weight-bold mb-4">Tokenholders</h2>
           <ul>
-            <li><a href="#">Contract Etherscan page</a></li>
-            <li><a href="#">IPFS Document</a></li>
+            <li
+              v-for="tokenholder in asset.owners.entries()"
+              :key="tokenholder[0]"
+            >
+              <div class="pt-1 pb-1 content is-vcentered">
+                <Address :value="tokenholder[0]"></Address>
+                <span class="m-1">
+                  <strong>{{ tokenholder[1] }}</strong>
+                  shares
+                </span>
+              </div>
+            </li>
           </ul>
-        </div>
-
-        <div class="panel mt-2 mb-2 p-4">
-          <strong>Join the discussion</strong>
-          <ul>
-            <li><a href="#">Discord</a></li>
-          </ul>
-        </div>
-        <div class="panel mt-2 mb-2">
-          <Accordion extraClasses="is-shadowless" summary="Price graph">
-            <img class="image" src="https://via.placeholder.com/500" />
-          </Accordion>
-        </div>
-        <div class="panel mt-2 mb-2">
-          <Accordion extraClasses="is-shadowless" summary="Tokenholders">
-            <ul>
-              <li
-                v-for="tokenholder in asset.owners.entries()"
-                :key="tokenholder[0]"
-              >
-                <div class="pt-1 pb-1 content is-vcentered">
-                  <Address :value="tokenholder[0]"></Address>
-                  <span class="m-1">
-                    <strong>{{ tokenholder[1] }}</strong>
-                    shares
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </Accordion>
         </div>
       </div>
-      <ul class="column is-one-third mt-5 mb-5 mr-1 ml-1">
-        <li>
-          <div class="panel mt-2 mb-2 p-4">
-            <a href="javascript:void(0)" @click="createProposal"
-              ><strong>Create a new proposal...</strong></a
-            >
-          </div>
-        </li>
-        <li v-for="proposal in proposals" :key="proposal.id">
-          <ProposalListItem :assetId="assetId" :proposal="proposal" />
-        </li>
-      </ul>
+    </div>
+
+    <div class="button mt-2 mb-2 p-4 has-text-centered" style="width: 100%">
+      <a href="#"> <strong>Join the discussion</strong></a>
     </div>
   </div>
 </template>
@@ -222,7 +207,9 @@ import StackNavigationBar from "../layout/navigation/StackNavigationBar.vue";
 import Button from "../views/common/Button.vue";
 import ProposalListItem from "../views/voting/ProposalListItem.vue";
 import Accordion from "../utils/Accordion.vue";
+import Loader from "../utils/Loader.vue";
 import Address from "../views/address/Address.vue";
+import HeroImage from "../utils/HeroImage.vue";
 
 export default {
   name: "Voting",
@@ -236,8 +223,10 @@ export default {
     StackNavigationBar,
     ProposalListItem,
     Accordion,
+    Loader,
     Address,
     Button,
+    HeroImage,
   },
   computed: {
     ...mapGetters({
@@ -365,7 +354,7 @@ export default {
   },
   mounted() {
     this.refresh({ assetId: this.assetId });
-    this.syncWallet();
+    this.syncWallet({ $toast: this.$toast });
   },
 };
 </script>

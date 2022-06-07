@@ -248,7 +248,7 @@ export default {
   },
   mounted() {
     this.refresh({ assetId: this.assetId });
-    this.syncWallet();
+    this.syncWallet({ $toast: this.$toast });
   },
   created() {
     this.setTimeRemainingCountdown();

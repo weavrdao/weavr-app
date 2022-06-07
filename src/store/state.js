@@ -1,5 +1,5 @@
 import ServiceProvider from "../services/provider"
-import WalletState from "../models/walletState"
+import { networks, WalletState } from "../models/walletState"
 import { MarketOrderType } from "../models/marketOrder"
 import { bigIntMax, bigIntMin } from "../utils/common"
 import router from "../router/index"
@@ -15,7 +15,7 @@ function state() {
       wallet: WalletState
     },
     platform: {
-      assets: [],
+      assets: null,
       proposals: new Map()
     },
     interface: {
@@ -42,6 +42,10 @@ const getters = {
     return state.user.wallet.ethBalance
   },
 
+  walletError(state) {
+    return state.user.wallet.error
+  },
+
   allAssets(state) {
     return state.platform.assets
   },
@@ -49,7 +53,7 @@ const getters = {
   assetsById(state) {
     var assetMap = new Map()
     state.platform.assets
-      .forEach(asset => {
+      ?.forEach(asset => {
         assetMap.set(asset.id, asset)
       })
 
@@ -62,7 +66,7 @@ const getters = {
 
   ownedAssets(state) {
     return state.platform.assets
-      .filter(asset => { return asset.owners.get(state.user.wallet.address) })
+      ?.filter(asset => { return asset.owners.get(state.user.wallet.address) }) || null
   },
 
   // TODO: Quick implementation for testing, need something smarter than that
@@ -70,7 +74,7 @@ const getters = {
     var assetPriceMap = new Map()
 
     state.platform.assets
-      .forEach(asset => {
+      ?.forEach(asset => {
         let buyPrices = asset.marketOrders
           .filter(o => { return o.orderType == MarketOrderType.Buy })
           .map(o => { return o.price })
@@ -114,8 +118,19 @@ const getters = {
 }
 
 const actions = {
-  async syncWallet(context) {
+  async syncWallet(context, params) {
     const walletState = await wallet.getState()
+    if (walletState.error) {
+      params.$toast.error(walletState.error.msg)
+    }
+    else {
+      if (walletState.chainId !== networks.rinkeby) {
+        params.$toast.show('Wallet connected, but you seem to be on the wrong network! Switch to Rinkeby in your wallet.')
+      }
+      else {
+        params.$toast.success('Wallet connected!')
+      }
+    }
     context.commit("setWallet", walletState)
   },
 
@@ -207,6 +222,9 @@ const actions = {
 const mutations = {
   setWallet(state, wallet) {
     state.user.wallet = wallet
+    if (wallet.error) {
+      console.log(wallet.error);
+    }
   },
 
   setEthBalance(state, ethBalance) {
