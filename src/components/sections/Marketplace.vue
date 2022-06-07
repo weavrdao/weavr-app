@@ -1,6 +1,6 @@
 <template>
-  <div class="has-text-foam has-radius-lg">
-    <div>
+  <div class="has-text-white has-radius-lg">
+    <div class="">
       <label for="search" class="is-sr-only">
         Search by token name or address
       </label>

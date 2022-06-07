@@ -4,13 +4,15 @@
       {
           "title": "Lorem ipsum",
           "description": "Lorem ipsum",
+          "proposalType": "Lorem ipsum",
           "startTimestamp": 1627797600,
           "endTimestamp": 1628143200
       }
   ],
   "required": [
       "title",
-      "description"
+      "description",
+      "proposalType"
   ],
   "title": "The root schema",
   "type": "object",
@@ -22,6 +24,9 @@
           "type": "string"
       },
       "description": {
+          "type": "string"
+      },
+      "proposalType": {
           "type": "string"
       }
   },

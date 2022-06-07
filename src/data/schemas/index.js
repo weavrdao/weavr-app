@@ -22,7 +22,8 @@ const assetDataSchema = {
 
 const proposalDataSchema = {
   title: null,
-  description: null
+  description: null,
+  type: null
 }
 
 export const newAssetData = (fields, validate = false) => {
