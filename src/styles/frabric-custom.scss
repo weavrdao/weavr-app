@@ -13,6 +13,7 @@ $family-sans-serif: "Poppins Sans", "sans";
 
 // COLORS
 $darkBlue: #000044;
+$darkNavy: #1F1D25;
 $mediumBlue: #5A50D8;
 $lightBlue: #968EFF;
 $darkGray: #1D1B22;
@@ -21,6 +22,7 @@ $lightGray: #CACACA;
 $white: #FFFFFF;
 $black: #13111A;
 $darkBlue-invert: findColorInvert($darkBlue);
+$darkNavy-invert: findColorInvert($darkNavy);
 $mediumBlue-invert: findColorInvert($mediumBlue);
 $lightBlue-invert: findColorInvert($lightBlue);
 $darkGray-invert: findColorInvert($darkGray);
@@ -70,6 +72,7 @@ input{
 @import "../../node_modules/bulma/sass/utilities/derived-variables";
 $addColors: (
   "darkBlue": ($darkBlue, $darkBlue-invert),
+  "darkNavy": ($darkNavy, $darkNavy-invert),
   "mediumBlue": ($mediumBlue, $mediumBlue-invert),
   "lightBlue": ($lightBlue, $lightBlue-invert),
   "darkGray": ($darkGray, $darkGray-invert),
