@@ -27,6 +27,12 @@ export default {
   .box {
     padding: 40px;
   }
+
+  .modal-background {
+    background: black;
+    opacity: 0.6;
+    backdrop-filter: blur(20px);
+  }
   .modal-content-container {
     width: unset;
     max-width: 1167px;
