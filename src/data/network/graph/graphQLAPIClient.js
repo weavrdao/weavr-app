@@ -1,6 +1,6 @@
 import {
   ALL_ASSETS_QUERY,
-  ALL_ASSET_PROPOSALS_QUERY
+  // ALL_ASSET_PROPOSALS_QUERY
 } from "./queries"
 
 /**
@@ -33,5 +33,5 @@ class GraphQLAPIClient {
 export { 
   GraphQLAPIClient,
   ALL_ASSETS_QUERY,
-  ALL_ASSET_PROPOSALS_QUERY
+  // ALL_ASSET_PROPOSALS_QUERY
 }
