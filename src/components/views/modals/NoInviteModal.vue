@@ -42,7 +42,7 @@
 <script>
 import Modal from "../common/Modal.vue";
 import Button from "../common/Button.vue";
-// import { subscribe } from '../actions/actions';
+import { subscribe } from "../../../services/email";
 
 export default {
   name: "NoInviteModal",
@@ -59,9 +59,6 @@ export default {
     }
   },
   methods: {
-    subscribe(x){
-      console.log(x);
-    },
     onClickSubmit() {
       if (!this.input.modalEmail || !this.isValidEmail(this.input.modalEmail)) {
         this.input.modalEmailPlaceholder = "Valid email required"
@@ -69,7 +66,13 @@ export default {
         return
       }
 
-      this.subscribe(this.input.modalEmail);
+      subscribe(this.input.modalEmail)
+        .then(error => {
+          if (error == null) {
+            this.input.emailPlaceholder = "Enter your email"
+            this.input.email = ""
+          }
+        })
     },
     isValidEmail(email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
