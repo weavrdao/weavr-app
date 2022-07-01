@@ -243,7 +243,7 @@ class FrabricERC20Contract {
   /**
    * Cancel an existing order of either the caller or a removed user
    * @param {BigInt} price Price that the order to be cancelled exists at
-   * @param {BigInt} i Index of order at given price point
+   * @param {Number} i Index of order at given price point
    */
   async cancelOrder(price, i) {
     try {
@@ -272,7 +272,7 @@ class FrabricERC20Contract {
 
   /**
    * Get the number of orders at a pricepoint
-   * @param {BigInts} price Price at which to retrieve order number at
+   * @param {BigInt} price Price at which to retrieve order number at
    */
   async orderQuantity(price) {
     try {
@@ -285,7 +285,7 @@ class FrabricERC20Contract {
   /**
    * Get address of trader for a given order
    * @param {BigInt} price Price that the order to be queried exists at
-   * @param {BigInt} i Index of order at given price point
+   * @param {Number} i Index of order at given price point
    */
   async orderTrader(price, i) {
     try {
@@ -300,8 +300,8 @@ class FrabricERC20Contract {
 
   /**
    * Get size of a given order
-   * @param {*} price Price that the order to be queried exists at
-   * @param {*} i Index of order at given price point
+   * @param {BigInt} price Price that the order to be queried exists at
+   * @param {Number} i Index of order at given price point
    */
   async orderAmount(price, i) {
     try {

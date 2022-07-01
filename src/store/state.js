@@ -4,7 +4,6 @@ import { MarketOrderType } from "../models/marketOrder"
 import { bigIntMax, bigIntMin } from "../utils/common"
 import router from "../router/index"
 import { Vote } from "../models/vote"
-import { _ } from "core-js"
 
 const wallet = ServiceProvider.wallet()
 const market = ServiceProvider.market()
