@@ -44,9 +44,9 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
       .map(rawMarketOrder => {
         return new MarketOrder(
           rawMarketOrder.id,
-          rawMarketOrder.orderType,
+          rawMarketOrder.type,
           rawMarketOrder.price,
-          rawMarketOrder.amount
+          rawMarketOrder.totalAmount
         )
       })
   }
