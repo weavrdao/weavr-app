@@ -21,6 +21,9 @@ function state() {
     },
     interface: {
       alert: null
+    },
+    exchange: {
+      orders: null,
     }
   }
 }
@@ -63,6 +66,10 @@ const getters = {
 
   marketplaceActiveAssets(state) {
     return state.platform.assets
+  },
+
+  assetMarketOrders(state) {
+    return state.exchage.orders;
   },
 
   ownedAssets(state) {
@@ -218,6 +225,20 @@ const actions = {
       params.$toast.error("Transaction failed. See details in MetaMask.");
     }
   },
+
+  async fetchDexOrders(context, params) {
+    const FRABRIC_ID = 0;
+    let orders = await dex.getThreadOrders(FRABRIC_ID, params.assetId);
+    context.commit("setOrders", orders);
+  },
+
+  async createBuyOrder(context, params) {
+
+  },
+
+  async createSellOrder(context, params) {
+
+  },
 }
 
 const mutations = {
@@ -234,6 +255,10 @@ const mutations = {
 
   setAssets(state, assets) {
     state.platform.assets = assets
+  },
+
+  setOrders(state, orders) {
+    state.exchange.orders = orders;
   },
 
   setProposalsForAsset(state, { proposals, assetId }) {
