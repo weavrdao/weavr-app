@@ -24,6 +24,7 @@ $magenta: #D841DE;
 $mint: #00EDC4;
 $red: #FF3200;
 $cyan: #00BDFF;
+$lightNavy: #2F2C38;
 $darkBlue-invert: findColorInvert($darkBlue);
 $darkNavy-invert: findColorInvert($darkNavy);
 $mediumBlue-invert: findColorInvert($mediumBlue);
@@ -54,6 +55,8 @@ $border-light: $mediumBlue;
 $scheme-main-bis:$danger;
 $navbar-item-active-color:#fff;
 $card-radius: 1rem;
+$tiny-radius: 5px;
+$small-radius: 10px;
 
 input{
   border: $mediumBlue solid 1px !important;

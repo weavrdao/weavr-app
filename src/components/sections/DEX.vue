@@ -1,46 +1,24 @@
 <template>
 <div class="container">
-    <h1>Create Order</h1>
-    <div class="columns has-gap">
-        <div class="column is-simple-container">
-            <div class="is-flex is-justify-content-space-between">
-                <span>Avbl <img class="is-wallet-image" src=".././../assets/pics/wallet-icon.svg"/></span>
-                <span>
-                    <span>5,250</span>
-                    <span class="has-text-mediumBlue"> FBRC</span>
-                </span>
-            </div>
-            <input class="is-price-input" type="number" placeholder="Price">
-            <input class="is-price-input" type="number" placeholder="Total">
-            <button class="button buy-button">Buy FBRC</button>
-        </div>
-        <div class="column is-simple-container">
-            <div class="is-flex is-justify-content-space-between">
-                <span>Avbl <img class="is-wallet-image" src=".././../assets/pics/wallet-icon.svg"/></span>
-                <span>
-                    <span>5,250</span>
-                    <span class="has-text-mediumBlue"> FBRC</span>
-                </span>
-            </div>
-            <input class="is-price-input" type="number" placeholder="Price">
-            <input class="is-price-input" type="number" placeholder="Total">
-            <button class="button sell-button">Sell FBRC</button>
-        </div>
-    </div>
     <div class="columns">
-        <div class="column is-simple-container">
-            <h2>Order Book</h2>
-            <div></div>
+        <div class="column"></div>
+        <div class="column">
+            <OrderPlacer/>
         </div>
     </div>
 </div>
+
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
+import OrderPlacer from "../views/dex/OrderPlacer.vue";
 
 export default {
   name: "DEX",
+  components: {
+    OrderPlacer,
+  },
   data() {
     return {
       orderBookMode: "buy",
@@ -59,7 +37,7 @@ export default {
   mounted() {
     const ASSET_ID = 0;
     this.fetchOrders({
-        assetId: ASSET_ID,
+      assetId: ASSET_ID,
     });
   }
 }
@@ -96,10 +74,6 @@ h1, h2 {
     margin: 15px 0px;
     padding: 18px 27px;
     font-size: 18px;
-}
-
-.is-wallet-image {
-    width: 18px;
 }
 
 .has-small-flex-gap {
