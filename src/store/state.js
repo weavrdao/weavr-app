@@ -69,7 +69,7 @@ const getters = {
   },
 
   assetMarketOrders(state) {
-    return state.exchage.orders;
+    return state.exchange.orders;
   },
 
   ownedAssets(state) {
@@ -227,8 +227,8 @@ const actions = {
   },
 
   async fetchDexOrders(context, params) {
-    const FRABRIC_ID = 0;
-    let orders = await dex.getThreadOrders(FRABRIC_ID, params.assetId);
+    const FRABRIC_ID = "0";
+    let orders = await dex.getThreadOrders(FRABRIC_ID, params.assetId.toString());
     context.commit("setOrders", orders);
   },
 

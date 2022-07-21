@@ -34,7 +34,7 @@ class DEX {
       .query(
         THREAD_DEX_ORDERS_QUERY,
         { frabricId, threadId },
-        (mapper, response) => { return mapper.mapMarketOrders(response) }
+        (mapper, response) => { return mapper.mapRawMarketOrders(response) }
       );
     console.log(marketOrders);
     return marketOrders;
@@ -59,7 +59,7 @@ class DEX {
     const status = await frabricTokenContract.sell(price, amount);
     return status;
   }
-  
+
 }
 
 export default DEX;

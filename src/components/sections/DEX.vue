@@ -1,7 +1,10 @@
 <template>
 <div class="container">
     <div class="columns">
-        <div class="column"></div>
+        <div class="column">
+          <OrderBook :orders="orders" :buy="true"/>
+          <OrderBook :orders="orders" :buy="false"/>
+        </div>
         <div class="column">
             <OrderPlacer/>
         </div>
@@ -13,11 +16,13 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import OrderPlacer from "../views/dex/OrderPlacer.vue";
+import OrderBook from "../views/dex/OrderBook.vue";
 
 export default {
   name: "DEX",
   components: {
     OrderPlacer,
+    OrderBook,
   },
   data() {
     return {
@@ -27,7 +32,7 @@ export default {
   computed: {
     ...mapGetters({
       orders: "assetMarketOrders"
-    })
+    }),
   },
   methods: {
     ...mapActions({

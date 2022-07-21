@@ -16,4 +16,15 @@
 </template>
 
 <script>
+export default {
+  name: "OrderListItem",
+  computed: {
+
+  },
+  props: {
+    order: {
+      type: Object,
+    }
+  },
+}
 </script>
