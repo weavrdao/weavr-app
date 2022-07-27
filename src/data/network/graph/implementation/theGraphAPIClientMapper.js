@@ -42,29 +42,7 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
     const orders = rawOrders.frabrics[0].threads; // TODO(bill): Add full path here
 
     // Questionable way of getting test data but will do for now
-    return orders.length > 0
-      ? this.mapMarketOrders(orders)
-      : [{
-        id: 'awpiohjd290',
-        type: "buy",
-        price: 7002841200000,
-        totalAmount: 829092678162,
-      }, {
-        id: 'safasfaw',
-        type: "sell",
-        price: 7002841200000,
-        totalAmount: 290952678162,
-      }, {
-        id: 'see9pfu',
-        type: "buy",
-        price: 7002841200000,
-        totalAmount: 129092678162,
-      }, {
-        id: 'SF39uf',
-        type: "sell",
-        price: 7002841200000,
-        totalAmount: 290926278162,
-      }]
+    return this.mapMarketOrders(orders)
   }
 
   mapMarketOrders(rawMarketOrders) {

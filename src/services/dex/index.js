@@ -36,8 +36,28 @@ class DEX {
         { frabricId, threadId },
         (mapper, response) => { return mapper.mapRawMarketOrders(response) }
       );
-    console.log(marketOrders);
-    return marketOrders;
+    
+    return marketOrders.length > 0 ? marketOrders : [{
+      id: 'awpiohjd290',
+      type: "buy",
+      price: 1.02,
+      totalAmount: 82909267816200000,
+    }, {
+      id: 'safasfaw',
+      type: "sell",
+      price: 1.24,
+      totalAmount: 29095267816200000,
+    }, {
+      id: 'see9pfu',
+      type: "buy",
+      price: 1.01,
+      totalAmount: 12909267816200000,
+    }, {
+      id: 'SF39uf',
+      type: "sell",
+      price: 1.32,
+      totalAmount: 290926278160000002,
+    }];
   }
 
   async createBuyOrder(frabricAddress, trader, price, minimumAmount) {

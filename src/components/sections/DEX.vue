@@ -1,9 +1,9 @@
 <template>
 <div class="container">
     <div class="columns">
-        <div class="column">
-          <OrderBook :orders="orders" :buy="true"/>
-          <OrderBook :orders="orders" :buy="false"/>
+        <div class="column is-three-fifths">
+          <OrderBook :orders="getBuyOrders(orders)" :buy="true"/>
+          <OrderBook :orders="getSellOrders(orders)" :buy="false"/>
         </div>
         <div class="column">
             <OrderPlacer/>
@@ -37,7 +37,17 @@ export default {
   methods: {
     ...mapActions({
       fetchOrders: "fetchDexOrders",
-    })
+    }),
+    getBuyOrders: (orders) => (orders 
+      ? orders
+        .filter(o => o.type === "buy")
+        .sort((o1, o2) => o1.price > o2.price)
+      : []),
+    getSellOrders: (orders) => (orders 
+      ? orders
+        .filter(o => o.type === "sell")
+        .sort((o1, o2) => o1.price < o2.price)
+      : []),
   },
   mounted() {
     const ASSET_ID = 0;

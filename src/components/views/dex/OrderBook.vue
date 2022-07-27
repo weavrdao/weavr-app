@@ -1,12 +1,23 @@
 <template>
 <div class="container">
     <h3>{{buy ? "Buy Orders" : "Sell Orders"}}</h3>
+    <div class="columns headers">
+      <div class="column is-one-quarter is-flex">
+        Account
+      </div>
+      <div class="column is-one-quarter">
+        Amount
+      </div>
+      <div class="column is-one-quarter">
+        Rate (1 FBRC)
+      </div>
+    </div>
     <ul>
-        <li
-            v-for="order in ordersToShow"
-            v-bind:key="order.id">
-            <OrderListItem :order="order"/>
-        </li>
+      <li
+          v-for="order in orders"
+          v-bind:key="order.id">
+          <OrderListItem :order="order"/>
+      </li>
     </ul>
 </div>
 </template>
@@ -17,11 +28,6 @@ export default {
   name: "OrderBook",
   components: {
     OrderListItem,
-  },
-  computed: {
-    ordersToShow: () => {
-        this.props.orders.filter(order => order.type === 'buy');
-    }
   },
   props: {
     buy: {
@@ -34,3 +40,30 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "../../../styles/frabric-custom.scss";
+
+h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+hr {
+    height: 0px;
+    border: 1px solid #2F2C38;
+    margin: 8px 0;
+}
+
+.container {
+  border: 2px solid #575757;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 30px !important;
+}
+
+.headers {
+  font-size: 1.1rem;
+  color: $mediumGray;
+}
+</style>
