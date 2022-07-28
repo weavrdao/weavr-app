@@ -107,6 +107,7 @@ export default {
   margin: 0 10px;
   font-weight: 600;
   border-radius: $tiny-radius;
+  transition: all 150ms;
 
   &:hover {
     color: white !important;

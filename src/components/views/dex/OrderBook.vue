@@ -36,7 +36,7 @@ export default {
       default: true,
     },
     orders: {
-        type: Array,
+      type: Array,
     }
   }
 }
