@@ -42,11 +42,13 @@ export default {
       ? orders
         .filter(o => o.type === "buy")
         .sort((o1, o2) => o1.price > o2.price)
+        .slice(0, 9)
       : []),
     getSellOrders: (orders) => (orders 
       ? orders
         .filter(o => o.type === "sell")
         .sort((o1, o2) => o1.price < o2.price)
+        .slice(0, 9)
       : []),
   },
   mounted() {

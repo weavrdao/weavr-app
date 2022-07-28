@@ -26,7 +26,9 @@
     <input class="is-price-input" type="number" placeholder="Price" v-model="price">
     <p>Quantity</p>
     <input class="is-price-input" type="number" placeholder="Quantity" v-model="quantity">
-    <p class="is-total">{{`Total: ${(quantity * price).toFixed(2)} USD`}}</p>
+    <div class="is-flex is-justify-content-flex-end">
+      <p class="is-total">{{`Total: ${(quantity * price).toFixed(2)} USD`}}</p>
+    </div>
     <button
       class="_button order-button buy-button"
       v-if="this.orderType === this.orderTypes.BUY">
@@ -66,7 +68,6 @@ export default {
       this.setPrice();
     },
     setPrice() {
-      console.log(typeof(this.orders));
       this.price = this.orders
         .filter(o => o.type === this.orderType)
         .sort((o1, o2) => {
@@ -172,6 +173,10 @@ input[type=number] {
 }
 
 .is-total {
+  display: inline-block;
+  padding: 2px 8px;
   text-align: right;
+  background: $lightNavy;
+  border-radius: $tiny-radius;
 }
 </style>

@@ -1,14 +1,13 @@
 <template>
 <div class="columns is-align-items-center">
     <div class="column is-one-quarter">
-        <Blockies :seed="order.address"/>
-        {{ order.address }}
-    </div>
-    <div class="column is-one-quarter">
         {{ formatEther(`${order.totalAmount}`) }} FBRC
     </div>
     <div class="column is-one-quarter">
         {{ order.price.toFixed(2) }} USD
+    </div>
+    <div class="column is-one-quarter">
+      {{ getTotalAmount(order) }}
     </div>
     <div class="column is-one-quarter is-justify-content-flex-end">
         <div
@@ -21,17 +20,10 @@
 </template>
 
 <script>
-import { Blockies } from "blockies-vue";
 import { ethers } from "ethers";
 
 export default {
   name: "OrderListItem",
-  components: {
-    Blockies,
-  },
-  computed: {
-
-  },
   props: {
     order: {
       type: Object,
@@ -39,6 +31,9 @@ export default {
   },
   methods: {
     formatEther: (amount) => Number(ethers.utils.formatEther(amount)).toFixed(2),
+    getTotalAmount: (order) => {
+      return (Number(ethers.utils.formatEther(`${order.totalAmount}`)) * order.price).toFixed(2);
+    }
   }
 }
 </script>

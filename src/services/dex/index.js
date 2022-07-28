@@ -3,7 +3,7 @@ import EthereumClient from "../../data/network/web3/ethereum/ethereumClient"
 import DexRouterContract from "../../data/network/web3/contracts/dexRouterContract"
 import FrabricERC20Contract from "../../data/network/web3/contracts/frabricERC20Contract"
 import { FRABRIC_DEX_ORDERS_QUERY, THREAD_DEX_ORDERS_QUERY } from "../../data/network/graph/queries"
-
+import { BigNumber } from 'ethers';
 /**
  * DEX service
  * @param {EthereumClient} ethereumClient Ethereum client
@@ -41,22 +41,22 @@ class DEX {
       id: 'awpiohjd290',
       type: "buy",
       price: 1.02,
-      totalAmount: 82909267816200000,
+      totalAmount: BigNumber.from("22409262781600000020"),
     }, {
       id: 'safasfaw',
       type: "sell",
       price: 1.24,
-      totalAmount: 29095267816200000,
+      totalAmount: BigNumber.from("1392627816000000200000"),
     }, {
       id: 'see9pfu',
       type: "buy",
       price: 1.01,
-      totalAmount: 12909267816200000,
+      totalAmount: BigNumber.from("2920492627816000000200"),
     }, {
       id: 'SF39uf',
       type: "sell",
       price: 1.32,
-      totalAmount: 290926278160000002,
+      totalAmount: BigNumber.from("770926278160000002000"),
     }];
   }
 

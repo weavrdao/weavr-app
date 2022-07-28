@@ -6,7 +6,9 @@
   >
     <div class="navbar-brand">
       <a class="navbar-item" href="#">
-        <div class="title has-text-purpleThree">FRABRIC DAO</div>
+        <div class="title has-text-white is-flex is-align-items-center">
+          <img class="mx-2" src="../../../assets/logo/new-logo.svg" alt="">
+          Weavr</div>
       </a>
 
       <a
@@ -25,9 +27,9 @@
     </div>
 
     <div :class="[navigation.isOpen ? 'is-active' : '', 'navbar-menu']">
-      <div class="navbar-start">
+      <div class="navbar-end">
         <a
-        :class="[isItemCurrent(item) ? 'has-border-bottom' : '', 'navbar-item']"
+        :class="[isItemCurrent(item) ? 'is-selected' : '', 'navbar-item navlink']"
           v-for="item in navigation.items"
           :key="item.name"
           v-on:click="transitTo(item.path)"
@@ -85,3 +87,26 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "../../../styles/frabric-custom.scss";
+
+.title {
+  font-weight: 400;
+}
+
+.is-selected {
+  color: $mediumBlue;
+}
+
+.navlink {
+  margin: 0 10px;
+  font-weight: 600;
+  border-radius: $tiny-radius;
+
+  &:hover {
+    color: white !important;
+    background: $mediumBlue !important;
+  }
+}
+</style>

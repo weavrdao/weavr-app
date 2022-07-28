@@ -2,14 +2,14 @@
 <div class="container">
     <h3>{{buy ? "Buy Orders" : "Sell Orders"}}</h3>
     <div class="columns headers">
-      <div class="column is-one-quarter is-flex">
-        Account
-      </div>
       <div class="column is-one-quarter">
         Amount
       </div>
       <div class="column is-one-quarter">
         Rate (1 FBRC)
+      </div>
+      <div class="column is-one-quarter is-flex">
+        Total
       </div>
     </div>
     <ul>
