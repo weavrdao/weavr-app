@@ -22,8 +22,11 @@
         <span class="has-text-mediumBlue"> FBRC</span>
       </span>
     </div>
-    <input class="is-price-input" type="number" placeholder="Price">
-    <input class="is-price-input" type="number" placeholder="Total">
+    <p>Price</p>
+    <input class="is-price-input" type="number" placeholder="Price" v-model="price">
+    <p>Quantity</p>
+    <input class="is-price-input" type="number" placeholder="Quantity" v-model="quantity">
+    <p class="is-total">{{`Total: ${(quantity * price).toFixed(2)} USD`}}</p>
     <button
       class="_button order-button buy-button"
       v-if="this.orderType === this.orderTypes.BUY">
@@ -40,8 +43,8 @@
 <script>
 
 const orderTypes = {
-  sell: "SELL",
-  buy: "BUY",
+  sell: "sell",
+  buy: "buy",
 }
 
 export default {
@@ -49,16 +52,40 @@ export default {
   data() {
     return {
       orderTypes: {
-        SELL: "SELL",
-        BUY: "BUY",
+        SELL: "sell",
+        BUY: "buy",
       },
-      orderType: orderTypes.BUY,
+      orderType: orderTypes.buy,
+      price: 0,
+      quantity: 0,
     }
   },
   methods: {
     setOrderType(type) {
       this.orderType = type;
+      this.setPrice();
+    },
+    setPrice() {
+      console.log(typeof(this.orders));
+      this.price = this.orders
+        .filter(o => o.type === this.orderType)
+        .sort((o1, o2) => {
+          if(this.orderType === this.orderTypes.buy) {
+            return o1 < o2;
+          } else {
+            return o1 > o2;
+          }
+        })[0].price;
     }
+  },
+  props: {
+    orders: {
+      type: Array,
+      default: () => [],
+    }
+  },
+  onMounted() {
+    this.setPrice();
   }
 }
 </script>
@@ -89,7 +116,7 @@ input[type=number] {
 
     input {
         display: block;
-        margin: 10px 0px;
+        margin: 0 0 10px 0;
         background: $lightNavy;
         border: none !important;
         padding: 20px;
@@ -142,5 +169,9 @@ input[type=number] {
 
 .buy-button {
     background: $mint;
+}
+
+.is-total {
+  text-align: right;
 }
 </style>

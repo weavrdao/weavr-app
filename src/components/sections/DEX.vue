@@ -6,7 +6,7 @@
           <OrderBook :orders="getSellOrders(orders)" :buy="false"/>
         </div>
         <div class="column">
-            <OrderPlacer/>
+            <OrderPlacer :orders="orders"/>
         </div>
     </div>
 </div>
