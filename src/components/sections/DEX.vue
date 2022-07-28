@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-    <div class="columns">
+    <div class="columns reverse-columns">
         <div class="column is-three-fifths">
           <OrderBook :orders="getBuyOrders(orders)" :buy="true"/>
           <OrderBook :orders="getSellOrders(orders)" :buy="false"/>
@@ -63,6 +63,13 @@ export default {
 <style lang="scss" scoped>
 @import "../../styles/frabric-custom.scss";
 @import "../../styles/_variables.sass";
+
+@media(max-width: 767px) {
+  .reverse-columns {
+    flex-direction: column-reverse;
+    display: flex;
+  }
+}
 
 h1, h2 {
     color: white;

@@ -1,15 +1,15 @@
 <template>
-<div class="columns is-align-items-center">
-    <div class="column is-one-quarter">
+<div class="columns is-flex-mobile is-align-items-center">
+    <div class="column">
         {{ formatEther(`${order.totalAmount}`) }} FBRC
     </div>
-    <div class="column is-one-quarter">
+    <div class="column">
         {{ order.price.toFixed(2) }} USD
     </div>
-    <div class="column is-one-quarter">
+    <div class="column">
       {{ getTotalAmount(order) }}
     </div>
-    <div class="column is-one-quarter is-justify-content-flex-end">
+    <div class="column is-justify-content-flex-end">
         <div
             class="purchase-type"
             v-bind:class="order.type === 'buy' ? 'is-buy' : 'is-sell'">
@@ -41,6 +41,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../../styles/frabric-custom.scss";
+
 
 .columns {
     border-top: 1px solid #2F2C38;

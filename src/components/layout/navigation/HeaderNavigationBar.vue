@@ -91,6 +91,10 @@ export default {
 <style lang="scss" scoped>
 @import "../../../styles/frabric-custom.scss";
 
+.navbar {
+  background-color: transparent !important;
+}
+
 .title {
   font-weight: 400;
 }

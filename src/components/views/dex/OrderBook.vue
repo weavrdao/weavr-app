@@ -1,7 +1,7 @@
 <template>
 <div class="container">
     <h3>{{buy ? "Buy Orders" : "Sell Orders"}}</h3>
-    <div class="columns headers">
+    <div class="columns is-flex-mobile headers">
       <div class="column is-one-quarter">
         Amount
       </div>
@@ -11,6 +11,7 @@
       <div class="column is-one-quarter is-flex">
         Total
       </div>
+      <div class="column is-one-quater"></div>
     </div>
     <ul>
       <li
@@ -45,6 +46,7 @@ export default {
 @import "../../../styles/frabric-custom.scss";
 
 h3 {
+  color: white;
   font-size: 1.6rem;
   margin-bottom: 10px;
 }
