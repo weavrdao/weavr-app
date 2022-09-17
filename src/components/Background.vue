@@ -1,5 +1,5 @@
 <template>
-  <div class="app-background bg-purple-black">
+  <div class="app-background">
   </div>
 </template>
 
@@ -12,6 +12,7 @@ export default {
 <style scoped>
 .app-background {
   position: fixed;
+  background-color: #13111A;
   top: 0;
   left: calc(-100vw / 2);
   right: 0;
