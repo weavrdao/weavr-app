@@ -208,19 +208,6 @@ class FrabricERC20Contract {
    * @param {BigInt} price Purchase price per whole token (presumably 1e18 atomic units)
    * @param {BigInt} minimumAmount Minimum amount of tokens received (in whole tokens)
    */
-  async buy(trader, price, minimumAmount) {
-    try {
-      const tx = await this.mutableContract.buy(
-        trader,
-        price,
-        minimumAmount,
-      );
-      return (tx.wait()).status;
-    } catch(e) {
-      console.log(e);
-      return 0;
-    }
-  }
 
   /**
    * Execute a token sell order

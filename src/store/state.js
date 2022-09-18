@@ -226,18 +226,44 @@ const actions = {
     }
   },
 
+  async fetchOrders(context, params) {
+    let orders = await dex.getFrabricOrders(params.assetId.toLowerCase());
+    context.commit("setOrders", orders);
+  },
+
+  // Ignore, rewrite
   async fetchDexOrders(context, params) {
     const FRABRIC_ID = "0";
-    let orders = await dex.getThreadOrders(FRABRIC_ID, params.assetId.toString());
+    let orders = await dex.getAssetOrders(FRABRIC_ID, params.assetId.toString());
     context.commit("setOrders", orders);
   },
 
   async createBuyOrder(context, params) {
+    const {
+      assetId,
+      price,
+      amount,
+    } = params;
 
+    await dex.createBuyOrder(
+      assetId,
+      price,
+      amount,
+    )
   },
 
   async createSellOrder(context, params) {
+    const {
+      assetId,
+      price,
+      amount,
+    } = params;
 
+    await dex.createSellOrder(
+      assetId,
+      price,
+      amount,
+    )
   },
 }
 

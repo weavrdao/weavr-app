@@ -4,6 +4,7 @@ import DexRouterContract from "../../data/network/web3/contracts/dexRouterContra
 import FrabricERC20Contract from "../../data/network/web3/contracts/frabricERC20Contract"
 import { FRABRIC_DEX_ORDERS_QUERY, THREAD_DEX_ORDERS_QUERY } from "../../data/network/graph/queries"
 import { BigNumber } from 'ethers';
+import { TRADE_TOKEN_ADDRESS } from "../constants"
 /**
  * DEX service
  * @param {EthereumClient} ethereumClient Ethereum client
@@ -23,7 +24,7 @@ class DEX {
       .query(
         FRABRIC_DEX_ORDERS_QUERY,
         { frabricId },
-        (mapper, response) => { return mapper.mapMarketOrders(response) }
+        (mapper, response) => { return mapper.mapRawMarketOrders(response) }
       );
     console.log(marketOrders);
     return marketOrders;
@@ -60,13 +61,19 @@ class DEX {
     }];
   }
 
-  async createBuyOrder(frabricAddress, trader, price, minimumAmount) {
-    const frabricTokenContract = new FrabricERC20Contract(
+  async createBuyOrder(frabricAddress, price, minimumAmount) {
+    const dexRouterContract = new DexRouterContract(
       this.ethereumClient,
       frabricAddress,
     );
 
-    const status = await frabricTokenContract.buy(trader, price, minimumAmount);
+    const status = await dexRouterContract.buy(
+      frabricAddress,
+      TRADE_TOKEN_ADDRESS,
+      price * minimumAmount,
+      price,
+      minimumAmount,
+    );
     return status;
   }
 

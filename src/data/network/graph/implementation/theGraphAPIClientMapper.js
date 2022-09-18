@@ -37,9 +37,10 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
   }
 
   mapRawMarketOrders(rawOrders) {
-    if (!rawOrders || rawOrders.data) return [];
+    if (!rawOrders || !rawOrders.data) return [];
 
-    const orders = rawOrders.frabrics[0].threads; // TODO(bill): Add full path here
+    const orders = rawOrders.data.frabrics[0].token.orderBook; // TODO(bill): Add full path here
+    console.log(orders);
 
     // Questionable way of getting test data but will do for now
     return this.mapMarketOrders(orders)
@@ -49,6 +50,8 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
     if (!rawMarketOrders || rawMarketOrders.length < 1) {
       return []
     }
+
+    console.log(rawMarketOrders)
 
     return rawMarketOrders
       .map(rawMarketOrder => {

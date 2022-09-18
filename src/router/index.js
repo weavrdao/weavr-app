@@ -57,6 +57,10 @@ export default new createRouter({
     },
     {
       path: "/exchange",
+      redirect: `/exchange/${process.env.VUE_APP_FRABRIC_ADDRESS}`,
+    },
+    {
+      path: "/exchange/:assetId",
       name: "exchange",
       component: DEX,
     }

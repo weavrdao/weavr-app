@@ -696,7 +696,7 @@ const FRABRIC_DEX_ORDERS_QUERY = gql`
       }
     }
   }
-`
+`;
 
 const THREAD_DEX_ORDERS_QUERY = gql`
   query Orders($frabricId: String!, $threadId: String!) {
