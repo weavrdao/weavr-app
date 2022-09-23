@@ -1,7 +1,7 @@
 /* global BigInt */
-const { ethers } = require("ethers")
+const { ethers } = require("ethers");
 
-import EthereumClient from "../ethereum/ethereumClient"
+import EthereumClient from "../ethereum/ethereumClient";
 
 const contractAbi = [
   // Make a buy order
@@ -16,47 +16,39 @@ const contractAbi = [
   // Vote No on a certain proposal
   "function voteNo(uint256 id)",
 
+  // Get the ERC20 address of asset
+  "function erc20() returns (address)",
+
   // Propose a thread dissolution
   "function proposeDissolution(string info, address purchaser, address token, uint256 purchaseAmount)",
 
   // Event that is triggered every time an order is filled on the market
-  "event Filled(address indexed sender, address indexed recipient, uint256 indexed price, uint256 amount)"
-
-  
-]
-const startBlock = 0 // TODO: Inject the actual contract deployment block instead
+  "event Filled(address indexed sender, address indexed recipient, uint256 indexed price, uint256 amount)",
+];
+const startBlock = 0; // TODO: Inject the actual contract deployment block instead
 
 /**
  * Asset contract
  * @param {EthereumClient} ethereumClient Ethereum client
  */
 class AssetContract {
-  constructor(
-    ethereumClient,
-    contractAddress
-  ) {
-    this.contract = ethereumClient.getContract(contractAddress, contractAbi)
-    this.mutableContract = ethereumClient.getMutableContract(this.contract)
+  constructor(ethereumClient, contractAddress) {
+    this.contract = ethereumClient.getContract(contractAddress, contractAbi);
+    this.mutableContract = ethereumClient.getMutableContract(this.contract);
   }
 
   /**
    * Create a standard proposal
    * @param {string} info Proposal info
    */
-  async proposePaper(
-    info
-  ) {
-    console.log("Creating a proposal..")
+  async proposePaper(info) {
+    console.log("Creating a proposal..");
 
-    let tx = await this.mutableContract
-      .proposePaper(
-        info, 
-        {
-          gasLimit: 5000000
-        }
-      )
+    let tx = await this.mutableContract.proposePaper(info, {
+      gasLimit: 5000000,
+    });
 
-    return (await tx.wait()).status
+    return (await tx.wait()).status;
   }
 
   /**
@@ -64,64 +56,44 @@ class AssetContract {
    * @param {number} amount Amount of shares to buy
    * @param {BigInt} price Price to buy at
    */
-  async buy(
-    amount,
-    price
-  ) {
-    console.log("Amount " + amount)
-    console.log("Price " + price)
+  async buy(amount, price) {
+    console.log("Amount " + amount);
+    console.log("Price " + price);
 
-    let tx = await this.mutableContract
-      .buy(
-        amount, 
-        price,
-        {
-          value: BigInt(amount) * BigInt(price),
-          gasLimit: 5000000
-        }
-      )
+    let tx = await this.mutableContract.buy(amount, price, {
+      value: BigInt(amount) * BigInt(price),
+      gasLimit: 5000000,
+    });
 
-    return (await tx.wait()).status
+    return (await tx.wait()).status;
   }
 
   /**
    * Vote Yes on a certain proposal
    * @param {string} proposalId ID of the proposal
    */
-  async voteYes(
-    proposalId
-  ) {
-    console.log("Voting Yes on the proposal " + proposalId)
+  async voteYes(proposalId) {
+    console.log("Voting Yes on the proposal " + proposalId);
 
-    let tx = await this.mutableContract
-      .voteYes(
-        proposalId, 
-        {
-          gasLimit: 5000000
-        }
-      )
+    let tx = await this.mutableContract.voteYes(proposalId, {
+      gasLimit: 5000000,
+    });
 
-    return (await tx.wait()).status
+    return (await tx.wait()).status;
   }
 
   /**
    * Vote No on a certain proposal
    * @param {string} proposalId ID of the proposal
    */
-  async voteNo(
-    proposalId
-  ) {
-    console.log("Voting No on the proposal " + proposalId)
+  async voteNo(proposalId) {
+    console.log("Voting No on the proposal " + proposalId);
 
-    let tx = await this.mutableContract
-      .voteNo(
-        proposalId, 
-        {
-          gasLimit: 5000000
-        }
-      )
+    let tx = await this.mutableContract.voteNo(proposalId, {
+      gasLimit: 5000000,
+    });
 
-    return (await tx.wait()).status
+    return (await tx.wait()).status;
   }
 
   /**
@@ -131,27 +103,29 @@ class AssetContract {
    * @param {address} token Currency provided for payment
    * @param {uint256} purchaseAmount Amount proposed for the purchase
    */
-  async proposeDissolution(
-    info, 
-    purchaser, 
-    token, 
-    purchaseAmount
-  ) {
-    console.log("Dissolution proposal for " + token, + " by " + purchaser + "for $" + purchaseAmount)
+  async proposeDissolution(info, purchaser, token, purchaseAmount) {
+    console.log(
+      "Dissolution proposal for " + token,
+      +" by " + purchaser + "for $" + purchaseAmount
+    );
 
-    let tx = await this.mutableContract
-      .proposeDissolution(
-        info, 
-        purchaser, 
-        token, 
-        purchaseAmount,
-        {
-          gasLimit: 5000000
-        }
-      )
-      
-    return (await tx.wait()).status
+    let tx = await this.mutableContract.proposeDissolution(
+      info,
+      purchaser,
+      token,
+      purchaseAmount,
+      {
+        gasLimit: 5000000,
+      }
+    );
+
+    return (await tx.wait()).status;
+  }
+
+  async erc20() {
+    const address = await this.contract.erc20();
+    return address;
   }
 }
 
-export default AssetContract
+export default AssetContract;
