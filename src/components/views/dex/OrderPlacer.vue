@@ -30,11 +30,13 @@
       <p class="is-total">{{`Total: ${(quantity * price).toFixed(2)} USD`}}</p>
     </div>
     <button
+      @click="newBuyOrder"
       class="_button order-button buy-button"
       v-if="this.orderType === this.orderTypes.BUY">
       Buy
     </button>
     <button
+      @click="newSellOrder"
       class="_button order-button sell-button"
       v-else>
       Sell
@@ -43,10 +45,12 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 
 const orderTypes = {
-  sell: "sell",
-  buy: "buy",
+  sell: "Sell",
+  buy: "Buy",
 }
 
 export default {
@@ -54,15 +58,20 @@ export default {
   data() {
     return {
       orderTypes: {
-        SELL: "sell",
-        BUY: "buy",
+        SELL: "Sell",
+        BUY: "Buy",
       },
       orderType: orderTypes.buy,
       price: 0,
       quantity: 0,
+      assetId: this.$route.query.assetId || process.env.VUE_APP_FRABRIC_ADDRESS
     }
   },
   methods: {
+    ...mapActions({
+      createBuyOrder: "createBuyOrder",
+      createSellOrder: "createSellOrder",
+    }),
     setOrderType(type) {
       this.orderType = type;
       this.setPrice();
@@ -71,19 +80,33 @@ export default {
       this.price = this.orders
         .filter(o => o.type === this.orderType)
         .sort((o1, o2) => {
-          if(this.orderType === this.orderTypes.buy) {
+          if(this.orderType === this.orderTypes.BUY) {
             return o1 < o2;
           } else {
             return o1 > o2;
           }
         })[0].price;
-    }
+    },
+    newBuyOrder: function() {
+      this.createBuyOrder({
+        assetId: this.assetId,
+        price: this.price,
+        amount: this.quantity,
+      })
+    },
+    newSellOrder: function() {
+      this.createSellOrder({
+        assetId: this.assetId,
+        price: this.price,
+        amount: this.quantity,
+      })
+    },
   },
   props: {
     orders: {
       type: Array,
       default: () => [],
-    }
+    },
   },
   onMounted() {
     this.setPrice();

@@ -1,0 +1,1 @@
+export const TRADE_TOKEN_ADDRESS = "0xd87ba7a50b2e7e660f678a895e4b72e7cb4ccd9c";

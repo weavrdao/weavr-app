@@ -14,7 +14,7 @@
               </figure>
             </div>
             <div class="media-content">
-              <p class="title is-4"><Address :value="asset.contractAddress"></Address></p>
+              <p class="title is-4"><Address :value="asset.id"></Address></p>
             </div>
           </div>
 
@@ -133,8 +133,9 @@ export default {
       return toFixedNumber(this.orderFromValue);
     },
     ownersCount() {
+      console.log(this.asset.erc20)
       let i = 0
-      this.asset.owners.forEach(() => {
+      this.asset.erc20.balances.forEach(() => {
         i = i+1
       })
       return i

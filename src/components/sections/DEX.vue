@@ -2,8 +2,8 @@
 <div class="container">
     <div class="columns reverse-columns">
         <div class="column is-three-fifths">
-          <OrderBook :orders="getBuyOrders(orders)" :buy="true"/>
-          <OrderBook :orders="getSellOrders(orders)" :buy="false"/>
+          <OrderBook :assetId="assetId" :orders="getBuyOrders(orders)" :buy="true"/>
+          <OrderBook :assetId="assetId" :orders="getSellOrders(orders)" :buy="false"/>
         </div>
         <div class="column">
             <OrderPlacer :orders="orders"/>
@@ -27,6 +27,7 @@ export default {
   data() {
     return {
       orderBookMode: "buy",
+      assetId: this.$route.query.assetId || process.env.VUE_APP_FRABRIC_ADDRESS,
     }
   },
   computed: {
@@ -36,25 +37,24 @@ export default {
   },
   methods: {
     ...mapActions({
-      fetchOrders: "fetchDexOrders",
+      fetchOrders: "fetchOrders",
     }),
     getBuyOrders: (orders) => (orders 
       ? orders
-        .filter(o => o.type === "buy")
+        .filter(o => o.type === "Buy")
         .sort((o1, o2) => o1.price > o2.price)
         .slice(0, 9)
       : []),
     getSellOrders: (orders) => (orders 
       ? orders
-        .filter(o => o.type === "sell")
+        .filter(o => o.type === "Sell")
         .sort((o1, o2) => o1.price < o2.price)
         .slice(0, 9)
       : []),
   },
   mounted() {
-    const ASSET_ID = 0;
     this.fetchOrders({
-      assetId: ASSET_ID,
+      assetId: this.assetId,
     });
   }
 }

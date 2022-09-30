@@ -35,13 +35,20 @@ class DexRouterContract {
     price,
     minimumAmount,
   ) {
+    console.dir({
+      token,
+      tradeToken,
+      payment,
+      price,
+      minimumAmount,
+    })
     let tx = await this.mutableContract
       .buy(
         token,
         tradeToken,
-        payment,
-        price,
-        minimumAmount,
+        payment.toString(),
+        price.toString(),
+        minimumAmount.toString(),
       );
 
     return (await tx.wait()).status;

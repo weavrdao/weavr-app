@@ -55,8 +55,12 @@ export default new createRouter({
       props: true,
       component: MarketListDetailVue
     },
+    {
+      path: "/exchange",
+      redirect: `/exchange/${process.env.VUE_APP_FRABRIC_ADDRESS}`,
+    },
     // {
-    //   path: "/exchange",
+    //   path: "/exchange/:assetId",
     //   name: "exchange",
     //   component: DEX,
     // }

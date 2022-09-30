@@ -1,71 +1,74 @@
-import ServiceProvider from "../services/provider"
-import { networks, WalletState } from "../models/walletState"
-import { MarketOrderType } from "../models/marketOrder"
-import { bigIntMax, bigIntMin } from "../utils/common"
-import router from "../router/index"
-import { Vote } from "../models/vote"
+import ServiceProvider from "../services/provider";
+import { networks, WalletState } from "../models/walletState";
+import { MarketOrderType } from "../models/marketOrder";
+import { bigIntMax, bigIntMin } from "../utils/common";
+import router from "../router/index";
+import { Vote } from "../models/vote";
 
-const wallet = ServiceProvider.wallet()
-const market = ServiceProvider.market()
-const dao = ServiceProvider.dao()
-const dex = ServiceProvider.dex()
+const wallet = ServiceProvider.wallet();
+const market = ServiceProvider.market();
+const dao = ServiceProvider.dao();
+const dex = ServiceProvider.dex();
 
 function state() {
   return {
     user: {
-      wallet: WalletState
+      wallet: WalletState,
     },
     platform: {
       assets: null,
-      proposals: new Map()
+      threads: null,
+      proposals: new Map(),
     },
     interface: {
-      alert: null
+      alert: null,
     },
     exchange: {
       orders: null,
-    }
-  }
+      tokenAddress: null,
+    },
+  };
 }
 
 /**
- * Note: 
+ * Note:
  * I haven"t spent too much time figuring out how to pass arguments to Vuex getters, only knowing that it"s not well-supported natively.
  * So for the first implementation whenever we need to get a subset of data for particular parameters —
  * — we return a Map from the corresponding getter, so that the consuming part can access the data with one key lookup operation.
- * 
+ *
  * Pretty suboptimal, but at the time of writing this the bigger picture matters the most!
  */
 
 const getters = {
   userWalletAddress(state) {
-    return state.user.wallet.address
+    return state.user.wallet.address;
   },
 
   userEthBalance(state) {
-    return state.user.wallet.ethBalance
+    return state.user.wallet.ethBalance;
   },
 
   walletError(state) {
-    return state.user.wallet.error
+    return state.user.wallet.error;
   },
 
   allAssets(state) {
-    return state.platform.assets
+    return state.platform.assets;
   },
-
+  allThreads(state) {333333333333333
+    return state.platform.threads;
+  },
   assetsById(state) {
-    var assetMap = new Map()
-    state.platform.assets
-      ?.forEach(asset => {
-        assetMap.set(asset.id, asset)
-      })
+    var assetMap = new Map();
+    state.platform.assets?.forEach((asset) => {
+      assetMap.set(asset.id, asset);
+    });
 
-    return assetMap
+    return assetMap;
   },
 
   marketplaceActiveAssets(state) {
-    return state.platform.assets
+    return state.platform.assets;
   },
 
   assetMarketOrders(state) {
@@ -73,92 +76,87 @@ const getters = {
   },
 
   ownedAssets(state) {
-    return state.platform.assets
-      ?.filter(asset => { return asset.owners.get(state.user.wallet.address) }) || null
+    return (
+      state.platform.assets?.filter((asset) => {
+        return asset.owners.get(state.user.wallet.address);
+      }) || null
+    );
   },
 
   // TODO: Quick implementation for testing, need something smarter than that
   bestAssetPrices(state) {
-    var assetPriceMap = new Map()
+    var assetPriceMap = new Map();
 
-    state.platform.assets
-      ?.forEach(asset => {
-        let buyPrices = asset.marketOrders
-          .filter(o => { return o.orderType == MarketOrderType.Buy })
-          .map(o => { return o.price })
-        let sellPrices = asset.marketOrders
-          .filter(o => { return o.orderType == MarketOrderType.Sell })
-          .map(o => { return o.price })
+    state.platform.assets?.forEach((asset) => {
+      let buyPrices = asset.marketOrders
+        .filter((o) => {
+          return o.orderType == MarketOrderType.Buy;
+        })
+        .map((o) => {
+          return o.price;
+        });
+      let sellPrices = asset.marketOrders
+        .filter((o) => {
+          return o.orderType == MarketOrderType.Sell;
+        })
+        .map((o) => {
+          return o.price;
+        });
 
-        const prices = {
-          bid: bigIntMax(buyPrices),
-          ask: bigIntMin(sellPrices)
-        }
+      const prices = {
+        bid: bigIntMax(buyPrices),
+        ask: bigIntMin(sellPrices),
+      };
 
-        assetPriceMap.set(asset.id, prices)
-      })
+      assetPriceMap.set(asset.id, prices);
+    });
 
-    console.log("Best asset prices:")
-    console.log(assetPriceMap)
+    console.log("Best asset prices:");
+    console.log(assetPriceMap);
 
-    return assetPriceMap
-  },
-
-  assetProposals(state) {
-    return state.platform.proposals
-  },
-
-  proposalsById(state) {
-    var proposalsMap = new Map()
-
-    console.log(state.platform.proposals.values())
-
-    Array.from(state.platform.proposals.values())
-      .flatMap(p => { return p })
-      .forEach(p => { proposalsMap.set(p.id, p) })
-
-    return proposalsMap
-  },
-
-  activeAlert(state) {
-    return state.interface.alert
+    return assetPriceMap;
   }
-}
+};
 
 const actions = {
   async syncWallet(context, params) {
-    const walletState = await wallet.getState()
+    const walletState = await wallet.getState();
     if (walletState.error) {
-      params.$toast.error(walletState.error.msg)
-    }
-    else {
+      params.$toast.error(walletState.error.msg);
+    } else {
       if (walletState.chainId !== networks.rinkeby) {
-        params.$toast.show('Wallet connected, but you seem to be on the wrong network! Switch to Rinkeby in your wallet.')
-      }
-      else {
-        params.$toast.success('Wallet connected!')
+        params.$toast.show(
+          "Wallet connected, but you seem to be on the wrong network! Switch to Rinkeby in your wallet."
+        );
+      } else {
+        params.$toast.success("Wallet connected!");
       }
     }
-    context.commit("setWallet", walletState)
+    context.commit("setWallet", walletState);
   },
 
   async refreshOwnedAssetsData(context) {
-    let assets = await market.getAssetsOnTheMarket()
-    context.commit("setAssets", assets)
+    let assets = await market.getAssetsOnTheMarket();
+    context.commit("setAssets", assets);
   },
 
   async refreshMarketplaceData(context) {
-    let assets = await market.getAssetsOnTheMarket()
-    context.commit("setAssets", assets)
+    let assets = await market.getAssetsOnTheMarket();
+    context.commit("setAssets", assets);
+  },
+
+  async refreshThreads(context) {
+    let assets = await market.getThreads();
+    context.commit("setThreads", assets);
   },
 
   async swapToAsset(context, params) {
-    const asset = params.asset
-    const amount = params.amount
+    const asset = params.asset;
+    const amount = params.amount;
 
-    const price = context.getters.bestAssetPrices.get(asset.id).ask
+    const price = context.getters.bestAssetPrices.get(asset.id).ask;
     params.$toast.info("Confirming transaction...", {
-      duration: false
+      duration: false,
     });
 
     const status = await market.buy(asset, amount, price);
@@ -172,107 +170,71 @@ const actions = {
     }
   },
 
-  async refreshProposalsDataForAsset(context, params) {
-    context.dispatch("refreshMarketplaceData")
-
-    let assetId = params.assetId
-
-    let assetProposals = await dao.getProposalsForAsset(assetId)
-
-    console.log("New Proposals")
-    console.log(assetProposals)
-
-    context.commit("setProposalsForAsset", { assetId: assetId, proposals: assetProposals })
+  async fetchOrders(context, params) {
+    let orders = await dex.getFrabricOrders(params.assetId.toLowerCase());
+    context.commit("setOrders", orders);
   },
 
-  async createProposal(context, params) {
-    let asset = context.getters.assetsById.get(params.assetId)
-    let title = params.title
-    let description = params.description
-
-    params.$toast.show("Confirming transaction...", {
-      duration: false
-    });
-
-    const status = await dao.createProposal(asset, title, description);
-    params.$toast.clear();
-
-    if (status) {
-      params.$toast.success("Transaction confirmed!");
-      context.dispatch("refreshProposalsDataForAsset", { assetId: params.assetId })
-      router.push("/dao/" + params.assetId + "/proposals")
-    } else {
-      params.$toast.error("Transaction failed. See details in MetaMask.");
-    }
-  },
-
-  async voteOnProposal(context, params) {
-    let asset = context.getters.assetsById.get(params.assetId)
-    let proposal = context.getters.proposalsById.get(params.proposalId)
-    let voteType = params.voteType
-
-    params.$toast.show("Confirming transaction...", {
-      duration: false
-    })
-
-    const status = await dao.vote(asset, proposal, voteType);
-    params.$toast.clear();
-
-    if (status) {
-      params.$toast.success("Transaction confirmed!");
-      context.dispatch("refreshProposalsDataForAsset", { assetId: params.assetId })
-    } else {
-      params.$toast.error("Transaction failed. See details in MetaMask.");
-    }
-  },
-
+  // Ignore, rewrite
   async fetchDexOrders(context, params) {
     const FRABRIC_ID = "0";
-    let orders = await dex.getThreadOrders(FRABRIC_ID, params.assetId.toString());
+    let orders = await dex.getAssetOrders(
+      FRABRIC_ID,
+      params.assetId.toString()
+    );
+    const tokenAddress = await dao.getTokenAddress();
+    context.commit("setTokenAddress", tokenAddress);
     context.commit("setOrders", orders);
   },
 
   async createBuyOrder(context, params) {
+    const { assetId, price, amount } = params;
 
+    await dex.createBuyOrder(assetId, price, amount);
   },
 
   async createSellOrder(context, params) {
+    const { assetId, price, amount } = params;
 
+    await dex.createSellOrder(assetId, price, amount);
   },
-}
+};
 
 const mutations = {
   setWallet(state, wallet) {
-    state.user.wallet = wallet
+    state.user.wallet = wallet;
     if (wallet.error) {
       console.log(wallet.error);
     }
   },
 
   setEthBalance(state, ethBalance) {
-    state.user.wallet.ethBalance = ethBalance
+    state.user.wallet.ethBalance = ethBalance;
   },
 
   setAssets(state, assets) {
-    state.platform.assets = assets
+    state.platform.assets = assets;
+  },
+  setThreads(state, assets) {
+    state.platform.threads = assets;
   },
 
   setOrders(state, orders) {
     state.exchange.orders = orders;
   },
 
-  setProposalsForAsset(state, { proposals, assetId }) {
-    state.platform.proposals.set(assetId, proposals)
+  setAlert(state, alert) {
+    state.interface.alert = alert;
   },
 
-  setAlert(state, alert) {
-    state.interface.alert = alert
-  }
-}
+  setTokenAddress(state, tokenAddress) {
+    state.exchange.tokenAddress = tokenAddress;
+  },
+};
 
 export default {
   state,
   getters,
   actions,
-  mutations
-}
+  mutations,
+};

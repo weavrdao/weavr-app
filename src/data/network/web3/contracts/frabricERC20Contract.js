@@ -1,5 +1,5 @@
 /* global BigInt */
-import EthereumClient from "../ethereum/ethereumClient"
+import EthereumClient from "../ethereum/ethereumClient";
 import contractAbi from "./abi/FrabricERC20";
 
 /**
@@ -7,14 +7,11 @@ import contractAbi from "./abi/FrabricERC20";
  * @param {EthereumClient} ethereumClient Ethereum client
  */
 class FrabricERC20Contract {
-  constructor(
-    ethereumClient,
-    contractAddress
-  ) {
-    this.contract = ethereumClient.getContract(contractAddress, contractAbi)
-    this.mutableContract = ethereumClient.getMutableContract(this.contract)
+  constructor(ethereumClient, contractAddress) {
+    this.contract = ethereumClient.getContract(contractAddress, contractAbi);
+    this.mutableContract = ethereumClient.getMutableContract(this.contract);
   }
-  
+
   // General token functions
 
   /**
@@ -24,7 +21,7 @@ class FrabricERC20Contract {
   async balanceOf(account) {
     try {
       return await this.contract.balanceOf(account);
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -32,8 +29,8 @@ class FrabricERC20Contract {
   // Query decimals of token
   async decimals() {
     try {
-      return await this.contract.decimals(); 
-    } catch(e) {
+      return await this.contract.decimals();
+    } catch (e) {
       console.log(e);
     }
   }
@@ -46,8 +43,8 @@ class FrabricERC20Contract {
   async mint(to, amount) {
     try {
       const tx = await this.mutableContract.mint(to, amount);
-      return (tx.wait()).status;
-    } catch(e) {
+      return tx.wait().status;
+    } catch (e) {
       console.log(e);
       return 0;
     }
@@ -60,8 +57,8 @@ class FrabricERC20Contract {
   async burn(amount) {
     try {
       const tx = await this.mutableContract.burn(amount);
-      return (tx.wait()).status;
-    } catch(e) {
+      return tx.wait().status;
+    } catch (e) {
       console.log(e);
       return 0;
     }
@@ -76,7 +73,7 @@ class FrabricERC20Contract {
   async whitelisted(person) {
     try {
       return await this.contract.whitelisted(person);
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -88,7 +85,7 @@ class FrabricERC20Contract {
   async removed(person) {
     try {
       return await this.contract.removed(person);
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -100,7 +97,7 @@ class FrabricERC20Contract {
   async whitelist(person) {
     try {
       return await this.contract.whitelisted(person);
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -113,13 +110,9 @@ class FrabricERC20Contract {
    */
   async setKYC(person, hash, nonce) {
     try {
-      const tx = await this.mutableContract.setKYC(
-        person,
-        hash,
-        nonce,
-      );
-      return (tx.wait()).status;
-    } catch(e) {
+      const tx = await this.mutableContract.setKYC(person, hash, nonce);
+      return tx.wait().status;
+    } catch (e) {
       console.log(e);
       return 0;
     }
@@ -132,12 +125,9 @@ class FrabricERC20Contract {
    */
   async remove(person, fee) {
     try {
-      const tx = await this.mutableContract.remove(
-        person,
-        fee,
-      );
-      return (tx.wait()).status;
-    } catch(e) {
+      const tx = await this.mutableContract.remove(person, fee);
+      return tx.wait().status;
+    } catch (e) {
       console.log(e);
       return 0;
     }
@@ -150,8 +140,8 @@ class FrabricERC20Contract {
   async triggerRemoval(person) {
     try {
       const tx = await this.mutableContract.triggerRemoval(person);
-      return (tx.wait()).status;
-    } catch(e) {
+      return tx.wait().status;
+    } catch (e) {
       console.log(e);
       return 0;
     }
@@ -161,7 +151,7 @@ class FrabricERC20Contract {
   async paused() {
     try {
       return await this.contract.paused();
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -170,8 +160,8 @@ class FrabricERC20Contract {
   async pause() {
     try {
       const tx = await this.mutableContract.pause();
-      return (tx.wait()).status;
-    } catch(e) {
+      return tx.wait().status;
+    } catch (e) {
       console.log(e);
     }
   }
@@ -183,7 +173,7 @@ class FrabricERC20Contract {
   async atomic(amount) {
     try {
       return await this.contract.atomic(amount);
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -195,8 +185,8 @@ class FrabricERC20Contract {
   async withdrawTradeToken(trader) {
     try {
       const tx = await this.mutableContract.withdrawTradeToken(trader);
-      return (tx.wait()).status;
-    } catch(e) {
+      return tx.wait().status;
+    } catch (e) {
       console.log(e);
       return 0;
     }
@@ -208,19 +198,6 @@ class FrabricERC20Contract {
    * @param {BigInt} price Purchase price per whole token (presumably 1e18 atomic units)
    * @param {BigInt} minimumAmount Minimum amount of tokens received (in whole tokens)
    */
-  async buy(trader, price, minimumAmount) {
-    try {
-      const tx = await this.mutableContract.buy(
-        trader,
-        price,
-        minimumAmount,
-      );
-      return (tx.wait()).status;
-    } catch(e) {
-      console.log(e);
-      return 0;
-    }
-  }
 
   /**
    * Execute a token sell order
@@ -228,14 +205,12 @@ class FrabricERC20Contract {
    * @param {BigInt} amount Amount of tokens to be sold (in whole tokens)
    */
   async sell(price, amount) {
+    console.log(price, amount);
     try {
-      const tx = await this.mutableContract.sell(
-        price,
-        amount,
-      );
-      return (tx.wait()).status;
-    } catch(e) {
-      console.log(e)
+      const tx = await this.mutableContract.sell(price, amount);
+      return tx.wait().status;
+    } catch (e) {
+      console.log(e);
       return 0;
     }
   }
@@ -247,12 +222,9 @@ class FrabricERC20Contract {
    */
   async cancelOrder(price, i) {
     try {
-      const tx = await this.mutableContract.cancelOrder(
-        price,
-        i,
-      );
-      return (tx.wait()).status;
-    } catch(e) {
+      const tx = await this.mutableContract.cancelOrder(price, i);
+      return tx.wait().status;
+    } catch (e) {
       console.log(e);
       return 0;
     }
@@ -265,7 +237,7 @@ class FrabricERC20Contract {
   async pointType(price) {
     try {
       return await this.contract.pointType(price);
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -277,7 +249,7 @@ class FrabricERC20Contract {
   async orderQuantity(price) {
     try {
       return await this.contract.orderQuantity(price);
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -289,11 +261,8 @@ class FrabricERC20Contract {
    */
   async orderTrader(price, i) {
     try {
-      return await this.contract.orderTrader(
-        price,
-        i
-      );
-    } catch(e) {
+      return await this.contract.orderTrader(price, i);
+    } catch (e) {
       console.log(e);
     }
   }
@@ -305,11 +274,8 @@ class FrabricERC20Contract {
    */
   async orderAmount(price, i) {
     try {
-      return await this.contract.orderAmount(
-        price,
-        i,
-      );
-    } catch(e) {
+      return await this.contract.orderAmount(price, i);
+    } catch (e) {
       console.log(e);
     }
   }
