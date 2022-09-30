@@ -677,6 +677,44 @@ query Threads($weavrId: String!) {
     }
 }
 `
+
+const ALL_CROWDFUND_QUERY = gql`
+query Crowdfunds($weavrId: String!) {
+  crowdfunds {
+      crowdfund(id: $weavrId)
+      id
+      state
+      amountDeposited
+      target
+      thread {
+        id
+      }
+      deposits {
+        id
+        depositor
+        amount
+      }
+      withdrawals {
+        id
+        depositor
+        amount
+      }
+      distributions {
+        id
+        distribution {
+          token
+          amount
+          claims {
+            id
+            person
+            amount
+          }
+        }
+      }
+    }
+}
+`
+
 const ALL_ASSET_PROPOSALS_QUERY = gql`
   query Proposals($assetId: String!) {
     desriptorChangeProposals(first: 5) {
@@ -728,6 +766,7 @@ export {
   ALL_ASSETS_QUERY,
   ALL_ASSET_PROPOSALS_QUERY,
   ALL_THREADS_QUERY,
+  ALL_CROWDFUND_QUERY,
   FRABRIC_DEX_ORDERS_QUERY,
   THREAD_DEX_ORDERS_QUERY,
 }
