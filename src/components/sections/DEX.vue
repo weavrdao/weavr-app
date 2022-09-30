@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 <div class="container">
     <div class="columns reverse-columns">
         <div class="column is-three-fifths">
@@ -120,4 +120,4 @@ h1, h2 {
 .sell-button {
     background: $red;
 }
-</style>
+</style> -->

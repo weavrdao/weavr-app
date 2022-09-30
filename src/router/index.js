@@ -6,7 +6,7 @@ import Voting from "@/components/sections/Voting.vue"
 import Proposal from "@/components/sections/Proposal.vue"
 import NewProposal from "@/components/sections/NewProposal.vue"
 import MarketListDetailVue from "../components/views/market/MarketListDetail.vue"
-import DEX from "../components/sections/DEX.vue";
+// import DEX from "../components/sections/DEX.vue";
 
 export default new createRouter({
   history: createWebHashHistory(),
@@ -55,10 +55,10 @@ export default new createRouter({
       props: true,
       component: MarketListDetailVue
     },
-    {
-      path: "/exchange",
-      name: "exchange",
-      component: DEX,
-    }
+    // {
+    //   path: "/exchange",
+    //   name: "exchange",
+    //   component: DEX,
+    // }
   ]
 })

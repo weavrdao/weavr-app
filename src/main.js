@@ -26,4 +26,3 @@ app.use(Toaster)
 app.use(Unicon)
 app.use(Blockies)
 app.mount("#app")
-
