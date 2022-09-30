@@ -17,6 +17,7 @@ function state() {
     },
     platform: {
       assets: null,
+      threads: null,
       proposals: new Map(),
     },
     interface: {
@@ -54,7 +55,9 @@ const getters = {
   allAssets(state) {
     return state.platform.assets;
   },
-
+  allThreads(state) {333333333333333
+    return state.platform.threads;
+  },
   assetsById(state) {
     var assetMap = new Map();
     state.platform.assets?.forEach((asset) => {
@@ -112,31 +115,7 @@ const getters = {
     console.log(assetPriceMap);
 
     return assetPriceMap;
-  },
-
-  assetProposals(state) {
-    return state.platform.proposals;
-  },
-
-  proposalsById(state) {
-    var proposalsMap = new Map();
-
-    console.log(state.platform.proposals.values());
-
-    Array.from(state.platform.proposals.values())
-      .flatMap((p) => {
-        return p;
-      })
-      .forEach((p) => {
-        proposalsMap.set(p.id, p);
-      });
-
-    return proposalsMap;
-  },
-
-  activeAlert(state) {
-    return state.interface.alert;
-  },
+  }
 };
 
 const actions = {
@@ -166,6 +145,11 @@ const actions = {
     context.commit("setAssets", assets);
   },
 
+  async refreshThreads(context) {
+    let assets = await market.getThreads();
+    context.commit("setThreads", assets);
+  },
+
   async swapToAsset(context, params) {
     const asset = params.asset;
     const amount = params.amount;
@@ -181,67 +165,6 @@ const actions = {
 
     if (status) {
       params.$toast.success("Transaction confirmed!");
-    } else {
-      params.$toast.error("Transaction failed. See details in MetaMask.");
-    }
-  },
-
-  async refreshProposalsDataForAsset(context, params) {
-    context.dispatch("refreshMarketplaceData");
-
-    let assetId = params.assetId;
-
-    let assetProposals = await dao.getProposalsForAsset(assetId);
-
-    console.log("New Proposals");
-    console.log(assetProposals);
-
-    context.commit("setProposalsForAsset", {
-      assetId: assetId,
-      proposals: assetProposals,
-    });
-  },
-
-  async createProposal(context, params) {
-    let asset = context.getters.assetsById.get(params.assetId);
-    let title = params.title;
-    let description = params.description;
-
-    params.$toast.show("Confirming transaction...", {
-      duration: false,
-    });
-
-    const status = await dao.createProposal(asset, title, description);
-    params.$toast.clear();
-
-    if (status) {
-      params.$toast.success("Transaction confirmed!");
-      context.dispatch("refreshProposalsDataForAsset", {
-        assetId: params.assetId,
-      });
-      router.push("/dao/" + params.assetId + "/proposals");
-    } else {
-      params.$toast.error("Transaction failed. See details in MetaMask.");
-    }
-  },
-
-  async voteOnProposal(context, params) {
-    let asset = context.getters.assetsById.get(params.assetId);
-    let proposal = context.getters.proposalsById.get(params.proposalId);
-    let voteType = params.voteType;
-
-    params.$toast.show("Confirming transaction...", {
-      duration: false,
-    });
-
-    const status = await dao.vote(asset, proposal, voteType);
-    params.$toast.clear();
-
-    if (status) {
-      params.$toast.success("Transaction confirmed!");
-      context.dispatch("refreshProposalsDataForAsset", {
-        assetId: params.assetId,
-      });
     } else {
       params.$toast.error("Transaction failed. See details in MetaMask.");
     }
@@ -292,13 +215,12 @@ const mutations = {
   setAssets(state, assets) {
     state.platform.assets = assets;
   },
+  setThreads(state, assets) {
+    state.platform.threads = assets;
+  },
 
   setOrders(state, orders) {
     state.exchange.orders = orders;
-  },
-
-  setProposalsForAsset(state, { proposals, assetId }) {
-    state.platform.proposals.set(assetId, proposals);
   },
 
   setAlert(state, alert) {

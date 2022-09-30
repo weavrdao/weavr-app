@@ -1,5 +1,7 @@
 import GraphQLAPIMapper from "../graphQLAPIMapper"
 import Asset from "../../../../models/asset"
+import Thread from "@/models/thread"
+import Erc20 from "@/models/erc20"
 import Proposal from "../../../../models/proposal"
 import { Vote } from "../../../../models/vote"
 import { MarketOrder } from "../../../../models/marketOrder"
@@ -31,16 +33,47 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
           rawAsset.numOfShares,
           ownersMap,
           marketOrders,
-          proposals
+        )
+      })
+  }
+
+  mapRawThreads(rawThreads) {
+    if (!rawThreads || rawThreads.length < 1) {
+      return []
+    }
+    return rawThreads
+      .map(rawThread => {
+        console.log(rawThread)
+        const erc20 = new Erc20(
+          rawThread.erc20.name,
+          rawThread.erc20.symbol,
+          rawThread.erc20.decimals,
+          rawThread.erc20.supply,
+          rawThread.erc20.tradeToken,
+          rawThread.erc20.balances
+        )
+        /**
+         * id,
+          variant,
+          governor,
+          erc20,
+          descriptor,
+         */
+        
+        return new Thread(
+          rawThread.id,
+          rawThread.variant,
+          rawThread.governor,
+          erc20,
+          rawThread.descriptor
         )
       })
   }
 
   mapRawMarketOrders(rawOrders) {
-    if (!rawOrders || !rawOrders.data) return [];
+    if (!rawOrders || rawOrders.data) return [];
 
-    const orders = rawOrders.data.frabrics[0].token.orderBook; // TODO(bill): Add full path here
-    console.log(orders);
+    const orders = rawOrders.frabrics[0].threads; // TODO(bill): Add full path here
 
     // Questionable way of getting test data but will do for now
     return this.mapMarketOrders(orders)
@@ -50,8 +83,6 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
     if (!rawMarketOrders || rawMarketOrders.length < 1) {
       return []
     }
-
-    console.log(rawMarketOrders)
 
     return rawMarketOrders
       .map(rawMarketOrder => {
@@ -64,24 +95,38 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
       })
   }
 
-  mapProposals(rawProposals) {
-    if (!rawProposals || rawProposals.length < 1) {
+  mapProposals(rawThreads) {
+    if (!rawThreads || rawThreads.length < 1) {
       return []
     }
 
-    return rawProposals
-      .map(rawProposal => {
-        const votes = this.mapVotes(rawProposal.votes)
+    return rawThreads
+      .map(rawThread => {
+        const votes = this.mapVotes(rawThread.votes)
 
         return new Proposal(
-          rawProposal.id,
-          rawProposal.creator,
-          rawProposal.dataURI,
-          rawProposal.startTimestamp,
-          rawProposal.endTimestamp,
+          rawThread.id,
+          rawThread.creator,
+          rawThread.dataURI,
+          rawThread.startTimestamp,
+          rawThread.endTimestamp,
           votes
         )
       })
+  }
+  
+  mapRawErc20(rawErc20) {
+    if (!rawErc20 || rawErc20.length < 1) {
+      return []
+    }
+    console.log("ERC20\n", rawErc20) 
+        return new Erc20(
+          rawErc20.name,
+          rawErc20.symbol,
+          rawErc20.decimals,
+          rawErc20.supply,
+          rawErc20.tradeToken
+        )
   }
 
   mapVotes(rawVotes) {
@@ -97,7 +142,8 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
           rawVote.voteType,
           rawVote.count
         )
-      })
+      }
+    )
   }
 }
 

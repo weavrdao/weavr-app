@@ -83,7 +83,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      assets: "marketplaceActiveAssets",
+      assets: "allThreads",
     }),
     searchResults() {
       if (!this.assets) return [];
@@ -108,7 +108,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      refresh: "refreshMarketplaceData",
+      refresh: "refreshThreads",
       syncWallet: "syncWallet",
     }),
     toggleView() {
@@ -124,6 +124,7 @@ export default {
   },
   mounted() {
     this.refresh();
+    console.log("Marketplace", this.assets)
     this.syncWallet({ $toast: this.$toast });
     this.$nextTick(function () {
       window.addEventListener("resize", this.getWindowWidth);
