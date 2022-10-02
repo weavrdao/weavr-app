@@ -38,7 +38,7 @@
       </div>
       <div v-else>
         <div class="card-header p-3 ">
-            <Address :value="asset.contractAddress"></Address>
+            <Address :value="asset.id"></Address>
         </div>
          <div class="card-content">
               <div class="media p-0">
@@ -146,7 +146,7 @@ export default {
       swap: "swapToAsset",
     }),
     openDAO() {
-      this.$router.push(`/dao/${this.asset.id}/proposals`);
+      this.$router.push(`/thread/${this.asset.id}`);
     },
     isNumber(evt) {
       evt = evt ? evt : window.event;

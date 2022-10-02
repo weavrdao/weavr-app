@@ -221,9 +221,6 @@ export default {
       this.$router.back();
     },
 
-    createProposal() {
-      this.$router.push(`/dao/${this.assetId}/proposals/create`);
-    },
     isNumber(evt) {
       evt = evt ? evt : window.event;
       var charCode = evt.which ? evt.which : evt.keyCode;
@@ -256,8 +253,8 @@ export default {
     };
   },
   mounted() {
-    this.refresh({ assetId: this.assetId });
-    
+    this.refresh();
+    console.log(this.assetMap)
     this.syncWallet({ $toast: this.$toast });
   },
 };
