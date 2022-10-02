@@ -621,73 +621,73 @@ const ALL_ASSETS_QUERY = gql`
 const ALL_THREADS_QUERY = gql`
 query Threads($weavrId: String!) {
   threads {
-      frabric(id: $weavrId)
-      id
-      contract
-      variant
-      governor
-      erc20 {
-        name
-        symbol
-        decimals
-        supply
-        tradeToken
-        globalAcceptance
-        whitelist {
+    frabric(id: $weavrId)
+    id
+    contract
+    variant
+    governor
+    erc20 {
+      name
+      symbol
+      decimals
+      supply
+      tradeToken
+      globalAcceptance
+      whitelist {
+        id
+        person
+        kycHash
+        removed
+      }
+      freezelist {
+        id
+        person
+        frozenUntil
+      }
+      orderBook {
+        id
+        price
+        type
+        totalAmount
+      }
+      executedOrders {
+        id
+        blockTimestamp
+        orderer
+        executor
+        price
+        amount
+      }
+      balances {
+        id
+        holder {
           id
-          person
-          kycHash
-          removed
         }
-        freezelist {
-          id
-          person
-          frozenUntil
-        }
-        orderBook {
-          id
-          price
-          type
-          totalAmount
-        }
-        executedOrders {
-          id
-          blockTimestamp
-          orderer
-          executor
-          price
-          amount
-        }
-        balances {
-          id
-          holder {
+        amount
+        transfersFrom {
+          timestamp
+          to {
             id
           }
           amount
-          transfersFrom {
-            timestamp
-            to {
-              id
-            }
-            amount
-          }
         }
       }
-      descriptor
     }
+    descriptor
+  }
 }
 `
 
 const ALL_NEEDLES_QUERY = gql`
 query Crowdfunds($weavrId: String!) {
   crowdfunds {
-    frabric(id: $weavrId)
     id
     state
     amountDeposited
     target
     thread {
       id
+      frabric(id: $weavrId)
     }
     deposits {
       id

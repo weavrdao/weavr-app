@@ -158,6 +158,10 @@ const actions = {
     let assets = await market.getThreads();
     context.commit("setThreads", assets);
   },
+  async refreshNeedles(context) {
+    let assets = await market.getNeedles();
+    context.commit("setNeedles", assets);
+  },
 
   async swapToAsset(context, params) {
     const asset = params.asset;
@@ -227,7 +231,9 @@ const mutations = {
   setThreads(state, assets) {
     state.platform.threads = assets;
   },
-
+  setNeedles(state, assets) {
+    state.platform.needles = assets;
+  },
   setOrders(state, orders) {
     state.exchange.orders = orders;
   },

@@ -201,8 +201,8 @@ class Market {
           weavrId: process.env.VUE_APP_WEAVR_ADDRESS
         }, 
         (mapper, response) => { 
-          console.log(response.data.threads)
-          const mappedNeedles =  mapper.mapRawNeedles(response.data.needles) 
+          console.log(response.data.crowdfunds)
+          const mappedNeedles =  mapper.mapRawNeedles(response.data.crowdfunds) 
           console.log(mappedNeedles)
           return mappedNeedles
         }

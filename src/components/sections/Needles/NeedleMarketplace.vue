@@ -110,7 +110,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      refresh: "refreshThreads",
+      refresh: "refreshNeedles",
       syncWallet: "syncWallet",
     }),
     toggleView() {

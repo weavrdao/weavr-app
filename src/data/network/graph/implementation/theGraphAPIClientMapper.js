@@ -75,33 +75,22 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
     if (!rawNeedles || rawNeedles.length < 1) {
       return []
     }
+    console.log(rawNeedles)
     return rawNeedles
-      .map(rawNeedle => {
-        console.log(rawNeedle)
-        const erc20 = new Erc20(
-          rawNeedle.erc20.name,
-          rawNeedle.erc20.symbol,
-          rawNeedle.erc20.decimals,
-          rawNeedle.erc20.supply,
-          rawNeedle.erc20.tradeToken,
-          rawNeedle.erc20.balances
-        )
-        /**
-         * id,
-          variant,
-          governor,
-          erc20,
-          descriptor,
-         */
-        
-        return new Needle(
-          rawNeedle.id,
-          rawNeedle.variant,
-          rawNeedle.governor,
-          erc20,
-          rawNeedle.descriptor
-        )
-      })
+      .map(
+        rawNeedle => {
+          console.log(rawNeedle)
+
+          return new Needle(
+            rawNeedle.id,
+            rawNeedle.state,
+            rawNeedle.amountDeposited,
+            rawNeedle.target,
+            rawNeedle.thread,
+            rawNeedle.deposits
+          )
+        }
+      )
   }
 
   mapRawMarketOrders(rawOrders) {
