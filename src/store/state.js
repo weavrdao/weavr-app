@@ -3,14 +3,16 @@ import WalletState, { networks } from "../models/walletState";
 import { MarketOrderType } from "../models/marketOrder";
 import { bigIntMax, bigIntMin } from "../utils/common";
 import { CONTRACTS } from "../services/constants";
+import { WALLET_STATE_COOKIE_KEY } from "./constants";
 import {
   whitelistState,
   whitelistGetters,
   whitelistActions,
   whitelistMutations,
+  WHITELIST_COOKIES_KEY,
+  setCookie,
+  getCookie,
 } from "../whitelist";
-import router from "../router/index";
-import { Vote } from "../models/vote";
 
 const wallet = ServiceProvider.wallet();
 const market = ServiceProvider.market();
@@ -19,9 +21,12 @@ const dex = ServiceProvider.dex();
 const whitelist = ServiceProvider.whitelist();
 
 function state() {
+  console.log(getCookie(WALLET_STATE_COOKIE_KEY) || {});
   return {
     user: {
-      wallet: WalletState,
+      wallet: getCookie(WALLET_STATE_COOKIE_KEY)
+        ? JSON.parse(getCookie(WALLET_STATE_COOKIE_KEY))
+        : WalletState,
     },
     platform: {
       assets: null,
@@ -158,6 +163,11 @@ const actions = {
       CONTRACTS.WEAVR,
       walletState.address
     );
+
+    const walletStateAsJson = JSON.stringify(walletState);
+
+    setCookie(WHITELIST_COOKIES_KEY, isWhitelisted, 30);
+    setCookie(WALLET_STATE_COOKIE_KEY, walletStateAsJson);
 
     context.commit("setWhitelisted", isWhitelisted);
     context.commit("setWallet", walletState);

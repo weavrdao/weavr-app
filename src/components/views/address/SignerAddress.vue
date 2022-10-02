@@ -40,8 +40,7 @@ export default {
       sync: "syncWallet",
     }),
     onClick() {
-      this.sync({ $toast: this.$toast });
-      this.$toast.show("Syncing wallet...");
+      this.$router.push("/walletConnect");
     },
   },
 };
