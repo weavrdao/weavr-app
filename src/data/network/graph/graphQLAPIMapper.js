@@ -3,6 +3,7 @@ class GraphQLAPIMapper {
   mapProposals(rawProposals) {}
   mapVotes(rawVotes) {}
   mapThreads(rawThreads) {}
+  mapNeedles(rawNeedles) {}
   mapRawErc20(rawErc20) {}
 }
 

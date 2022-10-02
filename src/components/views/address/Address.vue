@@ -18,7 +18,7 @@
     </span>
     <span class="is-family-monospace" v-bind:title="address">
       {{
-        address.substring(0, 8) + "..." + address.substring(address.length - 4)
+        address?.substring(0, 8) + "..." + address?.substring(address.length - 4)
       }}
     </span>
   </div>

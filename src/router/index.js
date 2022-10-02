@@ -1,8 +1,9 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import MyAssets from "@/components/sections/MyAssets.vue"
-import Marketplace from "@/components/sections/Marketplace.vue"
+import ThreadsMarketplace from "@/components/sections/Threads/ThreadMarketplace.vue"
+import NeedlesMarketplace from "@/components/sections/Needles/NeedleMarketplace.vue"
 import Swap from "@/components/sections/Swap.vue"
-import Voting from "@/components/sections/Voting.vue"
+import ThreadDetails from "@/components/sections/Threads/ThreadDetails.vue"
 import Proposal from "@/components/sections/Proposal.vue"
 import NewProposal from "@/components/sections/NewProposal.vue"
 import MarketListDetailVue from "../components/views/market/MarketListDetail.vue"
@@ -22,9 +23,15 @@ export default new createRouter({
       component: MyAssets
     },
     {
-      path: "/market",
-      name: "market",
-      component: Marketplace
+      path: "/thread-market",
+      name: "thread-market",
+      component: ThreadsMarketplace
+    },
+    ,
+    {
+      path: "/needle-market",
+      name: "needle-market",
+      component: NeedlesMarketplace
     },
     /* {
           path: "/swap",
@@ -32,10 +39,10 @@ export default new createRouter({
           component: Swap
     }, */
     {
-      path: "/dao/:assetId/proposals",
-      name: "dao",
+      path: "/thread/:threadId",
+      name: "thread",
       props: true,
-      component: Voting
+      component: ThreadDetails
     },
     {
       path: "/dao/:assetId/proposals/:proposalId",
@@ -50,7 +57,7 @@ export default new createRouter({
       component: NewProposal
     },
     {
-      path: "/dao//details",
+      path: "/dao/details",
       name: "assetDetails",
       props: true,
       component: MarketListDetailVue

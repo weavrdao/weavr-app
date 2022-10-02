@@ -1,6 +1,7 @@
 import GraphQLAPIMapper from "../graphQLAPIMapper"
 import Asset from "../../../../models/asset"
 import Thread from "@/models/thread"
+import Needle from "@/models/needle"
 import Erc20 from "@/models/erc20"
 import Proposal from "../../../../models/proposal"
 import { Vote } from "../../../../models/vote"
@@ -66,6 +67,39 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
           rawThread.governor,
           erc20,
           rawThread.descriptor
+        )
+      })
+  }
+
+  mapRawNeedles(rawNeedles) {
+    if (!rawNeedles || rawNeedles.length < 1) {
+      return []
+    }
+    return rawNeedles
+      .map(rawNeedle => {
+        console.log(rawNeedle)
+        const erc20 = new Erc20(
+          rawNeedle.erc20.name,
+          rawNeedle.erc20.symbol,
+          rawNeedle.erc20.decimals,
+          rawNeedle.erc20.supply,
+          rawNeedle.erc20.tradeToken,
+          rawNeedle.erc20.balances
+        )
+        /**
+         * id,
+          variant,
+          governor,
+          erc20,
+          descriptor,
+         */
+        
+        return new Needle(
+          rawNeedle.id,
+          rawNeedle.variant,
+          rawNeedle.governor,
+          erc20,
+          rawNeedle.descriptor
         )
       })
   }

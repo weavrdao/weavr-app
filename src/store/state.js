@@ -18,6 +18,7 @@ function state() {
     platform: {
       assets: null,
       threads: null,
+      needles: null,
       proposals: new Map(),
     },
     interface: {
@@ -55,18 +56,26 @@ const getters = {
   allAssets(state) {
     return state.platform.assets;
   },
-  allThreads(state) {333333333333333
+  allThreads(state) {
     return state.platform.threads;
   },
-  assetsById(state) {
+  allNeedles(state) {
+    return state.platform.threads;
+  },
+  threadById(state) {
     var assetMap = new Map();
-    state.platform.assets?.forEach((asset) => {
+    state.platform.threads?.forEach((asset) => {
       assetMap.set(asset.id, asset);
     });
-
     return assetMap;
   },
-
+  needleById() {
+    var assetMap = new Map();
+    state.platform.needle?.forEach((asset) => {
+      assetMap.set(asset.id, asset);
+    });
+    return assetMap;
+  },
   marketplaceActiveAssets(state) {
     return state.platform.assets;
   },
@@ -238,3 +247,6 @@ export default {
   actions,
   mutations,
 };
+
+
+

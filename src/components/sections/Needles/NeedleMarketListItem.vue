@@ -74,12 +74,12 @@
 </template>
 
 <script>
-import { toFixedNumber } from "../../../utils/common";
+import { toFixedNumber } from "@/utils/common";
 import { mapGetters, mapActions } from "vuex";
-import Address from "../address/Address.vue";
+import Address from "@/components/views/address/Address.vue";
 
 export default {
-  name: "MarketListItem",
+  name: "ThreadMarketListItem",
   components: {
     Address,
   },

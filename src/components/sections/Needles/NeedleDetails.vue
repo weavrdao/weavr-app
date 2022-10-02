@@ -5,22 +5,21 @@
     <div class="columns">
       <div class="column is-two-thirds">
         <StackNavigationBar @onBack="goBack" :size="3">
-          <div>
-            <h1 class="mt-6 title">
-              <b>{{ `${asset.address} - DAO` }}</b>
-              <!-- is a b tag because it's already an h1 -->
-            </h1>
-
+          <h2>Go Back</h2>
+        </StackNavigationBar>
+        <div>
+            <div class="p-2">
+              
+              <span class="p-1 has-radius-md has-background-lightBlue">${{asset.erc20.symbol}}</span>
+              <span class="ml-2"><h1 class="title has-text-white">{{asset.erc20.name}}</h1></span>
+            </div>
             <div class="subtitle mt-2 mb-2 is-6">
-              ({{ numberFormat.format(asset.owners.size) }} holders,
-              {{ numberFormat.format(openProposalCount) }} open proposals)
+              {{ holders }} holders
             </div>
           </div>
-        </StackNavigationBar>
-
         <div class="my-1 p-1">
           <div class="help"><strong>Token</strong></div>
-          <Address class="mb-3" :value="asset.contractAddress" />
+          <Address class="mb-3" :value="asset.id" />
         </div>
 
         <div class="my-1 p-1">
@@ -46,29 +45,10 @@
           <div class="help"><strong>Description</strong></div>
           <div>{{ asset.description }}</div>
         </div>
-
-        <div
-          class="button mt-2 mb-2 p-4 has-text-centered"
-          style="width: 100%"
-          @click="createProposal"
-        >
-          <a href="javascript:void(0)">
-            <strong>Create a new proposal</strong></a
-          >
-        </div>
-
-        <ul class="mt-5 mb-5 mr-1 ml-1" v-if="proposals">
-          <li v-for="proposal in proposals" :key="proposal.id">
-            <ProposalListItem :assetId="assetId" :proposal="proposal" />
-          </li>
-        </ul>
-        <div v-else>
-          <Loader :shadowless="true" />
-        </div>
       </div>
       <div class="column is-one-third my-5 mx-1">
         <div class="panel m-2 p-4 is-flex is-flex-direction-column">
-          <h2 class="is-size-5 has-text-weight-bold mb-4">Price graph</h2>
+          <h2 class="is-size-5 has-text-weight-bold mb-4">Holders Distribution</h2>
           <img class="image" src="https://via.placeholder.com/500x300" />
           <div class="table-container mt-2 mb-0">
             <table class="table" style="width: 100%">
@@ -114,71 +94,21 @@
               </tbody>
             </table>
           </div>
-          <Accordion extraClasses="is-shadowless" margin="0" summary="Swap">
-            <div class="field">
-              <div class="subtitle is-6">
-                <div>
-                  <strong>1</strong> {{ asset.symbol }} =
-                  <strong>{{ askPriceString }}</strong> ETH
-                </div>
-              </div>
-            </div>
-            <div class="field">
-              <label for="source-token-amount" class="label">From</label>
-              <div class="help has-text-grey has-text-weight-bold">
-                Balance: {{ ethBalance }} ETH
-              </div>
-              <div class="control">
-                <input
-                  class="input"
-                  type="number"
-                  name="source-token-amount"
-                  id="source-token-amount"
-                  placeholder="0.0"
-                  :value="orderFromString"
-                  @keypress="isNumber($event)"
-                  @input="orderInputUpdated(0, $event)"
-                  required
-                />
-              </div>
-            </div>
-            <div class="field">
-              <label for="dest-token-amount" class="label">To</label>
-              <div class="help has-text-grey has-text-weight-bold">
-                Balance: {{ shareBalance }}
-              </div>
-              <div class="control">
-                <input
-                  class="input"
-                  type="number"
-                  name="dest-token-amount"
-                  id="dest-token-amount"
-                  placeholder="0"
-                  :value="orderToString"
-                  @keypress="isNumber($event)"
-                  @input="orderInputUpdated(1, $event)"
-                  required
-                />
-              </div>
-            </div>
-
-            <Button label="Swap" extraClasses="w-full" @click="performSwap" />
-          </Accordion>
         </div>
 
         <div class="panel m-2 p-4 is-flex is-flex-direction-column">
           <h2 class="is-size-5 has-text-weight-bold mb-4">Tokenholders</h2>
           <ul>
             <li
-              v-for="tokenholder in asset.owners.entries()"
-              :key="tokenholder[0]"
+              v-for="tokenholder in asset.erc20.balances"
+              :key="tokenholder.holder"
             >
               <div class="pt-1 pb-1 content is-vcentered">
-                <Address :value="tokenholder[0]"></Address>
-                <span class="m-1">
+                <Address :value="tokenholder.holder.id"></Address>
+                <!-- <span class="m-1">
                   <strong>{{ tokenholder[1] }}</strong>
                   shares
-                </span>
+                </span> -->
               </div>
             </li>
           </ul>
@@ -201,18 +131,17 @@
 </style>
 
 <script>
-import { toFixedNumber } from "../../utils/common";
+import { toFixedNumber } from "@/utils/common";
 import { mapGetters, mapActions } from "vuex";
-import StackNavigationBar from "../layout/navigation/StackNavigationBar.vue";
-import Button from "../views/common/Button.vue";
-import ProposalListItem from "../views/voting/ProposalListItem.vue";
-import Accordion from "../utils/Accordion.vue";
-import Loader from "../utils/Loader.vue";
-import Address from "../views/address/Address.vue";
-import HeroImage from "../utils/HeroImage.vue";
+import StackNavigationBar from "@/components/layout/navigation/StackNavigationBar.vue";
+import Button from "@/components/views/common/Button.vue";
+import Accordion from "@/components/utils/Accordion.vue";
+// import Loader from "../utils/Loader.vue";
+import Address from "@/components/views/address/Address.vue";
+import HeroImage from "@/components/utils/HeroImage.vue";
 
 export default {
-  name: "Voting",
+  name: "ThreadDetails",
   props: {
     assetId: {
       type: String,
@@ -221,17 +150,15 @@ export default {
   },
   components: {
     StackNavigationBar,
-    ProposalListItem,
-    Accordion,
-    Loader,
+    // Accordion,
+    // Loader,
     Address,
-    Button,
+    // Button,
     HeroImage,
   },
   computed: {
     ...mapGetters({
-      assetMap: "assetsById",
-      assetProposalMap: "assetProposals",
+      assetMap: "threadById",
       ethBalance: "userEthBalance",
       walletAddress: "userWalletAddress",
       assetPrices: "bestAssetPrices",
@@ -239,6 +166,9 @@ export default {
 
     shareBalance() {
       return this.asset.owners.get(this.walletAddress) ?? 0;
+    },
+    holders() {
+      return this.asset.erc20.balances.length
     },
 
     asset() {
@@ -282,7 +212,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      refresh: "refreshProposalsDataForAsset",
+      refresh: "refreshThreads",
       syncWallet: "syncWallet",
       swap: "swapToAsset",
     }),
@@ -307,25 +237,6 @@ export default {
         return true;
       }
     },
-    /* eslint-disable indent */
-    orderInputUpdated(index, event) {
-      switch (index) {
-        case 0:
-          this.orderFromValue = event.target.value;
-          console.log("eth field value", event.target.value);
-          this.orderToValue = this.convertToShares(
-            this.orderFromValue
-          ).toString();
-          break;
-        case 1:
-          this.orderToValue = event.target.value;
-          console.log("shares field value", event.target.value);
-          this.orderFromValue = this.convertToETH(this.orderToValue).toString();
-          break;
-        default:
-          break;
-      }
-    },
     convertToETH(shares) {
       console.log(this.askPrice);
       return shares * this.askPrice;
@@ -333,15 +244,7 @@ export default {
     convertToShares(eth) {
       return eth / this.askPrice;
     },
-    async performSwap() {
-      await this.swap({
-        asset: this.asset,
-        amount: this.orderToValue,
-        $toast: this.$toast,
-      });
-      this.orderFromValue = 0;
-      this.orderToValue = 0;
-    },
+   
   },
   data() {
     return {
@@ -354,6 +257,7 @@ export default {
   },
   mounted() {
     this.refresh({ assetId: this.assetId });
+    
     this.syncWallet({ $toast: this.$toast });
   },
 };

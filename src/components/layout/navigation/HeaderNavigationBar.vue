@@ -62,7 +62,8 @@ export default {
         isOpen: false,
         items: [
           { name: "My Assets", path: "/assets" },
-          { name: "Marketplace", path: "/market" },
+          { name: "Threads", path: "/thread-market" },
+          { name: "Needles", path: "/needle-market" },
           { name: "Exchange", path: "/exchange"},
         ],
       },

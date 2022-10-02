@@ -8,7 +8,6 @@ import Toaster from "@meforma/vue-toaster";
 import Unicon from "vue-unicons";
 import Blockies from "vue-blockies";
 import { uniAppsSolid, uniListUlSolid } from "vue-unicons/dist/icons";
-
 Unicon.add([uniAppsSolid, uniListUlSolid])
 
 require("dotenv").config()
@@ -22,6 +21,7 @@ store.$toast = app.$toast;
 app.config.productionTip = false
 app.use(router)
 app.use(store)
+
 app.use(Toaster)
 app.use(Unicon)
 app.use(Blockies)
