@@ -1,7 +1,14 @@
 import ServiceProvider from "../services/provider";
-import { networks, WalletState } from "../models/walletState";
+import WalletState, { networks } from "../models/walletState";
 import { MarketOrderType } from "../models/marketOrder";
 import { bigIntMax, bigIntMin } from "../utils/common";
+import { CONTRACTS } from "../services/constants";
+import {
+  whitelistState,
+  whitelistGetters,
+  whitelistActions,
+  whitelistMutations,
+} from "../whitelist";
 import router from "../router/index";
 import { Vote } from "../models/vote";
 
@@ -9,6 +16,7 @@ const wallet = ServiceProvider.wallet();
 const market = ServiceProvider.market();
 const dao = ServiceProvider.dao();
 const dex = ServiceProvider.dex();
+const whitelist = ServiceProvider.whitelist();
 
 function state() {
   return {
@@ -28,6 +36,7 @@ function state() {
       orders: null,
       tokenAddress: null,
     },
+    ...whitelistState(),
   };
 }
 
@@ -124,23 +133,33 @@ const getters = {
     console.log(assetPriceMap);
 
     return assetPriceMap;
-  }
+  },
+  ...whitelistGetters,
 };
 
 const actions = {
   async syncWallet(context, params) {
-    const walletState = await wallet.getState();
+    console.log(params.wallet);
+    const walletState = await wallet.getState(params.wallet);
+
     if (walletState.error) {
       params.$toast.error(walletState.error.msg);
     } else {
-      if (walletState.chainId !== networks.rinkeby) {
+      if (![networks.arbitrum, networks.goerli].includes(walletState.chainId)) {
         params.$toast.show(
-          "Wallet connected, but you seem to be on the wrong network! Switch to Rinkeby in your wallet."
+          "Wallet connected, but you seem to be on the wrong network! Switch to Arbitrum in your wallet."
         );
       } else {
         params.$toast.success("Wallet connected!");
       }
     }
+
+    const isWhitelisted = await whitelist.checkWhitelistedStatus(
+      CONTRACTS.WEAVR,
+      walletState.address
+    );
+
+    context.commit("setWhitelisted", isWhitelisted);
     context.commit("setWallet", walletState);
   },
 
@@ -211,6 +230,8 @@ const actions = {
 
     await dex.createSellOrder(assetId, price, amount);
   },
+
+  ...whitelistActions(whitelist),
 };
 
 const mutations = {
@@ -245,6 +266,8 @@ const mutations = {
   setTokenAddress(state, tokenAddress) {
     state.exchange.tokenAddress = tokenAddress;
   },
+
+  ...whitelistMutations,
 };
 
 export default {
@@ -253,6 +276,3 @@ export default {
   actions,
   mutations,
 };
-
-
-
