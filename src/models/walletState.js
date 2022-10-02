@@ -5,25 +5,24 @@
  */
 
 const networks = {
-  'mainnet': '1',
-  'kovan': '42',
-  'ropsten': '3',
-  'rinkeby': '4',
-  'goerli': '5',
-  'arbitrum': '42161'
-}
+  mainnet: "1",
+  kovan: "42",
+  ropsten: "3",
+  rinkeby: "4",
+  goerli: "5",
+  arbitrum: "42161",
+};
 
 class WalletState {
-  constructor(
-    address,
-    ethBalance,
-    error
-  ) {
-    this.address = error ? null : address;
-    this.ethBalance = error ? 0 : ethBalance;
-    this.error = error;
-    this.chainId = window.ethereum.networkVersion;
+  constructor(address, ethBalance, tokenBalance, tokenSymbol, vouches) {
+    this.address = address;
+    this.ethBalance = ethBalance;
+    this.tokenBalance = tokenBalance;
+    this.tokenSymbol = tokenSymbol;
+    this.vouches = vouches;
   }
 }
 
-export { WalletState, networks }
+export default WalletState;
+
+export { networks };

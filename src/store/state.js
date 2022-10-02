@@ -1,5 +1,5 @@
 import ServiceProvider from "../services/provider";
-import { networks, WalletState } from "../models/walletState";
+import WalletState, { networks } from "../models/walletState";
 import { MarketOrderType } from "../models/marketOrder";
 import { bigIntMax, bigIntMin } from "../utils/common";
 import { CONTRACTS } from "../services/constants";
@@ -139,7 +139,9 @@ const getters = {
 
 const actions = {
   async syncWallet(context, params) {
-    const walletState = await wallet.getState();
+    console.log(params.wallet);
+    const walletState = await wallet.getState(params.wallet);
+
     if (walletState.error) {
       params.$toast.error(walletState.error.msg);
     } else {

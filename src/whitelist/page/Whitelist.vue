@@ -40,7 +40,7 @@ export default {
       this.$router.push("/walletConnect")
     },
     continueToHomepage () {
-      this.$router.push("/weavr");
+      this.$router.push("/needle-market");
     }
   },
 }
