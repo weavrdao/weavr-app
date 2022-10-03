@@ -9,6 +9,7 @@ const wallet = ServiceProvider.wallet();
 const market = ServiceProvider.market();
 const dao = ServiceProvider.dao();
 const dex = ServiceProvider.dex();
+// const needle = ServiceProvider.needle();
 
 function state() {
   return {

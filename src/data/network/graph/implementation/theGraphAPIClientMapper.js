@@ -1,6 +1,7 @@
 import GraphQLAPIMapper from "../graphQLAPIMapper"
 import Asset from "../../../../models/asset"
 import Thread from "@/models/thread"
+import Needle from "../../../../models/needle"
 import Erc20 from "@/models/erc20"
 import Proposal from "../../../../models/proposal"
 import { Vote } from "../../../../models/vote"
@@ -66,6 +67,28 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
           rawThread.governor,
           erc20,
           rawThread.descriptor
+        )
+      })
+  }
+
+  mapRawNeedles(rawNeedles) {
+    if (!rawNeedles || rawNeedles.length < 1) {
+      return []
+    }
+    return rawNeedles
+      .map(rawNeedle => {
+        console.log(rawNeedle)
+        
+        return new Needle(
+          rawNeedle.id,
+          rawNeedle.state,
+          rawNeedle.amountDeposited,
+          rawNeedle.target,
+          rawNeedle.thread,
+          rawNeedle.erc20,
+          rawNeedle.deposits,
+          rawNeedle.whitedrawls,
+          rawNeedle.distributions
         )
       })
   }

@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import MyAssets from "@/components/sections/MyAssets.vue"
 import Marketplace from "@/components/sections/Marketplace.vue"
+import Needles from "@/components/sections/Needles.vue"
 import Swap from "@/components/sections/Swap.vue"
 import Voting from "@/components/sections/Voting.vue"
 import Proposal from "@/components/sections/Proposal.vue"
@@ -59,6 +60,10 @@ export default new createRouter({
       path: "/exchange",
       redirect: `/exchange/${process.env.VUE_APP_FRABRIC_ADDRESS}`,
     },
+    {
+      path: "/needle/",
+      component: Needles
+    }
     // {
     //   path: "/exchange/:assetId",
     //   name: "exchange",
