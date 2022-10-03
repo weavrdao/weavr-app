@@ -142,17 +142,18 @@ const actions = {
     console.log(params.wallet);
     const walletState = await wallet.getState(params.wallet);
 
-    if (walletState.error) {
-      params.$toast.error(walletState.error.msg);
-    } else {
-      if (![networks.arbitrum, networks.goerli].includes(walletState.chainId)) {
-        params.$toast.show(
-          "Wallet connected, but you seem to be on the wrong network! Switch to Arbitrum in your wallet."
-        );
-      } else {
-        params.$toast.success("Wallet connected!");
-      }
-    }
+    // if (walletState.error) {
+    //   params.$toast.error(walletState.error.msg);
+    // } else {
+    //   console.log(walletState.chainId)
+    //   if (![networks.arbitrum, networks.goerli].includes(walletState.chainId)) {
+    //     params.$toast.show(
+    //       "Wallet connected, but you seem to be on the wrong network! Switch to Arbitrum in your wallet."
+    //     );
+    //   } else {
+    //     params.$toast.success("Wallet connected!");
+    //   }
+    // }
 
     const isWhitelisted = await whitelist.checkWhitelistedStatus(
       CONTRACTS.WEAVR,

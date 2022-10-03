@@ -39,9 +39,8 @@ export default {
     ...mapActions({
       sync: "syncWallet",
     }),
-    onClick() {
-      this.sync({ $toast: this.$toast });
-      this.$toast.show("Syncing wallet...");
+        onClick() {
+      this.$router.push("/walletConnect");
     },
   },
 };
