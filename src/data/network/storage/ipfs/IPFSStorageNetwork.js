@@ -1,83 +1,103 @@
-const network = require("../../../../utils/network")
-const { create } = require("ipfs-http-client")
-import StorageNetwork from "../storageNetwork"
+/* eslint-disable class-methods-use-this */
+const network = require("../../../../utils/network");
+const { create } = require("ipfs-http-client");
+import StorageNetwork from "../storageNetwork";
+import { getBytes32FromIpfsHash, getIpfsAuthHeader } from "./common";
+import "dotenv/config";
 
-const ipfsAPIClient = create("https://ipfs.infura.io:5001/api/v0")
+const baseInfuraURL = "https://ipfs.infura.io:5001/api/v0";
 
 class IPFSStorageNetwork extends StorageNetwork {
   constructor() {
-    super()
+    super();
+    this.ipfsAPIClient = create({
+      host: "ipfs.infura.io",
+      port: 5001,
+      protocol: "https",
+      headers: {
+        authorization: getIpfsAuthHeader(),
+      },
+    });
   }
 
-  async addFile(file) { 
-    let jsonString = JSON.stringify(file, null, 2)
-    return await ipfsAPIClient.add(jsonString, { pin: true })
+  async addFile(file) {
+    let jsonString = JSON.stringify(file, null, 2);
+    const test = await this.ipfsAPIClient.add(jsonString, { pin: true });
+    return test;
   }
-  
-  getFile = (
-    name
-  ) => new Promise((resolve, reject) => {
-    const url = `https://ipfs.infura.io:5001/api/v0/cat`
-  
-    let params = { 
-      arg: name
-    }
-  
-    let headers = { }
-    //headers["Authorization"] = `Basic ${auth}`
-  
-    let data =  { }
-    network
-      .postRequest(
-        url, 
-        params, 
-        headers, 
-        data
-      )
-      .then((res) => {
-        resolve(res)
-      })
-      .catch((err) => {
-        reject(err)
-      })
-  })
 
+  async addImage(imageFile) {
+    const image = await this.ipfsAPIClient.add(imageFile, { pin: true });
+    return image;
+  }
+
+  async addArbitraryFile(file) {
+    const { path } = await this.ipfsAPIClient.add(file, { pin: true });
+    return path;
+  }
+
+  getFile = (name) =>
+    new Promise((resolve) => {
+      const url = `${baseInfuraURL}/cat`;
+
+      let params = {
+        arg: name,
+      };
+
+      let headers = {
+        Authorization: getIpfsAuthHeader(),
+      };
+
+      let data = {};
+      network
+        .postRequest(url, params, headers, data)
+        .then((res) => {
+          resolve(res.value || null);
+        })
+        .catch((err) => {
+          resolve(null);
+        });
+    });
+
+  // eslint-disable-next-line class-methods-use-this
   async getFiles(names) {
-    console.log("Requesting files from IPFS")
+    const requestURL = `${baseInfuraURL}/cat`;
 
-    const url = `https://ipfs.infura.io:5001/api/v0/cat`
-    
-    let headers = { }
-    //headers["Authorization"] = `Basic ${auth}`
-  
-    let data =  { }
+    let headers = {
+      Authorization: getIpfsAuthHeader(),
+    };
 
-    const requests = names.map(async name => {
-      let params = { 
-        arg: name
-      }
+    const data = {};
+
+    const requests = names.map(async (name) => {
+      let params = {
+        arg: name,
+      };
 
       return new Promise((resolve) => {
         network
-          .postRequest(
-            url, 
-            params, 
-            headers, 
-            data
-          )
-          .then(response => {
-            resolve(response)
+          .postRequest(requestURL, params, headers, data)
+          .then((res) => {
+            resolve(res || null);
           })
-          .catch((thrown) => {
-            resolve(null)
-          })
-      })
-    })
-    
-    const responses = (await Promise.all(requests)).filter(Boolean)
-    
-    return responses
+          .catch(() => {
+            console.log("Request failed");
+            resolve(null);
+          });
+      });
+    });
+    return await Promise.allSettled(requests);
+  }
+
+  async uploadAndGetPathAsBytes(file) {
+    try {
+      const cid = await this.addFile(file);
+      return getBytes32FromIpfsHash(cid.path);
+    } catch (e) {
+      console.log(e);
+      throw new Error("Could not upload files to IPFS");
+    }
   }
 }
 
-export default IPFSStorageNetwork
+export default IPFSStorageNetwork;

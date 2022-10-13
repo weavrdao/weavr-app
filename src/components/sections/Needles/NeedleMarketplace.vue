@@ -1,5 +1,6 @@
 <template>
   <div class="has-text-white has-radius-lg">
+    <button v-on:click="test">TEST</button>
     <div class="">
       <label for="search" class="is-sr-only">
         Search by token name or address
@@ -39,9 +40,9 @@
       </div>
       
       <ul v-if="!isGrid && !isMobile">
-        <li v-for="asset in searchResults" :key="asset.id" class="px-8 py-8">
+        <li v-for="needle in needles" :key="needle.id" class="px-8 py-8">
           <div class="block p-3">
-            <MarketListItem :is-grid="isGrid" :asset="asset" />
+            <MarketListItem :is-grid="isGrid" :asset="needle" />
           </div>
         </li>
       </ul>
@@ -85,7 +86,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      assets: "allThreads",
+      needles: "allNeedles",
     }),
     searchResults() {
       if (!this.assets) return [];
@@ -110,7 +111,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      refresh: "refreshNeedles",
+      getNeedles: "refreshNeedles",
       syncWallet: "syncWallet",
     }),
     toggleView() {
@@ -123,9 +124,13 @@ export default {
         this.isGrid = true;
       }
     },
+    test() {
+      this.getNeedles();
+      console.log(this.needles);
+    }
   },
   mounted() {
-    this.refresh();
+    this.getNeedles();
     console.log("Marketplace", this.assets)
     this.syncWallet({ $toast: this.$toast });
     this.$nextTick(function () {

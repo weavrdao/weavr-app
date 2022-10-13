@@ -1,4 +1,4 @@
-<template>
+ <template>
   <section class="card  is-rounded-lg" >
       <div v-if="isGrid">
         <div class="card-image">

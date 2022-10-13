@@ -24,9 +24,7 @@ function state() {
   console.log(getCookie(WALLET_STATE_COOKIE_KEY) || {});
   return {
     user: {
-      wallet: getCookie(WALLET_STATE_COOKIE_KEY)
-        ? JSON.parse(getCookie(WALLET_STATE_COOKIE_KEY))
-        : WalletState,
+      wallet: WalletState,
     },
     platform: {
       assets: null,
@@ -167,7 +165,7 @@ const actions = {
     const walletStateAsJson = JSON.stringify(walletState);
 
     setCookie(WHITELIST_COOKIES_KEY, isWhitelisted, 30);
-    setCookie(WALLET_STATE_COOKIE_KEY, walletStateAsJson);
+//    setCookie(WALLET_STATE_COOKIE_KEY, walletStateAsJson);
 
     context.commit("setWhitelisted", isWhitelisted);
     context.commit("setWallet", walletState);
@@ -188,8 +186,10 @@ const actions = {
     context.commit("setThreads", assets);
   },
   async refreshNeedles(context) {
-    let assets = await market.getNeedles();
-    context.commit("setNeedles", assets);
+    const needles = await market.getNeedles();
+    console.log("STATE")
+    console.log(needles)
+    context.commit("setNeedles", needles);
   },
 
   async swapToAsset(context, params) {

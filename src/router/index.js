@@ -92,37 +92,37 @@ let originalPath = "";
 let hasOriginalPathBeenSet = false;
 let hasRedirectedAfterWhitelisting = false;
 
-router.beforeEach((to, from) => {
-  if (!hasOriginalPathBeenSet) {
-    originalPath = to.fullPath;
-    hasOriginalPathBeenSet = true;
-    console.log(originalPath);
-  }
+// router.beforeEach((to, from) => {
+//   if (!hasOriginalPathBeenSet) {
+//     originalPath = to.fullPath;
+//     hasOriginalPathBeenSet = true;
+//     console.log(originalPath);
+//   }
 
-  if (to.fullPath === "/whitelist") {
-    return true;
-  }
+//   if (to.fullPath === "/whitelist") {
+//     return true;
+//   }
 
-  if (to.fullPath === "/walletConnect") {
-    return true;
-  }
-  const address = store.getters.userWalletAddress;
-  const isConnected = ethers.utils.isAddress(address);
-  if (!isConnected) {
-    router.push("/");
-  }
-  const whitelisted = store.getters.isWhitelisted;
-  if (whitelisted) {
-    if (!hasRedirectedAfterWhitelisting) {
-      router.push(originalPath);
-      hasRedirectedAfterWhitelisting = true;
-    }
-    return true;
-  } else {
-    router.push("/whitelist");
-  }
+//   if (to.fullPath === "/walletConnect") {
+//     return true;
+//   }
+//   const address = store.getters.userWalletAddress;
+//   const isConnected = ethers.utils.isAddress(address);
+//   if (!isConnected) {
+//     router.push("/");
+//   }
+//   const whitelisted = store.getters.isWhitelisted;
+//   if (whitelisted) {
+//     if (!hasRedirectedAfterWhitelisting) {
+//       router.push(originalPath);
+//       hasRedirectedAfterWhitelisting = true;
+//     }
+//     return true;
+//   } else {
+//     router.push("/whitelist");
+//   }
 
-  return true;
-});
+//   return true;
+// });
 
 export default router;

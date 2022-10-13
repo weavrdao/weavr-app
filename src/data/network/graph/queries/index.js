@@ -687,7 +687,12 @@ query Crowdfunds($weavrId: String!) {
     target
     thread {
       id
-      frabric(id: $weavrId)
+      descriptor
+      frabric(id: $weavrId) {
+        id
+      }
+      contract
+      governor
     }
     deposits {
       id
