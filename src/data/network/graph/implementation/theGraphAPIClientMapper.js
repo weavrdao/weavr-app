@@ -67,7 +67,6 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
     if (!rawNeedles || rawNeedles.length < 1) {
       return []
     }
-    console.log(rawNeedles)
     return rawNeedles
       .map(
         rawNeedle => new Needle(

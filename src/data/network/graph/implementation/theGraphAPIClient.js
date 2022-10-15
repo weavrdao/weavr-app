@@ -26,8 +26,6 @@ class TheGraphAPIClient extends GraphQLAPIClient {
         fetchPolicy: "no-cache"
       })
       .then(response => {
-        console.log("Query result:")
-        console.log(response)
         resolve(mappingCallback(this.mapper, response))
       })
       .catch(err => { 

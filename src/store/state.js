@@ -261,9 +261,7 @@ const mutations = {
     state.platform.threads = assets;
   },
   setNeedles(state, needles) {
-    console.log(state, needles)
     state.platform.needles = needles;
-    console.log(state);
   },
   setOrders(state, orders) {
     state.exchange.orders = orders;
