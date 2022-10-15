@@ -202,9 +202,7 @@ class Market {
 
     try {
       const offChainData = await this.storageNetwork.getFiles(
-        needles.map(({ thread }) => {
-          return getIpfsHashFromBytes32(thread.descriptor);
-        })
+        needles.map(({ thread }) => getIpfsHashFromBytes32(thread.descriptor))
       );
       for(let i=0; i < needles.length; i++) {
         if(offChainData[i].value) {

@@ -72,7 +72,7 @@ const getters = {
     return state.platform.threads;
   },
   allNeedles(state) {
-    return state.platform.threads;
+    return state.platform.needles;
   },
   threadById(state) {
     var assetMap = new Map();
@@ -187,8 +187,6 @@ const actions = {
   },
   async refreshNeedles(context) {
     const needles = await market.getNeedles();
-    console.log("STATE")
-    console.log(needles)
     context.commit("setNeedles", needles);
   },
 
@@ -262,8 +260,10 @@ const mutations = {
   setThreads(state, assets) {
     state.platform.threads = assets;
   },
-  setNeedles(state, assets) {
-    state.platform.needles = assets;
+  setNeedles(state, needles) {
+    console.log(state, needles)
+    state.platform.needles = needles;
+    console.log(state);
   },
   setOrders(state, orders) {
     state.exchange.orders = orders;

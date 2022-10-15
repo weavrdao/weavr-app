@@ -10,7 +10,7 @@ const postRequest = (
     maxContentLength: "Infinity",
     params: params,
     headers: headers,
-    timeout: 15000, // (bill) This is currently making the UI hang, we should work out a way to display proposals as they load
+    timeout: 5000, // (bill) This is currently making the UI hang, we should work out a way to display proposals as they load
   })
     .then((res) => {
       resolve(res.data)
