@@ -55,11 +55,16 @@ export default {
         : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png";
     },
     getDisplayTarget() {
-      return ethers.utils.formatUnits(this.needle.target, 6)
+      return Number(ethers.utils.formatUnits(this.needle.target, 6)).toLocaleString("en-US")
     },
     getProgressBarStyle() {
       return {
-        width: `${100 * Number(this.needle.amountDeposited) / Number(this.needle.target)}%`
+        width: `${100
+          * Number(
+            ethers.utils.formatUnits(this.needle.amountDeposited)
+          ) / Number(
+          ethers.utils.formatUnits(this.needle.target)
+        )}%`
       }
     },
     routeToNeedlePage() {

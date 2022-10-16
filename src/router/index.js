@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import MyAssets from "@/components/sections/MyAssets.vue";
 import ThreadsMarketplace from "@/components/sections/Threads/ThreadMarketplace.vue";
 import NeedlesMarketplace from "@/components/sections/Needles/NeedleMarketplace.vue";
+import SingleNeedle from "@/components/sections/Needles/SingleNeedle.vue";
 import Swap from "@/components/sections/Swap.vue";
 import { WhitelistPage } from "../whitelist";
 import WalletConnect from "@/components/sections/WalletConnect.vue";
@@ -85,6 +86,11 @@ const router = new createRouter({
       name: "exchange",
       component: DEX,
     },
+    {
+      path: "/needle/:needleId",
+      name: "needle",
+      component: SingleNeedle,
+    }
   ],
 });
 
