@@ -12,30 +12,40 @@
     <div class="progress-bar-container">
         <p class="target-text has-text-right is-size-5">🎯 {{ target }} <strong>USDC</strong></p>
         <div class="progress-bar">
-            <div v-bind:style="getProgressBarStyle()" class="progress" />
+          <div v-bind:style="getProgressBarStyle()" class="progress" />
         </div>
-            <p class="target-text has-text-left is-size-5">💰 {{ deposited }} <strong>USDC</strong></p>
+          <p class="target-text has-text-left is-size-5">💰 {{ deposited }} <strong>USDC</strong></p>
         </div>
     <div>
-        <div class="carousel-container">
-            <Carousel :items-to-show="1" :wrap-around="true">
-                <Slide v-for="imageHash in needle.imagesHashes" v-bind:key="imageHash">
-                    <div class="slide-image-container">
-                        <img v-bind:src="getIpfsUrl(imageHash)" alt="">
-                    </div>
-                </Slide>
+    <div class="purchase-container">
+      <label class="label">Purchase share</label>
+      <div class="is-flex">
+        <input v-model="purchaseAmount" class="input" type="number" />
+        <button v-if="!allowance" class="button has-background-mediumBlue has-text-white">...</button>
+        <button v-else-if="Number(allowance) === 0" @click="approve" class="button has-background-mint has-text-white">Approve</button>
+        <button v-else @click="purchase" class="button has-background-mint has-text-white">Purchase</button>
+      </div>
+      <p class="has-text-white mt-2">Balance: {{ tradeTokenBalance }} <strong>USDC</strong></p>
+    </div>
+      <div class="carousel-container">
+          <Carousel :items-to-show="1" :wrap-around="true">
+              <Slide v-for="imageHash in needle.imagesHashes" v-bind:key="imageHash">
+                  <div class="slide-image-container">
+                      <img v-bind:src="getIpfsUrl(imageHash)" alt="">
+                  </div>
+              </Slide>
 
-                <template #addons>
-                    <Navigation />
-                    <Pagination />
-                </template>
-            </Carousel>
-        </div>
+              <template #addons>
+                  <Navigation />
+                  <Pagination />
+              </template>
+          </Carousel>
+      </div>
     </div>
 </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import "vue3-carousel/dist/carousel.css"
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 import { ethers } from "ethers";
@@ -51,11 +61,14 @@ export default {
   data() {
     return {
       needleId: this.$route.params.needleId.toLowerCase(),
+      purchaseAmount: 0,
     }
   },
   computed: {
     ...mapGetters({
       needles: "allNeedles",
+      allowance: "userTradeTokenAllowance",
+      tradeTokenBalance: "userTradeTokenBalance",
     }),
     needle() {
       return this.needles
@@ -69,6 +82,11 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      deposit: "deposit",
+      approveTradeToken: "approveTradeToken",
+      fetchTradeTokenData: "fetchTradeTokenData",
+    }),
     getIpfsUrl(path) {
       return path
         ? `${process.env.VUE_APP_IFPS_GATEWAY_BASE_URL}/${path}`
@@ -91,6 +109,23 @@ export default {
         )}%`
       }
     },
+    purchase() {
+      console.log(this.purchaseAmount);
+      this.deposit({
+        crowdfundAddress: this.$route.params.needleId,
+        amount: this.purchaseAmount,
+      })
+    },
+    approve() {
+      this.approveTradeToken({
+        assetId: this.needleId,
+      })
+    },
+  },
+  mounted() {
+    this.fetchTradeTokenData({
+      assetId: this.needleId,
+    })
   }
 }
 </script>
@@ -176,5 +211,36 @@ export default {
       border-radius: 0px;
     }
   }
+}
+
+.purchase-container {
+  margin-bottom: 20px;
+
+  .input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+  }
+
+  .button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+input {
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }
 </style>

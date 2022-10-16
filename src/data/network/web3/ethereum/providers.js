@@ -27,11 +27,12 @@ export const getCoinbaseWalletProvider = () => {
 // MetaMask Provider
 export const getMetaMaskProvider = () => {
   // We will prefer a provider where the property `isMetaMask` is set to true
-  console.log("OKK", window.ethereum?.providers);
+  console.log(window.ethereum);
+  console.log("In getMetamaskProvider", window.ethereum?.providers);
   const provider =
     window.ethereum?.providers?.find(
       (p) => !!p.isMetaMask && !!p.isBraveWallet === false
-    ) ?? "window.ethereum";
+    ) || window.ethereum;
   console.log(provider);
   // console.log(provider.providerMap['MetaMask']);
 
@@ -40,7 +41,7 @@ export const getMetaMaskProvider = () => {
 // MetaMask Provider
 export const getBraveProvider = () => {
   // We will prefer a provider where the property `isMetaMask` is set to true
-  console.log("OKK", window.ethereum?.providers);
+  console.log("In getBraveProvider", window.ethereum?.providers);
 
   return (
     window.ethereum?.providers?.find((p) => !!p.isBrave) ?? window.ethereum

@@ -2,17 +2,23 @@ import { createToaster } from "@meforma/vue-toaster";
 const {
   getCoinbaseWalletProvider,
   getMetaMaskProvider,
+  getLedgerWalletProvider,
   DEFAULT_CHAIN_ID,
 } = require("./providers");
-import { CoinbaseConnector } from "./walletProviders/CoinbaseConnector";
+import { CoinbaseConnector } from "./walletProviders/CoinbaseConnector.js";
+import { MetaMaskConnector } from "./walletProviders/MetaMaskConnector";
 import { toHex } from "@/utils/common.js";
 require("dotenv").config();
 const { ethers } = require("ethers");
-
+const { CoinbaseWalletSDK } = require("@coinbase/wallet-sdk");
 /**
  * @property {ethers.JsonRpcSigner} walletProvider
  * @property {ethers.JsonRpcSigner} walletSigner
  */
+/**
+ * @NOTE Need to implent whatchers for chianID, chain-changes and switchToNetwork
+ */
+
 class EthereumClient {
   constructor() {}
 
@@ -23,20 +29,25 @@ class EthereumClient {
    */
   async getBlockNumber() {
     const number = await this.readProvider.getBlockNumber();
-    console.log(number);
   }
 
   /* --- Wallet access --- */
 
   async syncWallet(wallet) {
     // Using in-browser wallet to access wallet state and sign transactions
+    console.log("WALLET_PROVIDER 2:", wallet);
     if (wallet == "metamask") {
       try {
-        const metamask = window.ethereum?.providers
-          ? getMetaMaskProvider()
-          : window.ethereum;
+        const metamask = getMetaMaskProvider();
+        console.log(metamask);
         this.walletProvider = new ethers.providers.Web3Provider(metamask);
-        this.walletSigner = this.walletProvider.getSigner();
+        const connector = new MetaMaskConnector(metamask);
+        this.account = await connector.getAddress();
+        this.walletSigner = await connector.getSigner(
+          await connector.getChainId()
+        );
+        console.log(this.account);
+        return;
       } catch (error) {
         console.log(error);
         const toast = createToaster({});
@@ -65,6 +76,9 @@ class EthereumClient {
         return;
       }
     }
+    if(wallet == "ledger") {
+      await getLedgerWalletProvider()
+    }
   }
 
   switchNetwork = async (network) => {
@@ -85,6 +99,13 @@ class EthereumClient {
     return (await this.walletSigner.getBalance()).toString();
   }
 
+  /**
+   * @ToDo Implement coinbase Signature
+   */
+  async getSignature(domain, types, data) {
+    return await this.walletSigner._signTypedData(domain, types, data);
+  }
+
   /* --- Contract access --- */
 
   /**
@@ -94,7 +115,11 @@ class EthereumClient {
    * @returns Read-only contract instance
    */
   getContract(address, abi) {
-    return new ethers.Contract(address, abi, this.walletSigner);
+    return new ethers.Contract(
+      address,
+      abi,
+      this.walletSigner || this.walletProvider
+    );
   }
 
   /**

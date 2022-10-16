@@ -2,6 +2,7 @@ import Wallet from "./wallet";
 import Market from "./market";
 import DAO from "./dao";
 import DEX from "./dex";
+import Crowdfund from "./crowdfund";
 import { Whitelist } from "../whitelist";
 import IPFSStorageNetwork from "../data/network/storage/ipfs/IPFSStorageNetwork";
 import EthereumClient from "../data/network/web3/ethereum/ethereumClient";
@@ -42,6 +43,10 @@ class ServiceProvider {
 
   static whitelist() {
     return new Whitelist(ethereumClient);
+  }
+
+  static crowdfund() {
+    return new Crowdfund(ethereumClient);
   }
 }
 

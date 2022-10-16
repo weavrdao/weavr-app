@@ -4,6 +4,7 @@ import { MarketOrderType } from "../models/marketOrder";
 import { bigIntMax, bigIntMin } from "../utils/common";
 import { CONTRACTS } from "../services/constants";
 import { WALLET_STATE_COOKIE_KEY } from "./constants";
+import { hexToDecimals } from "../data/helpers/numbers";
 import {
   whitelistState,
   whitelistGetters,
@@ -13,12 +14,14 @@ import {
   setCookie,
   getCookie,
 } from "../whitelist";
+import { ethers } from "ethers";
 
 const wallet = ServiceProvider.wallet();
 const market = ServiceProvider.market();
 const dao = ServiceProvider.dao();
 const dex = ServiceProvider.dex();
 const whitelist = ServiceProvider.whitelist();
+const crowdfund = ServiceProvider.crowdfund();
 
 function state() {
   console.log(getCookie(WALLET_STATE_COOKIE_KEY) || {});
@@ -63,6 +66,14 @@ const getters = {
 
   walletError(state) {
     return state.user.wallet.error;
+  },
+
+  userTradeTokenBalance(state) {
+    return state.exchange.tradeTokenBalance;
+  },
+
+  userTradeTokenAllowance(state) {
+    return state.exchange.tradeTokenAllowance;
   },
 
   allAssets(state) {
@@ -239,6 +250,53 @@ const actions = {
     await dex.createSellOrder(assetId, price, amount);
   },
 
+  async deposit(context, params) {
+    const { crowdfundAddress, amount } = params;
+    console.log(amount);
+    const parsedAmount = ethers.utils.parseUnits(String(amount), 6);
+    console.log(parsedAmount);
+
+    const status = await crowdfund.deposit(crowdfundAddress, parsedAmount);
+    return status;
+  },
+
+  async approveTradeToken(context, params) {
+    const { assetId } = params;
+    await crowdfund.approveTradeToken(assetId);
+    context.dispatch("fetchTradeTokenData", { assetId: params.assetId })
+  },
+
+  async fetchTradeTokenData(context, params) {
+    const { assetId } = params;
+    const walletState = await wallet.getState();
+
+    const address = context.userWalletAddress || walletState.address;
+
+    if(!address) {
+      console.error("No wallet connected, cannot get trade token allowance");
+      return;
+    }
+
+    const allowance = await crowdfund.getAllowance(assetId, address);
+    console.log(allowance)
+    const balance = await crowdfund.getBalance(assetId, address);
+    console.log(balance);
+
+    if(allowance) {
+      context.commit(
+        "setTradeTokenAllowance",
+        hexToDecimals(allowance, 6),
+      );
+    }
+
+    if(balance) {
+      context.commit(
+        "setTradeTokenBalance",
+        hexToDecimals(balance, 6),
+      );
+    }
+  },
+
   ...whitelistActions(whitelist),
 };
 
@@ -273,6 +331,14 @@ const mutations = {
 
   setTokenAddress(state, tokenAddress) {
     state.exchange.tokenAddress = tokenAddress;
+  },
+
+  setTradeTokenAllowance(state, allowance) {
+    state.exchange.tradeTokenAllowance = allowance;
+  },
+
+  setTradeTokenBalance(state, balance) {
+    state.exchange.tradeTokenBalance = balance;
   },
 
   ...whitelistMutations,
