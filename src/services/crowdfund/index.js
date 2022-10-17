@@ -72,6 +72,12 @@ class Crowdfund {
     );
     return await usdcContract.decimals();
   }
+
+  async getCrowdfundBalance(crowdfundAddress, userAddress) {
+    const crowdfundContract = new CrowdfundContract(this.client, crowdfundAddress);
+    const balance = await crowdfundContract.balanceOf(userAddress);
+    return balance;
+  }
 }
 
 export default Crowdfund;

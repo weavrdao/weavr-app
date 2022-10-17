@@ -26,20 +26,20 @@
         <button v-else @click="purchase" class="button has-background-mint has-text-white">Purchase</button>
       </div>
       <p class="has-text-white mt-2">Balance: {{ tradeTokenBalance }} <strong>USDC</strong></p>
+      <p class="has-text-white mt-2">Shares: {{ crowdfundTokenAllowance }} <strong>CROWDFUND</strong></p>
     </div>
       <div class="carousel-container">
-          <Carousel :items-to-show="1" :wrap-around="true">
-              <Slide v-for="imageHash in needle.imagesHashes" v-bind:key="imageHash">
-                  <div class="slide-image-container">
-                      <img v-bind:src="getIpfsUrl(imageHash)" alt="">
-                  </div>
-              </Slide>
-
-              <template #addons>
-                  <Navigation />
-                  <Pagination />
-              </template>
-          </Carousel>
+        <Carousel :items-to-show="1" :wrap-around="true">
+          <Slide v-for="imageHash in needle.imagesHashes" v-bind:key="imageHash">
+            <div class="slide-image-container">
+              <img v-bind:src="getIpfsUrl(imageHash)" alt="">
+            </div>
+          </Slide>
+          <template #addons>
+            <Navigation />
+            <Pagination />
+          </template>
+        </Carousel>
       </div>
     </div>
 </div>
@@ -49,6 +49,8 @@ import { mapActions, mapGetters } from "vuex";
 import "vue3-carousel/dist/carousel.css"
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 import { ethers } from "ethers";
+import Address from "@components/views/address/Address.vue";
+import { AddEthereumChainResponse } from "@coinbase/wallet-sdk/dist/relay/Web3Response";
 
 export default {
   name: "SingleNeedle",
@@ -69,6 +71,7 @@ export default {
       needles: "allNeedles",
       allowance: "userTradeTokenAllowance",
       tradeTokenBalance: "userTradeTokenBalance",
+      crowdfundTokenAllowance: "userCrowdfundTokenAllowance",
     }),
     needle() {
       return this.needles
@@ -85,7 +88,7 @@ export default {
     ...mapActions({
       deposit: "deposit",
       approveTradeToken: "approveTradeToken",
-      fetchTradeTokenData: "fetchTradeTokenData",
+      fetchNeedleTokenData: "fetchNeedleTokenData",
     }),
     getIpfsUrl(path) {
       return path
@@ -121,9 +124,12 @@ export default {
         assetId: this.needleId,
       })
     },
+    getFormattedNeedleBalance() {
+      return ethers.utils.parseEthers(this.crowdfundTokenAllowance);
+    }
   },
   mounted() {
-    this.fetchTradeTokenData({
+    this.fetchNeedleTokenData({
       assetId: this.needleId,
     })
   }

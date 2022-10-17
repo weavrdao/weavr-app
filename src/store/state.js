@@ -76,6 +76,10 @@ const getters = {
     return state.exchange.tradeTokenAllowance;
   },
 
+  userCrowdfundTokenAllowance(state) {
+    return state.exchange.crowdfundTokenBalance;
+  },
+
   allAssets(state) {
     return state.platform.assets;
   },
@@ -263,10 +267,10 @@ const actions = {
   async approveTradeToken(context, params) {
     const { assetId } = params;
     await crowdfund.approveTradeToken(assetId);
-    context.dispatch("fetchTradeTokenData", { assetId: params.assetId })
+    context.dispatch("fetchNeedleTokenData", { assetId: params.assetId })
   },
 
-  async fetchTradeTokenData(context, params) {
+  async fetchNeedleTokenData(context, params) {
     const { assetId } = params;
     const walletState = await wallet.getState();
 
@@ -278,9 +282,8 @@ const actions = {
     }
 
     const allowance = await crowdfund.getAllowance(assetId, address);
-    console.log(allowance)
-    const balance = await crowdfund.getBalance(assetId, address);
-    console.log(balance);
+    const tradeTokenBalance = await crowdfund.getBalance(assetId, address);
+    const crowdfundTokenBalance = await crowdfund.getCrowdfundBalance(assetId, address);
 
     if(allowance) {
       context.commit(
@@ -289,10 +292,17 @@ const actions = {
       );
     }
 
-    if(balance) {
+    if(tradeTokenBalance) {
       context.commit(
         "setTradeTokenBalance",
-        hexToDecimals(balance, 6),
+        hexToDecimals(tradeTokenBalance, 6),
+      );
+    }
+
+    if(crowdfundTokenBalance) {
+      context.commit(
+        "setCrowdfundTokenBalance",
+        hexToDecimals(crowdfundTokenBalance, 18)
       );
     }
   },
@@ -339,6 +349,10 @@ const mutations = {
 
   setTradeTokenBalance(state, balance) {
     state.exchange.tradeTokenBalance = balance;
+  },
+
+  setCrowdfundTokenBalance(state, balance) {
+    state.exchange.crowdfundTokenBalance = balance;
   },
 
   ...whitelistMutations,

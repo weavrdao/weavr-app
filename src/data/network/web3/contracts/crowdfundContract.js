@@ -23,6 +23,10 @@ class CrowdfundContract {
     return (await this.contract.token());
   }
 
+  async balanceOf(userAddress) {
+    return (await this.contract.balanceOf(userAddress));
+  }
+
 }
 
 export default CrowdfundContract;
