@@ -26,6 +26,8 @@ $mint: #00EDC4;
 $red: #FF3200;
 $cyan: #00BDFF;
 $lightNavy: #2F2C38;
+$boxGray: #16171A;
+$gold: #e6c300;
 $darkBlue-invert: findColorInvert($darkBlue);
 $mediumBlue-invert: findColorInvert($mediumBlue);
 $lightBlue-invert: findColorInvert($lightBlue);
@@ -129,7 +131,8 @@ $addColors: (
   "cyan": ($cyan, $cyan-invert),
   "red": ($red, $red-invert),
   "magenta": ($magenta, $magenta-invert),
-  "mint": ($mint, $mint-invert)
+  "mint": ($mint, $mint-invert),
+  "gold": ($gold, $gold),
 );
 $colors: map-merge($colors, $addColors);
 
@@ -172,4 +175,4 @@ $colors: map-merge($colors, $addColors);
 }
 
 
-// @import "./markdown.scss";
+@import "./markdown.scss";

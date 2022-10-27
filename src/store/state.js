@@ -15,6 +15,7 @@ import {
   getCookie,
 } from "../whitelist";
 import { ethers } from "ethers";
+import { crowfundStates } from "./helpers";
 
 const wallet = ServiceProvider.wallet();
 const market = ServiceProvider.market();
@@ -41,6 +42,7 @@ function state() {
     exchange: {
       orders: null,
       tokenAddress: null,
+      crowdfundState: null,
     },
     ...whitelistState(),
   };
@@ -78,6 +80,10 @@ const getters = {
 
   userCrowdfundTokenAllowance(state) {
     return state.exchange.crowdfundTokenBalance;
+  },
+
+  crowdfundState(state) {
+    return state.exchange.crowdfundState;
   },
 
   allAssets(state) {
@@ -202,6 +208,7 @@ const actions = {
   },
   async refreshNeedles(context) {
     const needles = await market.getNeedles();
+    console.log(needles);
     context.commit("setNeedles", needles);
   },
 
@@ -242,16 +249,23 @@ const actions = {
     context.commit("setOrders", orders);
   },
 
-  async createBuyOrder(context, params) {
+  async createBuyOrder(_, params) {
     const { assetId, price, amount } = params;
 
     await dex.createBuyOrder(assetId, price, amount);
   },
 
-  async createSellOrder(context, params) {
+  async createSellOrder(_, params) {
     const { assetId, price, amount } = params;
 
     await dex.createSellOrder(assetId, price, amount);
+  },
+
+  async redeem(context, params) {
+    const { crowdfundAddress } = params;
+    const userAddress = context.getters.userWalletAddress;
+    console.log(userAddress);
+    await crowdfund.redeem(crowdfundAddress, userAddress);
   },
 
   async deposit(context, params) {
@@ -264,6 +278,16 @@ const actions = {
     return status;
   },
 
+  async withdraw(context, params) {
+    const { crowdfundAddress, amount } = params;
+    console.log(amount);
+    const parsedAmount = ethers.utils.parseUnits(String(amount), 6);
+    console.log(parsedAmount);
+
+    const status = await crowdfund.withdraw(crowdfundAddress, parsedAmount);
+    return status;
+  },
+ 
   async approveTradeToken(context, params) {
     const { assetId } = params;
     await crowdfund.approveTradeToken(assetId);
@@ -282,8 +306,14 @@ const actions = {
     }
 
     const allowance = await crowdfund.getAllowance(assetId, address);
+    const state = await crowdfund.getState(assetId);
     const tradeTokenBalance = await crowdfund.getBalance(assetId, address);
     const crowdfundTokenBalance = await crowdfund.getCrowdfundBalance(assetId, address);
+
+    context.commit(
+      "setCrowdfundState",
+      crowfundStates[String(state)] || null,
+    )
 
     if(allowance) {
       context.commit(
@@ -302,7 +332,7 @@ const actions = {
     if(crowdfundTokenBalance) {
       context.commit(
         "setCrowdfundTokenBalance",
-        hexToDecimals(crowdfundTokenBalance, 18)
+        hexToDecimals(crowdfundTokenBalance, 6)
       );
     }
   },
@@ -353,6 +383,10 @@ const mutations = {
 
   setCrowdfundTokenBalance(state, balance) {
     state.exchange.crowdfundTokenBalance = balance;
+  },
+
+  setCrowdfundState(state, crowdfundState) {
+    state.exchange.crowdfundState = crowdfundState;
   },
 
   ...whitelistMutations,

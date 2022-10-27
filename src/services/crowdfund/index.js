@@ -12,10 +12,31 @@ class Crowdfund {
     this.client = ethereumClient;
   }
 
+  async getState(crowdfundAddress) {
+    const crowdfundContract = new CrowdfundContract(this.client, crowdfundAddress);
+
+    const state = await crowdfundContract.state();
+    return state;
+  }
+
   async deposit(crowdfundAddress, amount) {
     const crowdfundContract = new CrowdfundContract(this.client, crowdfundAddress);
 
     const status = await crowdfundContract.deposit(amount);
+    return status;
+  }
+
+  async withdraw(crowdfundAddress, amount) {
+    const crowdfundContract = new CrowdfundContract(this.client, crowdfundAddress);
+
+    const status = await crowdfundContract.withdraw(amount);
+    return status;
+  }
+
+  async redeem(crowdfundAddress, userAddress) {
+    const crowdfundContract = new CrowdfundContract(this.client, crowdfundAddress);
+
+    const status = await crowdfundContract.redeem(userAddress);
     return status;
   }
 
