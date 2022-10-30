@@ -52,8 +52,14 @@
   
   .markdown-body a {
     background-color: transparent;
-    color: #58a6ff;
+    color: $mediumBlue;
     text-decoration: none;
+    transition: color 150ms;
+
+    &:hover {
+      text-decoration: none !important;
+      color: white;
+    }
   }
   
   .markdown-body a:active,
@@ -255,6 +261,7 @@
   .markdown-body h4,
   .markdown-body h5,
   .markdown-body h6 {
+    color: white !important;
     margin-top: 24px;
     margin-bottom: 16px;
     font-weight: 600;

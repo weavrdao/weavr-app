@@ -12,6 +12,8 @@ import Modal from "@/components/views/modal/Modal.vue";
 import NewProposal from "@/components/sections/NewProposal.vue";
 import MarketListDetailVue from "../components/views/market/MarketListDetail.vue";
 import DEX from "../components/sections/DEX.vue";
+import ComingSoon from "../components/sections/ComingSoon/ComingSoon.vue";
+import SingleComingSoonPage from "../components/sections/ComingSoon/SingleComingSoonPage.vue";
 import { ethers } from "ethers";
 import store from "../store";
 
@@ -42,7 +44,6 @@ const router = new createRouter({
       name: "thread-market",
       component: ThreadsMarketplace,
     },
-    ,
     {
       path: "/needle-market",
       name: "needle-market",
@@ -90,6 +91,16 @@ const router = new createRouter({
       path: "/needle/:needleId",
       name: "needle",
       component: SingleNeedle,
+    },
+    {
+      path: "/coming-soon",
+      name: "comingSoon",
+      component: ComingSoon,
+    },
+    {
+      path: "/coming-soon/:comingSoonId",
+      name: "singleComingSoon",
+      component: SingleComingSoonPage,
     }
   ],
 });

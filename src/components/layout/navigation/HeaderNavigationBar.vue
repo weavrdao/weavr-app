@@ -64,7 +64,7 @@ export default {
           { name: "My Assets", path: "/assets" },
           { name: "Threads", path: "/thread-market" },
           { name: "Needles", path: "/needle-market" },
-          { name: "Exchange", path: "/exchange"},
+          { name: "Coming Soon", path: "/coming-soon" },
         ],
       },
     };
