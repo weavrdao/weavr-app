@@ -33,13 +33,16 @@
     <div class="dark-card pt-5">
       <vue-markdown class="content markdown-body" :options="{html: true}"  :source="property.markdown" />
     </div>
-    <div class="dark-card mt-5">
+    <div class="dark-card my-5">
       <p class="has-text-white mb-3">Property Documents</p>
       <div class="is-flex is-flex-direction-column is-justify-content-flex-start" v-for="document in property.documents" v-bind:key="document">
         <a class="ipfs-document-link" :href="document.url" target="_blank" rel="noopener">
           <span>{{ document.name }}</span>
         </a>
       </div>
+    </div>
+    <div class="dark-card pt-5">
+      <vue-markdown class="content markdown-body" :options="{html: true}"  :source="property.disclaimer" />
     </div>
   </div>
 </div>

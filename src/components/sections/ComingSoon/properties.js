@@ -93,7 +93,8 @@ If the Expense Budget Account is full, all remaining revenue will be used to buy
 **85%** will be burned by transferring them to the null Ethereum address 0x0000000000000000000000000000000000000000
 
 💡  [Token Burning](https://academy.swissborg.com/en/learn/token-burning) removes them from circulation, never to be used again.
-
+    `,
+    disclaimer: `
 ### Disclaimer
 The Service is provided to you "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company, on its own behalf and on behalf of its Affiliates and its and their respective licensors and service providers, expressly disclaims all warranties, whether express, implied, statutory, or otherwise, with respect to the Service, including all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement, and warranties that may arise out of the course of dealing, course of performance, usage or trade practice. Without limitation to the foregoing, the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will meet your requirements, achieve any intended results, be compatible or work with any other software, applications, systems, or services, operate without interruption, meet any performance or reliability standards or be error-free or that any errors or defects can or will be corrected.
 
