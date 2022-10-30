@@ -16,6 +16,7 @@
       </div>
     </div>
     <div class="mt-1" v-if="isAssetsLoaded">
+      
       <div class="block is-flex is-justify-content-flex-end is-flex-wrap-wrap">
         <a role="button" @click="toggleView" v-show="!isMobile">
           <unicon
@@ -36,6 +37,7 @@
           ></unicon>
         </a>
       </div>
+      
       <ul v-if="!isGrid && !isMobile">
         <li v-for="asset in searchResults" :key="asset.id" class="px-8 py-8">
           <div class="block p-3">
@@ -50,7 +52,7 @@
           :key="asset.id"
         >
           <div class="block p-3">
-            <MarketListItem :isGrid="isGrid" :asset="asset" />
+            <ThreadMarketListItem :isGrid="isGrid" :asset="asset" />
           </div>
         </div>
       </div>
@@ -63,13 +65,13 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import MarketListItem from "../views/market/MarketListItem.vue";
-import { Colors } from "../../styles/theme";
-import Loader from "../utils/Loader.vue";
+import ThreadMarketListItem from "./ThreadMarketListItem.vue";
+import { Colors } from "@/styles/theme";
+import Loader from "@/components/utils/Loader.vue";
 export default {
-  name: "Marketplace",
+  name: "ThreadMarketplace",
   components: {
-    MarketListItem,
+    ThreadMarketListItem,
     Loader,
   },
   data() {
@@ -83,7 +85,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      assets: "marketplaceActiveAssets",
+      assets: "allThreads",
     }),
     searchResults() {
       if (!this.assets) return [];
@@ -108,7 +110,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      refresh: "refreshMarketplaceData",
+      refresh: "refreshThreads",
       syncWallet: "syncWallet",
     }),
     toggleView() {
@@ -124,6 +126,7 @@ export default {
   },
   mounted() {
     this.refresh();
+    console.log("Marketplace", this.assets)
     this.syncWallet({ $toast: this.$toast });
     this.$nextTick(function () {
       window.addEventListener("resize", this.getWindowWidth);

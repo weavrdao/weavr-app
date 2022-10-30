@@ -282,6 +282,7 @@ textarea {
 
 html {
   box-sizing: border-box;
+  background-color: #13111A;
 }
 
 *, *::before, *::after {

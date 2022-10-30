@@ -1,5 +1,5 @@
 <template>
-  <div class="tag is-purpleOne is-medium is-clickable has-radius-lg" @click="onClick">
+  <div class="tag is-purpleOne has-background-mediumBlue is-medium is-clickable has-radius-lg" @click="onClick">
     <span class="icon">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@
     </span>
     <span class="is-family-monospace" v-bind:title="address">
       {{
-        address.substring(0, 8) + "..." + address.substring(address.length - 4)
+        address?.substring(0, 8) + "..." + address?.substring(address.length - 4)
       }}
     </span>
   </div>
