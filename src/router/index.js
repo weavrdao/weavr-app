@@ -12,6 +12,7 @@ import Modal from "@/components/views/modal/Modal.vue";
 import NewProposal from "@/components/sections/NewProposal.vue";
 import MarketListDetailVue from "../components/views/market/MarketListDetail.vue";
 import DEX from "../components/sections/DEX.vue";
+import ComingSoon from "../components/sections/ComingSoon/ComingSoon.vue";
 import { ethers } from "ethers";
 import store from "../store";
 
@@ -90,6 +91,11 @@ const router = new createRouter({
       path: "/needle/:needleId",
       name: "needle",
       component: SingleNeedle,
+    },
+    {
+      path: "/coming-soon",
+      name: "comingSoon",
+      component: ComingSoon,
     }
   ],
 });
