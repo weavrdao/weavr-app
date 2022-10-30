@@ -1,3 +1,4 @@
+
 const properties = [
   {
     id: 0,
@@ -43,67 +44,68 @@ const properties = [
       }
     ],
     location: "116 Englewood Ave, Brighton, MA 02135, USA",
-    markdown: `### About the Property.
-    Spacious and charming one bedroom apartment with high ceilings. It's transit access is extremely good, being mere steps to B, C, and D branches of Boston Metro's Green Line. While it is surrounded by vibrant eateries and popular jaunts, the building itself is on a very quiet residential street. The building has its own laundry facilities and an elevator, it also has a rooftop deck and a community garden for the use of occupants.
-    
-    It is also situated next to Chestnut Hill reservoir; one of Boston's most loved and attractive jogging spaces. The building's close proximity to Boston College and other universities guarantees its thus far perfect occupancy record through economic weathers fair and foul.
-    ### About the Project.
-    The property has been in the ownership of Governor Cozeno for many years and the business model is highly mature. It is currently evaluated at $400-420K range by Zestimates (Oct 1st, 2022), and rents for $1850 per month, with excellent track record and no vacancies. Monthly costs are $476 for condo fees, and roughly $350 for taxes.
-    
-    ###  Investment Info.
-    
-     - Acquisition Cost per assessment value: $410,000 USDC
-     - Land Development Cost: $0 USDC
-     - Expense Budget: 10% of Investment, $41,000 USDC
-     - Rental Income: $1850 USDC Monthly, $22,200 USDC
-     - Rental Income: $1850 USDC Monthly, $22,200 USDC
-     - Governor management fee: 5% of Rental Income: $1,110 USDC Annual
-     
-    ### Property Score.
-     - Walk Score: 72
-     - Transit Score: 75
-     - Bike Score: 85
-     
-     #### 🚶 Very Walkable
-     Most errands can be accomplished on foot.
-    #### 🚌 Excellent Transit
-    Transit is convenient for most trips.
-    #### 🚲 Very Bikeable
-    Biking is convenient for most trips.
-    
-    ### Token-holder Rights.
-    Thread Token holders (Tokenholders) own voting rights in the Thread, that may directly affect the Property.
-    
-    Tokenholders also have an automatic claim on any funds raised on the sale of said property during a Dissolution, even if the WeavrDAO Debt Co exercises it’s security interest to take control of the property.
-    
-    As this Thread has a Governor/Operator Tenant I’m pleased to announce that this Thread uses a token burning revenue distribution system, which means that any revenue generated will be used to buy Thread tokens off of the market; and burn them. This provides the most flexibility and security to you, the Tokenholder.
-    
-    ### Fund Management System
-    If expenses are deducted from the Expense Budget, that Expense Budget will be refilled by any revenue generated.
-    
-    If the Expense Budget Account is full, all remaining revenue will be used to buy Thread Tokens from the Limit Order Decentralized Exchange (ILO DEX) (or create a buy order at the last sold price).
-    
-    If the Expense Budget Account is full, all remaining revenue will be used to buy Thread Tokens from the Limit Order Decentralized Exchange (ILO DEX) (or create a buy order at the last sold price).
-    
-    💡 If there is only 1 TH token @$1000 USDC, then only 1 TH token is acquired.
-    
-    **5%** of the acquired tokens will be provided to the Governor to compensate them for their work done.
-    **85%** will be burned by transferring them to the null Ethereum address 0x0000000000000000000000000000000000000000
-    
-    💡  [Token Burning](https://academy.swissborg.com/en/learn/token-burning) removes them from circulation, never to be used again.
-    
-    ### Disclaimer
-    The Service is provided to you "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company, on its own behalf and on behalf of its Affiliates and its and their respective licensors and service providers, expressly disclaims all warranties, whether express, implied, statutory, or otherwise, with respect to the Service, including all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement, and warranties that may arise out of the course of dealing, course of performance, usage or trade practice. Without limitation to the foregoing, the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will meet your requirements, achieve any intended results, be compatible or work with any other software, applications, systems, or services, operate without interruption, meet any performance or reliability standards or be error-free or that any errors or defects can or will be corrected.
-    
-    Without limiting the foregoing, neither the Company nor any of the company's providers makes any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the Service, or the information, content, and materials or products included thereon; (ii) that the Service will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Service; or (iv) that the Service, its servers, the content, or e-mails sent from or on behalf of the Company are free of viruses, scripts, trojan horses, worms, malware, time-bombs or other harmful components.
-    
-    You accept the inherent security risks of providing information and dealing online over the internet and agree that we have no liability or responsibility for any breach of security unless it is due to our gross negligence.
-    
-    We will not be responsible or liable to you for any losses you incur as the result of your use of the blockchain network or an electronic wallet, including but not limited to any losses, damages, or claims arising from: (a) user error, such as forgotten passwords or incorrectly construed smart contracts or other transactions; (b) server failure or data loss; (c) corrupted wallet files; (d) unauthorized access or activities by third parties, including but not limited to the use of viruses, phishing, brute-forcing or other means of attack against the Website, blockchain network, or an electronic wallet.
-    
-    All smart contracts are conducted and occur through our code, and all transactions are recorded on the decentralized ledger within the blockchain network. For clarity, we have no control over and make no guarantees or promises with respect to the functionality of the blockchain and/or the execution of smart contracts and/or transactions.
-    
-    Some jurisdictions do not allow the exclusion of certain types of warranties or limitations on applicable statutory rights of a consumer, so some or all of the above exclusions and limitations may not apply to you. But in such a case the exclusions and limitations set forth in this section shall be applied to the greatest extent enforceable under applicable law.
+    markdown: `
+### About the Property.
+Spacious and charming one bedroom apartment with high ceilings. It's transit access is extremely good, being mere steps to B, C, and D branches of Boston Metro's Green Line. While it is surrounded by vibrant eateries and popular jaunts, the building itself is on a very quiet residential street. The building has its own laundry facilities and an elevator, it also has a rooftop deck and a community garden for the use of occupants.
+
+It is also situated next to Chestnut Hill reservoir; one of Boston's most loved and attractive jogging spaces. The building's close proximity to Boston College and other universities guarantees its thus far perfect occupancy record through economic weathers fair and foul.
+### About the Project.
+The property has been in the ownership of Governor Cozeno for many years and the business model is highly mature. It is currently evaluated at $400-420K range by Zestimates (Oct 1st, 2022), and rents for $1850 per month, with excellent track record and no vacancies. Monthly costs are $476 for condo fees, and roughly $350 for taxes.
+
+###  Investment Info.
+
+- Acquisition Cost per assessment value: $410,000 USDC
+- Land Development Cost: $0 USDC
+- Expense Budget: 10% of Investment, $41,000 USDC
+- Rental Income: $1850 USDC Monthly, $22,200 USDC
+- Rental Income: $1850 USDC Monthly, $22,200 USDC
+- Governor management fee: 5% of Rental Income: $1,110 USDC Annual
+
+### Property Score.
+- Walk Score: 72
+- Transit Score: 75
+- Bike Score: 85
+
+#### 🚶 Very Walkable
+Most errands can be accomplished on foot.
+#### 🚌 Excellent Transit
+Transit is convenient for most trips.
+#### 🚲 Very Bikeable
+Biking is convenient for most trips.
+
+### Token-holder Rights.
+Thread Token holders (Tokenholders) own voting rights in the Thread, that may directly affect the Property.
+
+Tokenholders also have an automatic claim on any funds raised on the sale of said property during a Dissolution, even if the WeavrDAO Debt Co exercises it’s security interest to take control of the property.
+
+As this Thread has a Governor/Operator Tenant I’m pleased to announce that this Thread uses a token burning revenue distribution system, which means that any revenue generated will be used to buy Thread tokens off of the market; and burn them. This provides the most flexibility and security to you, the Tokenholder.
+
+### Fund Management System
+If expenses are deducted from the Expense Budget, that Expense Budget will be refilled by any revenue generated.
+
+If the Expense Budget Account is full, all remaining revenue will be used to buy Thread Tokens from the Limit Order Decentralized Exchange (ILO DEX) (or create a buy order at the last sold price).
+
+If the Expense Budget Account is full, all remaining revenue will be used to buy Thread Tokens from the Limit Order Decentralized Exchange (ILO DEX) (or create a buy order at the last sold price).
+
+💡 If there is only 1 TH token @$1000 USDC, then only 1 TH token is acquired.
+
+**5%** of the acquired tokens will be provided to the Governor to compensate them for their work done.
+**85%** will be burned by transferring them to the null Ethereum address 0x0000000000000000000000000000000000000000
+
+💡  [Token Burning](https://academy.swissborg.com/en/learn/token-burning) removes them from circulation, never to be used again.
+
+### Disclaimer
+The Service is provided to you "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company, on its own behalf and on behalf of its Affiliates and its and their respective licensors and service providers, expressly disclaims all warranties, whether express, implied, statutory, or otherwise, with respect to the Service, including all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement, and warranties that may arise out of the course of dealing, course of performance, usage or trade practice. Without limitation to the foregoing, the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will meet your requirements, achieve any intended results, be compatible or work with any other software, applications, systems, or services, operate without interruption, meet any performance or reliability standards or be error-free or that any errors or defects can or will be corrected.
+
+Without limiting the foregoing, neither the Company nor any of the company's providers makes any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the Service, or the information, content, and materials or products included thereon; (ii) that the Service will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Service; or (iv) that the Service, its servers, the content, or e-mails sent from or on behalf of the Company are free of viruses, scripts, trojan horses, worms, malware, time-bombs or other harmful components.
+
+You accept the inherent security risks of providing information and dealing online over the internet and agree that we have no liability or responsibility for any breach of security unless it is due to our gross negligence.
+
+We will not be responsible or liable to you for any losses you incur as the result of your use of the blockchain network or an electronic wallet, including but not limited to any losses, damages, or claims arising from: (a) user error, such as forgotten passwords or incorrectly construed smart contracts or other transactions; (b) server failure or data loss; (c) corrupted wallet files; (d) unauthorized access or activities by third parties, including but not limited to the use of viruses, phishing, brute-forcing or other means of attack against the Website, blockchain network, or an electronic wallet.
+
+All smart contracts are conducted and occur through our code, and all transactions are recorded on the decentralized ledger within the blockchain network. For clarity, we have no control over and make no guarantees or promises with respect to the functionality of the blockchain and/or the execution of smart contracts and/or transactions.
+
+Some jurisdictions do not allow the exclusion of certain types of warranties or limitations on applicable statutory rights of a consumer, so some or all of the above exclusions and limitations may not apply to you. But in such a case the exclusions and limitations set forth in this section shall be applied to the greatest extent enforceable under applicable law.
     `
   }
 ];
