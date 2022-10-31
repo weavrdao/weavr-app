@@ -17,7 +17,7 @@ class Wallet {
       await this.client.getWalletAddress(),
       await this.client.getWalletEthBalance(),
     ]);
-    console.log(values);
+
     const state = new WalletState(
       values[0],
       values[1] / Math.pow(10, 18),

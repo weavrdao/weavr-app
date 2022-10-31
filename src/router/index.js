@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import MyAssets from "@/components/sections/MyAssets.vue";
 import ThreadsMarketplace from "@/components/sections/Threads/ThreadMarketplace.vue";
 import NeedlesMarketplace from "@/components/sections/Needles/NeedleMarketplace.vue";
+import SingleNeedle from "@/components/sections/Needles/SingleNeedle.vue";
 import Swap from "@/components/sections/Swap.vue";
 import { WhitelistPage } from "../whitelist";
 import WalletConnect from "@/components/sections/WalletConnect.vue";
@@ -11,6 +12,8 @@ import Modal from "@/components/views/modal/Modal.vue";
 import NewProposal from "@/components/sections/NewProposal.vue";
 import MarketListDetailVue from "../components/views/market/MarketListDetail.vue";
 import DEX from "../components/sections/DEX.vue";
+import ComingSoon from "../components/sections/ComingSoon/ComingSoon.vue";
+import SingleComingSoonPage from "../components/sections/ComingSoon/SingleComingSoonPage.vue";
 import { ethers } from "ethers";
 import store from "../store";
 
@@ -30,61 +33,43 @@ const router = new createRouter({
       component: Modal,
       props: { component: WalletConnect },
     },
-    {
-      path: "/assets",
-      alias: "/",
-      name: "myAssets",
-      component: MyAssets,
-    },
-    {
-      path: "/thread-market",
-      name: "thread-market",
-      component: ThreadsMarketplace,
-    },
-    ,
+    // {
+    //   path: "/assets",
+    //   alias: "/",
+    //   name: "myAssets",
+    //   component: MyAssets,
+    // },
+    // {
+    //   path: "/thread-market",
+    //   name: "thread-market",
+    //   component: ThreadsMarketplace,
+    // },
     {
       path: "/needle-market",
       name: "needle-market",
       component: NeedlesMarketplace,
     },
-    /* {
-          path: "/swap",
-          name: "swap",
-          component: Swap
-    }, */
+    // {
+    //   path: "/thread/:threadId",
+    //   name: "thread",
+    //   props: true,
+    //   component: ThreadDetails,
+    // },
     {
-      path: "/thread/:threadId",
-      name: "thread",
-      props: true,
-      component: ThreadDetails,
+      path: "/needle/:needleId",
+      name: "needle",
+      component: SingleNeedle,
     },
     {
-      path: "/dao/:assetId/proposals/:proposalId",
-      name: "proposal",
-      props: true,
-      component: Proposal,
+      path: "/coming-soon",
+      name: "comingSoon",
+      component: ComingSoon,
     },
     {
-      path: "/dao/:assetId/proposals/create",
-      name: "newProposal",
-      props: true,
-      component: NewProposal,
-    },
-    {
-      path: "/dao/details",
-      name: "assetDetails",
-      props: true,
-      component: MarketListDetailVue,
-    },
-    {
-      path: "/exchange",
-      redirect: `/exchange/${process.env.VUE_APP_FRABRIC_ADDRESS}`,
-    },
-    {
-      path: "/exchange/:assetId",
-      name: "exchange",
-      component: DEX,
-    },
+      path: "/coming-soon/:comingSoonId",
+      name: "singleComingSoon",
+      component: SingleComingSoonPage,
+    }
   ],
 });
 
@@ -93,8 +78,9 @@ let hasOriginalPathBeenSet = false;
 let hasRedirectedAfterWhitelisting = false;
 
 router.beforeEach((to, from) => {
+  console.log(to);
   if (!hasOriginalPathBeenSet) {
-    originalPath = to.fullPath;
+    originalPath = to.fullPath || "/coming-soon";
     hasOriginalPathBeenSet = true;
     console.log(originalPath);
   }

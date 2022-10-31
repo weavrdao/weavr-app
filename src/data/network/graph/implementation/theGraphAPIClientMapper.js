@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import GraphQLAPIMapper from "../graphQLAPIMapper"
 import Asset from "../../../../models/asset"
 import Thread from "@/models/thread"
@@ -44,7 +45,6 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
     }
     return rawThreads
       .map(rawThread => {
-        console.log(rawThread)
         const erc20 = new Erc20(
           rawThread.erc20.name,
           rawThread.erc20.symbol,
@@ -53,14 +53,6 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
           rawThread.erc20.tradeToken,
           rawThread.erc20.balances
         )
-        /**
-         * id,
-          variant,
-          governor,
-          erc20,
-          descriptor,
-         */
-        
         return new Thread(
           rawThread.id,
           rawThread.variant,
@@ -75,21 +67,17 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
     if (!rawNeedles || rawNeedles.length < 1) {
       return []
     }
-    console.log(rawNeedles)
+  
     return rawNeedles
       .map(
-        rawNeedle => {
-          console.log(rawNeedle)
-
-          return new Needle(
-            rawNeedle.id,
-            rawNeedle.state,
-            rawNeedle.amountDeposited,
-            rawNeedle.target,
-            rawNeedle.thread,
-            rawNeedle.deposits
-          )
-        }
+        rawNeedle => new Needle(
+          rawNeedle.id,
+          rawNeedle.state,
+          rawNeedle.amountDeposited,
+          rawNeedle.target,
+          rawNeedle.thread,
+          rawNeedle.deposits,
+        )
       )
   }
 
@@ -143,13 +131,13 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
       return []
     }
     console.log("ERC20\n", rawErc20) 
-        return new Erc20(
-          rawErc20.name,
-          rawErc20.symbol,
-          rawErc20.decimals,
-          rawErc20.supply,
-          rawErc20.tradeToken
-        )
+    return new Erc20(
+      rawErc20.name,
+      rawErc20.symbol,
+      rawErc20.decimals,
+      rawErc20.supply,
+      rawErc20.tradeToken
+    )
   }
 
   mapVotes(rawVotes) {
@@ -166,7 +154,7 @@ class TheGraphAPIMapper extends GraphQLAPIMapper {
           rawVote.count
         )
       }
-    )
+      )
   }
 }
 

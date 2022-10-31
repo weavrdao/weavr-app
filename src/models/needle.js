@@ -59,7 +59,6 @@ class Needle {
     deposits,
     withdrawals,
     distributions
-    
   ) {
     this.id = id
     this.state = state

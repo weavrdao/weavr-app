@@ -1,64 +1,18 @@
 <template>
   <div class="has-text-white has-radius-lg">
-    <div class="">
-      <label for="search" class="is-sr-only">
-        Search by token name or address
-      </label>
-      <div class="mt-1 relative">
-        <input
-          type="text"
-          name="search"
-          id="search"
-          class="input is-rounded is-borderless"
-          placeholder="Search by token name or address"
-          v-model="searchQuery"
-        />
-      </div>
+    <div class="cover-image-container">
+      <h3>Needles</h3>
     </div>
-    <div class="mt-1" v-if="isAssetsLoaded">
-      
-      <div class="block is-flex is-justify-content-flex-end is-flex-wrap-wrap">
-        <a role="button" @click="toggleView" v-show="!isMobile">
-          <unicon
-            v-if="!isGrid"
-            name="apps"
-            :width="iconSize"
-            :height="iconSize"
-            fill="white"
-            icon-style="solid"
-          ></unicon>
-          <unicon
-            v-if="isGrid"
-            name="list-ul"
-            :width="iconSize"
-            :height="iconSize"
-            :fill="colors.foam"
-            icon-style="solid"
-          ></unicon>
-        </a>
-      </div>
-      
-      <ul v-if="!isGrid && !isMobile">
-        <li v-for="asset in searchResults" :key="asset.id" class="px-8 py-8">
-          <div class="block p-3">
-            <MarketListItem :is-grid="isGrid" :asset="asset" />
-          </div>
-        </li>
-      </ul>
-      <div class="block" v-if="isGrid">
-        <div
-          class="is-flex is-flex-direction-row is-flex-wrap-wrap is-flex-grow-3"
-          v-for="asset in searchResults"
-          :key="asset.id"
-        >
-          <div class="block p-3">
-            <NeedleMarketListItem :isGrid="isGrid" :asset="asset" />
-          </div>
-        </div>
-      </div>
+    <div v-if="loading" class="is-flex is-justify-content-center" >
+      <Loading :message="`Loading needles`" />
     </div>
-    <div class="mt-1" v-else>
-      <Loader :shadowless="true" />
+    <div class="is-flex is-justify-content-center is-align-items-center mt-5 pt-5" v-else-if="this.needles.length === 0">
+      No needles have been created yet
+    </div>
+    <div v-else class="needles-container mt-5">
+      <div v-for="needle in this.needles" :key="needle.id">
+        <NeedleMarketListItem :needle="needle" />
+      </div>
     </div>
   </div>
 </template>
@@ -66,81 +20,81 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import NeedleMarketListItem from "./NeedleMarketListItem.vue"
-import { Colors } from "@/styles/theme";
-import Loader from "@/components/utils/Loader.vue";
+import Loading from "../../views/loading/Loading.vue";
+
 export default {
-  name: "ThreadMarketplace",
+  name: "NeedleMarketplace",
   components: {
     NeedleMarketListItem,
-    Loader,
-  },
-  data() {
-    return {
-      searchQuery: "",
-      isGrid: true,
-      iconSize: "24",
-      windowWidth: 0,
-      colors: Colors,
-    };
+    Loading,
   },
   computed: {
     ...mapGetters({
-      assets: "allThreads",
+      needles: "allNeedles",
     }),
-    searchResults() {
-      if (!this.assets) return [];
-
-      if (this.searchQuery.length == 0) {
-        return this.assets;
-      }
-
-      return this.assets.filter((item) => {
-        console.log(item);
-        return item.address
-          .toLowerCase()
-          .includes(this.searchQuery.trim().toLowerCase());
-      });
-    },
-    isMobile() {
-      return this.getWindowWidth() < 768;
-    },
-    isAssetsLoaded() {
-      return this.assets !== null;
-    },
+    loading() {
+      return this.needles === null;
+    }
   },
   methods: {
     ...mapActions({
-      refresh: "refreshNeedles",
+      getNeedles: "refreshNeedles",
       syncWallet: "syncWallet",
     }),
-    toggleView() {
-      this.isGrid = !this.isGrid;
-    },
-    getWindowWidth() {
-      this.windowWidth = document.documentElement.clientWidth;
-
-      if (this.isMobile && !this.isGrid) {
-        this.isGrid = true;
-      }
-    },
+    filterNeedles(needles) {
+      return needles.filter((needle) => !!needle.imageHashes)
+    }
   },
   mounted() {
-    this.refresh();
-    console.log("Marketplace", this.assets)
+    this.getNeedles();
     this.syncWallet({ $toast: this.$toast });
-    this.$nextTick(function () {
-      window.addEventListener("resize", this.getWindowWidth);
-
-      //Init
-      this.getWindowWidth();
-    });
   },
   watch: {
     $route: "refresh",
   },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.windowWidth);
-  },
 };
 </script>
 
+<style scoped lang="scss">
+@import "../../../styles/frabric-custom.scss";
+@import "../../../styles/_variables.sass";
+
+.needles-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 0px;
+
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.cover-image-container {
+  position: relative;
+  background-image: url("../../../assets/pics/needlecoverimage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  border-radius: 12px;
+  height: 300px;
+
+  h3 {
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+  img {
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+  }
+}
+</style>

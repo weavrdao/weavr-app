@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* global BigInt */
 
 import * as CommonUtils from "../../utils/common"
@@ -7,6 +8,7 @@ import StorageNetwork from "../../data/network/storage/storageNetwork"
 import Asset from "../../models/asset"
 import { GraphQLAPIClient, ALL_ASSETS_QUERY, ALL_THREADS_QUERY, ALL_NEEDLES_QUERY } from "../../data/network/graph/graphQLAPIClient"
 import EthereumClient from "../../data/network/web3/ethereum/ethereumClient"
+import { getIpfsHashFromBytes32 } from "../../data/network/storage/ipfs/common";
 
 /**
  * Market Provider service
@@ -55,8 +57,8 @@ class Market {
         (mapper, response) => { return mapper.mapThreads(response.data) }
       )
 
-      console.log("Mapped assets:")
-      console.log(assets)
+    console.log("Mapped assets:")
+    console.log(assets)
 
     // TODO: CONSIDER DISCONTINUED/DEACTIVATED ASSETS
 
@@ -65,9 +67,9 @@ class Market {
     const assetDataURIArray = assets
       .map(asset => asset.dataURI)
     let assetOffchainDataArray = (
-        await this.storageNetwork
-          .getFiles(assetDataURIArray.map(uri => CommonUtils.pathFromURL(uri)))
-      )
+      await this.storageNetwork
+        .getFiles(assetDataURIArray.map(uri => CommonUtils.pathFromURL(uri)))
+    )
       .map(obj => obj.world.property)
 
     console.log("Off-chain data:")
@@ -132,8 +134,8 @@ class Market {
         }
       )
 
-      console.log("Mapped assets:")
-      console.log(assets)
+    console.log("Mapped assets:")
+    console.log(assets)
 
     // TODO: CONSIDER DISCONTINUED/DEACTIVATED ASSETS
 
@@ -185,80 +187,41 @@ class Market {
     return assets
   }
 
-  async getNeedles(
-    limit = 100, 
-    offset = 0, 
-    idsArray = null, 
-    sort = null, 
-    minBlockNumber = null
-  ) {
-    // Get indexed on-chain data
-
-    const assets = await this.graphQLAPIClient
+  async getNeedles() {
+    const needles = await this.graphQLAPIClient
       .query(
         ALL_NEEDLES_QUERY, 
         {
           weavrId: process.env.VUE_APP_WEAVR_ADDRESS
         }, 
         (mapper, response) => { 
-          console.log(response.data.crowdfunds)
           const mappedNeedles =  mapper.mapRawNeedles(response.data.crowdfunds) 
-          console.log(mappedNeedles)
           return mappedNeedles
         }
       )
 
-      console.log("Mapped assets:")
-      console.log(assets)
+    try {
+      const offChainData = await this.storageNetwork.getFiles(
+        needles.map(({ thread }) => getIpfsHashFromBytes32(thread.descriptor))
+      );
+      for(let i=0; i < needles.length; i++) {
+        if(offChainData[i].value) {
+          needles[i].descriptor = offChainData[i].value.descriptor;
+          needles[i].name = offChainData[i].value.name;
+          needles[i].imagesHashes = offChainData[i].value.imagesHashes;
+          needles[i].documentHashes = offChainData[i].value.documentHashes;
+        } else {
+          needles[i].descriptor = offChainData[i].descriptor;
+          needles[i].name = offChainData[i].name;
+          needles[i].imagesHashes = offChainData[i].imagesHashes;
+          needles[i].documentHashes = offChainData[i].documentHashes;
+        }
+      }
+    } catch(e) {
+      // no-op
+    }
 
-    // TODO: CONSIDER DISCONTINUED/DEACTIVATED ASSETS
-
-    // Fetch and append off-chain data
-
-    // const assetDataURIArray = assets
-    //   .map(asset => asset.descriptor)
-    // let assetOffchainDataArray = (
-    //     await this.storageNetwork
-    //       .getFiles(assetDataURIArray.map(uri => CommonUtils.pathFromURL(uri)))
-    //   )
-    //   .map(obj => obj.world.property)
-
-    // console.log("Off-chain data:")
-    // console.log(assetOffchainDataArray)
-
-    // if (assetOffchainDataArray.length != assets.length) {
-    //   throw("Off-chain data count doesn't match the on-chain data")
-    // }
-
-    // for (var i = 0; i < assets.length; i++) {
-    //   let asset = assets[i]
-    //   let data = assetOffchainDataArray[i]
-
-    //   let completeAsset = new Asset(
-    //     asset.id,
-    //     asset.dataURI,
-    //     asset.contractAddress,
-    //     asset.symbol,
-    //     asset.numOfShares,
-    //     asset.owners,
-    //     asset.marketOrders,
-    //     asset.proposals,
-    //     data.address,
-    //     data.area,
-    //     data.coverImage,
-    //     data.currentRent,
-    //     data.description,
-    //     data.grossYieldPct,
-    //     data.marketValue,
-    //     data.rooms.bdCount,
-    //     data.rooms.baCount,
-    //     data.yearBuilt
-    //   )
-
-    //   assets[i] = completeAsset
-    // }
-
-    return assets
+    return needles;
   }
 
   /**

@@ -61,10 +61,10 @@ export default {
       navigation: {
         isOpen: false,
         items: [
-          { name: "My Assets", path: "/assets" },
-          { name: "Threads", path: "/thread-market" },
+          // { name: "My Assets", path: "/assets" },
+          // { name: "Threads", path: "/thread-market" },
+          { name: "Upcoming Properties", path: "/coming-soon" },
           { name: "Needles", path: "/needle-market" },
-          { name: "Exchange", path: "/exchange"},
         ],
       },
     };
