@@ -1,6 +1,10 @@
+import { WHITELIST_COOKIES_KEY } from "../constants";
+import { getCookie } from "../cookies";
+
 export function whitelistState() {
+  console.log(getCookie(WHITELIST_COOKIES_KEY));
   return {
-    whitelisted: null,
+    whitelisted: getCookie(WHITELIST_COOKIES_KEY),
   };
 }
 

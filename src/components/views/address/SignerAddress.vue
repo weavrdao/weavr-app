@@ -39,7 +39,7 @@ export default {
     ...mapActions({
       sync: "syncWallet",
     }),
-        onClick() {
+    onClick() {
       this.$router.push("/walletConnect");
     },
   },
