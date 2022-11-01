@@ -93,7 +93,7 @@ export default {
       margin-bottom: 15px;
       img {
         object-fit: cover;
-        object-position: center;
+        object-position: 50% 60%;
         height: 20rem;
         width: 100%;
       }

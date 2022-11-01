@@ -22,7 +22,7 @@ const router = new createRouter({
   routes: [
     {
       path: "/",
-      redirect: "/whitelist",
+      redirect: "/coming-soon",
     },
     {
       path: "/whitelist",
@@ -78,11 +78,14 @@ let hasOriginalPathBeenSet = false;
 let hasRedirectedAfterWhitelisting = false;
 
 router.beforeEach((to, from) => {
-  console.log(to);
   if (!hasOriginalPathBeenSet) {
-    originalPath = to.fullPath || "/coming-soon";
+    originalPath = to.fullPath;
     hasOriginalPathBeenSet = true;
     console.log(originalPath);
+  }
+
+  if(to.fullPath.includes("coming-soon")) {
+    return true;
   }
 
   if (to.fullPath === "/whitelist") {
@@ -95,7 +98,8 @@ router.beforeEach((to, from) => {
   const address = store.getters.userWalletAddress;
   const isConnected = ethers.utils.isAddress(address);
   if (!isConnected) {
-    router.push("/");
+    console.log("running isConnected redirect");
+    router.push("/walletConnect");
   }
   const whitelisted = store.getters.isWhitelisted;
   if (whitelisted) {

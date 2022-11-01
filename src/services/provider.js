@@ -3,6 +3,7 @@ import Market from "./market";
 import DAO from "./dao";
 import DEX from "./dex";
 import Crowdfund from "./crowdfund";
+import Token from "./token";
 import { Whitelist } from "../whitelist";
 import IPFSStorageNetwork from "../data/network/storage/ipfs/IPFSStorageNetwork";
 import EthereumClient from "../data/network/web3/ethereum/ethereumClient";
@@ -47,6 +48,10 @@ class ServiceProvider {
 
   static crowdfund() {
     return new Crowdfund(ethereumClient);
+  }
+
+  static token() {
+    return new Token(ethereumClient);
   }
 }
 

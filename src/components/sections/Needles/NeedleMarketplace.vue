@@ -76,7 +76,7 @@ export default {
 
 .cover-image-container {
   position: relative;
-  background-image: url("../../../assets/pics/needlecoverimage.png");
+  background-image: linear-gradient(to left, rgba(22, 23, 30, 0), rgba(22, 23, 30, 0.3)), url("../../../assets/pics/needlecoverimage.png");
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;

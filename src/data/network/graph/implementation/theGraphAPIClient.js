@@ -5,7 +5,8 @@ import {
 import { GraphQLAPIClient } from "../graphQLAPIClient"
 
 const client = new ApolloClient({
-  uri: "https://api.thegraph.com/subgraphs/name/0xnshuman/frabric-goerli",
+  uri: "https://api.thegraph.com/subgraphs/name/abstrucked/weavr_goerli",
+  // uri: "https://api.thegraph.com/subgraphs/name/0xnshuman/frabric-goerli",
   cache: new InMemoryCache()
 })
 
@@ -20,18 +21,18 @@ class TheGraphAPIClient extends GraphQLAPIClient {
   async query(query, vars = {}, mappingCallback) {
     return new Promise((resolve) => {
       this.client
-      .query({
-        query: query,
-        variables: vars,
-        fetchPolicy: "no-cache"
-      })
-      .then(response => {
-        resolve(mappingCallback(this.mapper, response))
-      })
-      .catch(err => { 
+        .query({
+          query: query,
+          variables: vars,
+          fetchPolicy: "no-cache"
+        })
+        .then(response => {
+          resolve(mappingCallback(this.mapper, response))
+        })
+        .catch(err => { 
         // TODO: Propagate error
-        console.log("Error fetching data: ", err) 
-      })
+          console.log("Error fetching data: ", err) 
+        })
     })
   }
 }

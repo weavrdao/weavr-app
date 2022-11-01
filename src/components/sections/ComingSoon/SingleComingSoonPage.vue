@@ -15,6 +15,16 @@
         <img src="../../../assets/logo/new-logo.svg" alt="">
       </div>
     </div>
+    <div class="dark-card call-to-action-container is-flex is-align-items-center mb-5">
+      <span>🧵</span>
+      <div class="has-text-white">
+        <h3>Want to own a part of this property?</h3>
+        <h4>If you aren't already part of Weavr, follow us on Twitter to learn how to get whitelisted</h4>
+      </div>
+      <div class="is-flex-grow-1 is-flex is-justify-content-flex-end button-container">
+        <a target="_blank" rel="noopener" href="https://twitter.com/WeavrDAO" class="has-text-white button shiny-button has-background-mediumBlue mt-0"><i></i><strong>Join Now!</strong></a>
+      </div>
+    </div>
     <div>
     <div class="dark-card image-container mb-5">
         <p class="has-text-white mb-3">Images</p>
@@ -120,6 +130,7 @@ export default {
 
     @media screen and (max-width: 500px) {
       height: 300px;
+      // background: linear-gradient(to bottom, rgba(22, 23, 30, 0), rgba(22, 23, 30, 1));
     }
 }
 
@@ -232,21 +243,39 @@ input[type=number] {
 @keyframes move {
 	0%  { left: 0; opacity: 0.05; }
 	5% {opacity: 0.1}
-	48% {opacity: 0.4}
-	80% {opacity: 0.01}
-	100% { left: 100%}
+	25% {opacity: 0.4; }
+	50% {opacity: 0.01; left: 100%}
+	100% {opacity: 0.01; left: 100% }
+}
+
+.call-to-action-container {
+  gap: 2rem;
+
+  @media screen and (max-width: "700px") {
+    flex-direction: column;
+    
+    .button-container {
+      width: 100%;
+    }
+  }
+
+  span {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+  }
 }
 
 .shiny-button {
-  max-width: 8rem;
+  max-width: 10rem;
+  height: 3.5rem;
   overflow: hidden;
 
-  &:hover {
-    strong {
-      transition: all 150ms;
-      text-shadow: #000 0px 0px 2px,   #000 0px 0px 2px,   #000 0px 0px 2px,
-        #000 0px 0px 2px,   #000 0px 0px 2px,   #000 0px 0px 2px;
-    }
+  @media screen and (max-width: "700px") {
+    max-width: 100rem !important;
+    width: 100%;   
   }
 
   i {
@@ -254,17 +283,13 @@ input[type=number] {
     opacity: 0;
     top: 0;
     left: 0;
-    background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.03) 1%,rgba(255,255,255,0.6) 30%,rgba(255,255,255,0.95) 50%,rgba(255,255,255,0.85) 70%,rgba(255,255,255,0.95) 71%,rgba(255,255,255,0) 100%);
+    background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.02) 1%,rgba(255,255,255,0.4) 30%,rgba(255,255,255,0.5) 50%,rgba(255,255,255,0.5) 70%,rgba(255,255,255,0.6) 71%,rgba(255,255,255,0) 100%);
     width: 15%;
     height: 100%;
     transform: skew(-10deg,0deg);
-    animation: move 2s;
+    animation: move 4s;
     animation-iteration-count: infinite;
     animation-delay: 2s;
-
-    @media screen and (max-width: 500px) {
-        background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.03) 1%,rgba(255,255,255,0.6) 30%,rgba(255,255,255,0.95) 50%,rgba(255,255,255,0.85) 70%,rgba(255,255,255,0.95) 71%,rgba(255,255,255,0) 100%);
-    }
 
   }
 }

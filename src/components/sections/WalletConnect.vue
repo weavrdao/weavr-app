@@ -79,7 +79,7 @@ export default {
         });
     },
     routeToHome() {
-      this.$router.push("/".concat(DAO));
+      this.$router.push("/".concat("needle-market"));
     },
   }    
 }

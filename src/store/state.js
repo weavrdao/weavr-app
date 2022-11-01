@@ -23,6 +23,7 @@ const dao = ServiceProvider.dao();
 const dex = ServiceProvider.dex();
 const whitelist = ServiceProvider.whitelist();
 const crowdfund = ServiceProvider.crowdfund();
+const token = ServiceProvider.token();
 
 function state() {
   console.log(getCookie(WALLET_STATE_COOKIE_KEY) || {});
@@ -68,6 +69,14 @@ const getters = {
 
   walletError(state) {
     return state.user.wallet.error;
+  },
+
+  userTokenBalance(state) {
+    return state.user.wallet.tokenBalance;
+  },
+
+  assetTokenSymbol(state) {
+    return state.user.wallet.tokenSymbol;
   },
 
   userTradeTokenBalance(state) {
@@ -164,7 +173,14 @@ const getters = {
 const actions = {
   async syncWallet(context, params) {
     console.log(params.wallet);
-    const walletState = await wallet.getState(params.wallet);
+    let { $toast } = params;
+    let walletState = await wallet.getState(params.wallet);
+    const symbol = await token.getTokenSymbol(CONTRACTS.FRBC);
+    const balance = await token.getTokenBalance(
+      CONTRACTS.FRBC,
+      walletState.address
+    );
+    
 
     if (walletState.error) {
       params.$toast.error(walletState.error.msg);
@@ -183,13 +199,27 @@ const actions = {
       walletState.address
     );
 
-    const walletStateAsJson = JSON.stringify(walletState);
+    // const walletStateAsJson = JSON.stringify(walletState);
 
     setCookie(WHITELIST_COOKIES_KEY, isWhitelisted, 30);
-//    setCookie(WALLET_STATE_COOKIE_KEY, walletStateAsJson);
+    // setCookie(WALLET_STATE_COOKIE_KEY, walletStateAsJson);
+
+    walletState = new WalletState(
+      walletState.address,
+      walletState.ethBalance,
+      ethers.utils.formatEther(balance).toString(),
+      symbol,
+      wallet.getChainId()
+    );
 
     context.commit("setWhitelisted", isWhitelisted);
     context.commit("setWallet", walletState);
+
+    $toast?.clear();
+    $toast?.success("Wallet fully synced", {
+      duration: 1000,
+      position: "top",
+    });
   },
 
   async refreshOwnedAssetsData(context) {
@@ -387,6 +417,14 @@ const mutations = {
 
   setCrowdfundState(state, crowdfundState) {
     state.exchange.crowdfundState = crowdfundState;
+  },
+
+  setTokenBalance(state, balance) {
+    state.user.wallet.tokenBalance = balance;
+  },
+
+  setTokenSymbol(state, symbol) {
+    state.user.wallet.tokenSymbol = symbol;
   },
 
   ...whitelistMutations,

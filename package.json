@@ -4,7 +4,7 @@
   "license": "AGPL-3.0-only",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006",
@@ -49,6 +49,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
+    "@ledgerhq/hw-app-eth": "^6.29.10",
+    "@ledgerhq/hw-transport-webhid": "^6.27.6",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
@@ -66,5 +68,9 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "alias": {
+    "@ledgerhq/devices": "@ledgerhq/devices/lib-es",
+    "@ledgerhq/devices/hid-framing": "@ledgerhq/devices/lib-es/hid-framing"
+  }
 }
