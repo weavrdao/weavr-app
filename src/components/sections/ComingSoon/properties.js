@@ -9,6 +9,13 @@ const properties = [
     ],
     coverImage: "https://fractionalfinance.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffa78a058-4cb2-46b7-ad6b-419398ae3b43%2F2017-10-27_10.31.22.jpg?table=block&id=02f26bfb-f859-4015-a025-d597552bd333&spaceId=dcad8fdc-a5c3-4d30-a982-3f9dbd564be6&width=2000&userId=&cache=v2",
     photos: [
+      "https://i.imgur.com/stLSsmC.jpeg",
+      "https://i.imgur.com/M7l6FKv.jpeg",
+      "https://i.imgur.com/gwTZGdw.jpeg",
+      "https://i.imgur.com/NZIj47H.jpeg",
+      "https://i.imgur.com/h1hvqTh.jpeg",
+      "https://i.imgur.com/k9AsA7l.jpeg",
+      "https://i.imgur.com/eNq7jd9.jpeg",
       "https://fractionalfinance.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd86cfbea-fca9-48bb-870d-cb11a58e00e7%2F2017-10-27_12.56.02.jpg?table=block&id=e32fe9a1-5ca2-47a7-aac2-0e8bb4dcf1bd&spaceId=dcad8fdc-a5c3-4d30-a982-3f9dbd564be6&width=2000&userId=&cache=v2",
       "https://fractionalfinance.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fab7adba7-80ef-4cb3-95b6-9dfccc7404fa%2F2017-10-27_10.32.02.jpg?table=block&id=545ccf4e-5b3b-444a-bd26-c6a8a2dbcf22&spaceId=dcad8fdc-a5c3-4d30-a982-3f9dbd564be6&width=2000&userId=&cache=v2",
       "https://fractionalfinance.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F1157ac96-852c-4d66-9c89-29a232bcc078%2F2017-10-27_10.32.40.jpg?table=block&id=e3a3e1e2-8fc1-407e-b37f-5cee91eac32c&spaceId=dcad8fdc-a5c3-4d30-a982-3f9dbd564be6&width=2000&userId=&cache=v2",
@@ -18,8 +25,6 @@ const properties = [
       "https://fractionalfinance.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F675410dd-9bc6-428f-9668-5dc76d358776%2F2017-10-27_13.13.58.jpg?table=block&id=66e1ba27-28a7-4592-bf92-9d0b8c0d7f2b&spaceId=dcad8fdc-a5c3-4d30-a982-3f9dbd564be6&width=2000&userId=&cache=v2",
       "https://fractionalfinance.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd88bb854-394e-424e-8025-0ff57b8d0b1a%2F2017-10-27_10.36.50.jpg?table=block&id=3f8c023a-fa30-4a74-9a3e-a7c82e272c63&spaceId=dcad8fdc-a5c3-4d30-a982-3f9dbd564be6&width=2000&userId=&cache=v2",
       "https://fractionalfinance.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F91ee228e-8b6e-4341-bea5-3658b7c5caec%2F2017-10-27_13.14.07.jpg?table=block&id=3ed9fb30-bfe5-4597-9fec-72e9e7325ac2&spaceId=dcad8fdc-a5c3-4d30-a982-3f9dbd564be6&width=2000&userId=&cache=v2",
-      "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8e3e5f08-cc86-4166-b967-379305b49678/lbc227a45-m9od-w1024_h768_x2.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221030%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221030T153153Z&X-Amz-Expires=86400&X-Amz-Signature=c813d921a6a1f251efe7f070967a13350439f791123e417dd03d4bbb09b93a51&X-Amz-SignedHeaders=host&x-id=GetObject",
-      "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/47316893-a830-4025-b2c7-d46ab60c31ab/lbc227a45-m8od-w1024_h768_x2.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221030%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221030T153153Z&X-Amz-Expires=86400&X-Amz-Signature=e727c0d447d8ef587a9dffa58e98e6ddfad87de11999bd54ae6ff1a70e39ab50&X-Amz-SignedHeaders=host&x-id=GetObject",
     ],
     documents: [
       {

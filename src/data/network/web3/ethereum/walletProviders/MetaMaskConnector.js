@@ -56,6 +56,38 @@ export class MetaMaskConnector {
         return response;
       });
   };
+  /***********************************************************/
+  /* Handle user accounts and accountsChanged (per EIP-1193) */
+  /***********************************************************/
+  
+  
+  
+
+  /**********************************************************/
+  /* Handle chain (network) and chainChanged (per EIP-1193) */
+  /**********************************************************/
+  // getChainId = async () => {
+  //   const chainId = await this.provider.request({ method: 'eth_chainId' });
+  //   this.handleChainChanged(chainId);
+  // }
+  
+  handleChainChanged(_chainId) {
+    // We recommend reloading the page, unless you must do otherwise
+    window.location.reload();
+  }
+  
+  // handleAccountsChanged(accounts) {
+  //   if (accounts.length === 0) {
+  //     // MetaMask is locked or the user has not connected any accounts
+  //     console.log('Please connect to MetaMask.');
+  //   } else if (accounts[0] !== currentAccount) {
+  //     currentAccount = accounts[0];
+  //     // Do any other work!
+  //   }
+  // }
+
+  
 }
+
 
 export default MetaMaskConnector;

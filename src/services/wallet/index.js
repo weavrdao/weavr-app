@@ -29,6 +29,11 @@ class Wallet {
     return state;
   }
 
+  getChainId() {
+    console.log(this.client.getChainId());
+    return this.client.getChainId()
+  }
+
   async walletConnect(provider) {
     if (provider) {
       const val = await this.client.connectWallet(provider);
@@ -41,6 +46,17 @@ class Wallet {
     const signature = await this.client.getSignature(domain, types, data);
     const sig = Promise.all([signature]);
     return sig;
+  }
+
+  disconnect() {
+    return new WalletState(
+      "",
+      null,
+      null,
+      null,
+      null,
+      0
+    )
   }
 }
 

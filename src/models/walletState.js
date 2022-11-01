@@ -14,12 +14,20 @@ const networks = {
 };
 
 class WalletState {
-  constructor(address, ethBalance, tokenBalance, tokenSymbol, vouches) {
+  constructor(
+    address,
+    ethBalance,
+    tokenBalance,
+    tokenSymbol,
+    vouches,
+    network
+  ) {
     this.address = address;
     this.ethBalance = ethBalance;
     this.tokenBalance = tokenBalance;
     this.tokenSymbol = tokenSymbol;
-    this.vouches = vouches;
+    this.vouches = vouches,
+    this.network = network
   }
 }
 

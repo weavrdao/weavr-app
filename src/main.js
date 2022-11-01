@@ -7,8 +7,8 @@ import "./styles/frabric-custom.scss";
 import Toaster from "@meforma/vue-toaster";
 import Unicon from "vue-unicons";
 import Blockies from "vue-blockies";
-import { uniAppsSolid, uniListUlSolid } from "vue-unicons/dist/icons";
-Unicon.add([uniAppsSolid, uniListUlSolid])
+import { uniAppsSolid, uniListUlSolid, uniEyeSlash, uniTimes, uniTimesSquare, uniSignout, uniFilePlusAlt, uniCamera, uniAngleDown } from "vue-unicons/dist/icons";
+Unicon.add([uniAppsSolid, uniListUlSolid, uniTimes,uniEyeSlash, uniTimesSquare, uniSignout, uniFilePlusAlt, uniCamera, uniAngleDown])
 
 require("dotenv").config()
 
