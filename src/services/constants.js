@@ -28,4 +28,4 @@ export const _NETWORKS = {
   avalanche: { name: "Avalanche", id: 43114 },
 }
 
-export const NETWORK = _NETWORKS.goerli
+export const NETWORK = _NETWORKS.arbitrum
