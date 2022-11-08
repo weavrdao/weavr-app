@@ -3,7 +3,7 @@ const properties = [
   {
     id: 0,
     name: "116 Englewood",
-    target: 451000,
+    target: 270600,
     tags: [
       "Residential",
     ],
@@ -55,12 +55,14 @@ Spacious and charming one bedroom apartment with high ceilings. It's transit acc
 
 It is also situated next to Chestnut Hill reservoir; one of Boston's most loved and attractive jogging spaces. The building's close proximity to Boston College and other universities guarantees its thus far perfect occupancy record through economic weathers fair and foul.
 ### About the Project.
-The property has been in the ownership of Governor Cozeno for many years and the business model is highly mature. It is currently evaluated at $400-420K range by Zestimates (Oct 1st, 2022), and rents for $1850 per month, with excellent track record and no vacancies. Monthly costs are $476 for condo fees, and roughly $350 for taxes.
+The property has been in the ownership of Governor Cozeno for many years and the business model is highly mature, no vacancies and very safe.
 
 ###  Investment Info.
 
 - Acquisition Cost per assessment value: $410,000 USDC
-- Land Development Cost: $0 USDC
+- Sellers Retained Equity: $180,400 USDC
+- Funding Target: $270,600 USDC
+
 - Expense Budget: 10% of Investment, $41,000 USDC
 - Rental Income: $1850 USDC Monthly, $22,200 USDC
 - Rental Income: $1850 USDC Monthly, $22,200 USDC
@@ -95,7 +97,7 @@ If the Expense Budget Account is full, all remaining revenue will be used to buy
 💡 If there is only 1 TH token @$1000 USDC, then only 1 TH token is acquired.
 
 **5%** of the acquired tokens will be provided to the Governor to compensate them for their work done.
-**85%** will be burned by transferring them to the null Ethereum address 0x0000000000000000000000000000000000000000
+**85%** will be burned.
 
 💡  [Token Burning](https://academy.swissborg.com/en/learn/token-burning) removes them from circulation, never to be used again.
     `,
