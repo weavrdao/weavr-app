@@ -29,23 +29,23 @@ const properties = [
     documents: [
       {
         name: "Floor Plan",
-        url: "https://w3s.link/ipfs/bafybeigndnohfnjiguxdv6xl2ohgernuangwos3sean7uyb45lgyyb6hci",
+        url: "https://bafybeigndnohfnjiguxdv6xl2ohgernuangwos3sean7uyb45lgyyb6hci.ipfs.w3s.link/ipfs/bafybeigndnohfnjiguxdv6xl2ohgernuangwos3sean7uyb45lgyyb6hci/floorplan.png",
       },
       {
         name: "Condominium Association",
-        url: "https://w3s.link/ipfs/bafybeid2rbn5az6pn7jioxcel4loyuznxtq5vrrnpyvrc7lvbjb2a4wixu",
+        url: "https://bafybeid2rbn5az6pn7jioxcel4loyuznxtq5vrrnpyvrc7lvbjb2a4wixu.ipfs.w3s.link/ipfs/bafybeid2rbn5az6pn7jioxcel4loyuznxtq5vrrnpyvrc7lvbjb2a4wixu/Condo_Association.pdf",
       },
       {
         name: "Home Inspection Report",
-        url: "https://w3s.link/ipfs/bafybeiavthmqcdctg33bjq3ozjxyrsyf6m3qnm42wb73uqlr74topvyijy",
+        url: "https://bafybeiavthmqcdctg33bjq3ozjxyrsyf6m3qnm42wb73uqlr74topvyijy.ipfs.w3s.link/ipfs/bafybeiavthmqcdctg33bjq3ozjxyrsyf6m3qnm42wb73uqlr74topvyijy/Home%20Inspection%20Report%20Oct%206th.pdf",
       },
       {
         name: "Settlement Statement",
-        url:  "https://w3s.link/ipfs/bafybeibwmhe4sw6g37yhhwem7nfzaor7mtvgmzqedzwsdfsvjkywxf7bni",
+        url:  "https://bafybeibwmhe4sw6g37yhhwem7nfzaor7mtvgmzqedzwsdfsvjkywxf7bni.ipfs.w3s.link/ipfs/bafybeibwmhe4sw6g37yhhwem7nfzaor7mtvgmzqedzwsdfsvjkywxf7bni/settlement_statement%20(1).pdf",
       },
       {
         name: "Rental History",
-        url: "https://w3s.link/ipfs/bafybeia243ztvgx7gltkb5gixuugzqhszot34wijqu4y5oroynio5yvxka",
+        url: "https://bafybeia243ztvgx7gltkb5gixuugzqhszot34wijqu4y5oroynio5yvxka.ipfs.w3s.link/ipfs/bafybeia243ztvgx7gltkb5gixuugzqhszot34wijqu4y5oroynio5yvxka/rent_2022.pdf",
       }
     ],
     location: "116 Englewood Ave, Brighton, MA 02135, USA",
