@@ -60,10 +60,10 @@ The property has been in the ownership of Governor Cozeno for many years and the
 ###  Investment Info.
 
 - Acquisition Cost per assessment value: $410,000 USDC
+- Expense Budget: 10% of Investment, $41,000 USDC
 - Sellers Retained Equity: $180,400 USDC
 - Funding Target: $270,600 USDC
 
-- Expense Budget: 10% of Investment, $41,000 USDC
 - Rental Income: $1850 USDC Monthly, $22,200 USDC
 - Rental Income: $1850 USDC Monthly, $22,200 USDC
 - Governor management fee: 5% of Rental Income: $1,110 USDC Annual
