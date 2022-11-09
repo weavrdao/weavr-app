@@ -3,7 +3,7 @@ const properties = [
   {
     id: 0,
     name: "116 Englewood",
-    target: 451000,
+    target: 270600,
     tags: [
       "Residential",
     ],
@@ -29,23 +29,23 @@ const properties = [
     documents: [
       {
         name: "Floor Plan",
-        url: "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1c1d3182-6dd4-4f87-b89a-b278075f4393/floorplan.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221030%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221030T153809Z&X-Amz-Expires=86400&X-Amz-Signature=8c0106fb933bc570ddf5847717213de03d480ba05a9454f2c12f76907d21fa50&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22floorplan.png%22&x-id=GetObject",
+        url: "https://bafybeigndnohfnjiguxdv6xl2ohgernuangwos3sean7uyb45lgyyb6hci.ipfs.w3s.link/ipfs/bafybeigndnohfnjiguxdv6xl2ohgernuangwos3sean7uyb45lgyyb6hci/floorplan.png",
       },
       {
         name: "Condominium Association",
-        url: "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e70f7113-816d-451f-a7a4-458a53d7b1cf/association_docs.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221030%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221030T153831Z&X-Amz-Expires=86400&X-Amz-Signature=f932557ae6ddd0cb23c483d72da8350084587d32b48e7486d9b81705d52f01f9&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Condo_Association.pdf%22&x-id=GetObject",
+        url: "https://bafybeid2rbn5az6pn7jioxcel4loyuznxtq5vrrnpyvrc7lvbjb2a4wixu.ipfs.w3s.link/ipfs/bafybeid2rbn5az6pn7jioxcel4loyuznxtq5vrrnpyvrc7lvbjb2a4wixu/Condo_Association.pdf",
       },
       {
         name: "Home Inspection Report",
-        url: "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/f41ba618-b20c-47aa-9bdd-53461a9fb11c/116-englewood-ave-18041.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221030%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221030T153854Z&X-Amz-Expires=86400&X-Amz-Signature=8353de3ea9f4c24f3d91acf24027a7ce002c86719b0858da3f50a67560f827c7&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Home%2520Inspection%2520Report%2520Oct%25206th.pdf%22&x-id=GetObject",
+        url: "https://bafybeiavthmqcdctg33bjq3ozjxyrsyf6m3qnm42wb73uqlr74topvyijy.ipfs.w3s.link/ipfs/bafybeiavthmqcdctg33bjq3ozjxyrsyf6m3qnm42wb73uqlr74topvyijy/Home%20Inspection%20Report%20Oct%206th.pdf",
       },
       {
         name: "Settlement Statement",
-        url:  "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ed0c1598-8e0c-46ff-9556-eb7f05d14b4a/settlement_statement.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221030%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221030T153923Z&X-Amz-Expires=86400&X-Amz-Signature=35610a4df7cf6db430fad90312afaff17ef95c8f4db3b2d9b57d17bb41f2b890&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22settlement_statement.pdf%22&x-id=GetObject",
+        url:  "https://bafybeibwmhe4sw6g37yhhwem7nfzaor7mtvgmzqedzwsdfsvjkywxf7bni.ipfs.w3s.link/ipfs/bafybeibwmhe4sw6g37yhhwem7nfzaor7mtvgmzqedzwsdfsvjkywxf7bni/settlement_statement%20(1).pdf",
       },
       {
         name: "Rental History",
-        url: "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/18235a94-e2f3-4b6e-8024-a315568b7532/rent_2022.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221030%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221030T153946Z&X-Amz-Expires=86400&X-Amz-Signature=65e1f17e92b7bcf3097643d4c192230531dbf9ffc10baf889dbc87675bbed1c5&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22rent_2022.pdf%22&x-id=GetObject",
+        url: "https://bafybeia243ztvgx7gltkb5gixuugzqhszot34wijqu4y5oroynio5yvxka.ipfs.w3s.link/ipfs/bafybeia243ztvgx7gltkb5gixuugzqhszot34wijqu4y5oroynio5yvxka/rent_2022.pdf",
       }
     ],
     location: "116 Englewood Ave, Brighton, MA 02135, USA",
@@ -55,12 +55,14 @@ Spacious and charming one bedroom apartment with high ceilings. It's transit acc
 
 It is also situated next to Chestnut Hill reservoir; one of Boston's most loved and attractive jogging spaces. The building's close proximity to Boston College and other universities guarantees its thus far perfect occupancy record through economic weathers fair and foul.
 ### About the Project.
-The property has been in the ownership of Governor Cozeno for many years and the business model is highly mature. It is currently evaluated at $400-420K range by Zestimates (Oct 1st, 2022), and rents for $1850 per month, with excellent track record and no vacancies. Monthly costs are $476 for condo fees, and roughly $350 for taxes.
+The property has been in the ownership of Governor Cozeno for many years and the business model is highly mature, no vacancies and very safe.
 
 ###  Investment Info.
 
 - Acquisition Cost per assessment value: $410,000 USDC
-- Land Development Cost: $0 USDC
+- Sellers Retained Equity: $180,400 USDC
+- Funding Target: $270,600 USDC
+
 - Expense Budget: 10% of Investment, $41,000 USDC
 - Rental Income: $1850 USDC Monthly, $22,200 USDC
 - Rental Income: $1850 USDC Monthly, $22,200 USDC
@@ -95,7 +97,7 @@ If the Expense Budget Account is full, all remaining revenue will be used to buy
 💡 If there is only 1 TH token @$1000 USDC, then only 1 TH token is acquired.
 
 **5%** of the acquired tokens will be provided to the Governor to compensate them for their work done.
-**85%** will be burned by transferring them to the null Ethereum address 0x0000000000000000000000000000000000000000
+**85%** will be burned.
 
 💡  [Token Burning](https://academy.swissborg.com/en/learn/token-burning) removes them from circulation, never to be used again.
     `,

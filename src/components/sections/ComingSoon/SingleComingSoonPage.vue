@@ -19,10 +19,10 @@
       <span>🧵</span>
       <div class="has-text-white">
         <h3>Want to own a part of this property?</h3>
-        <h4>If you aren't already part of Weavr, follow us on Twitter to learn how to get whitelisted</h4>
+        <h4>Make a pledge, and become a part of history.</h4>
       </div>
       <div class="is-flex-grow-1 is-flex is-justify-content-flex-end button-container">
-        <a target="_blank" rel="noopener" href="https://twitter.com/WeavrDAO" class="has-text-white button shiny-button has-background-mediumBlue mt-0"><i></i><strong>Join Now!</strong></a>
+        <a target="_blank" rel="noopener" href="https://dkwnhnualcm.typeform.com/weavr-pledge" class="has-text-white button shiny-button has-background-mediumBlue mt-0"><i></i><strong>Pledge</strong></a>
       </div>
     </div>
     <div>
